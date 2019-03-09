@@ -19,6 +19,32 @@ namespace Products.Catalog.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("Products.Catalog.Domain.Attribute", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Attribute");
+                });
+
+            modelBuilder.Entity("Products.Catalog.Domain.AttributeValue", b =>
+                {
+                    b.Property<int>("ProductId");
+
+                    b.Property<int>("AttributeId");
+
+                    b.Property<string>("Value");
+
+                    b.HasKey("ProductId", "AttributeId");
+
+                    b.ToTable("AttributeValue");
+                });
+
             modelBuilder.Entity("Products.Catalog.Domain.Category", b =>
                 {
                     b.Property<int>("Id")
@@ -42,9 +68,13 @@ namespace Products.Catalog.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("CategoryId");
+                    b.Property<int>("CategoryId");
 
                     b.Property<string>("Description");
+
+                    b.Property<bool>("IsActive");
+
+                    b.Property<bool>("IsDeleted");
 
                     b.Property<string>("Name");
 
@@ -55,6 +85,19 @@ namespace Products.Catalog.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("Products.Catalog.Domain.AttributeValue", b =>
+                {
+                    b.HasOne("Products.Catalog.Domain.Attribute", "Attribute")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Products.Catalog.Domain.Product", "Product")
+                        .WithMany("Attributes")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Products.Catalog.Domain.Category", b =>
@@ -68,7 +111,8 @@ namespace Products.Catalog.Migrations
                 {
                     b.HasOne("Products.Catalog.Domain.Category", "Category")
                         .WithMany("Products")
-                        .HasForeignKey("CategoryId");
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

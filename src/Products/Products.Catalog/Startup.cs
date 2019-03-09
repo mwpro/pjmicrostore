@@ -34,7 +34,7 @@ namespace Products.Catalog
                     options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore; // todo hmm, probably it only hides the problem
                 }); ;
 
-            const string connectionString = @"Server=(localdb)\mssqllocaldb;Database=ProductsContext;Trusted_Connection=True;ConnectRetryCount=0";
+            const string connectionString = @"Server=(localdb)\mssqllocaldb;Database=Products.Catalog;Trusted_Connection=True;ConnectRetryCount=0";
             services.AddDbContext<ProductsContext>
                 (options => options.UseSqlServer(connectionString));
         }

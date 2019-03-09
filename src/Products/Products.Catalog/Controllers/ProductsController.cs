@@ -22,14 +22,18 @@ namespace Products.Catalog.Controllers
         [HttpGet("products")]
         public IActionResult GetAllProducts()
         {
-            return Ok(_productsContext.Products.Include(x => x.Category).ToList());
+            return Ok(_productsContext.Products
+                .Include(x => x.Category)
+                .Include(x => x.Attributes)
+                    .ThenInclude(x => x.Attribute)
+                .AsNoTracking().ToList());
         }
 
         [HttpGet("categories")]
         public IActionResult GetAllCategories()
         {
             var categories = _productsContext.Categories
-                .Include(x => x.Child).ToList();
+                .Include(x => x.Child).AsNoTracking().ToList();
 
             return Ok(categories.Where(x => x.Parent == null)
                 .Select(CategoryDto.Map));

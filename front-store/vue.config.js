@@ -12,6 +12,10 @@ module.exports = {
         '/api/cart': {
             target: 'https://localhost:44350',
             changeOrigin: true,
+        },        
+        '/api/orders': {
+            target: 'https://localhost:44377',
+            changeOrigin: true,
         },
       },
     },

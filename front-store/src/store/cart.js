@@ -79,5 +79,26 @@ export default {
         });
       // TODO .catch(captains.error)
     },
+    
+    placeOrder({ commit }) {
+      return axios
+        .post("/api/orders", {
+          
+        })
+        .then((response) => {
+          if (response.status !== 201) throw Error(response.message);
+          let order = response.data;
+          if (typeof order !== 'object') {
+            order = {}; // todo ???
+          }
+
+          commit('updateCart', {
+            cartItems: [],
+            value: 0
+          }); // todo actual cart cleaning?
+          return order;
+        });
+      // TODO .catch(captains.error)
+    },
   },
 };

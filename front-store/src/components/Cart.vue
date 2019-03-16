@@ -29,6 +29,7 @@
             <p>
                 Razem: {{ cart.total }}
             </p>
+            <button @click="placeOrder()">Złóż zamówienie</button>
         </div>
     </div>
 </template>
@@ -49,6 +50,12 @@ export default {
         productId: item.productId,
         quantity: updatedQuantity
       });
+    },
+    placeOrder() {
+      this.$store.dispatch("cart/placeOrder")
+        .then(order => {
+            this.$router.push({ name: 'orderPlaced', params: { order: order } });
+        });      
     }
   }
 }

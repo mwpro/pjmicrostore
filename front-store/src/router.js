@@ -4,6 +4,7 @@ import Home from './views/Home.vue';
 
 import Product from './components/Product.vue';
 import Cart from './components/Cart.vue';
+import OrderPlaced from './components/OrderPlaced.vue';
 
 Vue.use(Router);
 
@@ -34,6 +35,12 @@ export default new Router({
       path: '/cart',
       name: 'cart',
       component: Cart,
+    },
+    {
+      path: '/orderPlaced',
+      name: 'orderPlaced',
+      props: true,
+      component: OrderPlaced,
     },
   ],
 });

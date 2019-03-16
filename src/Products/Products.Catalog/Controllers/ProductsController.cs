@@ -28,6 +28,22 @@ namespace Products.Catalog.Controllers
                     .ThenInclude(x => x.Attribute)
                 .AsNoTracking().ToList());
         }
+        
+        [HttpGet("products/{productId}")]
+        public IActionResult GetProduct(int productId)
+        {
+            var product = _productsContext.Products
+                .Include(x => x.Category)
+                .Include(x => x.Attributes)
+                .ThenInclude(x => x.Attribute)
+                .AsNoTracking()
+                .FirstOrDefault(x => x.Id == productId);
+
+            if (product == null)
+                return NotFound();
+
+            return Ok(product);
+        }
 
         [HttpGet("categories")]
         public IActionResult GetAllCategories()

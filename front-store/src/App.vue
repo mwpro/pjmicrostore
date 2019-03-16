@@ -3,10 +3,20 @@
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
-    </div>
+    </div>    
+    <CategoriesList />
     <router-view/>
   </div>
 </template>
+
+<script>
+import CategoriesList from './components/CategoriesList.vue';
+
+export default {
+  components: { CategoriesList },  
+}
+</script>
+
 
 <style>
 #app {

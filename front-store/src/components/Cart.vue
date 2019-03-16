@@ -15,19 +15,19 @@
                 <tbody>
                     <tr v-for="item in cart.cartItems" v-bind:key="item.productId">
                         <td>{{ item.productName }}</td>
-                        <td>{{ item.price }}</td>                        
+                        <td>{{ item.price | currency }}</td>                        
                         <td>                            
                             <button @click="updateItem(item, item.quantity - 1)" :disabled="item.quantity == 1">-</button>
                             {{ item.quantity }} <!-- TODO input for editing -->
                             <button @click="updateItem(item, item.quantity + 1)">+</button>
                         </td>
-                        <td>{{ item.value }}</td>
+                        <td>{{ item.value | currency }}</td>
                         <td><button @click="removeItem(item)">x</button></td>
                     </tr>
                 </tbody>
             </table>
             <p>
-                Razem: {{ cart.total }}
+                Razem: {{ cart.total | currency }}
             </p>
             <button @click="placeOrder()">Złóż zamówienie</button>
         </div>

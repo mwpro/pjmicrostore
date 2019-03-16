@@ -2,7 +2,7 @@
     <div>
         <h2>{{ product.name }}</h2>
         <img src="https://picsum.photos/300/300?image=0" alt="Product name" />
-        <p>{{ product.price }}</p>
+        <p>{{ product.price | currency }}</p>
         <AddToCart :product="product" />
         <p>
             {{product.description}}

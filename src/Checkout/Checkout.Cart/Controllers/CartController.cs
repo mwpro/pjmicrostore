@@ -32,6 +32,21 @@ namespace Checkout.Cart.Controllers
             return Ok(new CartDto(cart));
         }
 
+
+        [HttpGet("{cartId}")]
+        public IActionResult GetCart(int cartId)
+        {
+            var cart = _cartContext.Carts
+                .Include(x => x.CartItems)
+                .ThenInclude(x => x.Product)
+                .FirstOrDefault(x => x.Id == cartId);
+
+            if (cart == null)
+                return NotFound();
+
+            return Ok(new CartDto(cart));
+        }
+
         [HttpPost("products/{productId}")]
         public async Task<IActionResult> AddProduct(int productId, UpdateProductModel updateProductModel)
         {

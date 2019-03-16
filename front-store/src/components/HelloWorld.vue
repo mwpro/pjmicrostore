@@ -1,7 +1,6 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
-    <CategoriesList />
     <div class="products">
       <ProductBox v-for="product in products" v-bind:key="product.id" v-bind:product="product" />
     </div>

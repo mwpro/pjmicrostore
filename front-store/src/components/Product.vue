@@ -3,7 +3,7 @@
         <h2>{{ product.name }}</h2>
         <img src="https://picsum.photos/300/300?image=0" alt="Product name" />
         <p>{{ product.price }}</p>
-        <button>Dodaj do koszyka</button>
+        <AddToCart :product="product" />
         <p>
             {{product.description}}
         </p>
@@ -17,7 +17,10 @@
 </template>
 
 <script>
+import AddToCart from './AddToCart.vue';
+
 export default {
+  components: { AddToCart },
   props: {
     productId: String, // TODO number
   }, 

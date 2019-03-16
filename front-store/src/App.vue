@@ -3,7 +3,8 @@
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
-    </div>    
+    </div>
+    <CartInfo />    
     <CategoriesList />
     <router-view/>
   </div>
@@ -11,9 +12,10 @@
 
 <script>
 import CategoriesList from './components/CategoriesList.vue';
+import CartInfo from './components/CartInfo.vue';
 
 export default {
-  components: { CategoriesList },  
+  components: { CategoriesList, CartInfo },  
 }
 </script>
 

@@ -5,6 +5,7 @@ using System.Net;
 using System.Threading.Tasks;
 using Checkout.Orders.Domain;
 using Checkout.Orders.Services;
+using MassTransit;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Checkout.Orders.Controllers
@@ -16,11 +17,13 @@ namespace Checkout.Orders.Controllers
         private const int CartIdMock = 1; // todo what next?
         private readonly ICartsService _cartsService;
         private readonly OrdersContext _ordersContext;
+        private readonly IBus _bus;
 
-        public OrdersController(ICartsService cartsService, OrdersContext ordersContext)
+        public OrdersController(ICartsService cartsService, OrdersContext ordersContext, IBus bus)
         {
             _cartsService = cartsService;
             _ordersContext = ordersContext;
+            _bus = bus;
         }
 
         // TODO place order
@@ -52,6 +55,12 @@ namespace Checkout.Orders.Controllers
             _ordersContext.Add(order);
             _ordersContext.SaveChanges();
 
+            await _bus.Publish(new OrderPlacedEvent()
+            {
+                OrderId = order.Id,
+                SourceCartId = cart.CartId
+            });
+
             return StatusCode((int)HttpStatusCode.Created, order);
         }
 
@@ -61,5 +70,11 @@ namespace Checkout.Orders.Controllers
     public class PlaceOrderModel
     {
 
+    }
+
+    public class OrderPlacedEvent
+    {
+        public int OrderId { get; set; }
+        public int SourceCartId { get; set; }
     }
 }

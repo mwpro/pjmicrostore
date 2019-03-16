@@ -23,5 +23,6 @@ export default {
 <style scoped>
     div {
         text-align: left;
+        float: left;
     }
 </style>

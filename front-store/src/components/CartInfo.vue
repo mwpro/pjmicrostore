@@ -1,8 +1,9 @@
 <template>
     <div>
-        <p v-if="cart.cartItems.length === 0">Cart is empty</p>
+        <p v-if="cart.cartItems.length === 0"><router-link :to="{ name: 'cart' }">Cart is empty</router-link></p>
         <p v-else>
-            Koszyk: {{ cart.cartItems.length }} produktów o wartości {{ cart.total }}
+            <router-link :to="{ name: 'cart' }">Koszyk:</router-link> 
+            {{ cart.cartItems.length }} produktów o wartości {{ cart.total }}
         </p>
     </div>
 </template>
@@ -14,11 +15,6 @@ export default {
       return this.$store.state.cart.cart;
     },    
   },
-//   created() {
-//     this.$store.dispatch(
-//       'products/getProductsAction'
-//     );
-//   },
 }
 </script>
 

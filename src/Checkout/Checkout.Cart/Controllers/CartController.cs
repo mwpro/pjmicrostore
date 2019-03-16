@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using Checkout.Cart.Domain;
+using Checkout.Cart.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,10 +16,12 @@ namespace Checkout.Cart.Controllers
     {
         private const int CartIdMock = 1; // todo what next?
         private readonly CartContext _cartContext;
+        private readonly IProductsService _productsService;
 
-        public CartController(CartContext cartContext)
+        public CartController(CartContext cartContext, IProductsService productsService)
         {
             _cartContext = cartContext;
+            _productsService = productsService;
         }
 
         [HttpGet("")]
@@ -29,11 +33,11 @@ namespace Checkout.Cart.Controllers
         }
 
         [HttpPost("products/{productId}")]
-        public IActionResult AddProduct(int productId, UpdateProductModel updateProductModel)
+        public async Task<IActionResult> AddProduct(int productId, UpdateProductModel updateProductModel)
         {
             var cart = GetOrCreateCart();
 
-            var product = GetProduct(productId);
+            var product = await GetProduct(productId);
             if (product == null)
             {
                 return NotFound("Product not found");
@@ -46,11 +50,11 @@ namespace Checkout.Cart.Controllers
         }
 
         [HttpPut("products/{productId}")]
-        public IActionResult UpdateProduct(int productId, UpdateProductModel updateProductModel)
+        public async Task<IActionResult> UpdateProduct(int productId, UpdateProductModel updateProductModel)
         {
             var cart = GetOrCreateCart();
 
-            var product = GetProduct(productId);
+            var product = await GetProduct(productId);
             if (product == null)
             {
                 return NotFound("Product not found");
@@ -66,30 +70,19 @@ namespace Checkout.Cart.Controllers
         public IActionResult DeleteProduct(int productId)
         {
             var cart = GetOrCreateCart();
-
-            var product = GetProduct(productId);
-            if (product == null)
-            {
-                return NotFound("Product not found");
-            }
-
+            
             cart.DeleteProduct(productId);
             _cartContext.SaveChanges();
 
             return Ok(new CartDto(cart));
         }
 
-        private Product GetProduct(int productId)
+        private async Task<Product> GetProduct(int productId)
         {
             var product = _cartContext.Products.FirstOrDefault(x => x.Id == productId);
             if (product == null)
             {
-                product = new Product() // todo mock
-                {
-                    Id = productId,
-                    Name = $"Product-{productId}",
-                    Price = productId * 1.23m
-                };
+                product = await _productsService.GetProduct(productId);
             }
 
             return product;
@@ -117,6 +110,7 @@ namespace Checkout.Cart.Controllers
 
     public class UpdateProductModel
     {
+        [Range(1, Int32.MaxValue)]
         public int Quantity { get; set; }
     }
 

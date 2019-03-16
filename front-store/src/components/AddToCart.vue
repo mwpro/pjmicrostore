@@ -9,7 +9,6 @@ export default {
     }, 
     methods: {
         addToCart() {
-            console.log(`${this.product.name} added to cart`);
             this.$store.dispatch("cart/addProductToCartAction", {
                 productId: this.product.id,
                 quantity: 1

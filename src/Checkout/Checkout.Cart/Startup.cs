@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Checkout.Cart.Domain;
+using Checkout.Cart.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -32,6 +33,8 @@ namespace Checkout.Cart
             const string connectionString = @"Server=(localdb)\mssqllocaldb;Database=Checkout.Cart;Trusted_Connection=True;ConnectRetryCount=0";
             services.AddDbContext<CartContext>
                 (options => options.UseSqlServer(connectionString));
+
+            services.AddTransient<IProductsService, ProductsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

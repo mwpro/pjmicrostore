@@ -16,6 +16,9 @@ import CartInfo from './components/CartInfo.vue';
 
 export default {
   components: { CategoriesList, CartInfo },  
+  created() {
+    this.$store.dispatch("cart/getCartAction");
+  }
 }
 </script>
 

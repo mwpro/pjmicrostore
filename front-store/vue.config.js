@@ -10,11 +10,11 @@ module.exports = {
             changeOrigin: true,
         },
         '/api/cart': {
-            target: 'https://localhost:44350',
+            target: 'http://localhost:64642',
             changeOrigin: true,
         },        
         '/api/orders': {
-            target: 'https://localhost:44377',
+            target: 'http://localhost:56037',
             changeOrigin: true,
         },
       },

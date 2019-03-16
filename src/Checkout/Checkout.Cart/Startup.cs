@@ -11,7 +11,6 @@ using GreenPipes;
 using MassTransit;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -46,23 +45,22 @@ namespace Checkout.Cart
                 c.AddBus(provider => Bus.Factory.CreateUsingRabbitMq(
                     cfg =>
                     {
-                        cfg.Host("localhost", "/", h => { });
-                        cfg.ReceiveEndpoint("Checkout.Cart", e =>
+                        var host = cfg.Host("localhost", "/", h => { });
+                        cfg.ReceiveEndpoint(host, "Checkout.Cart", e =>
                         {
-                            //e.PrefetchCount = 16;
+                            e.PrefetchCount = 16;
                             e.UseMessageRetry(x => x.Interval(2, 100));
 
                             e.ConfigureConsumer<OrderPlacedConsumer>(provider);
-
-                            EndpointConvention.Map<OrderPlacedEvent>(e.InputAddress);
                         });
                     }));
                 c.AddConsumer<OrderPlacedConsumer>();
             });
-            services.AddSingleton<IBus>(provider => provider.GetRequiredService<IBusControl>());
+
+            services.AddSingleton<IHostedService, BusService>();
+
             services.AddTransient<IProductsService, ProductsService>(); // todo scoped or transient?
             services.AddTransient<OrderPlacedConsumer>();
-            services.AddSingleton<IHostedService, CartService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -72,22 +70,16 @@ namespace Checkout.Cart
             {
                 app.UseDeveloperExceptionPage();
             }
-            else
-            {
-                app.UseHsts();
-            }
 
-            app.UseHttpsRedirection();
             app.UseMvc();
         }
     }
-
-    public class CartService :
+    public class BusService :
         IHostedService
     {
         private readonly IBusControl _busControl;
 
-        public CartService(IBusControl busControl)
+        public BusService(IBusControl busControl)
         {
             _busControl = busControl;
         }

@@ -16,7 +16,7 @@ namespace Checkout.Orders.Services
     {
         public async Task<Cart> GetCart(int cartId)
         {
-            var cart = await "http://localhost:60074/api/"
+            var cart = await "http://localhost:64642/api/"
                 .AppendPathSegments("cart", cartId)
                 .GetJsonAsync<Cart>();
 

@@ -21,10 +21,10 @@ namespace Checkout.Cart.Domain
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //modelBuilder.Entity<AttributeValue>()
-            //    .HasOne(x => x.Product)
-            //    .WithMany(x => x.Attributes)
-            //    .HasForeignKey(x => x.ProductId);
+            modelBuilder.Entity<Cart>()
+                .HasMany(e => e.CartItems)
+                .WithOne()
+                .OnDelete(DeleteBehavior.Cascade);
 
             //modelBuilder.Entity<AttributeValue>()
             //    .HasOne(x => x.Attribute)
@@ -48,7 +48,7 @@ namespace Checkout.Cart.Domain
 
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { get; set; }
-
+        
         public ICollection<CartItem> CartItems { get; set; }
 
         public void AddProduct(Product product, int quantity)
@@ -94,7 +94,6 @@ namespace Checkout.Cart.Domain
         public int ProductId { get; set; }
         public Product Product { get; set; }
         public int Quantity { get; set; }
-
     }
 
     public class Product

@@ -1,23 +1,168 @@
 <template>
-    <div>
-        <p v-if="cart.numberOfItems === 0"><router-link :to="{ name: 'cart' }">Cart is empty</router-link></p>
-        <p v-else>
-            <router-link :to="{ name: 'cart' }">Koszyk:</router-link> 
+  <div>
+    <router-link :to="{ name: 'cart' }">Koszyk:</router-link>
+    <button @click="cartON()">
+        <template v-if="cart.numberOfItems === 0">
+            Koszyk jest pusty
+        </template>
+        <template v-else>
             {{ cart.numberOfItems }} produktów o wartości {{ cart.total | currency }}
-        </p>
+        </template>
+    </button>
+
+    <div :class="cClass">
+      <div class="cart-menu">
+        <h1 class="text-center">Koszyk</h1>
+        <hr>
+
+        <transition name="fade">
+          <div
+            v-if="this.cartContent.length === 0"
+            class="text-center font-italic"
+          >Koszyk jest pusty.</div>
+        </transition>
+
+        <transition-group name="fade">
+          <div class="row" v-for="thing in cartContent" v-bind:key="thing.productId">
+            <div class="col4 col-xl-4 col-lg-4 col-md-4 col-sm-4">
+              <img :src="thing.img" style="width: 90px;">
+            </div>
+            <div class="col6 col-xl-6 col-lg-6 col-md-6 col-sm-6">
+              <h4>{{ thing.productName }}</h4>
+              <h6>{{ thing.productPrice | currency }}</h6>
+            </div>
+            <div class="col2 col-xl-2 col-lg-2 col-md-2 col-sm-2 pt-4">
+              <span class="remove-btn" @click="removeItem(thing.productId)">remove</span>
+            </div>
+          </div>
+        </transition-group>
+
+        <hr v-if="this.cartContent.length !== 0">
+        <div
+          class="row justify-content-between"
+          style="background:#7dcf85;padding:10px 10px 10px 10px"
+          v-if="this.cartPrice != undefined"
+        >
+          <div class="flex-column pl-3">
+            <h4>Razem</h4>
+          </div>
+          <div class="flex-column pr-3">
+            <h4>{{ cartPrice | currency }}</h4>
+          </div>
+        </div>
+      </div>
     </div>
+
+    <div :class="modalClass" @click="cartON"></div>
+  </div>
 </template>
 
 <script>
 export default {
+  name: "Cart",
+  data() {
+    return {
+      cClass: "cart",
+      modalClass: "modal off"
+    };
+  },
   computed: {
+    cartContent() {
+      return this.$store.state.cart.cart.cartItems;
+    },
+    cartPrice() {
+      return this.$store.state.cart.cart.total;
+    },
     cart() {
       return this.$store.state.cart.cart;
-    },    
+    }
   },
-}
+  methods: {
+    cartON() {
+      if (this.cClass === "cart on") {
+        this.cClass = "cart";
+        this.modalClass = "modal off";
+      } else {
+        this.cClass = "cart on";
+        this.modalClass = "modal";
+      }
+    },
+    removeItem(productId) {
+      this.$store.dispatch("cart/removeFromCartAction", productId);
+    },    
+  }
+};
 </script>
 
-<style>
+<style scoped>
+.modal {
+  display: block;
+  z-index: 1050;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+.modal.off {
+  display: none;
+}
+/* Transitions */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+/* Cart Body */
+.cart {
+  position: fixed;
+  margin-right: 0px;
+  top: 0;
+  right: 0;
+  width: 360px;
+  height: 100%;
+  background: #303e49;
+  overflow-y: auto;
+  z-index: 1051;
+  -webkit-overflow-scrolling: touch;
+  transform: translateX(360px);
+  transition-property: transform;
+  transition-duration: 0.4s;
+}
+.cart.on {
+  transform: translateX(0);
+  -webkit-overflow-scrolling: touch;
+  transition-property: transform;
+  transition-duration: 0.4s;
+}
 
+.cart-menu {
+  color: #eee;
+  margin-left: 10px;
+  margin-right: 15px;
+}
+
+hr {
+  border-color: white;
+}
+
+.row {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.remove-btn {
+  border-radius: 50%;
+  /*content: url('../assets/multiply.png')*/
+}
+
+.remove-btn:hover {
+  background-color: grey;
+}
 </style>

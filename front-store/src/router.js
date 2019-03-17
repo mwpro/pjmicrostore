@@ -1,10 +1,10 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Home from './views/Home.vue';
 
-import Product from './components/Product.vue';
-import Cart from './components/Cart.vue';
-import OrderPlaced from './components/OrderPlaced.vue';
+import Home from './pages/Home.vue';
+import Product from './pages/Product.vue';
+import Cart from './pages/Cart.vue';
+import OrderPlaced from './pages/OrderPlaced.vue';
 
 Vue.use(Router);
 

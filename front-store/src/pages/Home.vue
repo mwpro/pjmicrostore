@@ -12,8 +12,8 @@
 </template>
 
 <script>
-import ProductBox from './ProductBox.vue';
-import CategoriesList from './CategoriesList.vue';
+import ProductBox from './../components/ProductBox.vue';
+import CategoriesList from './../components/CategoriesList.vue';
 
 export default {
   name: 'HelloWorld',

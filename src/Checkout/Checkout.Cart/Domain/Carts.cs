@@ -48,6 +48,8 @@ namespace Checkout.Cart.Domain
 
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { get; set; }
+
+        public decimal Total => CartItems.Sum(x => x.Value);
         
         public ICollection<CartItem> CartItems { get; set; }
 
@@ -94,6 +96,7 @@ namespace Checkout.Cart.Domain
         public int ProductId { get; set; }
         public Product Product { get; set; }
         public int Quantity { get; set; }
+        public decimal Value => Quantity * Product.Price;
     }
 
     public class Product

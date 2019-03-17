@@ -18,4 +18,9 @@
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Checkout.Cart.Contracts\Checkout.Cart.Contracts.csproj" />
+    <ProjectReference Include="..\Checkout.Orders.Contracts\Checkout.Orders.Contracts.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using Checkout.Cart.Consumers;
 using Checkout.Cart.Domain;
 using Checkout.Cart.Services;
-using Checkout.Orders.Controllers;
 using GreenPipes;
 using MassTransit;
 using Microsoft.AspNetCore.Builder;

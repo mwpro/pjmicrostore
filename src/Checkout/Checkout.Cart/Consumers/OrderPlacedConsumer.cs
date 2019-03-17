@@ -3,17 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Checkout.Cart.Domain;
-using Checkout.Orders.Controllers;
+using Checkout.Orders.Contracts.Events;
 using MassTransit;
-
-namespace Checkout.Orders.Controllers
-{
-    public class OrderPlacedEvent
-    {
-        public int OrderId { get; set; }
-        public int SourceCartId { get; set; }
-    }
-}
 
 namespace Checkout.Cart.Consumers
 {

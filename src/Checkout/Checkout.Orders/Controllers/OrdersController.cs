@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using Checkout.Orders.Contracts.Events;
 using Checkout.Orders.Domain;
 using Checkout.Orders.Services;
 using MassTransit;
@@ -70,11 +71,5 @@ namespace Checkout.Orders.Controllers
     public class PlaceOrderModel
     {
 
-    }
-
-    public class OrderPlacedEvent
-    {
-        public int OrderId { get; set; }
-        public int SourceCartId { get; set; }
     }
 }

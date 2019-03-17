@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using Checkout.Cart.Contracts.ApiModels;
 using Checkout.Cart.Domain;
 using Checkout.Cart.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -29,7 +30,7 @@ namespace Checkout.Cart.Controllers
         {
             var cart = GetOrCreateCart();
 
-            return Ok(new CartDto(cart));
+            return Ok(MapToApiModel(cart));
         }
 
 
@@ -44,7 +45,7 @@ namespace Checkout.Cart.Controllers
             if (cart == null)
                 return NotFound();
 
-            return Ok(new CartDto(cart));
+            return Ok(MapToApiModel(cart));
         }
 
         [HttpPost("products/{productId}")]
@@ -61,7 +62,7 @@ namespace Checkout.Cart.Controllers
             cart.AddProduct(product, updateProductModel.Quantity);
             _cartContext.SaveChanges();
 
-            return Ok(new CartDto(cart));
+            return Ok(MapToApiModel(cart));
         }
 
         [HttpPut("products/{productId}")]
@@ -78,7 +79,7 @@ namespace Checkout.Cart.Controllers
             cart.UpdateProduct(product, updateProductModel.Quantity);
             _cartContext.SaveChanges();
 
-            return Ok(new CartDto(cart));
+            return Ok(MapToApiModel(cart));
         }
 
         [HttpDelete("products/{productId}")]
@@ -89,7 +90,25 @@ namespace Checkout.Cart.Controllers
             cart.DeleteProduct(productId);
             _cartContext.SaveChanges();
 
-            return Ok(new CartDto(cart));
+            return Ok(MapToApiModel(cart));
+        }
+
+        private CartDto MapToApiModel(Domain.Cart cart)
+        {
+            return new CartDto()
+            {
+                CartId = cart.Id,
+                Total = cart.Total,
+                CartItems = cart.CartItems.Select(x => 
+                    new CartDto.CartItemDto()
+                    {
+                        Quantity = x.Quantity,
+                        ProductPrice = x.Product.Price,
+                        ProductId = x.ProductId,
+                        ProductName = x.Product.Name,
+                        Value = x.Value
+                    })
+            };
         }
 
         private async Task<Product> GetProduct(int productId)
@@ -120,46 +139,6 @@ namespace Checkout.Cart.Controllers
             }
 
             return cart;
-        }
-    }
-
-    public class UpdateProductModel
-    {
-        [Range(1, Int32.MaxValue)]
-        public int Quantity { get; set; }
-    }
-
-    public class CartDto
-    {
-        public CartDto() { }
-
-        public CartDto(Domain.Cart cart)
-        {
-            CartId = cart.Id;
-            CartItems = cart.CartItems.Select(x => new CartItemDto(x)).ToList();
-        }
-
-        public int CartId { get; set; }
-        public IEnumerable<CartItemDto> CartItems { get; set; }
-        public decimal Total => CartItems.Sum(x => x.Value);
-
-        public class CartItemDto
-        {
-            public CartItemDto() { }
-
-            public CartItemDto(CartItem cartItem)
-            {
-                ProductId = cartItem.ProductId;
-                ProductName = cartItem.Product.Name;
-                Quantity = cartItem.Quantity;
-                ProductPrice = cartItem.Product.Price;
-            }
-
-            public int ProductId { get; set; }
-            public string ProductName { get; set; }
-            public int Quantity { get; set; }
-            public decimal ProductPrice { get; set; }
-            public decimal Value => Quantity * ProductPrice;
         }
     }
 }

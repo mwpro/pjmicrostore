@@ -1,18 +1,23 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <div class="products">
-      <ProductBox v-for="product in products" v-bind:key="product.id" v-bind:product="product" />
+  <div class="columns">     
+    <div class="column is-one-quarter">
+        <CategoriesList />
     </div>
-  </div>
+    <div class="column">
+      <div class="columns is-multiline">
+        <ProductBox v-for="product in products" v-bind:key="product.id" v-bind:product="product" />
+      </div>
+    </div>
+  </div>   
 </template>
 
 <script>
 import ProductBox from './ProductBox.vue';
+import CategoriesList from './CategoriesList.vue';
 
 export default {
   name: 'HelloWorld',
-  components: { ProductBox },
+  components: { ProductBox, CategoriesList },
   props: {
     msg: String,
   },  
@@ -29,25 +34,5 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-.products {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
 </style>

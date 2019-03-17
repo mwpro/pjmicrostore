@@ -21,8 +21,8 @@ export default {
 </script>
 
 <style scoped>
-    div {
+    /* div {
         text-align: left;
         float: left;
-    }
+    } */
 </style>

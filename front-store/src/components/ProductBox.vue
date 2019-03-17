@@ -1,5 +1,5 @@
 <template>
-    <div class="product-miniature">
+    <div class="column">
         <h4><router-link :to="{ name: 'product', params: { productId: product.id }}">{{ product.name }}</router-link></h4>
         <img src="https://picsum.photos/300/300?image=0" alt="Product name" />
         <p>{{ product.price | currency }}</p>
@@ -19,7 +19,4 @@ export default {
 </script>
 
 <style scoped>
-    .product-miniature {
-        padding: 10px;
-    }
 </style>

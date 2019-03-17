@@ -1,16 +1,10 @@
 <template>
-  <div>
-    <router-link :to="{ name: 'cart' }">Koszyk:</router-link>
-    <button @click="cartON()">
-        <template v-if="cart.numberOfItems === 0">
-            Koszyk jest pusty
-        </template>
-        <template v-else>
-            {{ cart.numberOfItems }} produktów o wartości {{ cart.total | currency }}
-        </template>
-    </button>
-
-    <div :class="cClass">
+  <div>      
+    <a class="button is-primary" @click="toggleCart()">
+        Koszyk ({{ cart.numberOfItems }} | {{ cart.total | currency }})
+        
+    </a>
+      <div :class="cClass">
       <div class="cart-menu">
         <h1 class="text-center">Koszyk</h1>
         <hr>
@@ -49,11 +43,14 @@
           <div class="flex-column pr-3">
             <h4>{{ cartPrice | currency }}</h4>
           </div>
+          <div>
+            <router-link :to="{ name: 'cart' }">Przejdź do kasy</router-link>
+          </div>
         </div>
       </div>
     </div>
 
-    <div :class="modalClass" @click="cartON"></div>
+    <div :class="modalClass" @click="toggleCart"></div>
   </div>
 </template>
 
@@ -78,7 +75,7 @@ export default {
     }
   },
   methods: {
-    cartON() {
+    toggleCart() {
       if (this.cClass === "cart on") {
         this.cClass = "cart";
         this.modalClass = "modal off";

@@ -6,7 +6,8 @@ export default {
   state: {
     cart: {
       cartItems: [],
-      value: 0
+      value: 0,
+      numberOfItems: 0
     },
   },
   mutations: {
@@ -94,7 +95,8 @@ export default {
 
           commit('updateCart', {
             cartItems: [],
-            value: 0
+            value: 0,
+            numberOfItems: 0
           }); // todo actual cart cleaning?
           return order;
         });

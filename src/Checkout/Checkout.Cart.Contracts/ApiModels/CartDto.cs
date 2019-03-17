@@ -9,6 +9,7 @@ namespace Checkout.Cart.Contracts.ApiModels
         public int CartId { get; set; }
         public IEnumerable<CartItemDto> CartItems { get; set; }
         public decimal Total { get; set; }
+        public int NumberOfItems { get; set; }
 
         public class CartItemDto
         {

@@ -99,6 +99,7 @@ namespace Checkout.Cart.Controllers
             {
                 CartId = cart.Id,
                 Total = cart.Total,
+                NumberOfItems = cart.NumberOfItems,
                 CartItems = cart.CartItems.Select(x => 
                     new CartDto.CartItemDto()
                     {

@@ -50,6 +50,7 @@ namespace Checkout.Cart.Domain
         public int Id { get; set; }
 
         public decimal Total => CartItems.Sum(x => x.Value);
+        public int NumberOfItems => CartItems.Sum(x => x.Quantity);
         
         public ICollection<CartItem> CartItems { get; set; }
 

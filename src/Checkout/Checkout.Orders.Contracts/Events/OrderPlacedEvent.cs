@@ -5,4 +5,10 @@
         public int OrderId { get; set; }
         public int SourceCartId { get; set; }
     }
+
+    public class OrderAwaitingPayment
+    {
+        public int OrderId { get; set; }
+        public int SourceCartId { get; set; }
+    }
 }

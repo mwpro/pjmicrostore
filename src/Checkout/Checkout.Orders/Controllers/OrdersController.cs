@@ -70,6 +70,6 @@ namespace Checkout.Orders.Controllers
 
     public class PlaceOrderModel
     {
-
+        public string PaymentMethod { get; set; } // todo method id or code?
     }
 }

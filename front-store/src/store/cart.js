@@ -9,10 +9,14 @@ export default {
       value: 0,
       numberOfItems: 0
     },
+    paymentMethods: []
   },
   mutations: {
     updateCart(state, cart) {
       state.cart = cart;
+    },
+    updatePaymentMethods(state, paymentMethods) {
+      state.paymentMethods = paymentMethods;
     },
   },
   actions: {
@@ -79,13 +83,10 @@ export default {
           return cart;
         });
       // TODO .catch(captains.error)
-    },
-    
-    placeOrder({ commit }) {
+    },    
+    placeOrder({ commit }, checkoutDetails) {
       return axios
-        .post("/api/orders", {
-          
-        })
+        .post("/api/orders", checkoutDetails)
         .then((response) => {
           if (response.status !== 201) throw Error(response.message);
           let order = response.data;
@@ -99,6 +100,34 @@ export default {
             numberOfItems: 0
           }); // todo actual cart cleaning?
           return order;
+        });
+      // TODO .catch(captains.error)
+    },
+    getPaymentMethodsAction({ commit }) {
+      return axios
+        .get("/api/payments/methods")
+        .then((response) => {
+          if (response.status !== 200) throw Error(response.message);
+          let paymentMethods = response.data;
+          if (typeof paymentMethods !== 'object') {
+            paymentMethods = []; // todo ???
+          }
+
+          commit('updatePaymentMethods', paymentMethods); 
+          return paymentMethods;
+        });
+      // TODO .catch(captains.error)
+    },
+    getPaymentDetailsAction({ commit }, paymentCheckUrl) {
+      return axios
+        .get(paymentCheckUrl) // doesnt look safe
+        .then((response) => {
+          if (response.status !== 200) return ""; // todo handle other statuses
+          let payment = response.data;
+          if (typeof payment !== 'object') {
+            payment = {}; // todo ???
+          }
+          return payment.paymentUrl;
         });
       // TODO .catch(captains.error)
     },

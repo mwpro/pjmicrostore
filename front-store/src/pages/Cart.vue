@@ -29,17 +29,39 @@
             <p>
                 Razem: {{ cart.total | currency }}
             </p>
-            <button @click="placeOrder()">Złóż zamówienie</button>
+            <div>
+                <div v-for="paymentMethod in paymentMethods" v-bind:key="paymentMethod">
+                    <input type="radio" v-model="selectedPaymentMethod" :value="paymentMethod" />
+                    <label>{{ paymentMethod }}</label>
+                </div>
+            </div>
+            <button :disabled="!orderButtonEnabled" @click="placeOrder()">Złóż zamówienie</button>
         </div>
     </div>
 </template>
 
 <script>
 export default {
+  data() {
+    return {
+      selectedPaymentMethod: null,
+      orderButtonClicked: false
+    }
+  },
   computed: {
     cart() {
       return this.$store.state.cart.cart;
-    },    
+    },       
+    paymentMethods() {
+      return this.$store.state.cart.paymentMethods;
+    },           
+    orderButtonEnabled() {
+      return this.$data.selectedPaymentMethod !== null && !this.$data.orderButtonClicked;
+    }, 
+  },
+  created() {
+    this.$store.dispatch("cart/getPaymentMethodsAction");
+    this.$store.dispatch("cart/getCartAction");
   },
   methods: {
     removeItem(item) {
@@ -52,9 +74,16 @@ export default {
       });
     },
     placeOrder() {
-      this.$store.dispatch("cart/placeOrder")
+      this.$data.orderButtonClicked = true;
+      this.$store.dispatch("cart/placeOrder", {
+           paymentMethod: this.$data.selectedPaymentMethod
+        })
         .then(order => {
-            this.$router.push({ name: 'orderPlaced', params: { order: order } });
+            if (order.PaymentCheckUrl !== null) {
+                this.$router.push({ name: 'paymentRedirect', params: { order: order } });
+            } else {
+                this.$router.push({ name: 'orderPlaced' });
+            }
         });      
     }
   }

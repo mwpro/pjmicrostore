@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Checkout.Orders.Contracts.Events;
 using Checkout.Orders.Domain;
 using Checkout.Orders.Services;
+using Checkout.Payments.Contracts;
 using MassTransit;
 using Microsoft.AspNetCore.Mvc;
 
@@ -61,6 +62,23 @@ namespace Checkout.Orders.Controllers
                 OrderId = order.Id,
                 SourceCartId = cart.CartId
             });
+
+            if (placeOrderModel.PaymentMethod != PaymentMethods.OnDelivery)
+            {
+                var paymentReference = NewId.NextGuid();
+                await _bus.Publish(new OrderAwaitingPayment()
+                {
+                    OrderId = order.Id,
+                    Amount = order.Total,
+                    PaymentMethod = placeOrderModel.PaymentMethod,
+                    PaymentReference = paymentReference
+                });
+
+                return StatusCode((int)HttpStatusCode.Created, new
+                {// todo some model?
+                    PaymentCheckUrl = $"/api/payments/{paymentReference}"
+                });
+            }
 
             return StatusCode((int)HttpStatusCode.Created, order);
         }

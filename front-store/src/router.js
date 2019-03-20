@@ -5,6 +5,8 @@ import Home from './pages/Home.vue';
 import Product from './pages/Product.vue';
 import Cart from './pages/Cart.vue';
 import OrderPlaced from './pages/OrderPlaced.vue';
+import PaymentRedirect from './pages/PaymentRedirect.vue';
+import PaymentMock from './pages/PaymentMock.vue';
 
 Vue.use(Router);
 
@@ -32,8 +34,21 @@ export default new Router({
     {
       path: '/orderPlaced',
       name: 'orderPlaced',
-      props: true,
       component: OrderPlaced,
+    },
+    {
+      path: '/paymentRedirect',
+      name: 'paymentRedirect',
+      props: true,
+      component: PaymentRedirect,
+      meta: { layout: 'minimal' }
+    },
+    {
+      path: '/payment-mock/:paymentMockId',
+      name: 'paymentMock',
+      props: true,
+      component: PaymentMock,
+      meta: { layout: 'minimal' } // tood or none?
     },
   ],
 });

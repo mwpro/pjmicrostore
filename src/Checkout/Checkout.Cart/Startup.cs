@@ -73,6 +73,7 @@ namespace Checkout.Cart
             app.UseMvc();
         }
     }
+
     public class BusService :
         IHostedService
     {

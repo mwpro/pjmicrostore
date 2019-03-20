@@ -79,7 +79,7 @@ export default {
            paymentMethod: this.$data.selectedPaymentMethod
         })
         .then(order => {
-            if (order.PaymentCheckUrl !== null) {
+            if (order.paymentCheckUrl !== undefined) {
                 this.$router.push({ name: 'paymentRedirect', params: { order: order } });
             } else {
                 this.$router.push({ name: 'orderPlaced' });

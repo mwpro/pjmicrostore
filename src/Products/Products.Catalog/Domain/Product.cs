@@ -96,21 +96,21 @@ namespace Products.Catalog.Domain
         public ICollection<Product> Products { get; set; }
     }
 
-    public class CategoryDto
+    public class CategoryTreeDto
     {
         public int Id { get; set; }
 
         public string Name { get; set; }
 
-        public ICollection<CategoryDto> Child { get; set; }
+        public ICollection<CategoryTreeDto> Child { get; set; }
 
-        public static CategoryDto Map(Category category)
+        public static CategoryTreeDto Map(Category category)
         {
-            return new CategoryDto()
+            return new CategoryTreeDto()
             {
                 Id = category.Id,
                 Name = category.Name,
-                Child = category.Child.Select(CategoryDto.Map).ToList()
+                Child = category.Child.Select(CategoryTreeDto.Map).ToList()
             };
         }
     }

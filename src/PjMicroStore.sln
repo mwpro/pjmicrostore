@@ -13,13 +13,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Checkout.Cart", "Checkout\C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Checkout.Orders", "Checkout\Checkout.Orders\Checkout.Orders.csproj", "{A786663A-6B96-48A4-943F-E23B01B3681C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Checkout.Orders.Contracts", "Checkout\Checkout.Orders.Contracts\Checkout.Orders.Contracts.csproj", "{9559D84D-C734-4A2E-A9A3-7EF2E1B30818}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Checkout.Orders.Contracts", "Checkout\Checkout.Orders.Contracts\Checkout.Orders.Contracts.csproj", "{9559D84D-C734-4A2E-A9A3-7EF2E1B30818}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Checkout.Cart.Contracts", "Checkout\Checkout.Cart.Contracts\Checkout.Cart.Contracts.csproj", "{1FFDAA04-AF7E-4813-932E-87947CBBEE8D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Checkout.Cart.Contracts", "Checkout\Checkout.Cart.Contracts\Checkout.Cart.Contracts.csproj", "{1FFDAA04-AF7E-4813-932E-87947CBBEE8D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Checkout.Payments", "Checkout\Checkout.Payments\Checkout.Payments.csproj", "{26D90BE3-6BE7-453B-8481-9E36DB2303E3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Checkout.Payments", "Checkout\Checkout.Payments\Checkout.Payments.csproj", "{26D90BE3-6BE7-453B-8481-9E36DB2303E3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Checkout.Payments.Contracts", "Checkout\Checkout.Payments.Contracts\Checkout.Payments.Contracts.csproj", "{700B70DF-5177-40B2-B013-EFAF10D038DB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Checkout.Payments.Contracts", "Checkout\Checkout.Payments.Contracts\Checkout.Payments.Contracts.csproj", "{700B70DF-5177-40B2-B013-EFAF10D038DB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Products.Search", "Products\Products.Search\Products.Search.csproj", "{CE9357A4-00A4-4117-A102-E8C41F35C99A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +57,10 @@ Global
 		{700B70DF-5177-40B2-B013-EFAF10D038DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{700B70DF-5177-40B2-B013-EFAF10D038DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{700B70DF-5177-40B2-B013-EFAF10D038DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE9357A4-00A4-4117-A102-E8C41F35C99A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE9357A4-00A4-4117-A102-E8C41F35C99A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE9357A4-00A4-4117-A102-E8C41F35C99A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE9357A4-00A4-4117-A102-E8C41F35C99A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -67,6 +73,7 @@ Global
 		{1FFDAA04-AF7E-4813-932E-87947CBBEE8D} = {AA21C0FA-8ECC-41AC-B5DA-37CA0FB60036}
 		{26D90BE3-6BE7-453B-8481-9E36DB2303E3} = {AA21C0FA-8ECC-41AC-B5DA-37CA0FB60036}
 		{700B70DF-5177-40B2-B013-EFAF10D038DB} = {AA21C0FA-8ECC-41AC-B5DA-37CA0FB60036}
+		{CE9357A4-00A4-4117-A102-E8C41F35C99A} = {2CD00E5D-AD91-46AE-8953-9E72C7707E1F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8C575CDF-D115-4614-9D15-118A41B84866}

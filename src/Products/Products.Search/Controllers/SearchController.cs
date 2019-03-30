@@ -36,41 +36,17 @@ namespace Products.Search.Controllers
             var results = await _client.SearchAsync<ProductSearchModel>(q => q
                 .RequestConfiguration(descriptor => descriptor.DisableDirectStreaming())
                 .Size(10)
-                //.Aggregations(agg => agg.Terms(
-                //        nameof(ProductSearchModel.StringAttributes), e =>
-                //            e.Field(model => model.StringAttributes)
-                //                .Aggregations(child => child.Terms("genders", g => g.Field(nameof(StringAttributeValue.AttributeValue))))
-                //    ))
-                .Aggregations(new AggregationDictionary()
-                {
-                    {
-                        nameof(ProductSearchModel.StringAttributes),
-                        new NestedAggregation(nameof(ProductSearchModel.StringAttributes))
-                        {
-                            Path = "stringAttributes",
-                            Aggregations = new AggregationDictionary()
-                            {
-                                { nameof(StringAttributeValue.AttributeName), new AggregationContainer()
-                                {
-                                    Terms = new TermsAggregation(nameof(StringAttributeValue.AttributeName))
-                                    {
-                                        Field = "stringAttributes.attributeName"
-                                    },
-                                    Aggregations = new AggregationDictionary()
-                                    {
-                                        { nameof(StringAttributeValue.AttributeValue), new AggregationContainer()
-                                        {
-                                            Terms = new TermsAggregation(nameof(StringAttributeValue.AttributeValue))
-                                            {
-                                                Field = "stringAttributes.attributeValue"
-                                            }
-                                        }}
-                                    }
-                                }}
-                            }
-                        }
-                    }
-                })
+                .Aggregations(a => a.Nested(nameof(ProductSearchModel.StringAttributes), nested => nested
+                    .Path(model => model.StringAttributes)
+                    .Aggregations(descriptor => descriptor
+                        .Terms(nameof(StringAttributeValue.AttributeName), nameTerms => nameTerms
+                            .Field(model => model.StringAttributes.Suffix("attributeName"))
+                            .Aggregations(containerDescriptor => containerDescriptor.Terms(nameof(StringAttributeValue.AttributeValue), valueTerms => valueTerms
+                                .Field(model => model.StringAttributes.Suffix("attributeValue"))
+                            )))
+                        )    
+                    )
+                    )
                 );
             var facets = results.Aggregations.Nested(nameof(ProductSearchModel.StringAttributes));
             var facetsTerms = facets.Terms(nameof(StringAttributeValue.AttributeName));
@@ -96,7 +72,6 @@ namespace Products.Search.Controllers
 
             var searchModels = products.Select(x => new ProductSearchModel(x)).ToList();
 
-            // Or, in an async-context
             var response = await _client.IndexManyAsync(searchModels, IndexName.From<ProductSearchModel>());
 
             return Accepted(response);

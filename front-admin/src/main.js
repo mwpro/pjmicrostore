@@ -9,7 +9,6 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import './css/dashboard.css'
 
 Vue.use(BootstrapVue)
-
 Vue.config.productionTip = false;
 
 new Vue({

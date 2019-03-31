@@ -30,7 +30,31 @@ namespace Products.Catalog.Controllers
                 .AsNoTracking()
                 .Select(x => new ProductDto(x)).ToList());
         }
-        
+
+        [HttpPost("products")]
+        public async Task<IActionResult> AddProduct(AddProductDto addProductDto)
+        {
+            // todo validation
+
+            var product = new Product()
+            {
+                Name = addProductDto.Name,
+                Description = addProductDto.Description,
+                Price = addProductDto.Price,
+                CategoryId = addProductDto.CategoryId,
+                Attributes = addProductDto.Attributes.Select(x => new AttributeValue()
+                {
+                    AttributeId = x.AttributeId,
+                    Value = x.AttributeValue
+                }).ToList()
+            };
+
+            _productsContext.Products.Add(product);
+            await _productsContext.SaveChangesAsync();
+
+            return Created($"api/products/{product.Id}", product); // todo references not initialized
+        }
+
         [HttpGet("products/{productId}")]
         public IActionResult GetProduct(int productId)
         {
@@ -56,6 +80,39 @@ namespace Products.Catalog.Controllers
             return Ok(categories.Where(x => x.Parent == null)
                 .Select(CategoryTreeDto.Map));
         }
+
+
+        [HttpGet("attributes")]
+        public IActionResult GetAllAttributes()
+        {
+            var attributes = _productsContext.Attributes
+                .AsNoTracking().ToList();
+
+            return Ok(attributes);
+        }
+    }
+
+
+    public class AddProductDto
+    {
+        public AddProductDto()
+        {
+            Attributes = new List<AddAttributeDto>();
+        }
+
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public decimal Price { get; set; }
+        public int CategoryId { get; set; }
+
+        public IEnumerable<AddAttributeDto> Attributes { get; set; }
+
+    }
+
+    public class AddAttributeDto
+    {
+        public int AttributeId { get; set; }
+        public string AttributeValue { get; set; }
     }
 
     public class ProductDto

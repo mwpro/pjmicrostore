@@ -40,6 +40,7 @@ namespace Products.Catalog.Domain
 
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<Attribute> Attributes { get; set; }
     }
 
     public class Product

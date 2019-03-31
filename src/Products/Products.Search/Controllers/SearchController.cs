@@ -22,11 +22,7 @@ namespace Products.Search.Controllers
             var node = new Uri("http://localhost:9200");
             var settings = new ConnectionSettings(node);
             settings.DefaultMappingFor(typeof(ProductSearchModel), idx => idx.IndexName("products"));
-            settings.OnRequestCompleted(details =>
-            {
-                Console.WriteLine(details.Uri);
-                var body = Encoding.UTF8.GetString(details.RequestBodyInBytes);
-            });
+
             _client = new ElasticClient(settings);
         }
 
@@ -34,7 +30,6 @@ namespace Products.Search.Controllers
         public async Task<IActionResult> Get()
         {
             var results = await _client.SearchAsync<ProductSearchModel>(q => q
-                .RequestConfiguration(descriptor => descriptor.DisableDirectStreaming())
                 .Size(10)
                 .Aggregations(a => a.Nested(nameof(ProductSearchModel.StringAttributes), nested => nested
                     .Path(model => model.StringAttributes)

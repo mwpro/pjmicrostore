@@ -28,7 +28,7 @@ export default {
   actions: {
     getProductsAction({ commit }) {
       return axios
-        .get('/api/products')
+        .get('/api/search')
         .then((response) => {
           if (response.status !== 200) throw Error(response.message);
           let products = response.data;
@@ -36,7 +36,7 @@ export default {
             products = [];
           }
 
-          commit('getProducts', products);
+          commit('getProducts', products.documents);
           return products;
         });
       // TODO .catch(captains.error)

@@ -20,6 +20,10 @@ module.exports = {
         '/api/payments': {
             target: 'http://localhost:62678',
             changeOrigin: true,
+        },
+        '/api/search': {
+            target: 'http://localhost:52910',
+            changeOrigin: true,
         }
       },
     },

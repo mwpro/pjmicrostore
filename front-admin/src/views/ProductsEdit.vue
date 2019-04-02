@@ -19,19 +19,19 @@
       </b-form-group>
 
       <b-form-group id="input-group-3" label="Opis:" label-for="input-3">
-        <b-form-textarea
-          id="textarea"
-          v-model="form.description"
-          rows="3"
-          max-rows="6"
-        ></b-form-textarea>
+        <b-form-textarea id="textarea" v-model="form.description" rows="3" max-rows="6"></b-form-textarea>
       </b-form-group>
 
       <h2>Atrybuty</h2>
-      <b-form-select id="input-3" v-model="attributeToAdd" :options="attributes" required></b-form-select>      
+      <b-form-select id="input-3" v-model="attributeToAdd" :options="attributes" required></b-form-select>
       <b-button @click="addAttribute()">Dodaj</b-button>
-      <b-form-group id="input-group-3" label-for="input-3" v-for="attribute in form.attributes" v-bind:key="attribute.attributeId"
-        v-bind:label="attributes.find(a => a.value == attribute.attributeId).text">
+      <b-form-group
+        id="input-group-3"
+        label-for="input-3"
+        v-for="attribute in form.attributes"
+        v-bind:key="attribute.attributeId"
+        v-bind:label="attributes.find(a => a.value == attribute.attributeId).text"
+      >
         <b-form-input id="input-1" v-model="attribute.attributeValue" required></b-form-input>
         <b-button @click="removeAttribute(attribute)">Usuń</b-button>
       </b-form-group>
@@ -62,18 +62,18 @@ export default {
       this.$store.dispatch("products/saveProductAction", this.form);
     },
     addAttribute() {
-        this.form.attributes.push({ 
-            attributeId: this.attributeToAdd,
-            attributeValue: null
-        })
+      this.form.attributes.push({
+        attributeId: this.attributeToAdd,
+        attributeValue: null
+      });
     },
     removeAttribute(attribute) {
-        this.form.attributes.splice(this.form.attributes.indexOf(attribute), 1);
+      this.form.attributes.splice(this.form.attributes.indexOf(attribute), 1);
     }
   },
   computed: {
     categories() {
-        // todo category tree
+      // todo category tree
       return this.$store.state.products.categoriesList.map(function(cat) {
         return { text: cat.name, value: cat.id };
       });
@@ -86,7 +86,7 @@ export default {
   },
   created() {
     this.$store.dispatch("products/getCategoriesAction");
-    this.$store.dispatch("products/getAttributesAction");    
+    this.$store.dispatch("products/getAttributesAction");
   }
 };
 </script>

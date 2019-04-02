@@ -1,5 +1,5 @@
 <template>
-    <button @click="addToCart()">Dodaj do koszyka</button>
+    <button class="btn btn-secondary btn-block" @click="addToCart()">Dodaj do koszyka</button>
 </template>
 
 <script>

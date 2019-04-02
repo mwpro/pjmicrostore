@@ -1,21 +1,36 @@
 <template>
-    <div class="column">
-        <h4><router-link :to="{ name: 'product', params: { productId: product.id }}">{{ product.name }}</router-link></h4>
-        <img src="https://picsum.photos/300/300?image=0" alt="Product name" />
-        <p>{{ product.price | currency }}</p>
-        <AddToCart :product="product" />
+  <div class="col-12 col-md-4">
+    <div class="card">
+      <img class="card-img-top" src="https://picsum.photos/600/400?image=0" alt="Card image cap">
+      <div class="card-body">
+        <strong class="d-inline-block mb-2 text-success">Design</strong>
+        <h4 class="card-title">
+          <router-link
+            :to="{ name: 'product', params: { productId: product.id }}"
+          >{{ product.name }}</router-link>
+        </h4>
+        <div class="row">
+          <div class="col-md-12">
+            <p class="btn btn-block">{{ product.price | currency }}</p>
+          </div>
+          <div class="col">
+            <AddToCart :product="product"/>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </template>
 
 <script>
-import AddToCart from './AddToCart.vue';
+import AddToCart from "./AddToCart.vue";
 
 export default {
   components: { AddToCart },
   props: {
-    product: Object,
-  }, 
-}
+    product: Object
+  }
+};
 </script>
 
 <style scoped>

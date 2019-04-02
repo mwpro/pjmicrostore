@@ -4,6 +4,7 @@ import Router from 'vue-router';
 import Home from './pages/Home.vue';
 import Product from './pages/Product.vue';
 import Cart from './pages/Cart.vue';
+import AboutUs from './pages/AboutUs.vue';
 import OrderPlaced from './pages/OrderPlaced.vue';
 import PaymentRedirect from './pages/PaymentRedirect.vue';
 import PaymentMock from './pages/PaymentMock.vue';
@@ -30,6 +31,11 @@ export default new Router({
       name: 'cart',
       component: Cart,
       meta: { layout: 'minimal' }
+    },
+    {
+      path: '/aboutus',
+      name: 'aboutus',
+      component: AboutUs
     },
     {
       path: '/orderPlaced',

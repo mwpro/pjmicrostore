@@ -29,20 +29,51 @@ namespace Products.Search.Controllers
         [HttpGet("")]
         public async Task<IActionResult> Get([FromQuery]SearchModel searchModel)
         {
-            var results = await _client.SearchAsync<ProductSearchModel>(q => q
-                .Size(10)
-                .Aggregations(a => a.Nested(nameof(ProductSearchModel.StringAttributes), nested => nested
-                    .Path(model => model.StringAttributes)
-                    .Aggregations(descriptor => descriptor
-                        .Terms(nameof(StringAttributeValue.AttributeName), nameTerms => nameTerms
-                            .Field(model => model.StringAttributes.Suffix("attributeName"))
-                            .Aggregations(containerDescriptor => containerDescriptor.Terms(nameof(StringAttributeValue.AttributeValue), valueTerms => valueTerms
-                                .Field(model => model.StringAttributes.Suffix("attributeValue"))
-                            )))
-                        )    
-                    )
-                    )
-                );
+            var results = await _client.SearchAsync<ProductSearchModel>(q =>
+            {
+                if (searchModel.StringAttr?.Any() ?? false)
+                {
+                    q = q.Query(query => query
+                        .Bool(boolQuery => boolQuery
+                            .Filter(searchModel.StringAttr.Select< KeyValuePair<string, string[]>, Func<QueryContainerDescriptor<ProductSearchModel>, QueryContainer>>(attribute => outerFilter => outerFilter                                
+                                    .Bool(innerBool => innerBool
+                                        .Should(
+                                            attribute.Value.Select<string, Func<QueryContainerDescriptor<ProductSearchModel>, QueryContainer>>(attributeValue =>
+                                                should => should.Nested(nested =>
+                                                    nested
+                                                        .Path("stringAttributes")
+                                                        .Query(innerQuery => innerQuery
+                                                            .Bool(attributeValueBool => attributeValueBool
+                                                                .Filter(new TermQuery()
+                                                                {
+                                                                    Field = "stringAttributes.attributeName",
+                                                                    Value = attribute.Key
+                                                                }, new TermQuery()
+                                                                {
+                                                                    Field = "stringAttributes.attributeValue",
+                                                                    Value = attributeValue
+                                                                })))
+                                                ))
+                                        ))))
+                        ));
+                }
+
+                return q
+                    .Size(50) // todo pagination
+                    .RequestConfiguration(descriptor => descriptor.DisableDirectStreaming())
+                    .Aggregations(a => a.Nested(nameof(ProductSearchModel.StringAttributes), nested => nested
+                            .Path(model => model.StringAttributes)
+                            .Aggregations(descriptor => descriptor
+                                .Terms(nameof(StringAttributeValue.AttributeName), nameTerms => nameTerms
+                                    .Field(model => model.StringAttributes.Suffix("attributeName"))
+                                    .Aggregations(containerDescriptor => containerDescriptor.Terms(
+                                        nameof(StringAttributeValue.AttributeValue), valueTerms => valueTerms
+                                            .Field(model => model.StringAttributes.Suffix("attributeValue"))
+                                    )))
+                            )
+                        )
+                    );
+            });
             var facets = results.Aggregations.Nested(nameof(ProductSearchModel.StringAttributes));
             var facetsTerms = facets.Terms(nameof(StringAttributeValue.AttributeName));
             var stringAttributes = facetsTerms.Buckets.Select(x => new SearchStringAttributeModel()
@@ -56,8 +87,13 @@ namespace Products.Search.Controllers
                         Count = v.DocCount ?? 0
                     })
             }).ToList();
-            
-            return Ok(new { documents = results.Documents, stringAttributes = stringAttributes});
+
+            return Ok(new
+            {
+                documents = results.Documents,
+                stringAttributes = stringAttributes,
+                query = Encoding.UTF8.GetString(results.ApiCall.RequestBodyInBytes)
+            });
         }
 
         [HttpGet("import")]

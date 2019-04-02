@@ -81,11 +81,9 @@ export default {
         if (urlReadySearchTerms[term.attribute] == null) {
           urlReadySearchTerms[term.attribute] = [];
         }
-        urlReadySearchTerms[term.attribute].push(term.value);
-        
+        urlReadySearchTerms[term.attribute].push(term.value);        
       });
-      console.log(urlReadySearchTerms);
-      console.log(Qs.stringify(urlReadySearchTerms));
+      
       return axios
         .get('/api/search', {
           params: {

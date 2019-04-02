@@ -4,13 +4,13 @@
         <h5>{{searchFilter.attributeName}}</h5>
         <div class="form-check" v-for="attributeValue in searchFilter.stringValueAttributeValues" v-bind:key="attributeValue.value">
           <input class="form-check-input" type="checkbox" v-model="searchModel" :value="{ attribute: searchFilter.attributeName, value: attributeValue.value }"
-           :id="'filter'+searchFilter.attributeName+attributeValue.value"
-           @change="updateFilter()">
+           :id="'filter'+searchFilter.attributeName+attributeValue.value">
           <label class="form-check-label" :for="'filter'+searchFilter.attributeName+attributeValue.value">
             {{ attributeValue.value }} ({{ attributeValue.count }})
           </label>
         </div>
     </div>
+    <button @click="updateFilter" class="btn btn-primary btn-block">Filtruj</button>
   </div>
 </template>
 
@@ -28,7 +28,6 @@ export default {
   },
   methods: {
     updateFilter() {
-      console.log(this.searchModel);
       this.$store.dispatch("products/searchProductsAction", this.searchModel);
     }
   }

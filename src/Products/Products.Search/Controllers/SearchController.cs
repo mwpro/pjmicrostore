@@ -27,7 +27,7 @@ namespace Products.Search.Controllers
         }
 
         [HttpGet("")]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> Get([FromQuery]SearchModel searchModel)
         {
             var results = await _client.SearchAsync<ProductSearchModel>(q => q
                 .Size(10)
@@ -71,6 +71,11 @@ namespace Products.Search.Controllers
 
             return Accepted(response);
         }
+    }
+
+    public class SearchModel
+    {
+        public Dictionary<string, string[]> StringAttr { get; set; }
     }
 
     public class SearchStringAttributeModel

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import Vue from 'vue';
+import Qs from 'qs';
 
 export default {
   namespaced: true,
@@ -12,17 +13,23 @@ export default {
     ],
     product: {
 
-    }
+    },
+    searchAttributes: [
+
+    ]
   },
   mutations: {
     getProducts(state, products) {
       state.productsList = products;
-    },    
+    },
     getProduct(state, product) {
       state.product = product;
     },
     getCategories(state, categories) {
       state.categoriesList = categories;
+    },
+    getSearchAttributes(state, searchAttributes) {
+      state.searchAttributes = searchAttributes;
     },
   },
   actions: {
@@ -37,6 +44,7 @@ export default {
           }
 
           commit('getProducts', products.documents);
+          commit('getSearchAttributes', products.stringAttributes);
           return products;
         });
       // TODO .catch(captains.error)
@@ -67,5 +75,38 @@ export default {
         });
       // TODO .catch(captains.error)
     },
+    searchProductsAction({ commit }, searchTerms) {
+      var urlReadySearchTerms = [];
+      searchTerms.forEach(term => {
+        if (urlReadySearchTerms[term.attribute] == null) {
+          urlReadySearchTerms[term.attribute] = [];
+        }
+        urlReadySearchTerms[term.attribute].push(term.value);
+        
+      });
+      console.log(urlReadySearchTerms);
+      console.log(Qs.stringify(urlReadySearchTerms));
+      return axios
+        .get('/api/search', {
+          params: {
+            stringAttr: urlReadySearchTerms
+          },
+          paramsSerializer: function (params) {
+            return Qs.stringify(params)
+          }
+        })
+        .then((response) => {
+          if (response.status !== 200) throw Error(response.message);
+          let products = response.data;
+          if (typeof products !== 'object') {
+            products = [];
+          }
+
+          commit('getProducts', products.documents);
+          commit('getSearchAttributes', products.stringAttributes);
+          return products;
+        });
+      // TODO .catch(captains.error)
+    }
   },
 };

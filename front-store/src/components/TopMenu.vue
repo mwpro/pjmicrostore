@@ -39,18 +39,13 @@
 
       <div class="nav-scroller py-1 mb-2">
         <nav class="nav d-flex justify-content-between">
+          <a v-for="category in categories" v-bind:key="category.id" class="p-2 text-muted" href="#" >
+            {{ category.name }}
+          </a>
           <a class="p-2 text-muted" href="#">World</a>
           <a class="p-2 text-muted" href="#">U.S.</a>
           <a class="p-2 text-muted" href="#">Technology</a>
           <a class="p-2 text-muted" href="#">Design</a>
-          <a class="p-2 text-muted" href="#">Culture</a>
-          <a class="p-2 text-muted" href="#">Business</a>
-          <a class="p-2 text-muted" href="#">Politics</a>
-          <a class="p-2 text-muted" href="#">Opinion</a>
-          <a class="p-2 text-muted" href="#">Science</a>
-          <a class="p-2 text-muted" href="#">Health</a>
-          <a class="p-2 text-muted" href="#">Style</a>
-          <a class="p-2 text-muted" href="#">Travel</a>
         </nav>
       </div>
 
@@ -63,10 +58,14 @@ export default {
   components: { CartInfo },
   created() {
     this.$store.dispatch("cart/getCartAction");
+    // already done in categoriesList, would be nice to have some "lock" this.$store.dispatch("products/getCategoriesAction");
   },
   computed: {
     cart() {
       return this.$store.state.cart.cart;
+    },    
+    categories() {
+      return this.$store.state.products.categoriesList;
     }
   },
 }

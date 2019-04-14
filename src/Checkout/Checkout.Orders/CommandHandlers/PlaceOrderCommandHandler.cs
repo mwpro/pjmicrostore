@@ -46,7 +46,7 @@ namespace Checkout.Orders.CommandHandlers
             });
 
             Guid? paymentReference = null;
-            if (request.PaymentMethod != PaymentMethods.OnDelivery)
+            if (request.PaymentMethod != PaymentMethods.OnDelivery) // todo should not be handled here9
             {
                 paymentReference = NewId.NextGuid();
                 await _bus.Publish(new OrderAwaitsPayment()

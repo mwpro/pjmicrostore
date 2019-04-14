@@ -3,7 +3,7 @@
     <div class="sidebar-sticky">
       <ul class="nav flex-column">
         <li class="nav-item">
-          <router-link to="/" class="nav-link active">
+          <router-link to="/" class="nav-link">
             <span data-feather="home"></span>
             Dashboard
             <span class="sr-only">(current)</span>

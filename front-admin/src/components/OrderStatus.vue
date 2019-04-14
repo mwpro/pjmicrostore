@@ -12,8 +12,10 @@ export default {
         switch (this.status) {
             case "New":
                 return "Nowe";
-            case "Paid":
-                return "Zapłacone";                    
+            case "WaitingForPayment":
+                return "Oczekuje na płatność";
+            case "WaitingForShipment":
+                return "Oczekuje na wysyłkę";                    
             default:
                 return this.status;
         }
@@ -21,8 +23,9 @@ export default {
     color() {
       switch (this.status) {
             case "New":
+            case "WaitingForPayment":
                 return "primary";
-            case "Paid":
+            case "WaitingForShipment":
                 return "warning";                    
             default:
                 return "primary";

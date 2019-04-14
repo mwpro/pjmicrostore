@@ -17,6 +17,13 @@ namespace Checkout.Payments.Contracts.Events
         public Guid PaymentReference { get; set; }
     }
 
+    public class PaymentCreatedEvent
+    {
+        public int PaymentId { get; set; }
+        public Guid PaymentReference { get; set; }
+        public int OrderId { get; set; }
+    }
+
     public class PaymentCompletedEvent
     {
         public int PaymentId { get; set; }

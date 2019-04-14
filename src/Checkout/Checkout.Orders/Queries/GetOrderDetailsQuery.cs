@@ -29,7 +29,7 @@ namespace Checkout.Orders.Queries
 SELECT 
     o.[Id],
     o.[CreateDate],
-    o.[Status],
+    o.[Status_Name] AS [Status],
     o.[CustomerId],
     c.[FirstName],
     c.[LastName],

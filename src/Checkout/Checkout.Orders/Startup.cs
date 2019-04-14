@@ -51,10 +51,12 @@ namespace Checkout.Orders
                             e.UseMessageRetry(x => x.Interval(2, 100));
 
                             e.ConfigureConsumer<PaymentCompletedEventConsumer>(provider);
+                            e.ConfigureConsumer<PaymentCreatedEventConsumer>(provider);
                         });
                     }));
 
                 c.AddConsumer<PaymentCompletedEventConsumer>();
+                c.AddConsumer<PaymentCreatedEventConsumer>();
             });
 
             services.AddSingleton<IHostedService, BusService>();
@@ -63,6 +65,7 @@ namespace Checkout.Orders
             services.AddTransient<ICartsService, CartsService>();
             services.AddTransient<IDatabase, SqlDatabase>(provider => new SqlDatabase(Configuration.GetConnectionString("OrdersDatabase")));
             services.AddTransient<PaymentCompletedEventConsumer>();
+            services.AddTransient<PaymentCreatedEventConsumer>();
 
             services.AddMediatR();
         }

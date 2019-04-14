@@ -18,6 +18,9 @@ namespace Checkout.Orders.Domain
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Order>()
+                .OwnsOne(o => o.Status);
+
             //modelBuilder.Entity<AttributeValue>()
             //    .HasOne(x => x.Product)
             //    .WithMany(x => x.Attributes)

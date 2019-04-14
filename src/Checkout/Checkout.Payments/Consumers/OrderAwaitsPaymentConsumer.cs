@@ -31,6 +31,12 @@ namespace Checkout.Payments.Consumers
             _paymentsDbContext.Payments.Add(payment);
             await _paymentsDbContext.SaveChangesAsync();
 
+            await context.Publish(new PaymentCreatedEvent()
+            {
+                PaymentId = payment.Id,
+                PaymentReference = payment.PaymentReference,
+                OrderId = payment.OrderId,
+            });
             await context.Publish(new PaymentMockRequired()
             {
                 Amount = payment.Amount,

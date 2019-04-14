@@ -49,18 +49,21 @@ namespace Checkout.Payments
                             e.PrefetchCount = 16;
                             e.UseMessageRetry(x => x.Interval(2, 100));
 
-                            e.ConfigureConsumer<OrderAwaitingPaymentConsumer>(provider);
+                            e.ConfigureConsumer<OrderAwaitsPaymentConsumer>(provider);
                             e.ConfigureConsumer<PaymentMockRequiredConsumer>(provider);
+                            e.ConfigureConsumer<PaymentMockPaidConsumer>(provider);
                         });
                     }));
-                c.AddConsumer<OrderAwaitingPaymentConsumer>();
+                c.AddConsumer<OrderAwaitsPaymentConsumer>();
                 c.AddConsumer<PaymentMockRequiredConsumer>();
+                c.AddConsumer<PaymentMockPaidConsumer>();
             });
 
             services.AddSingleton<IHostedService, BusService>();
 
-            services.AddTransient<OrderAwaitingPaymentConsumer>();
+            services.AddTransient<OrderAwaitsPaymentConsumer>();
             services.AddTransient<PaymentMockRequiredConsumer>();
+            services.AddTransient<PaymentMockPaidConsumer>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

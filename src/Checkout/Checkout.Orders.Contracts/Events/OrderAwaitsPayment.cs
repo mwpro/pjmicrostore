@@ -2,7 +2,7 @@
 
 namespace Checkout.Orders.Contracts.Events
 {
-    public class OrderAwaitingPayment
+    public class OrderAwaitsPayment
     {
         public int OrderId { get; set; }
         public decimal Amount { get; set; }

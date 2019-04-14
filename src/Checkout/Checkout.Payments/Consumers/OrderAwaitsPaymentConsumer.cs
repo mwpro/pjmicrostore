@@ -8,16 +8,16 @@ using MassTransit;
 
 namespace Checkout.Payments.Consumers
 {
-    public class OrderAwaitingPaymentConsumer : IConsumer<OrderAwaitingPayment>
+    public class OrderAwaitsPaymentConsumer : IConsumer<OrderAwaitsPayment>
     {
         private readonly PaymentsDbContext _paymentsDbContext;
 
-        public OrderAwaitingPaymentConsumer(PaymentsDbContext paymentsDbContext)
+        public OrderAwaitsPaymentConsumer(PaymentsDbContext paymentsDbContext)
         {
             _paymentsDbContext = paymentsDbContext;
         }
 
-        public async Task Consume(ConsumeContext<OrderAwaitingPayment> context)
+        public async Task Consume(ConsumeContext<OrderAwaitsPayment> context)
         {
             var payment = new Payment()
             {

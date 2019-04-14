@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Checkout.Orders.Commands;
 using Checkout.Orders.Contracts.Events;
 using Checkout.Orders.Domain;
+using Checkout.Orders.Queries;
 using Checkout.Orders.Services;
 using Checkout.Payments.Contracts;
 using MassTransit;
@@ -42,7 +43,13 @@ namespace Checkout.Orders.Controllers
             return StatusCode((int)HttpStatusCode.Created);
         }
 
-        // TODO get order
+        [HttpGet]
+        public async Task<IActionResult> GetOrders()
+        {
+            var result = await _mediator.Send(new GetOrderListQuery());
+
+            return Ok(result);
+        }
     }
 
     public class PlaceOrderModel

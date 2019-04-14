@@ -49,7 +49,7 @@ namespace Checkout.Orders.CommandHandlers
             if (request.PaymentMethod != PaymentMethods.OnDelivery)
             {
                 paymentReference = NewId.NextGuid();
-                await _bus.Publish(new OrderAwaitingPayment()
+                await _bus.Publish(new OrderAwaitsPayment()
                 {
                     OrderId = order.Id,
                     Amount = order.Total,

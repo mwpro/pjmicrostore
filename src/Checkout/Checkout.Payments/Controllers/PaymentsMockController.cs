@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using Checkout.Payments.Contracts;
+using Checkout.Payments.Contracts.Events;
 using Checkout.Payments.Domain;
+using MassTransit;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Checkout.Payments.Controllers
@@ -11,10 +14,12 @@ namespace Checkout.Payments.Controllers
     public class PaymentsMockController : ControllerBase
     {
         private readonly PaymentsDbContext _paymentsDbContext;
+        private readonly IBus _bus;
 
-        public PaymentsMockController(PaymentsDbContext paymentsDbContext)
+        public PaymentsMockController(PaymentsDbContext paymentsDbContext, IBus bus)
         {
             _paymentsDbContext = paymentsDbContext;
+            _bus = bus;
         }
 
         // GET api/values/5
@@ -34,7 +39,7 @@ namespace Checkout.Payments.Controllers
 
         // GET api/values/5
         [HttpPost("{providerReference}/{success}")]
-        public ActionResult<string> Get(Guid providerReference, bool success)
+        public async Task<ActionResult<string>> Get(Guid providerReference, bool success)
         {
             var paymentMock = _paymentsDbContext.MockPayments.FirstOrDefault(x => x.ProviderReference == providerReference);
             if (paymentMock == null)
@@ -49,13 +54,18 @@ namespace Checkout.Payments.Controllers
 
             if (success)
             {
+                await _bus.Publish(new PaymentMockPaid()
+                {
+                    PaymentReference = paymentMock.PaymentReference,
+                    PaymentMockId = paymentMock.Id
+                });
                 paymentMock.PaymentStatus = PaymentStatus.Completed;
             }
             else
             {
                 paymentMock.PaymentStatus = PaymentStatus.Failed;
             }
-            // todo send events
+
             _paymentsDbContext.SaveChanges();
 
             return Ok(new { returnUrl = "/orderPlaced" }); // todo thats mock of mock...

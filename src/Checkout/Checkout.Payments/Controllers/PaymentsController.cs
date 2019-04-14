@@ -49,7 +49,6 @@ namespace Checkout.Payments.Controllers
             }
 
             return BadRequest();
-
         }
         
     }

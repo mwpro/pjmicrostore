@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Checkout.Orders.Domain;
+using Checkout.Orders.Infrastructure;
 using Checkout.Orders.Services;
 using GreenPipes;
 using MassTransit;
@@ -34,9 +35,7 @@ namespace Checkout.Orders
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            const string connectionString = @"Server=(localdb)\mssqllocaldb;Database=Checkout.Orders;Trusted_Connection=True;ConnectRetryCount=0";
-            services.AddDbContext<OrdersContext>
-                (options => options.UseSqlServer(connectionString));
+            services.AddDbContext<OrdersContext>(options => options.UseSqlServer(Configuration.GetConnectionString("OrdersDatabase")));
 
             services.AddMassTransit(c =>
             {
@@ -48,6 +47,7 @@ namespace Checkout.Orders
             });
             services.AddSingleton<IBus>(provider => provider.GetRequiredService<IBusControl>());
             services.AddTransient<ICartsService, CartsService>();
+            services.AddTransient<IDatabase, SqlDatabase>(provider => new SqlDatabase(Configuration.GetConnectionString("OrdersDatabase")));
 
             services.AddMediatR();
         }

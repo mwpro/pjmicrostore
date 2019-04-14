@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using Checkout.Orders.Commands;
 using Checkout.Orders.Contracts.Events;
 using Checkout.Orders.Domain;
 using Checkout.Orders.Services;
 using Checkout.Payments.Contracts;
 using MassTransit;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Checkout.Orders.Controllers
@@ -17,70 +19,27 @@ namespace Checkout.Orders.Controllers
     public class OrdersController : ControllerBase
     {
         private const int CartIdMock = 1; // todo what next?
-        private readonly ICartsService _cartsService;
-        private readonly OrdersContext _ordersContext;
-        private readonly IBus _bus;
+        private readonly IMediator _mediator;
 
-        public OrdersController(ICartsService cartsService, OrdersContext ordersContext, IBus bus)
+        public OrdersController(IMediator mediator)
         {
-            _cartsService = cartsService;
-            _ordersContext = ordersContext;
-            _bus = bus;
+            _mediator = mediator;
         }
 
         // TODO place order
         [HttpPost("")]
         public async Task<IActionResult> PlaceOrder(PlaceOrderModel placeOrderModel)
         {
-            var cart = await _cartsService.GetCart(CartIdMock);
-
-            // todo publish event
-            var order = new Order()
-            {
-                CreateDate = DateTime.UtcNow,
-                Customer = new Customer()
-                {
-                    FirstName = "Jan",
-                    LastName = "Kowalski",
-                    Email = "jan@kowalski.pl",
-                    Phone = "123-123-123"
-                },
-                Status = "New",
-                OrderLines = cart.CartItems.Select(x => new OrderLine()
-                {
-                    Quantity = x.Quantity,
-                    ProductId = x.ProductId,
-                    ProductName = x.ProductName,
-                    ProductPrice = x.ProductPrice
-                }).ToList()
-            };
-            _ordersContext.Add(order);
-            _ordersContext.SaveChanges();
-
-            await _bus.Publish(new OrderPlacedEvent()
-            {
-                OrderId = order.Id,
-                SourceCartId = cart.CartId
-            });
-
+            var createdOrder = await _mediator.Send(new PlaceOrderCommand(CartIdMock, placeOrderModel.PaymentMethod));
             if (placeOrderModel.PaymentMethod != PaymentMethods.OnDelivery)
             {
-                var paymentReference = NewId.NextGuid();
-                await _bus.Publish(new OrderAwaitingPayment()
-                {
-                    OrderId = order.Id,
-                    Amount = order.Total,
-                    PaymentMethod = placeOrderModel.PaymentMethod,
-                    PaymentReference = paymentReference
-                });
-
                 return StatusCode((int)HttpStatusCode.Created, new
                 {// todo some model?
-                    PaymentCheckUrl = $"/api/payments/{paymentReference}"
+                    PaymentCheckUrl = $"/api/payments/{createdOrder.PaymentReference}"
                 });
             }
 
-            return StatusCode((int)HttpStatusCode.Created, order);
+            return StatusCode((int)HttpStatusCode.Created);
         }
 
         // TODO get order

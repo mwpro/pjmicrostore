@@ -6,6 +6,7 @@ using Checkout.Orders.Domain;
 using Checkout.Orders.Services;
 using GreenPipes;
 using MassTransit;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -47,6 +48,8 @@ namespace Checkout.Orders
             });
             services.AddSingleton<IBus>(provider => provider.GetRequiredService<IBusControl>());
             services.AddTransient<ICartsService, CartsService>();
+
+            services.AddMediatR();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

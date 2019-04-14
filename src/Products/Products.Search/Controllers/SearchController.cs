@@ -22,6 +22,7 @@ namespace Products.Search.Controllers
             var node = new Uri("http://localhost:9200");
             var settings = new ConnectionSettings(node);
             settings.DefaultMappingFor(typeof(ProductSearchModel), idx => idx.IndexName("products"));
+            settings.ThrowExceptions(true);
 
             _client = new ElasticClient(settings);
         }

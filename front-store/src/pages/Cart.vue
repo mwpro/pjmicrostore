@@ -67,6 +67,11 @@
           <input type="email" class="form-control" v-model="email"  id="email" placeholder="you@example.com">
           <div class="invalid-feedback">Wprowadź prawidłowy adres email.</div>
         </div>
+         <div class="mb-3">
+          <label for="phone">Numer telefonu</label>
+          <input type="phone" class="form-control" v-model="phone"  id="phone" placeholder="123-456-789">
+          <div class="invalid-feedback">Wprowadź prawidłowy numer telefonu.</div>
+        </div>
         <h4 class="mb-3">Dane do wysyłki</h4>
         <form class="needs-validation" novalidate>
           <div class="row">
@@ -256,6 +261,7 @@ export default {
   data() {
     return {
       email: null,
+      phone: null,
       shippingDetails: {
         firstName: null,
         lastName: null,
@@ -291,6 +297,7 @@ export default {
     placeOrderModel() {
       return {        
         email: this.$data.email,
+        phone: this.$data.phone,
         paymentMethod: this.$data.selectedPaymentMethod,
         shippingDetails: this.$data.shippingDetails,
         billingDetails: (this.$data.billingDetailsAreDifferentFromShipping ? this.$data.billingDetails : this.$data.shippingDetails)

@@ -20,16 +20,15 @@ namespace Checkout.Orders.Queries
 
         private const string GetOrderListSql =
 @"SELECT 
-	o.Id, 
-	o.CreateDate AS CreateDateUtc,
-	CONCAT(c.FirstName, ' ', c.LastName) AS Customer,
-	SUM(ol.ProductPrice * ol.Quantity) AS Amount,
-	'mock' AS PaymentMethod,
-	o.Status_Name AS Status
+    o.Id, 
+    o.CreateDate AS CreateDateUtc,
+    Customer_Email AS Customer,
+    SUM(ol.ProductPrice * ol.Quantity) AS Amount,
+    'mock' AS PaymentMethod,
+    o.Status_Name AS Status
 FROM [Order] o
-LEFT JOIN Customer c ON o.Id = c.Id
 LEFT JOIN OrderLines ol ON o.Id = ol.OrderId
-GROUP BY o.Id, o.CreateDate, c.FirstName, c.LastName, o.Status_Name
+GROUP BY o.Id, o.CreateDate, o.Customer_Email, o.Status_Name
 ORDER BY o.CreateDate DESC";
 
         public GetOrderListQueryHandler(IDatabase database)

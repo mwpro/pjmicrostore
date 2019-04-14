@@ -7,19 +7,21 @@ namespace Checkout.Orders.Domain
 {
     public class Order
     {
-        public Order(Customer customer, ICollection<OrderLine> orderLines)
+        public Order(Customer customer, ICollection<OrderLine> orderLines, CustomerAddress billingAddress, CustomerAddress shippingAddress)
         {
             CreateDate = DateTime.UtcNow;
             Status = OrderStatus.New;
             OrderLines = orderLines;
+            BillingAddress = billingAddress;
+            ShippingAddress = shippingAddress;
             Customer = customer;
         }
 
-        public Order(int id, DateTime createDate, int customerId)
+        // ef constructor
+        public Order(int id, DateTime createDate)
         {
             Id = id;
             CreateDate = createDate;
-            CustomerId = customerId;
         }
 
         public int Id { get; private set; }
@@ -28,8 +30,10 @@ namespace Checkout.Orders.Domain
         public OrderStatus Status { get; private set; }
         public ICollection<OrderLine> OrderLines { get; private set; }
 
-        public int CustomerId { get; private set; }
         public Customer Customer { get; private set; }
+
+        public CustomerAddress BillingAddress { get; private set; }
+        public CustomerAddress ShippingAddress { get; private set; }
 
         public decimal Total => OrderLines.Sum(x => x.Value);
 

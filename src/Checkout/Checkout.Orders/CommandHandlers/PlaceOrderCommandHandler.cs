@@ -32,8 +32,12 @@ namespace Checkout.Orders.CommandHandlers
             var cart = await _cartsService.GetCart(request.CartId);
 
             var order = new Order(
-                new Customer("Jan", "Kowalski","jan@kowalski.pl","123-123-123"),
-                cart.CartItems.Select(x => new OrderLine(x.ProductId, x.ProductName, x.ProductPrice, x.Quantity)).ToList()
+                new Customer(request.CustomerId, request.Email, request.Phone), 
+                cart.CartItems.Select(x => new OrderLine(x.ProductId, x.ProductName, x.ProductPrice, x.Quantity)).ToList(),
+                new CustomerAddress(request.BillingDetails.FirstName, request.BillingDetails.LastName,
+                    request.BillingDetails.Address, request.BillingDetails.City, request.BillingDetails.Zip),
+                new CustomerAddress(request.ShippingDetails.FirstName, request.ShippingDetails.LastName,
+                    request.ShippingDetails.Address, request.ShippingDetails.City, request.ShippingDetails.Zip)
             );
 
             _ordersContext.Add(order);

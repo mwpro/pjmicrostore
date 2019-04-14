@@ -20,6 +20,7 @@ namespace Checkout.Orders.Controllers
     public class OrdersController : ControllerBase
     {
         private const int CartIdMock = 1; // todo what next?
+        private const int CustomerIdMock = 1; // todo what next?
         private readonly IMediator _mediator;
 
         public OrdersController(IMediator mediator)
@@ -27,11 +28,12 @@ namespace Checkout.Orders.Controllers
             _mediator = mediator;
         }
 
-        // TODO place order
         [HttpPost("")]
         public async Task<IActionResult> PlaceOrder(PlaceOrderModel placeOrderModel)
         {
-            var createdOrder = await _mediator.Send(new PlaceOrderCommand(CartIdMock, placeOrderModel.PaymentMethod));
+            var createdOrder = await _mediator.Send(new PlaceOrderCommand(CartIdMock, placeOrderModel.PaymentMethod, placeOrderModel.Email,
+                placeOrderModel.ShippingDetails.ToOrderAddress(), placeOrderModel.BillingDetails.ToOrderAddress(), CustomerIdMock, placeOrderModel.Phone));
+
             if (placeOrderModel.PaymentMethod != PaymentMethods.OnDelivery)
             {
                 return StatusCode((int)HttpStatusCode.Created, new
@@ -64,5 +66,25 @@ namespace Checkout.Orders.Controllers
     public class PlaceOrderModel
     {
         public string PaymentMethod { get; set; } // todo method id or code?
+
+        public string Email { get; set; }
+        public string Phone { get; set; }
+        public AddressModel ShippingDetails { get; set; }
+        public AddressModel BillingDetails { get; set; }
+
+        public class AddressModel
+        {
+            public string FirstName { get; set; }
+            public string LastName { get; set; }
+            public string Address { get; set; }
+            public string City { get; set; }
+            public string Zip { get; set; }
+
+            public PlaceOrderCommand.OrderAddress ToOrderAddress()
+            {
+                return new PlaceOrderCommand.OrderAddress(FirstName, LastName, Address, City, Zip);
+            }
+
+        }
     }
 }

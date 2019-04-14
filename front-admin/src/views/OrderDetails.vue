@@ -25,7 +25,7 @@
           <div class="card-body">
             <h5
               class="card-title"
-            >Klient - {{ order.customer.firstName }} {{ order.customer.lastName }}</h5>
+            >Klient</h5>
             <p class="card-text">
               Identyfikator: {{ order.customer.customerId }}
               <br>
@@ -33,6 +33,10 @@
               <br>
               Telefon: {{ order.customer.phone }}
               <br>
+              Dane rozliczeniowe:<br >
+              {{ order.billingAddress.firstName }} {{ order.billingAddress.lastName }}<br>
+              {{ order.billingAddress.address }}<br>
+              {{ order.billingAddress.city }}, {{ order.billingAddress.zip }}
             </p>
           </div>
         </div>
@@ -54,7 +58,12 @@
       <div class="col-sm-6">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title">Przesyłka</h5>...
+            <h5 class="card-title">Przesyłka</h5>
+            Sposób wysyłki: ...<br >
+            Adres do wysyłki:<br >
+              {{ order.shippingAddress.firstName }} {{ order.shippingAddress.lastName }}<br>
+              {{ order.shippingAddress.address }}<br>
+              {{ order.shippingAddress.city }}, {{ order.shippingAddress.zip }}
           </div>
         </div>
       </div>
@@ -65,10 +74,6 @@
             <b-table hover :items="order.orderLines" :fields="fieldsConfig">
               <template slot="productPrice" slot-scope="row">{{ row.value | currency }}</template>
               <template slot="value" slot-scope="row">{{ row.value | currency }}</template>
-              <template slot="actions" slot-scope="row">
-                <b-button size="sm" @click="row" class="mr-1">Edytuj</b-button>
-                <b-button size="sm" @click="row" class="mr-1">Usuń</b-button>
-              </template>
             </b-table>
           </div>
         </div>
@@ -111,10 +116,6 @@ export default {
           key: "value",
           label: "Wartość",
           sortable: false
-        },
-        {
-          key: "actions",
-          label: ""
         }
       ]
     };

@@ -20,6 +20,12 @@ namespace Checkout.Orders.Domain
         {
             modelBuilder.Entity<Order>()
                 .OwnsOne(o => o.Status);
+            modelBuilder.Entity<Order>()
+                .OwnsOne(o => o.Customer);
+            modelBuilder.Entity<Order>()
+                .OwnsOne(o => o.BillingAddress);
+            modelBuilder.Entity<Order>()
+                .OwnsOne(o => o.ShippingAddress);
 
             //modelBuilder.Entity<AttributeValue>()
             //    .HasOne(x => x.Product)

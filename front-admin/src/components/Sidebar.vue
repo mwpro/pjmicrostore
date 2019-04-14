@@ -10,7 +10,7 @@
           </router-link>
         </li>
         <li class="nav-item">
-          <router-link to="/about" class="nav-link" href="#">
+          <router-link to="/orders" class="nav-link" href="#">
             <span data-feather="file"></span>
             Zamówienia
           </router-link>
@@ -19,6 +19,12 @@
           <router-link to="/products" class="nav-link" href="#">
             <span data-feather="shopping-cart"></span>
             Produkty
+          </router-link>
+        </li>        
+        <li class="nav-item">
+          <router-link to="/about" class="nav-link" href="#">
+            <span data-feather="shopping-cart"></span>
+            About
           </router-link>
         </li>
       </ul>

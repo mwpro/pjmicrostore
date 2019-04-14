@@ -29,7 +29,8 @@ namespace Checkout.Orders.Queries
 FROM [Order] o
 LEFT JOIN Customer c ON o.Id = c.Id
 LEFT JOIN OrderLines ol ON o.Id = ol.OrderId
-GROUP BY o.Id, o.CreateDate, c.FirstName, c.LastName, o.Status";
+GROUP BY o.Id, o.CreateDate, c.FirstName, c.LastName, o.Status
+ORDER BY o.CreateDate DESC";
 
         public GetOrderListQueryHandler(IDatabase database)
         {

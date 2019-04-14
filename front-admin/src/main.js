@@ -11,6 +11,13 @@ import './css/dashboard.css'
 Vue.use(BootstrapVue)
 Vue.config.productionTip = false;
 
+Vue.filter('currency', (price) => `${price != null ? price.toFixed(2) : "0,00"} PLN`);
+Vue.filter('date', date => new Date(date).toLocaleDateString());
+Vue.filter('dateTime', date => {
+  let d = new Date(date);
+  return `${d.toLocaleDateString()} ${d.toLocaleTimeString()}`
+});
+
 new Vue({
   router,
   store,

@@ -19,13 +19,17 @@
           <span class="badge badge-secondary badge-pill">{{ cart.numberOfItems }}</span>
         </h4>
         <ul class="list-group mb-3">
-          <li v-for="item in cart.cartItems" v-bind:key="item.productId" class="list-group-item d-flex justify-content-between lh-condensed">
+          <li
+            v-for="item in cart.cartItems"
+            v-bind:key="item.productId"
+            class="list-group-item d-flex justify-content-between lh-condensed"
+          >
             <div>
               <h6 class="my-0">{{ item.productName }}</h6>
               <small class="text-muted">
-                  <button
-                    @click="updateItem(item, item.quantity - 1)"
-                    :disabled="item.quantity == 1"
+                <button
+                  @click="updateItem(item, item.quantity - 1)"
+                  :disabled="item.quantity == 1"
                 >-</button>
                 {{ item.quantity }}
                 <!-- TODO input for editing -->
@@ -41,7 +45,7 @@
               <small>EXAMPLECODE</small>
             </div>
             <span class="text-success">-$5</span>
-          </li> -->
+          </li>-->
           <li class="list-group-item d-flex justify-content-between">
             <span>Razem</span>
             <strong>{{ cart.total | currency }}</strong>
@@ -55,101 +59,139 @@
               <button type="submit" class="btn btn-secondary">Redeem</button>
             </div>
           </div>
-        </form> -->
+        </form>-->
       </div>
       <div class="col-md-8 order-md-1">
-        <!-- <h4 class="mb-3">Billing address</h4> -->
+        <div class="mb-3">
+          <label for="email">Email</label>
+          <input type="email" class="form-control" v-model="email"  id="email" placeholder="you@example.com">
+          <div class="invalid-feedback">Wprowadź prawidłowy adres email.</div>
+        </div>
+        <h4 class="mb-3">Dane do wysyłki</h4>
         <form class="needs-validation" novalidate>
-          <!-- <div class="row">
+          <div class="row">
             <div class="col-md-6 mb-3">
-              <label for="firstName">First name</label>
-              <input type="text" class="form-control" id="firstName" placeholder value required>
-              <div class="invalid-feedback">Valid first name is required.</div>
+              <label for="shipping-firstName">Imię</label>
+              <input
+                type="text"
+                class="form-control"
+                v-model="shippingDetails.firstName" 
+                id="shipping-firstName"
+                placeholder="Jan"
+                value
+                required
+              >
+              <div class="invalid-feedback">Imię jest wymagane.</div>
             </div>
             <div class="col-md-6 mb-3">
-              <label for="lastName">Last name</label>
-              <input type="text" class="form-control" id="lastName" placeholder value required>
-              <div class="invalid-feedback">Valid last name is required.</div>
+              <label for="shipping-lastName">Nazwisko</label>
+              <input
+                type="text"
+                class="form-control"
+                id="shipping-lastName"
+                v-model="shippingDetails.lastName" 
+                placeholder="Kowalski"
+                value
+                required
+              >
+              <div class="invalid-feedback">Nazwisko jest wymagane.</div>
             </div>
           </div>
 
           <div class="mb-3">
-            <label for="username">Username</label>
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text">@</span>
-              </div>
-              <input type="text" class="form-control" id="username" placeholder="Username" required>
-              <div class="invalid-feedback" style="width: 100%;">Your username is required.</div>
-            </div>
-          </div>
-
-          <div class="mb-3">
-            <label for="email">
-              Email
-              <span class="text-muted">(Optional)</span>
-            </label>
-            <input type="email" class="form-control" id="email" placeholder="you@example.com">
-            <div class="invalid-feedback">Please enter a valid email address for shipping updates.</div>
-          </div>
-
-          <div class="mb-3">
-            <label for="address">Address</label>
+            <label for="shipping-address">Adres</label>
             <input
               type="text"
               class="form-control"
-              id="address"
-              placeholder="1234 Main St"
+              id="shipping-address"
+              v-model="shippingDetails.address" 
+              placeholder="Przykładowa 123/3"
               required
             >
-            <div class="invalid-feedback">Please enter your shipping address.</div>
-          </div>
-
-          <div class="mb-3">
-            <label for="address2">
-              Address 2
-              <span class="text-muted">(Optional)</span>
-            </label>
-            <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">
+            <div class="invalid-feedback">Wprowadź adres wysyłki.</div>
           </div>
 
           <div class="row">
-            <div class="col-md-5 mb-3">
-              <label for="country">Country</label>
-              <select class="custom-select d-block w-100" id="country" required>
-                <option value>Choose...</option>
-                <option>United States</option>
-              </select>
-              <div class="invalid-feedback">Please select a valid country.</div>
-            </div>
-            <div class="col-md-4 mb-3">
-              <label for="state">State</label>
-              <select class="custom-select d-block w-100" id="state" required>
-                <option value>Choose...</option>
-                <option>California</option>
-              </select>
-              <div class="invalid-feedback">Please provide a valid state.</div>
+            <div class="col-md-9 mb-9">
+              <label for="shipping-city">Miasto</label>
+              <input type="text" class="form-control" v-model="shippingDetails.city" id="shipping-city" placeholder="Warszawa" required>
+              <div class="invalid-feedback">Wprowadź miasto.</div>
             </div>
             <div class="col-md-3 mb-3">
-              <label for="zip">Zip</label>
-              <input type="text" class="form-control" id="zip" placeholder required>
-              <div class="invalid-feedback">Zip code required.</div>
+              <label for="shipping-zip">Kod pocztowy</label>
+              <input type="text" class="form-control" v-model="shippingDetails.zip" id="shipping-zip" placeholder="12-345" required>
+              <div class="invalid-feedback">Wprowadź kod pocztowy.</div>
             </div>
           </div>
           <hr class="mb-4">
           <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="same-address">
+            <input type="checkbox" class="custom-control-input" id="same-address" v-model="billingDetailsAreDifferentFromShipping">
             <label
               class="custom-control-label"
               for="same-address"
-            >Shipping address is the same as my billing address</label>
+            >Adres dostawy jest inny niż adres rozliczeniowy</label>
           </div>
+          <div class="row" v-if="billingDetailsAreDifferentFromShipping">
+            <div class="col-md-6 mb-3">
+              <label for="billing-firstName">Imię</label>
+              <input
+                type="text"
+                class="form-control"
+                v-model="billingDetails.firstName" 
+                id="billing-firstName"
+                placeholder="Jan"
+                value
+                required
+              >
+              <div class="invalid-feedback">Imię jest wymagane.</div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="billing-lastName">Nazwisko</label>
+              <input
+                type="text"
+                class="form-control"
+                id="billing-lastName"
+                v-model="billingDetails.lastName" 
+                placeholder="Kowalski"
+                value
+                required
+              >
+              <div class="invalid-feedback">Nazwisko jest wymagane.</div>
+            </div>
+          </div>
+
+          <div class="mb-3" v-if="billingDetailsAreDifferentFromShipping">
+            <label for="billing-address">Adres</label>
+            <input
+              type="text"
+              class="form-control"
+              id="billing-address"
+              v-model="billingDetails.address" 
+              placeholder="Przykładowa 123/3"
+              required
+            >
+            <div class="invalid-feedback">Wprowadź adres wysyłki.</div>
+          </div>
+
+          <div class="row" v-if="billingDetailsAreDifferentFromShipping">
+            <div class="col-md-9 mb-9">
+              <label for="billing-city">Miasto</label>
+              <input type="text" class="form-control" v-model="billingDetails.city" id="billing-city" placeholder="Warszawa" required>
+              <div class="invalid-feedback">Wprowadź miasto.</div>
+            </div>
+            <div class="col-md-3 mb-3">
+              <label for="billing-zip">Kod pocztowy</label>
+              <input type="text" class="form-control" v-model="billingDetails.zip" id="billing-zip" placeholder="12-345" required>
+              <div class="invalid-feedback">Wprowadź kod pocztowy.</div>
+            </div>
+          </div>
+          
+          <!-- 
           <div class="custom-control custom-checkbox">
             <input type="checkbox" class="custom-control-input" id="save-info">
             <label class="custom-control-label" for="save-info">Save this information for next time</label>
-          </div>
+          </div>-->
           <hr class="mb-4">
-            -->
 
           <h4 class="mb-3">Płatność</h4>
 
@@ -194,7 +236,7 @@
               <input type="text" class="form-control" id="cc-cvv" placeholder required>
               <div class="invalid-feedback">Security code required</div>
             </div>
-          </div> -->
+          </div>-->
           <hr class="mb-4">
 
           <button
@@ -205,6 +247,7 @@
         </form>
       </div>
     </div>
+    {{ placeOrderModel }}
   </div>
 </template>
 
@@ -212,6 +255,22 @@
 export default {
   data() {
     return {
+      email: null,
+      shippingDetails: {
+        firstName: null,
+        lastName: null,
+        address: null,
+        city: null,
+        zip: null
+      },
+      billingDetailsAreDifferentFromShipping: false,
+      billingDetails: {
+        firstName: null,
+        lastName: null,
+        address: null,
+        city: null,
+        zip: null
+      },
       selectedPaymentMethod: null,
       orderButtonClicked: false
     };
@@ -228,6 +287,14 @@ export default {
         this.$data.selectedPaymentMethod !== null &&
         !this.$data.orderButtonClicked
       );
+    },
+    placeOrderModel() {
+      return {        
+        email: this.$data.email,
+        paymentMethod: this.$data.selectedPaymentMethod,
+        shippingDetails: this.$data.shippingDetails,
+        billingDetails: (this.$data.billingDetailsAreDifferentFromShipping ? this.$data.billingDetails : this.$data.shippingDetails)
+      };
     }
   },
   created() {
@@ -247,9 +314,7 @@ export default {
     placeOrder() {
       this.$data.orderButtonClicked = true;
       this.$store
-        .dispatch("cart/placeOrder", {
-          paymentMethod: this.$data.selectedPaymentMethod
-        })
+        .dispatch("cart/placeOrder", this.placeOrderModel)
         .then(order => {
           if (order.paymentCheckUrl !== undefined) {
             this.$router.push({

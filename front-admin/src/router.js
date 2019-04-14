@@ -4,6 +4,7 @@ import Home from './views/Home.vue';
 import ProductsList from './views/ProductsList.vue';
 import ProductsEdit from './views/ProductsEdit.vue';
 import OrdersList from './views/OrdersList.vue';
+import OrderDetails from './views/OrderDetails.vue';
 
 Vue.use(Router);
 
@@ -38,6 +39,12 @@ export default new Router({
       path: '/orders',
       name: 'orders',      
       component: OrdersList
+    },  
+    {
+      path: '/orders/:orderId',
+      name: 'orderDetails',      
+      component: OrderDetails,
+      props: true
     },
   ],
 });

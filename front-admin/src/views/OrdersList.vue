@@ -6,22 +6,30 @@
       <h1 class="h2">Zamówienia</h1>
     </div>
 
-    <b-table hover :items="products" :fields="fieldsConfig">      
+    <b-table hover :items="orders" :fields="fieldsConfig">      
       <template slot="createDateUtc" slot-scope="row">
         {{ row.value | dateTime }}
       </template>
       <template slot="amount" slot-scope="row">
         {{ row.value | currency }}
+      </template>      
+      <template slot="status" slot-scope="row">
+        <OrderStatus :status="row.value" />
       </template>
       <template slot="actions" slot-scope="row">
-        <b-button size="sm" @click="row" class="mr-1">Zobacz</b-button>
+        <b-button size="sm" :to="'orders/'+row.item.id" class="mr-1">Zobacz</b-button>
       </template>
     </b-table>
   </div>
 </template>
 
 <script>
+import OrderStatus from '../components/OrderStatus'
+
 export default {
+  components: {
+    OrderStatus
+  },
   data() {
     return {
       fieldsConfig: [
@@ -63,7 +71,7 @@ export default {
     };
   },
   computed: {
-    products() {
+    orders() {
       return this.$store.state.orders.ordersList;
     }
   },

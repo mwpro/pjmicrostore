@@ -50,6 +50,15 @@ namespace Checkout.Orders.Controllers
 
             return Ok(result);
         }
+
+
+        [HttpGet("{orderId}")]
+        public async Task<IActionResult> GetOrder(int orderId)
+        {
+            var result = await _mediator.Send(new GetOrderDetailsQuery(orderId));
+
+            return Ok(result);
+        }
     }
 
     public class PlaceOrderModel

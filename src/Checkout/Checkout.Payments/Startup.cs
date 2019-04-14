@@ -49,19 +49,19 @@ namespace Checkout.Payments
                             e.PrefetchCount = 16;
                             e.UseMessageRetry(x => x.Interval(2, 100));
 
-                            e.ConfigureConsumer<OrderAwaitsPaymentConsumer>(provider);
+                            e.ConfigureConsumer<OrderPlacedEventConsumer>(provider);
                             e.ConfigureConsumer<PaymentMockRequiredConsumer>(provider);
                             e.ConfigureConsumer<PaymentMockPaidConsumer>(provider);
                         });
                     }));
-                c.AddConsumer<OrderAwaitsPaymentConsumer>();
+                c.AddConsumer<OrderPlacedEventConsumer>();
                 c.AddConsumer<PaymentMockRequiredConsumer>();
                 c.AddConsumer<PaymentMockPaidConsumer>();
             });
 
             services.AddSingleton<IHostedService, BusService>();
 
-            services.AddTransient<OrderAwaitsPaymentConsumer>();
+            services.AddTransient<OrderPlacedEventConsumer>();
             services.AddTransient<PaymentMockRequiredConsumer>();
             services.AddTransient<PaymentMockPaidConsumer>();
         }

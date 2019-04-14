@@ -54,11 +54,6 @@ export default {
           sortable: false
         },
         {
-          key: "paymentMethod",
-          label: "Metoda płatności",
-          sortable: false
-        },        
-        {
           key: "status",
           label: "Status",
           sortable: false

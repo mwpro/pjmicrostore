@@ -43,24 +43,17 @@ namespace Checkout.Orders.CommandHandlers
             _ordersContext.Add(order);
             _ordersContext.SaveChanges();
 
+
+            // todo should not be handled here.
+            Guid? paymentReference = NewId.NextGuid();
             await _bus.Publish(new OrderPlacedEvent()
             {
                 OrderId = order.Id,
-                SourceCartId = cart.CartId
+                SourceCartId = cart.CartId,
+                Amount = order.Total,
+                PaymentMethod = request.PaymentMethod,
+                PaymentReference = paymentReference.Value
             });
-
-            Guid? paymentReference = null;
-            if (request.PaymentMethod != PaymentMethods.OnDelivery) // todo should not be handled here9
-            {
-                paymentReference = NewId.NextGuid();
-                await _bus.Publish(new OrderAwaitsPayment()
-                {
-                    OrderId = order.Id,
-                    Amount = order.Total,
-                    PaymentMethod = request.PaymentMethod,
-                    PaymentReference = paymentReference.Value
-                });
-            }
 
             return new PlaceOrderCommandResponse()
             {

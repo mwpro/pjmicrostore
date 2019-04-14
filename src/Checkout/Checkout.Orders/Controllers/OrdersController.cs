@@ -31,13 +31,17 @@ namespace Checkout.Orders.Controllers
         [HttpPost("")]
         public async Task<IActionResult> PlaceOrder(PlaceOrderModel placeOrderModel)
         {
+            // todo validation
             var createdOrder = await _mediator.Send(new PlaceOrderCommand(CartIdMock, placeOrderModel.PaymentMethod, placeOrderModel.Email,
                 placeOrderModel.ShippingDetails.ToOrderAddress(), placeOrderModel.BillingDetails.ToOrderAddress(), CustomerIdMock, placeOrderModel.Phone));
 
+            // todo this if does not look good here,
+            // i think we should move it all to payments service and just return action link here
+            // cause probably more async actions may happen in background - like stock ensuring
             if (placeOrderModel.PaymentMethod != PaymentMethods.OnDelivery)
             {
                 return StatusCode((int)HttpStatusCode.Created, new
-                {// todo some model?
+                {
                     PaymentCheckUrl = $"/api/payments/{createdOrder.PaymentReference}"
                 });
             }
@@ -52,8 +56,7 @@ namespace Checkout.Orders.Controllers
 
             return Ok(result);
         }
-
-
+        
         [HttpPost("{orderId}/cancel")]
         public async Task<IActionResult> CancelOrder(int orderId) 
         {

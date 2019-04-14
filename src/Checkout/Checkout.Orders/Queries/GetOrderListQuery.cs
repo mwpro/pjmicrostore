@@ -24,7 +24,6 @@ namespace Checkout.Orders.Queries
     o.CreateDate AS CreateDateUtc,
     Customer_Email AS Customer,
     SUM(ol.ProductPrice * ol.Quantity) AS Amount,
-    'mock' AS PaymentMethod,
     o.Status_Name AS Status
 FROM [Order] o
 LEFT JOIN OrderLines ol ON o.Id = ol.OrderId
@@ -51,7 +50,6 @@ ORDER BY o.CreateDate DESC";
         public DateTime CreateDateUtc { get; set; }
         public string Customer { get; set; }
         public decimal Amount { get; set; }
-        public string PaymentMethod { get; set; }
         public string Status { get; set; }
     }
 }

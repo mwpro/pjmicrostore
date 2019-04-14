@@ -2,22 +2,23 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Checkout.Orders.Contracts.Events;
+using Checkout.Payments.Contracts;
 using Checkout.Payments.Contracts.Events;
 using Checkout.Payments.Domain;
 using MassTransit;
 
 namespace Checkout.Payments.Consumers
 {
-    public class OrderAwaitsPaymentConsumer : IConsumer<OrderAwaitsPayment>
+    public class OrderPlacedEventConsumer : IConsumer<OrderPlacedEvent>
     {
         private readonly PaymentsDbContext _paymentsDbContext;
 
-        public OrderAwaitsPaymentConsumer(PaymentsDbContext paymentsDbContext)
+        public OrderPlacedEventConsumer(PaymentsDbContext paymentsDbContext)
         {
             _paymentsDbContext = paymentsDbContext;
         }
 
-        public async Task Consume(ConsumeContext<OrderAwaitsPayment> context)
+        public async Task Consume(ConsumeContext<OrderPlacedEvent> context)
         {
             var payment = new Payment()
             {
@@ -37,12 +38,31 @@ namespace Checkout.Payments.Consumers
                 PaymentReference = payment.PaymentReference,
                 OrderId = payment.OrderId,
             });
-            await context.Publish(new PaymentMockRequired()
+
+            // todo tempoary, should start correct saga here...
+            if (context.Message.PaymentMethod == PaymentMethods.OnDelivery)
             {
-                Amount = payment.Amount,
-                Description = $"Płatność za zamówienie {payment.OrderId} dla pjmicrostore",
-                PaymentReference = payment.PaymentReference
-            });
+                payment.PaymentStatus = PaymentStatus.Completed;
+
+                await _paymentsDbContext.SaveChangesAsync();
+
+                await context.Publish(new PaymentCompletedEvent()
+                {
+                    OrderId = payment.OrderId,
+                    PaymentId = payment.Id,
+                    PaymentReference = payment.PaymentReference
+                });
+            }
+
+            if (context.Message.PaymentMethod == PaymentMethods.PaymentProvider)
+            {
+                await context.Publish(new PaymentMockRequired()
+                {
+                    Amount = payment.Amount,
+                    Description = $"Płatność za zamówienie {payment.OrderId} dla pjmicrostore",
+                    PaymentReference = payment.PaymentReference
+                });
+            }
         }
     }
 }

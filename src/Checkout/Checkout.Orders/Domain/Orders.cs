@@ -50,5 +50,19 @@ namespace Checkout.Orders.Domain
 
             Status = OrderStatus.WaitingForShipment;
         }
+
+        public void MarkAsCompleted()
+        {
+            if (!Status.Equals(OrderStatus.WaitingForShipment)) throw new Exception($"Cannot make order in status {Status} as {OrderStatus.Completed}"); // todo custom exception type
+
+            Status = OrderStatus.Completed;
+        }
+
+        public void Cancel()
+        {
+            if (Status.Equals(OrderStatus.Completed)) throw new Exception($"Cannot make order in status {Status} as {OrderStatus.Cancelled}"); // todo custom exception type
+
+            Status = OrderStatus.Cancelled;
+        }
     }
 }

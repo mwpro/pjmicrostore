@@ -16,6 +16,10 @@ export default {
                 return "Oczekuje na płatność";
             case "WaitingForShipment":
                 return "Oczekuje na wysyłkę";                    
+            case "Completed":                  
+                return "Zakończone";
+            case "Cancelled":                  
+                return "Anulowane";
             default:
                 return this.status;
         }
@@ -26,7 +30,11 @@ export default {
             case "WaitingForPayment":
                 return "primary";
             case "WaitingForShipment":
-                return "warning";                    
+                return "warning";  
+            case "Completed":                  
+                return "success";
+            case "Cancelled":                  
+                return "danger";
             default:
                 return "primary";
         }

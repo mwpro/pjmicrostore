@@ -45,6 +45,23 @@ namespace Checkout.Orders.Controllers
             return StatusCode((int)HttpStatusCode.Created);
         }
 
+        [HttpPost("{orderId}/sent")]
+        public async Task<IActionResult> MarkAsSent(int orderId) // todo temporary endpoint until we have shipment microservice
+        {
+            var result = await _mediator.Send(new MarkOrderAsCompletedCommand(orderId));
+
+            return Ok(result);
+        }
+
+
+        [HttpPost("{orderId}/cancel")]
+        public async Task<IActionResult> CancelOrder(int orderId) 
+        {
+            var result = await _mediator.Send(new CancelOrderCommand(orderId)); // todo reason
+
+            return Ok(result);
+        }
+
         [HttpGet]
         public async Task<IActionResult> GetOrders()
         {

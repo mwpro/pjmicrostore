@@ -50,5 +50,35 @@ export default {
         });
       // TODO .catch(captains.error)
     },
+    cancelOrderAction({ dispatch }, orderId) {
+      return axios
+        .post(`/api/orders/${orderId}/cancel`)
+        .then((response) => {
+          if (response.status !== 200) throw Error(response.message);
+          let order = response.data;
+          if (typeof order !== 'object') {
+            order = [];
+          }
+
+          dispatch('getOrderAction', orderId);
+          return order;
+        });
+      // TODO .catch(captains.error)
+    },
+    completeOrderAction({ dispatch }, orderId) {
+      return axios
+        .post(`/api/orders/${orderId}/sent`)
+        .then((response) => {
+          if (response.status !== 200) throw Error(response.message);
+          let order = response.data;
+          if (typeof order !== 'object') {
+            order = [];
+          }
+
+          dispatch('getOrderAction', orderId);
+          return order;
+        });
+      // TODO .catch(captains.error)
+    },
   },
 };

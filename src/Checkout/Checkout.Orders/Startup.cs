@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
+using Checkout.Orders.Consumers;
 using Checkout.Orders.Domain;
 using Checkout.Orders.Infrastructure;
 using Checkout.Orders.Services;
@@ -42,12 +44,25 @@ namespace Checkout.Orders
                 c.AddBus(provider => Bus.Factory.CreateUsingRabbitMq(
                     cfg =>
                     {
-                        cfg.Host("localhost", "/", h => { });
+                        var host = cfg.Host("localhost", "/", h => { });
+                        cfg.ReceiveEndpoint(host, "Checkout.Orders", e =>
+                        {
+                            e.PrefetchCount = 16;
+                            e.UseMessageRetry(x => x.Interval(2, 100));
+
+                            e.ConfigureConsumer<PaymentCompletedEventConsumer>(provider);
+                        });
                     }));
+
+                c.AddConsumer<PaymentCompletedEventConsumer>();
             });
+
+            services.AddSingleton<IHostedService, BusService>();
+
             services.AddSingleton<IBus>(provider => provider.GetRequiredService<IBusControl>());
             services.AddTransient<ICartsService, CartsService>();
             services.AddTransient<IDatabase, SqlDatabase>(provider => new SqlDatabase(Configuration.GetConnectionString("OrdersDatabase")));
+            services.AddTransient<PaymentCompletedEventConsumer>();
 
             services.AddMediatR();
         }
@@ -65,6 +80,27 @@ namespace Checkout.Orders
             }
 
             app.UseMvc();
+        }
+    }
+
+    public class BusService :
+        IHostedService
+    {
+        private readonly IBusControl _busControl;
+
+        public BusService(IBusControl busControl)
+        {
+            _busControl = busControl;
+        }
+
+        public Task StartAsync(CancellationToken cancellationToken)
+        {
+            return _busControl.StartAsync(cancellationToken);
+        }
+
+        public Task StopAsync(CancellationToken cancellationToken)
+        {
+            return _busControl.StopAsync(cancellationToken);
         }
     }
 }

@@ -33,6 +33,13 @@ namespace Checkout.Orders.Domain
         public Customer Customer { get; private set; }
 
         public decimal Total => OrderLines.Sum(x => x.Value);
+
+        public void MarkAsPaid()
+        {
+            if (Status != "New") throw new Exception($"Cannot make order in status {Status} as paid"); // todo custom exception type
+
+            Status = "Paid";
+        }
     }
 
     public class Customer

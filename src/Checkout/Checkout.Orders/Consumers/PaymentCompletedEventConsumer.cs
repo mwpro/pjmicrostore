@@ -20,7 +20,7 @@ namespace Checkout.Orders.Consumers
 
         public async Task Consume(ConsumeContext<PaymentCompletedEvent> context)
         {
-            await _mediator.Send(new OrderPaidCommand(context.Message.OrderId));
+            await _mediator.Send(new MakeOrderWaitForShippingCommand(context.Message.OrderId));
         }
     }
 }

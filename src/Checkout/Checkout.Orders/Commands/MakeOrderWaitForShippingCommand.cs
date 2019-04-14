@@ -2,11 +2,11 @@
 
 namespace Checkout.Orders.Commands
 {
-    public class OrderPaidCommand : IRequest
+    public class MakeOrderWaitForShippingCommand : IRequest
     {
         public int OrderId { get; }
 
-        public OrderPaidCommand(int orderId)
+        public MakeOrderWaitForShippingCommand(int orderId)
         {
             OrderId = orderId;
         }

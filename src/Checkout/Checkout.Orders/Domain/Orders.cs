@@ -33,18 +33,18 @@ namespace Checkout.Orders.Domain
 
         public decimal Total => OrderLines.Sum(x => x.Value);
 
-        public void MarkAsPaid()
-        {
-            if (!Status.Equals(OrderStatus.WaitingForPayment)) throw new Exception($"Cannot make order in status {Status} as {OrderStatus.WaitingForShipment}"); // todo custom exception type
-
-            Status = OrderStatus.WaitingForShipment;
-        }
-
         public void MarkAsWaitingForPayment()
         {
             if (!Status.Equals(OrderStatus.New)) throw new Exception($"Cannot make order in status {Status} as {OrderStatus.WaitingForPayment}"); // todo custom exception type
 
             Status = OrderStatus.WaitingForPayment;
+        }
+
+        public void MarkAsWaitingForShipping()
+        {
+            if (!Status.Equals(OrderStatus.WaitingForPayment)) throw new Exception($"Cannot make order in status {Status} as {OrderStatus.WaitingForShipment}"); // todo custom exception type
+
+            Status = OrderStatus.WaitingForShipment;
         }
     }
 }

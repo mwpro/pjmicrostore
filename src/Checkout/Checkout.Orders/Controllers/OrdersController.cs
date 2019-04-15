@@ -11,6 +11,7 @@ using Checkout.Orders.Services;
 using Checkout.Payments.Contracts;
 using MassTransit;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Checkout.Orders.Controllers
@@ -26,6 +27,13 @@ namespace Checkout.Orders.Controllers
         public OrdersController(IMediator mediator)
         {
             _mediator = mediator;
+        }
+
+        [HttpGet("auth")]
+        [Authorize]
+        public async Task<IActionResult> TestAuth()
+        {
+            return Ok(User.Claims.Select(c => new {c.Value, c.Type}));
         }
 
         [HttpPost("")]

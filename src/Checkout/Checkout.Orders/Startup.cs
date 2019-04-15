@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using Checkout.Orders.Consumers;
@@ -10,6 +11,7 @@ using Checkout.Orders.Services;
 using GreenPipes;
 using MassTransit;
 using MediatR;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -36,6 +38,14 @@ namespace Checkout.Orders
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            services.AddAuthentication("Bearer")
+                .AddJwtBearer("Bearer", options =>
+                {
+                    options.Authority = "http://localhost:5000";
+                    options.RequireHttpsMetadata = false;
+                    options.Audience = "api1";
+                });
 
             services.AddDbContext<OrdersContext>(options => options.UseSqlServer(Configuration.GetConnectionString("OrdersDatabase")));
 
@@ -81,6 +91,8 @@ namespace Checkout.Orders
             {
                 app.UseHsts();
             }
+
+            app.UseAuthentication();
 
             app.UseMvc();
         }

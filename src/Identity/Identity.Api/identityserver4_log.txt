@@ -1,0 +1,1151 @@
+2019-04-16 00:45:56.687 +02:00 [INF] You are using the in-memory version of the persisted grant store. This will store consent decisions, authorization codes, refresh and reference tokens in memory only. If you are using any of those features in production, you want to switch to a different store implementation.
+2019-04-16 00:45:56.743 +02:00 [INF] Using the default authentication scheme idsrv for IdentityServer
+2019-04-16 00:45:56.748 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for authentication
+2019-04-16 00:45:56.749 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for sign-in
+2019-04-16 00:45:56.750 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for sign-out
+2019-04-16 00:45:56.750 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for challenge
+2019-04-16 00:45:56.750 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for forbid
+2019-04-16 00:45:57.171 +02:00 [DBG] Login Url: /Account/Login
+2019-04-16 00:45:57.173 +02:00 [DBG] Login Return Url Parameter: ReturnUrl
+2019-04-16 00:45:57.173 +02:00 [DBG] Logout Url: /Account/Logout
+2019-04-16 00:45:57.173 +02:00 [DBG] ConsentUrl Url: /consent
+2019-04-16 00:45:57.173 +02:00 [DBG] Consent Return Url Parameter: returnUrl
+2019-04-16 00:45:57.173 +02:00 [DBG] Error Url: /home/error
+2019-04-16 00:45:57.173 +02:00 [DBG] Error Id Parameter: errorId
+2019-04-16 00:46:27.785 +02:00 [INF] You are using the in-memory version of the persisted grant store. This will store consent decisions, authorization codes, refresh and reference tokens in memory only. If you are using any of those features in production, you want to switch to a different store implementation.
+2019-04-16 00:46:27.840 +02:00 [INF] Using the default authentication scheme idsrv for IdentityServer
+2019-04-16 00:46:27.844 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for authentication
+2019-04-16 00:46:27.844 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for sign-in
+2019-04-16 00:46:27.844 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for sign-out
+2019-04-16 00:46:27.844 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for challenge
+2019-04-16 00:46:27.844 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for forbid
+2019-04-16 00:46:28.151 +02:00 [DBG] Login Url: /Account/Login
+2019-04-16 00:46:28.154 +02:00 [DBG] Login Return Url Parameter: ReturnUrl
+2019-04-16 00:46:28.154 +02:00 [DBG] Logout Url: /Account/Logout
+2019-04-16 00:46:28.154 +02:00 [DBG] ConsentUrl Url: /consent
+2019-04-16 00:46:28.154 +02:00 [DBG] Consent Return Url Parameter: returnUrl
+2019-04-16 00:46:28.154 +02:00 [DBG] Error Url: /home/error
+2019-04-16 00:46:28.154 +02:00 [DBG] Error Id Parameter: errorId
+2019-04-16 00:46:46.916 +02:00 [INF] You are using the in-memory version of the persisted grant store. This will store consent decisions, authorization codes, refresh and reference tokens in memory only. If you are using any of those features in production, you want to switch to a different store implementation.
+2019-04-16 00:46:46.961 +02:00 [INF] Using the default authentication scheme idsrv for IdentityServer
+2019-04-16 00:46:46.965 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for authentication
+2019-04-16 00:46:46.965 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for sign-in
+2019-04-16 00:46:46.965 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for sign-out
+2019-04-16 00:46:46.965 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for challenge
+2019-04-16 00:46:46.965 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for forbid
+2019-04-16 00:46:47.474 +02:00 [DBG] Login Url: /Account/Login
+2019-04-16 00:46:47.477 +02:00 [DBG] Login Return Url Parameter: ReturnUrl
+2019-04-16 00:46:47.477 +02:00 [DBG] Logout Url: /Account/Logout
+2019-04-16 00:46:47.477 +02:00 [DBG] ConsentUrl Url: /consent
+2019-04-16 00:46:47.477 +02:00 [DBG] Consent Return Url Parameter: returnUrl
+2019-04-16 00:46:47.477 +02:00 [DBG] Error Url: /home/error
+2019-04-16 00:46:47.477 +02:00 [DBG] Error Id Parameter: errorId
+2019-04-16 00:49:43.807 +02:00 [DBG] Request path /connect/authorize matched to endpoint type Authorize
+2019-04-16 00:49:43.811 +02:00 [DBG] Endpoint enabled: Authorize, successfully created handler: IdentityServer4.Endpoints.AuthorizeEndpoint
+2019-04-16 00:49:43.811 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.AuthorizeEndpoint for /connect/authorize
+2019-04-16 00:49:43.815 +02:00 [DBG] Start authorize request
+2019-04-16 00:49:43.823 +02:00 [DBG] No user present in authorize request
+2019-04-16 00:49:43.839 +02:00 [DBG] Start authorize request protocol validation
+2019-04-16 00:49:43.858 +02:00 [ERR] client_id is missing or too long
+{"ClientId":null,"ClientName":null,"RedirectUri":null,"AllowedRedirectUris":null,"SubjectId":"anonymous","ResponseType":null,"ResponseMode":null,"GrantType":null,"RequestedScopes":"","State":null,"UiLocales":null,"Nonce":null,"AuthenticationContextReferenceClasses":null,"DisplayMode":null,"PromptMode":null,"MaxAge":null,"LoginHint":null,"SessionId":null,"Raw":{},"$type":"AuthorizeRequestValidationLog"}
+2019-04-16 00:49:43.869 +02:00 [ERR] Request validation failed
+2019-04-16 00:49:43.870 +02:00 [INF] {"ClientId":null,"ClientName":null,"RedirectUri":null,"AllowedRedirectUris":null,"SubjectId":"anonymous","ResponseType":null,"ResponseMode":null,"GrantType":null,"RequestedScopes":"","State":null,"UiLocales":null,"Nonce":null,"AuthenticationContextReferenceClasses":null,"DisplayMode":null,"PromptMode":null,"MaxAge":null,"LoginHint":null,"SessionId":null,"Raw":{},"$type":"AuthorizeRequestValidationLog"}
+2019-04-16 00:49:48.029 +02:00 [DBG] Request path /.well-known/openid-configuration matched to endpoint type Discovery
+2019-04-16 00:49:48.031 +02:00 [DBG] Endpoint enabled: Discovery, successfully created handler: IdentityServer4.Endpoints.DiscoveryEndpoint
+2019-04-16 00:49:48.031 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.DiscoveryEndpoint for /.well-known/openid-configuration
+2019-04-16 00:49:48.034 +02:00 [DBG] Start discovery request
+2019-04-16 00:49:50.292 +02:00 [DBG] Request path /connect/authorize matched to endpoint type Authorize
+2019-04-16 00:49:50.292 +02:00 [DBG] Endpoint enabled: Authorize, successfully created handler: IdentityServer4.Endpoints.AuthorizeEndpoint
+2019-04-16 00:49:50.293 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.AuthorizeEndpoint for /connect/authorize
+2019-04-16 00:49:50.293 +02:00 [DBG] Start authorize request
+2019-04-16 00:49:50.293 +02:00 [DBG] No user present in authorize request
+2019-04-16 00:49:50.293 +02:00 [DBG] Start authorize request protocol validation
+2019-04-16 00:49:50.294 +02:00 [ERR] client_id is missing or too long
+{"ClientId":null,"ClientName":null,"RedirectUri":null,"AllowedRedirectUris":null,"SubjectId":"anonymous","ResponseType":null,"ResponseMode":null,"GrantType":null,"RequestedScopes":"","State":null,"UiLocales":null,"Nonce":null,"AuthenticationContextReferenceClasses":null,"DisplayMode":null,"PromptMode":null,"MaxAge":null,"LoginHint":null,"SessionId":null,"Raw":{},"$type":"AuthorizeRequestValidationLog"}
+2019-04-16 00:49:50.294 +02:00 [ERR] Request validation failed
+2019-04-16 00:49:50.294 +02:00 [INF] {"ClientId":null,"ClientName":null,"RedirectUri":null,"AllowedRedirectUris":null,"SubjectId":"anonymous","ResponseType":null,"ResponseMode":null,"GrantType":null,"RequestedScopes":"","State":null,"UiLocales":null,"Nonce":null,"AuthenticationContextReferenceClasses":null,"DisplayMode":null,"PromptMode":null,"MaxAge":null,"LoginHint":null,"SessionId":null,"Raw":{},"$type":"AuthorizeRequestValidationLog"}
+2019-04-16 00:49:57.491 +02:00 [DBG] Request path /connect/deviceauthorization matched to endpoint type DeviceAuthorization
+2019-04-16 00:49:57.494 +02:00 [DBG] Endpoint enabled: DeviceAuthorization, successfully created handler: IdentityServer4.Endpoints.DeviceAuthorizationEndpoint
+2019-04-16 00:49:57.494 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.DeviceAuthorizationEndpoint for /connect/deviceauthorization
+2019-04-16 00:49:57.499 +02:00 [WRN] Invalid HTTP request for device authorize endpoint
+2019-04-16 00:49:57.500 +02:00 [ERR] Device authorization error: invalid_request:invalid_request
+2019-04-16 00:50:08.700 +02:00 [DBG] Request path /connect/userinfo matched to endpoint type Userinfo
+2019-04-16 00:50:08.704 +02:00 [DBG] Endpoint enabled: Userinfo, successfully created handler: IdentityServer4.Endpoints.UserInfoEndpoint
+2019-04-16 00:50:08.704 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.UserInfoEndpoint for /connect/userinfo
+2019-04-16 00:50:08.712 +02:00 [DBG] Start userinfo request
+2019-04-16 00:50:08.717 +02:00 [DBG] Bearer token not found
+2019-04-16 00:50:08.717 +02:00 [ERR] No access token found.
+2019-04-16 00:50:36.216 +02:00 [DBG] Request path /connect/token matched to endpoint type Token
+2019-04-16 00:50:36.232 +02:00 [DBG] Endpoint enabled: Token, successfully created handler: IdentityServer4.Endpoints.TokenEndpoint
+2019-04-16 00:50:36.232 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.TokenEndpoint for /connect/token
+2019-04-16 00:50:36.235 +02:00 [WRN] Invalid HTTP request for token endpoint
+2019-04-16 01:07:17.823 +02:00 [INF] You are using the in-memory version of the persisted grant store. This will store consent decisions, authorization codes, refresh and reference tokens in memory only. If you are using any of those features in production, you want to switch to a different store implementation.
+2019-04-16 01:07:17.848 +02:00 [INF] Using the default authentication scheme idsrv for IdentityServer
+2019-04-16 01:07:17.850 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for authentication
+2019-04-16 01:07:17.850 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for sign-in
+2019-04-16 01:07:17.850 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for sign-out
+2019-04-16 01:07:17.850 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for challenge
+2019-04-16 01:07:17.850 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for forbid
+2019-04-16 01:07:18.157 +02:00 [DBG] CORS request made for path: /.well-known/openid-configuration from origin: http://localhost:8080
+2019-04-16 01:07:18.163 +02:00 [DBG] Client list checked and origin: http://localhost:8080 is not allowed
+2019-04-16 01:07:18.163 +02:00 [WRN] CorsPolicyService did not allow origin: http://localhost:8080
+2019-04-16 01:07:18.172 +02:00 [DBG] Login Url: /Account/Login
+2019-04-16 01:07:18.172 +02:00 [DBG] Login Return Url Parameter: ReturnUrl
+2019-04-16 01:07:18.172 +02:00 [DBG] Logout Url: /Account/Logout
+2019-04-16 01:07:18.172 +02:00 [DBG] ConsentUrl Url: /consent
+2019-04-16 01:07:18.172 +02:00 [DBG] Consent Return Url Parameter: returnUrl
+2019-04-16 01:07:18.172 +02:00 [DBG] Error Url: /home/error
+2019-04-16 01:07:18.172 +02:00 [DBG] Error Id Parameter: errorId
+2019-04-16 01:07:18.188 +02:00 [DBG] Request path /.well-known/openid-configuration matched to endpoint type Discovery
+2019-04-16 01:07:18.191 +02:00 [DBG] Endpoint enabled: Discovery, successfully created handler: IdentityServer4.Endpoints.DiscoveryEndpoint
+2019-04-16 01:07:18.191 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.DiscoveryEndpoint for /.well-known/openid-configuration
+2019-04-16 01:07:18.194 +02:00 [DBG] Start discovery request
+2019-04-16 01:08:41.146 +02:00 [INF] You are using the in-memory version of the persisted grant store. This will store consent decisions, authorization codes, refresh and reference tokens in memory only. If you are using any of those features in production, you want to switch to a different store implementation.
+2019-04-16 01:08:41.183 +02:00 [INF] Using the default authentication scheme idsrv for IdentityServer
+2019-04-16 01:08:41.187 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for authentication
+2019-04-16 01:08:41.187 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for sign-in
+2019-04-16 01:08:41.187 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for sign-out
+2019-04-16 01:08:41.187 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for challenge
+2019-04-16 01:08:41.188 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for forbid
+2019-04-16 01:08:41.862 +02:00 [DBG] Login Url: /Account/Login
+2019-04-16 01:08:41.866 +02:00 [DBG] Login Return Url Parameter: ReturnUrl
+2019-04-16 01:08:41.867 +02:00 [DBG] Logout Url: /Account/Logout
+2019-04-16 01:08:41.867 +02:00 [DBG] ConsentUrl Url: /consent
+2019-04-16 01:08:41.867 +02:00 [DBG] Consent Return Url Parameter: returnUrl
+2019-04-16 01:08:41.867 +02:00 [DBG] Error Url: /home/error
+2019-04-16 01:08:41.867 +02:00 [DBG] Error Id Parameter: errorId
+2019-04-16 01:09:02.690 +02:00 [DBG] CORS request made for path: /.well-known/openid-configuration from origin: http://localhost:8080
+2019-04-16 01:09:02.696 +02:00 [DBG] Client list checked and origin: http://localhost:8080 is allowed
+2019-04-16 01:09:02.696 +02:00 [DBG] CorsPolicyService allowed origin: http://localhost:8080
+2019-04-16 01:09:02.698 +02:00 [DBG] Request path /.well-known/openid-configuration matched to endpoint type Discovery
+2019-04-16 01:09:02.717 +02:00 [DBG] Endpoint enabled: Discovery, successfully created handler: IdentityServer4.Endpoints.DiscoveryEndpoint
+2019-04-16 01:09:02.717 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.DiscoveryEndpoint for /.well-known/openid-configuration
+2019-04-16 01:09:02.720 +02:00 [DBG] Start discovery request
+2019-04-16 01:09:02.762 +02:00 [DBG] Request path /connect/authorize matched to endpoint type Authorize
+2019-04-16 01:09:02.764 +02:00 [DBG] Endpoint enabled: Authorize, successfully created handler: IdentityServer4.Endpoints.AuthorizeEndpoint
+2019-04-16 01:09:02.764 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.AuthorizeEndpoint for /connect/authorize
+2019-04-16 01:09:02.770 +02:00 [DBG] Start authorize request
+2019-04-16 01:09:02.776 +02:00 [DBG] No user present in authorize request
+2019-04-16 01:09:02.780 +02:00 [DBG] Start authorize request protocol validation
+2019-04-16 01:09:02.795 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:09:02.799 +02:00 [DBG] Checking for PKCE parameters
+2019-04-16 01:09:02.813 +02:00 [ERR] Invalid scope: profile
+2019-04-16 01:09:02.815 +02:00 [ERR] Request validation failed
+2019-04-16 01:09:02.825 +02:00 [INF] {"ClientId":"frontStore","ClientName":"Front Store Client","RedirectUri":"http://localhost:8080/callback.html","AllowedRedirectUris":["http://localhost:8080/callback.html"],"SubjectId":"anonymous","ResponseType":"code","ResponseMode":"query","GrantType":"authorization_code","RequestedScopes":"openid profile api1","State":"eb0401670bd14959b0b0edfcb39b5a20","UiLocales":null,"Nonce":null,"AuthenticationContextReferenceClasses":null,"DisplayMode":null,"PromptMode":null,"MaxAge":null,"LoginHint":null,"SessionId":null,"Raw":{"client_id":"frontStore","redirect_uri":"http://localhost:8080/callback.html","response_type":"code","scope":"openid profile api1","state":"eb0401670bd14959b0b0edfcb39b5a20","code_challenge":"fBLw7VjrnMfrndZz2OvYM67NPeT0J6g_PmAycu2YsFg","code_challenge_method":"S256"},"$type":"AuthorizeRequestValidationLog"}
+2019-04-16 01:09:30.876 +02:00 [DBG] CORS request made for path: /.well-known/openid-configuration from origin: http://localhost:8080
+2019-04-16 01:09:30.876 +02:00 [DBG] Client list checked and origin: http://localhost:8080 is allowed
+2019-04-16 01:09:30.876 +02:00 [DBG] CorsPolicyService allowed origin: http://localhost:8080
+2019-04-16 01:09:30.877 +02:00 [DBG] Request path /.well-known/openid-configuration matched to endpoint type Discovery
+2019-04-16 01:09:30.877 +02:00 [DBG] Endpoint enabled: Discovery, successfully created handler: IdentityServer4.Endpoints.DiscoveryEndpoint
+2019-04-16 01:09:30.877 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.DiscoveryEndpoint for /.well-known/openid-configuration
+2019-04-16 01:09:30.877 +02:00 [DBG] Start discovery request
+2019-04-16 01:09:30.903 +02:00 [DBG] Request path /connect/authorize matched to endpoint type Authorize
+2019-04-16 01:09:30.903 +02:00 [DBG] Endpoint enabled: Authorize, successfully created handler: IdentityServer4.Endpoints.AuthorizeEndpoint
+2019-04-16 01:09:30.903 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.AuthorizeEndpoint for /connect/authorize
+2019-04-16 01:09:30.903 +02:00 [DBG] Start authorize request
+2019-04-16 01:09:30.903 +02:00 [DBG] No user present in authorize request
+2019-04-16 01:09:30.903 +02:00 [DBG] Start authorize request protocol validation
+2019-04-16 01:09:30.904 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:09:30.904 +02:00 [DBG] Checking for PKCE parameters
+2019-04-16 01:09:30.904 +02:00 [ERR] Invalid scope: profile
+2019-04-16 01:09:30.904 +02:00 [ERR] Request validation failed
+2019-04-16 01:09:30.905 +02:00 [INF] {"ClientId":"frontStore","ClientName":"Front Store Client","RedirectUri":"http://localhost:8080/callback.html","AllowedRedirectUris":["http://localhost:8080/callback.html"],"SubjectId":"anonymous","ResponseType":"code","ResponseMode":"query","GrantType":"authorization_code","RequestedScopes":"openid profile api1","State":"9d490f3a739c4ab18d624bc9fbb51484","UiLocales":null,"Nonce":null,"AuthenticationContextReferenceClasses":null,"DisplayMode":null,"PromptMode":null,"MaxAge":null,"LoginHint":null,"SessionId":null,"Raw":{"client_id":"frontStore","redirect_uri":"http://localhost:8080/callback.html","response_type":"code","scope":"openid profile api1","state":"9d490f3a739c4ab18d624bc9fbb51484","code_challenge":"9yUpWymiaERVExaGbrWlP0zQ7kej3KmBFZMgLrFULdk","code_challenge_method":"S256"},"$type":"AuthorizeRequestValidationLog"}
+2019-04-16 01:11:00.446 +02:00 [INF] You are using the in-memory version of the persisted grant store. This will store consent decisions, authorization codes, refresh and reference tokens in memory only. If you are using any of those features in production, you want to switch to a different store implementation.
+2019-04-16 01:11:00.480 +02:00 [INF] Using the default authentication scheme idsrv for IdentityServer
+2019-04-16 01:11:00.483 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for authentication
+2019-04-16 01:11:00.484 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for sign-in
+2019-04-16 01:11:00.484 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for sign-out
+2019-04-16 01:11:00.484 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for challenge
+2019-04-16 01:11:00.484 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for forbid
+2019-04-16 01:11:01.175 +02:00 [DBG] Login Url: /Account/Login
+2019-04-16 01:11:01.177 +02:00 [DBG] Login Return Url Parameter: ReturnUrl
+2019-04-16 01:11:01.177 +02:00 [DBG] Logout Url: /Account/Logout
+2019-04-16 01:11:01.177 +02:00 [DBG] ConsentUrl Url: /consent
+2019-04-16 01:11:01.177 +02:00 [DBG] Consent Return Url Parameter: returnUrl
+2019-04-16 01:11:01.178 +02:00 [DBG] Error Url: /home/error
+2019-04-16 01:11:01.178 +02:00 [DBG] Error Id Parameter: errorId
+2019-04-16 01:11:16.325 +02:00 [DBG] CORS request made for path: /.well-known/openid-configuration from origin: http://localhost:8080
+2019-04-16 01:11:16.328 +02:00 [DBG] Client list checked and origin: http://localhost:8080 is allowed
+2019-04-16 01:11:16.328 +02:00 [DBG] CorsPolicyService allowed origin: http://localhost:8080
+2019-04-16 01:11:16.331 +02:00 [DBG] Request path /.well-known/openid-configuration matched to endpoint type Discovery
+2019-04-16 01:11:16.357 +02:00 [DBG] Endpoint enabled: Discovery, successfully created handler: IdentityServer4.Endpoints.DiscoveryEndpoint
+2019-04-16 01:11:16.358 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.DiscoveryEndpoint for /.well-known/openid-configuration
+2019-04-16 01:11:16.361 +02:00 [DBG] Start discovery request
+2019-04-16 01:11:16.402 +02:00 [DBG] Request path /connect/authorize matched to endpoint type Authorize
+2019-04-16 01:11:16.405 +02:00 [DBG] Endpoint enabled: Authorize, successfully created handler: IdentityServer4.Endpoints.AuthorizeEndpoint
+2019-04-16 01:11:16.405 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.AuthorizeEndpoint for /connect/authorize
+2019-04-16 01:11:16.409 +02:00 [DBG] Start authorize request
+2019-04-16 01:11:16.416 +02:00 [DBG] No user present in authorize request
+2019-04-16 01:11:16.421 +02:00 [DBG] Start authorize request protocol validation
+2019-04-16 01:11:16.437 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:11:16.447 +02:00 [DBG] Checking for PKCE parameters
+2019-04-16 01:11:16.473 +02:00 [DBG] Calling into custom validator: IdentityServer4.Validation.DefaultCustomAuthorizeRequestValidator
+2019-04-16 01:11:16.484 +02:00 [INF] ValidatedAuthorizeRequest
+{"ClientId":"frontStore","ClientName":"Front Store Client","RedirectUri":"http://localhost:8080/callback.html","AllowedRedirectUris":["http://localhost:8080/callback.html"],"SubjectId":"anonymous","ResponseType":"code","ResponseMode":"query","GrantType":"authorization_code","RequestedScopes":"openid profile api1","State":"0384a6756f464383a52447e66d8a67c3","UiLocales":null,"Nonce":null,"AuthenticationContextReferenceClasses":null,"DisplayMode":null,"PromptMode":null,"MaxAge":null,"LoginHint":null,"SessionId":null,"Raw":{"client_id":"frontStore","redirect_uri":"http://localhost:8080/callback.html","response_type":"code","scope":"openid profile api1","state":"0384a6756f464383a52447e66d8a67c3","code_challenge":"BjqfswYACZd5yzJC1ZKsPi_6hLyptFmI7RaPPHlzn70","code_challenge_method":"S256"},"$type":"AuthorizeRequestValidationLog"}
+2019-04-16 01:11:16.505 +02:00 [INF] Showing login: User is not authenticated
+2019-04-16 01:11:16.551 +02:00 [DBG] Start authorize request protocol validation
+2019-04-16 01:11:16.551 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:11:16.551 +02:00 [DBG] Checking for PKCE parameters
+2019-04-16 01:11:16.551 +02:00 [DBG] Calling into custom validator: IdentityServer4.Validation.DefaultCustomAuthorizeRequestValidator
+2019-04-16 01:11:16.554 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:11:22.450 +02:00 [DBG] CORS request made for path: /Account/Login from origin: null but was ignored because path was not for an allowed IdentityServer CORS endpoint
+2019-04-16 01:11:22.484 +02:00 [DBG] Start authorize request protocol validation
+2019-04-16 01:11:22.484 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:11:22.484 +02:00 [DBG] Checking for PKCE parameters
+2019-04-16 01:11:22.484 +02:00 [DBG] Calling into custom validator: IdentityServer4.Validation.DefaultCustomAuthorizeRequestValidator
+2019-04-16 01:11:22.489 +02:00 [DBG] Start authorize request protocol validation
+2019-04-16 01:11:22.489 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:11:22.489 +02:00 [DBG] Checking for PKCE parameters
+2019-04-16 01:11:22.489 +02:00 [DBG] Calling into custom validator: IdentityServer4.Validation.DefaultCustomAuthorizeRequestValidator
+2019-04-16 01:11:22.489 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:12:24.734 +02:00 [INF] You are using the in-memory version of the persisted grant store. This will store consent decisions, authorization codes, refresh and reference tokens in memory only. If you are using any of those features in production, you want to switch to a different store implementation.
+2019-04-16 01:12:24.784 +02:00 [INF] Using the default authentication scheme idsrv for IdentityServer
+2019-04-16 01:12:24.788 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for authentication
+2019-04-16 01:12:24.789 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for sign-in
+2019-04-16 01:12:24.789 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for sign-out
+2019-04-16 01:12:24.789 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for challenge
+2019-04-16 01:12:24.789 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for forbid
+2019-04-16 01:12:25.220 +02:00 [DBG] Login Url: /Account/Login
+2019-04-16 01:12:25.222 +02:00 [DBG] Login Return Url Parameter: ReturnUrl
+2019-04-16 01:12:25.222 +02:00 [DBG] Logout Url: /Account/Logout
+2019-04-16 01:12:25.222 +02:00 [DBG] ConsentUrl Url: /consent
+2019-04-16 01:12:25.223 +02:00 [DBG] Consent Return Url Parameter: returnUrl
+2019-04-16 01:12:25.223 +02:00 [DBG] Error Url: /home/error
+2019-04-16 01:12:25.223 +02:00 [DBG] Error Id Parameter: errorId
+2019-04-16 01:12:45.788 +02:00 [DBG] Start authorize request protocol validation
+2019-04-16 01:12:45.804 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:12:45.809 +02:00 [DBG] Checking for PKCE parameters
+2019-04-16 01:12:45.839 +02:00 [DBG] Calling into custom validator: IdentityServer4.Validation.DefaultCustomAuthorizeRequestValidator
+2019-04-16 01:12:45.843 +02:00 [DBG] Start authorize request protocol validation
+2019-04-16 01:12:45.843 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:12:45.843 +02:00 [DBG] Checking for PKCE parameters
+2019-04-16 01:12:45.844 +02:00 [DBG] Calling into custom validator: IdentityServer4.Validation.DefaultCustomAuthorizeRequestValidator
+2019-04-16 01:12:45.844 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:12:47.852 +02:00 [DBG] Start authorize request protocol validation
+2019-04-16 01:12:47.852 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:12:47.852 +02:00 [DBG] Checking for PKCE parameters
+2019-04-16 01:12:47.852 +02:00 [DBG] Calling into custom validator: IdentityServer4.Validation.DefaultCustomAuthorizeRequestValidator
+2019-04-16 01:12:47.852 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:12:51.212 +02:00 [DBG] CORS request made for path: /.well-known/openid-configuration from origin: http://localhost:8080
+2019-04-16 01:12:51.215 +02:00 [DBG] Client list checked and origin: http://localhost:8080 is allowed
+2019-04-16 01:12:51.215 +02:00 [DBG] CorsPolicyService allowed origin: http://localhost:8080
+2019-04-16 01:12:51.218 +02:00 [DBG] Request path /.well-known/openid-configuration matched to endpoint type Discovery
+2019-04-16 01:12:51.222 +02:00 [DBG] Endpoint enabled: Discovery, successfully created handler: IdentityServer4.Endpoints.DiscoveryEndpoint
+2019-04-16 01:12:51.222 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.DiscoveryEndpoint for /.well-known/openid-configuration
+2019-04-16 01:12:51.226 +02:00 [DBG] Start discovery request
+2019-04-16 01:12:51.277 +02:00 [DBG] Request path /connect/authorize matched to endpoint type Authorize
+2019-04-16 01:12:51.286 +02:00 [DBG] Endpoint enabled: Authorize, successfully created handler: IdentityServer4.Endpoints.AuthorizeEndpoint
+2019-04-16 01:12:51.286 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.AuthorizeEndpoint for /connect/authorize
+2019-04-16 01:12:51.290 +02:00 [DBG] Start authorize request
+2019-04-16 01:12:51.297 +02:00 [DBG] No user present in authorize request
+2019-04-16 01:12:51.297 +02:00 [DBG] Start authorize request protocol validation
+2019-04-16 01:12:51.297 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:12:51.297 +02:00 [DBG] Checking for PKCE parameters
+2019-04-16 01:12:51.297 +02:00 [DBG] Calling into custom validator: IdentityServer4.Validation.DefaultCustomAuthorizeRequestValidator
+2019-04-16 01:12:51.316 +02:00 [INF] ValidatedAuthorizeRequest
+{"ClientId":"frontStore","ClientName":"Front Store Client","RedirectUri":"http://localhost:8080/callback.html","AllowedRedirectUris":["http://localhost:8080/callback.html"],"SubjectId":"anonymous","ResponseType":"code","ResponseMode":"query","GrantType":"authorization_code","RequestedScopes":"openid profile api1","State":"f2e144458af44ef2a8860b3066e7a938","UiLocales":null,"Nonce":null,"AuthenticationContextReferenceClasses":null,"DisplayMode":null,"PromptMode":null,"MaxAge":null,"LoginHint":null,"SessionId":null,"Raw":{"client_id":"frontStore","redirect_uri":"http://localhost:8080/callback.html","response_type":"code","scope":"openid profile api1","state":"f2e144458af44ef2a8860b3066e7a938","code_challenge":"7kR1NHrmYmqnPh08n1m87sLdiXVksTEvwUa9SP075qI","code_challenge_method":"S256"},"$type":"AuthorizeRequestValidationLog"}
+2019-04-16 01:12:51.334 +02:00 [INF] Showing login: User is not authenticated
+2019-04-16 01:12:51.344 +02:00 [DBG] Start authorize request protocol validation
+2019-04-16 01:12:51.345 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:12:51.345 +02:00 [DBG] Checking for PKCE parameters
+2019-04-16 01:12:51.345 +02:00 [DBG] Calling into custom validator: IdentityServer4.Validation.DefaultCustomAuthorizeRequestValidator
+2019-04-16 01:12:51.345 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:12:55.610 +02:00 [DBG] CORS request made for path: /Account/Login from origin: null but was ignored because path was not for an allowed IdentityServer CORS endpoint
+2019-04-16 01:12:55.612 +02:00 [DBG] Start authorize request protocol validation
+2019-04-16 01:12:55.612 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:12:55.612 +02:00 [DBG] Checking for PKCE parameters
+2019-04-16 01:12:55.612 +02:00 [DBG] Calling into custom validator: IdentityServer4.Validation.DefaultCustomAuthorizeRequestValidator
+2019-04-16 01:12:55.613 +02:00 [DBG] Start authorize request protocol validation
+2019-04-16 01:12:55.613 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:12:55.613 +02:00 [DBG] Checking for PKCE parameters
+2019-04-16 01:12:55.613 +02:00 [DBG] Calling into custom validator: IdentityServer4.Validation.DefaultCustomAuthorizeRequestValidator
+2019-04-16 01:12:55.613 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:12:58.199 +02:00 [DBG] CORS request made for path: /Account/Login from origin: null but was ignored because path was not for an allowed IdentityServer CORS endpoint
+2019-04-16 01:12:58.201 +02:00 [DBG] Start authorize request protocol validation
+2019-04-16 01:12:58.201 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:12:58.201 +02:00 [DBG] Checking for PKCE parameters
+2019-04-16 01:12:58.201 +02:00 [DBG] Calling into custom validator: IdentityServer4.Validation.DefaultCustomAuthorizeRequestValidator
+2019-04-16 01:12:58.217 +02:00 [DBG] Augmenting SignInContext
+2019-04-16 01:12:58.219 +02:00 [DBG] Adding idp claim with value: local
+2019-04-16 01:12:58.219 +02:00 [DBG] Adding amr claim with value: pwd
+2019-04-16 01:12:58.230 +02:00 [INF] AuthenticationScheme: idsrv signed in.
+2019-04-16 01:12:58.231 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:12:58.246 +02:00 [DBG] Request path /connect/authorize/callback matched to endpoint type Authorize
+2019-04-16 01:12:58.247 +02:00 [DBG] Endpoint enabled: Authorize, successfully created handler: IdentityServer4.Endpoints.AuthorizeCallbackEndpoint
+2019-04-16 01:12:58.247 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.AuthorizeCallbackEndpoint for /connect/authorize/callback
+2019-04-16 01:12:58.253 +02:00 [DBG] Start authorize callback request
+2019-04-16 01:12:58.258 +02:00 [DBG] User in authorize request: 1
+2019-04-16 01:12:58.258 +02:00 [DBG] Start authorize request protocol validation
+2019-04-16 01:12:58.258 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:12:58.258 +02:00 [DBG] Checking for PKCE parameters
+2019-04-16 01:12:58.258 +02:00 [DBG] Calling into custom validator: IdentityServer4.Validation.DefaultCustomAuthorizeRequestValidator
+2019-04-16 01:12:58.258 +02:00 [INF] ValidatedAuthorizeRequest
+{"ClientId":"frontStore","ClientName":"Front Store Client","RedirectUri":"http://localhost:8080/callback.html","AllowedRedirectUris":["http://localhost:8080/callback.html"],"SubjectId":"1","ResponseType":"code","ResponseMode":"query","GrantType":"authorization_code","RequestedScopes":"openid profile api1","State":"f2e144458af44ef2a8860b3066e7a938","UiLocales":null,"Nonce":null,"AuthenticationContextReferenceClasses":null,"DisplayMode":null,"PromptMode":null,"MaxAge":null,"LoginHint":null,"SessionId":"4c90b9b7b49e028350f8ebbc9b62d934","Raw":{"client_id":"frontStore","redirect_uri":"http://localhost:8080/callback.html","response_type":"code","scope":"openid profile api1","state":"f2e144458af44ef2a8860b3066e7a938","code_challenge":"7kR1NHrmYmqnPh08n1m87sLdiXVksTEvwUa9SP075qI","code_challenge_method":"S256"},"$type":"AuthorizeRequestValidationLog"}
+2019-04-16 01:12:58.260 +02:00 [DBG] IsActive called from: AuthorizeEndpoint
+2019-04-16 01:12:58.274 +02:00 [DBG] user_consent grant with value: frontStore|1 not found in store.
+2019-04-16 01:12:58.275 +02:00 [DBG] Found no prior consent from consent store, consent is required
+2019-04-16 01:12:58.275 +02:00 [INF] Showing consent: User has not yet consented
+2019-04-16 01:12:58.297 +02:00 [DBG] Start authorize request protocol validation
+2019-04-16 01:12:58.297 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:12:58.298 +02:00 [DBG] Checking for PKCE parameters
+2019-04-16 01:12:58.298 +02:00 [DBG] Calling into custom validator: IdentityServer4.Validation.DefaultCustomAuthorizeRequestValidator
+2019-04-16 01:12:58.298 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:13:06.793 +02:00 [DBG] CORS request made for path: /consent from origin: null but was ignored because path was not for an allowed IdentityServer CORS endpoint
+2019-04-16 01:13:06.811 +02:00 [DBG] Start authorize request protocol validation
+2019-04-16 01:13:06.811 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:13:06.811 +02:00 [DBG] Checking for PKCE parameters
+2019-04-16 01:13:06.811 +02:00 [DBG] Calling into custom validator: IdentityServer4.Validation.DefaultCustomAuthorizeRequestValidator
+2019-04-16 01:13:06.827 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:13:07.033 +02:00 [DBG] Request path /connect/authorize/callback matched to endpoint type Authorize
+2019-04-16 01:13:07.034 +02:00 [DBG] Endpoint enabled: Authorize, successfully created handler: IdentityServer4.Endpoints.AuthorizeCallbackEndpoint
+2019-04-16 01:13:07.034 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.AuthorizeCallbackEndpoint for /connect/authorize/callback
+2019-04-16 01:13:07.034 +02:00 [DBG] Start authorize callback request
+2019-04-16 01:13:07.038 +02:00 [DBG] User in authorize request: 1
+2019-04-16 01:13:07.038 +02:00 [DBG] Start authorize request protocol validation
+2019-04-16 01:13:07.038 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:13:07.039 +02:00 [DBG] Checking for PKCE parameters
+2019-04-16 01:13:07.039 +02:00 [DBG] Calling into custom validator: IdentityServer4.Validation.DefaultCustomAuthorizeRequestValidator
+2019-04-16 01:13:07.039 +02:00 [INF] ValidatedAuthorizeRequest
+{"ClientId":"frontStore","ClientName":"Front Store Client","RedirectUri":"http://localhost:8080/callback.html","AllowedRedirectUris":["http://localhost:8080/callback.html"],"SubjectId":"1","ResponseType":"code","ResponseMode":"query","GrantType":"authorization_code","RequestedScopes":"openid profile api1","State":"f2e144458af44ef2a8860b3066e7a938","UiLocales":null,"Nonce":null,"AuthenticationContextReferenceClasses":null,"DisplayMode":null,"PromptMode":null,"MaxAge":null,"LoginHint":null,"SessionId":"4c90b9b7b49e028350f8ebbc9b62d934","Raw":{"client_id":"frontStore","redirect_uri":"http://localhost:8080/callback.html","response_type":"code","scope":"openid profile api1","state":"f2e144458af44ef2a8860b3066e7a938","code_challenge":"7kR1NHrmYmqnPh08n1m87sLdiXVksTEvwUa9SP075qI","code_challenge_method":"S256"},"$type":"AuthorizeRequestValidationLog"}
+2019-04-16 01:13:07.039 +02:00 [DBG] IsActive called from: AuthorizeEndpoint
+2019-04-16 01:13:07.039 +02:00 [DBG] user_consent grant with value: frontStore|1 not found in store.
+2019-04-16 01:13:07.040 +02:00 [DBG] Found no prior consent from consent store, consent is required
+2019-04-16 01:13:07.040 +02:00 [INF] Error: User denied consent
+2019-04-16 01:13:07.043 +02:00 [INF] {"ClientId":"frontStore","ClientName":"Front Store Client","RedirectUri":"http://localhost:8080/callback.html","AllowedRedirectUris":["http://localhost:8080/callback.html"],"SubjectId":"1","ResponseType":"code","ResponseMode":"query","GrantType":"authorization_code","RequestedScopes":"openid profile api1","State":"f2e144458af44ef2a8860b3066e7a938","UiLocales":null,"Nonce":null,"AuthenticationContextReferenceClasses":null,"DisplayMode":null,"PromptMode":null,"MaxAge":null,"LoginHint":null,"SessionId":"4c90b9b7b49e028350f8ebbc9b62d934","Raw":{"client_id":"frontStore","redirect_uri":"http://localhost:8080/callback.html","response_type":"code","scope":"openid profile api1","state":"f2e144458af44ef2a8860b3066e7a938","code_challenge":"7kR1NHrmYmqnPh08n1m87sLdiXVksTEvwUa9SP075qI","code_challenge_method":"S256"},"$type":"AuthorizeRequestValidationLog"}
+2019-04-16 01:13:11.809 +02:00 [DBG] CORS request made for path: /.well-known/openid-configuration from origin: http://localhost:8080
+2019-04-16 01:13:11.809 +02:00 [DBG] Client list checked and origin: http://localhost:8080 is allowed
+2019-04-16 01:13:11.809 +02:00 [DBG] CorsPolicyService allowed origin: http://localhost:8080
+2019-04-16 01:13:11.809 +02:00 [DBG] Request path /.well-known/openid-configuration matched to endpoint type Discovery
+2019-04-16 01:13:11.809 +02:00 [DBG] Endpoint enabled: Discovery, successfully created handler: IdentityServer4.Endpoints.DiscoveryEndpoint
+2019-04-16 01:13:11.809 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.DiscoveryEndpoint for /.well-known/openid-configuration
+2019-04-16 01:13:11.810 +02:00 [DBG] Start discovery request
+2019-04-16 01:13:11.823 +02:00 [DBG] Request path /connect/authorize matched to endpoint type Authorize
+2019-04-16 01:13:11.823 +02:00 [DBG] Endpoint enabled: Authorize, successfully created handler: IdentityServer4.Endpoints.AuthorizeEndpoint
+2019-04-16 01:13:11.823 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.AuthorizeEndpoint for /connect/authorize
+2019-04-16 01:13:11.823 +02:00 [DBG] Start authorize request
+2019-04-16 01:13:11.824 +02:00 [DBG] User in authorize request: 1
+2019-04-16 01:13:11.824 +02:00 [DBG] Start authorize request protocol validation
+2019-04-16 01:13:11.824 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:13:11.824 +02:00 [DBG] Checking for PKCE parameters
+2019-04-16 01:13:11.824 +02:00 [DBG] Calling into custom validator: IdentityServer4.Validation.DefaultCustomAuthorizeRequestValidator
+2019-04-16 01:13:11.824 +02:00 [INF] ValidatedAuthorizeRequest
+{"ClientId":"frontStore","ClientName":"Front Store Client","RedirectUri":"http://localhost:8080/callback.html","AllowedRedirectUris":["http://localhost:8080/callback.html"],"SubjectId":"1","ResponseType":"code","ResponseMode":"query","GrantType":"authorization_code","RequestedScopes":"openid profile api1","State":"30a91e8e9b454238aa58c564a240dfed","UiLocales":null,"Nonce":null,"AuthenticationContextReferenceClasses":null,"DisplayMode":null,"PromptMode":null,"MaxAge":null,"LoginHint":null,"SessionId":"4c90b9b7b49e028350f8ebbc9b62d934","Raw":{"client_id":"frontStore","redirect_uri":"http://localhost:8080/callback.html","response_type":"code","scope":"openid profile api1","state":"30a91e8e9b454238aa58c564a240dfed","code_challenge":"0MZa-zJG_cRSEdPWoVZ8EQyz0Goqdnl59-4eR7sDIM0","code_challenge_method":"S256"},"$type":"AuthorizeRequestValidationLog"}
+2019-04-16 01:13:11.824 +02:00 [DBG] IsActive called from: AuthorizeEndpoint
+2019-04-16 01:13:11.824 +02:00 [DBG] user_consent grant with value: frontStore|1 not found in store.
+2019-04-16 01:13:11.824 +02:00 [DBG] Found no prior consent from consent store, consent is required
+2019-04-16 01:13:11.824 +02:00 [INF] Showing consent: User has not yet consented
+2019-04-16 01:13:11.836 +02:00 [DBG] Start authorize request protocol validation
+2019-04-16 01:13:11.836 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:13:11.836 +02:00 [DBG] Checking for PKCE parameters
+2019-04-16 01:13:11.836 +02:00 [DBG] Calling into custom validator: IdentityServer4.Validation.DefaultCustomAuthorizeRequestValidator
+2019-04-16 01:13:11.836 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:13:14.843 +02:00 [DBG] CORS request made for path: /consent from origin: null but was ignored because path was not for an allowed IdentityServer CORS endpoint
+2019-04-16 01:13:14.846 +02:00 [DBG] Start authorize request protocol validation
+2019-04-16 01:13:14.846 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:13:14.846 +02:00 [DBG] Checking for PKCE parameters
+2019-04-16 01:13:14.846 +02:00 [DBG] Calling into custom validator: IdentityServer4.Validation.DefaultCustomAuthorizeRequestValidator
+2019-04-16 01:13:14.847 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:13:15.043 +02:00 [DBG] Request path /connect/authorize/callback matched to endpoint type Authorize
+2019-04-16 01:13:15.043 +02:00 [DBG] Endpoint enabled: Authorize, successfully created handler: IdentityServer4.Endpoints.AuthorizeCallbackEndpoint
+2019-04-16 01:13:15.043 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.AuthorizeCallbackEndpoint for /connect/authorize/callback
+2019-04-16 01:13:15.043 +02:00 [DBG] Start authorize callback request
+2019-04-16 01:13:15.050 +02:00 [DBG] User in authorize request: 1
+2019-04-16 01:13:15.050 +02:00 [DBG] Start authorize request protocol validation
+2019-04-16 01:13:15.050 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:13:15.051 +02:00 [DBG] Checking for PKCE parameters
+2019-04-16 01:13:15.051 +02:00 [DBG] Calling into custom validator: IdentityServer4.Validation.DefaultCustomAuthorizeRequestValidator
+2019-04-16 01:13:15.051 +02:00 [INF] ValidatedAuthorizeRequest
+{"ClientId":"frontStore","ClientName":"Front Store Client","RedirectUri":"http://localhost:8080/callback.html","AllowedRedirectUris":["http://localhost:8080/callback.html"],"SubjectId":"1","ResponseType":"code","ResponseMode":"query","GrantType":"authorization_code","RequestedScopes":"openid profile api1","State":"30a91e8e9b454238aa58c564a240dfed","UiLocales":null,"Nonce":null,"AuthenticationContextReferenceClasses":null,"DisplayMode":null,"PromptMode":null,"MaxAge":null,"LoginHint":null,"SessionId":"4c90b9b7b49e028350f8ebbc9b62d934","Raw":{"client_id":"frontStore","redirect_uri":"http://localhost:8080/callback.html","response_type":"code","scope":"openid profile api1","state":"30a91e8e9b454238aa58c564a240dfed","code_challenge":"0MZa-zJG_cRSEdPWoVZ8EQyz0Goqdnl59-4eR7sDIM0","code_challenge_method":"S256"},"$type":"AuthorizeRequestValidationLog"}
+2019-04-16 01:13:15.051 +02:00 [DBG] IsActive called from: AuthorizeEndpoint
+2019-04-16 01:13:15.051 +02:00 [DBG] user_consent grant with value: frontStore|1 not found in store.
+2019-04-16 01:13:15.051 +02:00 [DBG] Found no prior consent from consent store, consent is required
+2019-04-16 01:13:15.059 +02:00 [INF] User consented to scopes: ["openid","profile","api1"]
+2019-04-16 01:13:15.064 +02:00 [DBG] Client allows remembering consent, and no scopes provided. Removing consent from consent store for subject: 1
+2019-04-16 01:13:15.074 +02:00 [DBG] Creating Authorization Code Flow response.
+2019-04-16 01:13:15.109 +02:00 [INF] Authorize endpoint response
+{"SubjectId":"1","ClientId":"frontStore","RedirectUri":"http://localhost:8080/callback.html","State":"30a91e8e9b454238aa58c564a240dfed","Scope":"openid profile api1","Error":null,"ErrorDescription":null,"$type":"AuthorizeResponseLog"}
+2019-04-16 01:13:15.123 +02:00 [DBG] Augmenting SignInContext
+2019-04-16 01:13:15.124 +02:00 [INF] AuthenticationScheme: idsrv signed in.
+2019-04-16 01:17:41.411 +02:00 [INF] You are using the in-memory version of the persisted grant store. This will store consent decisions, authorization codes, refresh and reference tokens in memory only. If you are using any of those features in production, you want to switch to a different store implementation.
+2019-04-16 01:17:41.466 +02:00 [INF] Using the default authentication scheme idsrv for IdentityServer
+2019-04-16 01:17:41.471 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for authentication
+2019-04-16 01:17:41.471 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for sign-in
+2019-04-16 01:17:41.471 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for sign-out
+2019-04-16 01:17:41.471 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for challenge
+2019-04-16 01:17:41.471 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for forbid
+2019-04-16 01:17:42.010 +02:00 [DBG] Login Url: /Account/Login
+2019-04-16 01:17:42.013 +02:00 [DBG] Login Return Url Parameter: ReturnUrl
+2019-04-16 01:17:42.014 +02:00 [DBG] Logout Url: /Account/Logout
+2019-04-16 01:17:42.014 +02:00 [DBG] ConsentUrl Url: /consent
+2019-04-16 01:17:42.014 +02:00 [DBG] Consent Return Url Parameter: returnUrl
+2019-04-16 01:17:42.014 +02:00 [DBG] Error Url: /home/error
+2019-04-16 01:17:42.014 +02:00 [DBG] Error Id Parameter: errorId
+2019-04-16 01:19:37.490 +02:00 [DBG] CORS request made for path: /.well-known/openid-configuration from origin: http://localhost:8080
+2019-04-16 01:19:37.495 +02:00 [DBG] Client list checked and origin: http://localhost:8080 is allowed
+2019-04-16 01:19:37.495 +02:00 [DBG] CorsPolicyService allowed origin: http://localhost:8080
+2019-04-16 01:19:37.573 +02:00 [DBG] Request path /.well-known/openid-configuration matched to endpoint type Discovery
+2019-04-16 01:19:37.585 +02:00 [DBG] Endpoint enabled: Discovery, successfully created handler: IdentityServer4.Endpoints.DiscoveryEndpoint
+2019-04-16 01:19:37.585 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.DiscoveryEndpoint for /.well-known/openid-configuration
+2019-04-16 01:19:37.588 +02:00 [DBG] Start discovery request
+2019-04-16 01:19:37.643 +02:00 [DBG] Request path /connect/authorize matched to endpoint type Authorize
+2019-04-16 01:19:37.646 +02:00 [DBG] Endpoint enabled: Authorize, successfully created handler: IdentityServer4.Endpoints.AuthorizeEndpoint
+2019-04-16 01:19:37.646 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.AuthorizeEndpoint for /connect/authorize
+2019-04-16 01:19:37.649 +02:00 [DBG] Start authorize request
+2019-04-16 01:19:37.655 +02:00 [DBG] User in authorize request: 1
+2019-04-16 01:19:37.660 +02:00 [DBG] Start authorize request protocol validation
+2019-04-16 01:19:37.672 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:19:37.675 +02:00 [DBG] Checking for PKCE parameters
+2019-04-16 01:19:37.700 +02:00 [DBG] Calling into custom validator: IdentityServer4.Validation.DefaultCustomAuthorizeRequestValidator
+2019-04-16 01:19:37.712 +02:00 [INF] ValidatedAuthorizeRequest
+{"ClientId":"frontStore","ClientName":"Front Store Client","RedirectUri":"http://localhost:8080/callback","AllowedRedirectUris":["http://localhost:8080/callback"],"SubjectId":"1","ResponseType":"code","ResponseMode":"query","GrantType":"authorization_code","RequestedScopes":"openid profile api1","State":"ca29b35a67dd44d2bd38ddf651d7d3b3","UiLocales":null,"Nonce":null,"AuthenticationContextReferenceClasses":null,"DisplayMode":null,"PromptMode":null,"MaxAge":null,"LoginHint":null,"SessionId":"4c90b9b7b49e028350f8ebbc9b62d934","Raw":{"client_id":"frontStore","redirect_uri":"http://localhost:8080/callback","response_type":"code","scope":"openid profile api1","state":"ca29b35a67dd44d2bd38ddf651d7d3b3","code_challenge":"7uRgFfR6iYRrct1Lo4iXqqwspa3uec0bg3p9EaSsEck","code_challenge_method":"S256"},"$type":"AuthorizeRequestValidationLog"}
+2019-04-16 01:19:37.727 +02:00 [DBG] IsActive called from: AuthorizeEndpoint
+2019-04-16 01:19:37.737 +02:00 [DBG] user_consent grant with value: frontStore|1 not found in store.
+2019-04-16 01:19:37.737 +02:00 [DBG] Found no prior consent from consent store, consent is required
+2019-04-16 01:19:37.737 +02:00 [INF] Showing consent: User has not yet consented
+2019-04-16 01:19:37.787 +02:00 [DBG] Start authorize request protocol validation
+2019-04-16 01:19:37.787 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:19:37.787 +02:00 [DBG] Checking for PKCE parameters
+2019-04-16 01:19:37.787 +02:00 [DBG] Calling into custom validator: IdentityServer4.Validation.DefaultCustomAuthorizeRequestValidator
+2019-04-16 01:19:37.789 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:19:40.080 +02:00 [DBG] CORS request made for path: /consent from origin: null but was ignored because path was not for an allowed IdentityServer CORS endpoint
+2019-04-16 01:19:40.119 +02:00 [DBG] Start authorize request protocol validation
+2019-04-16 01:19:40.119 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:19:40.119 +02:00 [DBG] Checking for PKCE parameters
+2019-04-16 01:19:40.119 +02:00 [DBG] Calling into custom validator: IdentityServer4.Validation.DefaultCustomAuthorizeRequestValidator
+2019-04-16 01:19:40.134 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:19:40.356 +02:00 [DBG] Request path /connect/authorize/callback matched to endpoint type Authorize
+2019-04-16 01:19:40.358 +02:00 [DBG] Endpoint enabled: Authorize, successfully created handler: IdentityServer4.Endpoints.AuthorizeCallbackEndpoint
+2019-04-16 01:19:40.358 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.AuthorizeCallbackEndpoint for /connect/authorize/callback
+2019-04-16 01:19:40.375 +02:00 [DBG] Start authorize callback request
+2019-04-16 01:19:40.382 +02:00 [DBG] User in authorize request: 1
+2019-04-16 01:19:40.383 +02:00 [DBG] Start authorize request protocol validation
+2019-04-16 01:19:40.383 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:19:40.383 +02:00 [DBG] Checking for PKCE parameters
+2019-04-16 01:19:40.383 +02:00 [DBG] Calling into custom validator: IdentityServer4.Validation.DefaultCustomAuthorizeRequestValidator
+2019-04-16 01:19:40.383 +02:00 [INF] ValidatedAuthorizeRequest
+{"ClientId":"frontStore","ClientName":"Front Store Client","RedirectUri":"http://localhost:8080/callback","AllowedRedirectUris":["http://localhost:8080/callback"],"SubjectId":"1","ResponseType":"code","ResponseMode":"query","GrantType":"authorization_code","RequestedScopes":"openid profile api1","State":"ca29b35a67dd44d2bd38ddf651d7d3b3","UiLocales":null,"Nonce":null,"AuthenticationContextReferenceClasses":null,"DisplayMode":null,"PromptMode":null,"MaxAge":null,"LoginHint":null,"SessionId":"4c90b9b7b49e028350f8ebbc9b62d934","Raw":{"client_id":"frontStore","redirect_uri":"http://localhost:8080/callback","response_type":"code","scope":"openid profile api1","state":"ca29b35a67dd44d2bd38ddf651d7d3b3","code_challenge":"7uRgFfR6iYRrct1Lo4iXqqwspa3uec0bg3p9EaSsEck","code_challenge_method":"S256"},"$type":"AuthorizeRequestValidationLog"}
+2019-04-16 01:19:40.384 +02:00 [DBG] IsActive called from: AuthorizeEndpoint
+2019-04-16 01:19:40.384 +02:00 [DBG] user_consent grant with value: frontStore|1 not found in store.
+2019-04-16 01:19:40.384 +02:00 [DBG] Found no prior consent from consent store, consent is required
+2019-04-16 01:19:40.395 +02:00 [INF] User consented to scopes: ["openid","profile","api1"]
+2019-04-16 01:19:40.403 +02:00 [DBG] Client allows remembering consent, and no scopes provided. Removing consent from consent store for subject: 1
+2019-04-16 01:19:40.416 +02:00 [DBG] Creating Authorization Code Flow response.
+2019-04-16 01:19:40.445 +02:00 [INF] Authorize endpoint response
+{"SubjectId":"1","ClientId":"frontStore","RedirectUri":"http://localhost:8080/callback","State":"ca29b35a67dd44d2bd38ddf651d7d3b3","Scope":"openid profile api1","Error":null,"ErrorDescription":null,"$type":"AuthorizeResponseLog"}
+2019-04-16 01:20:19.495 +02:00 [DBG] CORS request made for path: /.well-known/openid-configuration from origin: http://localhost:8080
+2019-04-16 01:20:19.495 +02:00 [DBG] Client list checked and origin: http://localhost:8080 is allowed
+2019-04-16 01:20:19.503 +02:00 [DBG] CorsPolicyService allowed origin: http://localhost:8080
+2019-04-16 01:20:19.504 +02:00 [DBG] Request path /.well-known/openid-configuration matched to endpoint type Discovery
+2019-04-16 01:20:19.504 +02:00 [DBG] Endpoint enabled: Discovery, successfully created handler: IdentityServer4.Endpoints.DiscoveryEndpoint
+2019-04-16 01:20:19.504 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.DiscoveryEndpoint for /.well-known/openid-configuration
+2019-04-16 01:20:19.504 +02:00 [DBG] Start discovery request
+2019-04-16 01:20:19.527 +02:00 [DBG] Request path /connect/authorize matched to endpoint type Authorize
+2019-04-16 01:20:19.528 +02:00 [DBG] Endpoint enabled: Authorize, successfully created handler: IdentityServer4.Endpoints.AuthorizeEndpoint
+2019-04-16 01:20:19.528 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.AuthorizeEndpoint for /connect/authorize
+2019-04-16 01:20:19.529 +02:00 [DBG] Start authorize request
+2019-04-16 01:20:19.530 +02:00 [DBG] User in authorize request: 1
+2019-04-16 01:20:19.530 +02:00 [DBG] Start authorize request protocol validation
+2019-04-16 01:20:19.530 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:20:19.531 +02:00 [DBG] Checking for PKCE parameters
+2019-04-16 01:20:19.531 +02:00 [DBG] Calling into custom validator: IdentityServer4.Validation.DefaultCustomAuthorizeRequestValidator
+2019-04-16 01:20:19.532 +02:00 [INF] ValidatedAuthorizeRequest
+{"ClientId":"frontStore","ClientName":"Front Store Client","RedirectUri":"http://localhost:8080/callback","AllowedRedirectUris":["http://localhost:8080/callback"],"SubjectId":"1","ResponseType":"code","ResponseMode":"query","GrantType":"authorization_code","RequestedScopes":"openid profile api1","State":"ee4b78590b474713bbe2ca26cb1a27ed","UiLocales":null,"Nonce":null,"AuthenticationContextReferenceClasses":null,"DisplayMode":null,"PromptMode":null,"MaxAge":null,"LoginHint":null,"SessionId":"4c90b9b7b49e028350f8ebbc9b62d934","Raw":{"client_id":"frontStore","redirect_uri":"http://localhost:8080/callback","response_type":"code","scope":"openid profile api1","state":"ee4b78590b474713bbe2ca26cb1a27ed","code_challenge":"Y8TJ7b_q3dnMq8YX_ojl8-3AdAQfdJgTpExMnb26UIQ","code_challenge_method":"S256"},"$type":"AuthorizeRequestValidationLog"}
+2019-04-16 01:20:19.532 +02:00 [DBG] IsActive called from: AuthorizeEndpoint
+2019-04-16 01:20:19.532 +02:00 [DBG] user_consent grant with value: frontStore|1 not found in store.
+2019-04-16 01:20:19.532 +02:00 [DBG] Found no prior consent from consent store, consent is required
+2019-04-16 01:20:19.532 +02:00 [INF] Showing consent: User has not yet consented
+2019-04-16 01:20:19.541 +02:00 [DBG] Start authorize request protocol validation
+2019-04-16 01:20:19.542 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:20:19.542 +02:00 [DBG] Checking for PKCE parameters
+2019-04-16 01:20:19.542 +02:00 [DBG] Calling into custom validator: IdentityServer4.Validation.DefaultCustomAuthorizeRequestValidator
+2019-04-16 01:20:19.542 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:20:22.329 +02:00 [DBG] CORS request made for path: /consent from origin: null but was ignored because path was not for an allowed IdentityServer CORS endpoint
+2019-04-16 01:20:22.331 +02:00 [DBG] Start authorize request protocol validation
+2019-04-16 01:20:22.331 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:20:22.331 +02:00 [DBG] Checking for PKCE parameters
+2019-04-16 01:20:22.331 +02:00 [DBG] Calling into custom validator: IdentityServer4.Validation.DefaultCustomAuthorizeRequestValidator
+2019-04-16 01:20:22.331 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:20:22.532 +02:00 [DBG] Request path /connect/authorize/callback matched to endpoint type Authorize
+2019-04-16 01:20:22.532 +02:00 [DBG] Endpoint enabled: Authorize, successfully created handler: IdentityServer4.Endpoints.AuthorizeCallbackEndpoint
+2019-04-16 01:20:22.532 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.AuthorizeCallbackEndpoint for /connect/authorize/callback
+2019-04-16 01:20:22.533 +02:00 [DBG] Start authorize callback request
+2019-04-16 01:20:22.533 +02:00 [DBG] User in authorize request: 1
+2019-04-16 01:20:22.533 +02:00 [DBG] Start authorize request protocol validation
+2019-04-16 01:20:22.533 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:20:22.533 +02:00 [DBG] Checking for PKCE parameters
+2019-04-16 01:20:22.534 +02:00 [DBG] Calling into custom validator: IdentityServer4.Validation.DefaultCustomAuthorizeRequestValidator
+2019-04-16 01:20:22.536 +02:00 [INF] ValidatedAuthorizeRequest
+{"ClientId":"frontStore","ClientName":"Front Store Client","RedirectUri":"http://localhost:8080/callback","AllowedRedirectUris":["http://localhost:8080/callback"],"SubjectId":"1","ResponseType":"code","ResponseMode":"query","GrantType":"authorization_code","RequestedScopes":"openid profile api1","State":"ee4b78590b474713bbe2ca26cb1a27ed","UiLocales":null,"Nonce":null,"AuthenticationContextReferenceClasses":null,"DisplayMode":null,"PromptMode":null,"MaxAge":null,"LoginHint":null,"SessionId":"4c90b9b7b49e028350f8ebbc9b62d934","Raw":{"client_id":"frontStore","redirect_uri":"http://localhost:8080/callback","response_type":"code","scope":"openid profile api1","state":"ee4b78590b474713bbe2ca26cb1a27ed","code_challenge":"Y8TJ7b_q3dnMq8YX_ojl8-3AdAQfdJgTpExMnb26UIQ","code_challenge_method":"S256"},"$type":"AuthorizeRequestValidationLog"}
+2019-04-16 01:20:22.536 +02:00 [DBG] IsActive called from: AuthorizeEndpoint
+2019-04-16 01:20:22.536 +02:00 [DBG] user_consent grant with value: frontStore|1 not found in store.
+2019-04-16 01:20:22.536 +02:00 [DBG] Found no prior consent from consent store, consent is required
+2019-04-16 01:20:22.537 +02:00 [INF] User consented to scopes: ["openid","profile","api1"]
+2019-04-16 01:20:22.537 +02:00 [DBG] Client allows remembering consent, and no scopes provided. Removing consent from consent store for subject: 1
+2019-04-16 01:20:22.537 +02:00 [DBG] Creating Authorization Code Flow response.
+2019-04-16 01:20:22.555 +02:00 [INF] Authorize endpoint response
+{"SubjectId":"1","ClientId":"frontStore","RedirectUri":"http://localhost:8080/callback","State":"ee4b78590b474713bbe2ca26cb1a27ed","Scope":"openid profile api1","Error":null,"ErrorDescription":null,"$type":"AuthorizeResponseLog"}
+2019-04-16 01:20:29.416 +02:00 [DBG] CORS request made for path: /.well-known/openid-configuration from origin: http://localhost:8080
+2019-04-16 01:20:29.416 +02:00 [DBG] Client list checked and origin: http://localhost:8080 is allowed
+2019-04-16 01:20:29.416 +02:00 [DBG] CorsPolicyService allowed origin: http://localhost:8080
+2019-04-16 01:20:29.416 +02:00 [DBG] Request path /.well-known/openid-configuration matched to endpoint type Discovery
+2019-04-16 01:20:29.416 +02:00 [DBG] Endpoint enabled: Discovery, successfully created handler: IdentityServer4.Endpoints.DiscoveryEndpoint
+2019-04-16 01:20:29.417 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.DiscoveryEndpoint for /.well-known/openid-configuration
+2019-04-16 01:20:29.417 +02:00 [DBG] Start discovery request
+2019-04-16 01:20:29.428 +02:00 [DBG] Request path /connect/authorize matched to endpoint type Authorize
+2019-04-16 01:20:29.428 +02:00 [DBG] Endpoint enabled: Authorize, successfully created handler: IdentityServer4.Endpoints.AuthorizeEndpoint
+2019-04-16 01:20:29.428 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.AuthorizeEndpoint for /connect/authorize
+2019-04-16 01:20:29.428 +02:00 [DBG] Start authorize request
+2019-04-16 01:20:29.428 +02:00 [DBG] User in authorize request: 1
+2019-04-16 01:20:29.428 +02:00 [DBG] Start authorize request protocol validation
+2019-04-16 01:20:29.428 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:20:29.429 +02:00 [DBG] Checking for PKCE parameters
+2019-04-16 01:20:29.429 +02:00 [DBG] Calling into custom validator: IdentityServer4.Validation.DefaultCustomAuthorizeRequestValidator
+2019-04-16 01:20:29.429 +02:00 [INF] ValidatedAuthorizeRequest
+{"ClientId":"frontStore","ClientName":"Front Store Client","RedirectUri":"http://localhost:8080/callback","AllowedRedirectUris":["http://localhost:8080/callback"],"SubjectId":"1","ResponseType":"code","ResponseMode":"query","GrantType":"authorization_code","RequestedScopes":"openid profile api1","State":"e3b6e6525b6a4ae6b8fed02497c0a414","UiLocales":null,"Nonce":null,"AuthenticationContextReferenceClasses":null,"DisplayMode":null,"PromptMode":null,"MaxAge":null,"LoginHint":null,"SessionId":"4c90b9b7b49e028350f8ebbc9b62d934","Raw":{"client_id":"frontStore","redirect_uri":"http://localhost:8080/callback","response_type":"code","scope":"openid profile api1","state":"e3b6e6525b6a4ae6b8fed02497c0a414","code_challenge":"Fj6JHFVI-DeIEnANCR1k4w_6BHIub2t374It-ajhDm0","code_challenge_method":"S256"},"$type":"AuthorizeRequestValidationLog"}
+2019-04-16 01:20:29.429 +02:00 [DBG] IsActive called from: AuthorizeEndpoint
+2019-04-16 01:20:29.429 +02:00 [DBG] user_consent grant with value: frontStore|1 not found in store.
+2019-04-16 01:20:29.429 +02:00 [DBG] Found no prior consent from consent store, consent is required
+2019-04-16 01:20:29.429 +02:00 [INF] Showing consent: User has not yet consented
+2019-04-16 01:20:29.437 +02:00 [DBG] Start authorize request protocol validation
+2019-04-16 01:20:29.437 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:20:29.437 +02:00 [DBG] Checking for PKCE parameters
+2019-04-16 01:20:29.437 +02:00 [DBG] Calling into custom validator: IdentityServer4.Validation.DefaultCustomAuthorizeRequestValidator
+2019-04-16 01:20:29.437 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:20:31.487 +02:00 [DBG] CORS request made for path: /consent from origin: null but was ignored because path was not for an allowed IdentityServer CORS endpoint
+2019-04-16 01:20:31.488 +02:00 [DBG] Start authorize request protocol validation
+2019-04-16 01:20:31.488 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:20:31.488 +02:00 [DBG] Checking for PKCE parameters
+2019-04-16 01:20:31.488 +02:00 [DBG] Calling into custom validator: IdentityServer4.Validation.DefaultCustomAuthorizeRequestValidator
+2019-04-16 01:20:31.489 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:20:31.686 +02:00 [DBG] Request path /connect/authorize/callback matched to endpoint type Authorize
+2019-04-16 01:20:31.687 +02:00 [DBG] Endpoint enabled: Authorize, successfully created handler: IdentityServer4.Endpoints.AuthorizeCallbackEndpoint
+2019-04-16 01:20:31.687 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.AuthorizeCallbackEndpoint for /connect/authorize/callback
+2019-04-16 01:20:31.688 +02:00 [DBG] Start authorize callback request
+2019-04-16 01:20:31.688 +02:00 [DBG] User in authorize request: 1
+2019-04-16 01:20:31.688 +02:00 [DBG] Start authorize request protocol validation
+2019-04-16 01:20:31.689 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:20:31.689 +02:00 [DBG] Checking for PKCE parameters
+2019-04-16 01:20:31.689 +02:00 [DBG] Calling into custom validator: IdentityServer4.Validation.DefaultCustomAuthorizeRequestValidator
+2019-04-16 01:20:31.689 +02:00 [INF] ValidatedAuthorizeRequest
+{"ClientId":"frontStore","ClientName":"Front Store Client","RedirectUri":"http://localhost:8080/callback","AllowedRedirectUris":["http://localhost:8080/callback"],"SubjectId":"1","ResponseType":"code","ResponseMode":"query","GrantType":"authorization_code","RequestedScopes":"openid profile api1","State":"e3b6e6525b6a4ae6b8fed02497c0a414","UiLocales":null,"Nonce":null,"AuthenticationContextReferenceClasses":null,"DisplayMode":null,"PromptMode":null,"MaxAge":null,"LoginHint":null,"SessionId":"4c90b9b7b49e028350f8ebbc9b62d934","Raw":{"client_id":"frontStore","redirect_uri":"http://localhost:8080/callback","response_type":"code","scope":"openid profile api1","state":"e3b6e6525b6a4ae6b8fed02497c0a414","code_challenge":"Fj6JHFVI-DeIEnANCR1k4w_6BHIub2t374It-ajhDm0","code_challenge_method":"S256"},"$type":"AuthorizeRequestValidationLog"}
+2019-04-16 01:20:31.689 +02:00 [DBG] IsActive called from: AuthorizeEndpoint
+2019-04-16 01:20:31.689 +02:00 [DBG] user_consent grant with value: frontStore|1 not found in store.
+2019-04-16 01:20:31.690 +02:00 [DBG] Found no prior consent from consent store, consent is required
+2019-04-16 01:20:31.690 +02:00 [INF] User consented to scopes: ["openid","profile","api1"]
+2019-04-16 01:20:31.690 +02:00 [DBG] Client allows remembering consent, and no scopes provided. Removing consent from consent store for subject: 1
+2019-04-16 01:20:31.690 +02:00 [DBG] Creating Authorization Code Flow response.
+2019-04-16 01:20:31.713 +02:00 [INF] Authorize endpoint response
+{"SubjectId":"1","ClientId":"frontStore","RedirectUri":"http://localhost:8080/callback","State":"e3b6e6525b6a4ae6b8fed02497c0a414","Scope":"openid profile api1","Error":null,"ErrorDescription":null,"$type":"AuthorizeResponseLog"}
+2019-04-16 01:23:21.312 +02:00 [DBG] CORS request made for path: /.well-known/openid-configuration from origin: http://localhost:8080
+2019-04-16 01:23:21.313 +02:00 [DBG] Client list checked and origin: http://localhost:8080 is allowed
+2019-04-16 01:23:21.313 +02:00 [DBG] CorsPolicyService allowed origin: http://localhost:8080
+2019-04-16 01:23:21.313 +02:00 [DBG] Request path /.well-known/openid-configuration matched to endpoint type Discovery
+2019-04-16 01:23:21.313 +02:00 [DBG] Endpoint enabled: Discovery, successfully created handler: IdentityServer4.Endpoints.DiscoveryEndpoint
+2019-04-16 01:23:21.313 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.DiscoveryEndpoint for /.well-known/openid-configuration
+2019-04-16 01:23:21.313 +02:00 [DBG] Start discovery request
+2019-04-16 01:23:21.343 +02:00 [DBG] Request path /connect/authorize matched to endpoint type Authorize
+2019-04-16 01:23:21.343 +02:00 [DBG] Endpoint enabled: Authorize, successfully created handler: IdentityServer4.Endpoints.AuthorizeEndpoint
+2019-04-16 01:23:21.343 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.AuthorizeEndpoint for /connect/authorize
+2019-04-16 01:23:21.343 +02:00 [DBG] Start authorize request
+2019-04-16 01:23:21.343 +02:00 [DBG] User in authorize request: 1
+2019-04-16 01:23:21.343 +02:00 [DBG] Start authorize request protocol validation
+2019-04-16 01:23:21.343 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:23:21.343 +02:00 [DBG] Checking for PKCE parameters
+2019-04-16 01:23:21.344 +02:00 [DBG] Calling into custom validator: IdentityServer4.Validation.DefaultCustomAuthorizeRequestValidator
+2019-04-16 01:23:21.344 +02:00 [INF] ValidatedAuthorizeRequest
+{"ClientId":"frontStore","ClientName":"Front Store Client","RedirectUri":"http://localhost:8080/callback","AllowedRedirectUris":["http://localhost:8080/callback"],"SubjectId":"1","ResponseType":"code","ResponseMode":"query","GrantType":"authorization_code","RequestedScopes":"openid profile api1","State":"43376cb3067948e3984a24f05029401c","UiLocales":null,"Nonce":null,"AuthenticationContextReferenceClasses":null,"DisplayMode":null,"PromptMode":null,"MaxAge":null,"LoginHint":null,"SessionId":"4c90b9b7b49e028350f8ebbc9b62d934","Raw":{"client_id":"frontStore","redirect_uri":"http://localhost:8080/callback","response_type":"code","scope":"openid profile api1","state":"43376cb3067948e3984a24f05029401c","code_challenge":"h7lQggT9V8mpqsMfdPZT9vfiA0k-QsEA4DPRbhxKGMU","code_challenge_method":"S256"},"$type":"AuthorizeRequestValidationLog"}
+2019-04-16 01:23:21.344 +02:00 [DBG] IsActive called from: AuthorizeEndpoint
+2019-04-16 01:23:21.344 +02:00 [DBG] user_consent grant with value: frontStore|1 not found in store.
+2019-04-16 01:23:21.344 +02:00 [DBG] Found no prior consent from consent store, consent is required
+2019-04-16 01:23:21.344 +02:00 [INF] Showing consent: User has not yet consented
+2019-04-16 01:23:21.367 +02:00 [DBG] Start authorize request protocol validation
+2019-04-16 01:23:21.367 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:23:21.367 +02:00 [DBG] Checking for PKCE parameters
+2019-04-16 01:23:21.367 +02:00 [DBG] Calling into custom validator: IdentityServer4.Validation.DefaultCustomAuthorizeRequestValidator
+2019-04-16 01:23:21.368 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:23:23.693 +02:00 [DBG] CORS request made for path: /consent from origin: null but was ignored because path was not for an allowed IdentityServer CORS endpoint
+2019-04-16 01:23:23.695 +02:00 [DBG] Start authorize request protocol validation
+2019-04-16 01:23:23.695 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:23:23.695 +02:00 [DBG] Checking for PKCE parameters
+2019-04-16 01:23:23.695 +02:00 [DBG] Calling into custom validator: IdentityServer4.Validation.DefaultCustomAuthorizeRequestValidator
+2019-04-16 01:23:23.696 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:23:23.887 +02:00 [DBG] Request path /connect/authorize/callback matched to endpoint type Authorize
+2019-04-16 01:23:23.887 +02:00 [DBG] Endpoint enabled: Authorize, successfully created handler: IdentityServer4.Endpoints.AuthorizeCallbackEndpoint
+2019-04-16 01:23:23.887 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.AuthorizeCallbackEndpoint for /connect/authorize/callback
+2019-04-16 01:23:23.887 +02:00 [DBG] Start authorize callback request
+2019-04-16 01:23:23.888 +02:00 [DBG] User in authorize request: 1
+2019-04-16 01:23:23.889 +02:00 [DBG] Start authorize request protocol validation
+2019-04-16 01:23:23.889 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:23:23.889 +02:00 [DBG] Checking for PKCE parameters
+2019-04-16 01:23:23.889 +02:00 [DBG] Calling into custom validator: IdentityServer4.Validation.DefaultCustomAuthorizeRequestValidator
+2019-04-16 01:23:23.890 +02:00 [INF] ValidatedAuthorizeRequest
+{"ClientId":"frontStore","ClientName":"Front Store Client","RedirectUri":"http://localhost:8080/callback","AllowedRedirectUris":["http://localhost:8080/callback"],"SubjectId":"1","ResponseType":"code","ResponseMode":"query","GrantType":"authorization_code","RequestedScopes":"openid profile api1","State":"43376cb3067948e3984a24f05029401c","UiLocales":null,"Nonce":null,"AuthenticationContextReferenceClasses":null,"DisplayMode":null,"PromptMode":null,"MaxAge":null,"LoginHint":null,"SessionId":"4c90b9b7b49e028350f8ebbc9b62d934","Raw":{"client_id":"frontStore","redirect_uri":"http://localhost:8080/callback","response_type":"code","scope":"openid profile api1","state":"43376cb3067948e3984a24f05029401c","code_challenge":"h7lQggT9V8mpqsMfdPZT9vfiA0k-QsEA4DPRbhxKGMU","code_challenge_method":"S256"},"$type":"AuthorizeRequestValidationLog"}
+2019-04-16 01:23:23.890 +02:00 [DBG] IsActive called from: AuthorizeEndpoint
+2019-04-16 01:23:23.890 +02:00 [DBG] user_consent grant with value: frontStore|1 not found in store.
+2019-04-16 01:23:23.890 +02:00 [DBG] Found no prior consent from consent store, consent is required
+2019-04-16 01:23:23.890 +02:00 [INF] User consented to scopes: ["openid","profile","api1"]
+2019-04-16 01:23:23.890 +02:00 [DBG] Client allows remembering consent, and no scopes provided. Removing consent from consent store for subject: 1
+2019-04-16 01:23:23.890 +02:00 [DBG] Creating Authorization Code Flow response.
+2019-04-16 01:23:23.907 +02:00 [INF] Authorize endpoint response
+{"SubjectId":"1","ClientId":"frontStore","RedirectUri":"http://localhost:8080/callback","State":"43376cb3067948e3984a24f05029401c","Scope":"openid profile api1","Error":null,"ErrorDescription":null,"$type":"AuthorizeResponseLog"}
+2019-04-16 01:23:24.515 +02:00 [DBG] CORS request made for path: /.well-known/openid-configuration from origin: http://localhost:8080
+2019-04-16 01:23:24.516 +02:00 [DBG] Client list checked and origin: http://localhost:8080 is allowed
+2019-04-16 01:23:24.516 +02:00 [DBG] CorsPolicyService allowed origin: http://localhost:8080
+2019-04-16 01:23:24.516 +02:00 [DBG] Request path /.well-known/openid-configuration matched to endpoint type Discovery
+2019-04-16 01:23:24.516 +02:00 [DBG] Endpoint enabled: Discovery, successfully created handler: IdentityServer4.Endpoints.DiscoveryEndpoint
+2019-04-16 01:23:24.516 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.DiscoveryEndpoint for /.well-known/openid-configuration
+2019-04-16 01:23:24.516 +02:00 [DBG] Start discovery request
+2019-04-16 01:23:24.658 +02:00 [DBG] CORS request made for path: /connect/token from origin: http://localhost:8080
+2019-04-16 01:23:24.659 +02:00 [DBG] Client list checked and origin: http://localhost:8080 is allowed
+2019-04-16 01:23:24.659 +02:00 [DBG] CorsPolicyService allowed origin: http://localhost:8080
+2019-04-16 01:23:24.659 +02:00 [DBG] Request path /connect/token matched to endpoint type Token
+2019-04-16 01:23:24.667 +02:00 [DBG] Endpoint enabled: Token, successfully created handler: IdentityServer4.Endpoints.TokenEndpoint
+2019-04-16 01:23:24.668 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.TokenEndpoint for /connect/token
+2019-04-16 01:23:24.690 +02:00 [DBG] Start token request.
+2019-04-16 01:23:24.699 +02:00 [DBG] Start client validation
+2019-04-16 01:23:24.708 +02:00 [DBG] Start parsing Basic Authentication secret
+2019-04-16 01:23:24.716 +02:00 [DBG] Start parsing for secret in post body
+2019-04-16 01:23:24.721 +02:00 [DBG] client id without secret found
+2019-04-16 01:23:24.722 +02:00 [DBG] Parser found secret: PostBodySecretParser
+2019-04-16 01:23:24.722 +02:00 [DBG] Secret id found: frontStore
+2019-04-16 01:23:24.722 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:23:24.722 +02:00 [DBG] Public Client - skipping secret validation success
+2019-04-16 01:23:24.722 +02:00 [DBG] Client validation success
+2019-04-16 01:23:24.741 +02:00 [DBG] Start token request validation
+2019-04-16 01:23:24.753 +02:00 [DBG] Start validation of authorization code token request
+2019-04-16 01:23:24.767 +02:00 [DBG] Client required a proof key for code exchange. Starting PKCE validation
+2019-04-16 01:23:24.771 +02:00 [DBG] IsActive called from: AuthorizationCodeValidation
+2019-04-16 01:23:24.771 +02:00 [DBG] Validation of authorization code token request success
+2019-04-16 01:23:24.773 +02:00 [INF] Token request validation success
+{"ClientId":"frontStore","ClientName":"Front Store Client","GrantType":"authorization_code","Scopes":null,"AuthorizationCode":"03761477c18d99ed75b8b6f236fc3615525ab35e99adcb12920f0286ab0d94b0","RefreshToken":null,"UserName":null,"AuthenticationContextReferenceClasses":null,"Tenant":null,"IdP":null,"Raw":{"client_id":"frontStore","code":"03761477c18d99ed75b8b6f236fc3615525ab35e99adcb12920f0286ab0d94b0","redirect_uri":"http://localhost:8080/callback","code_verifier":"0afce1b8b22a497eb7fa0175fcd08b3683849f5a08784ed8969219d4a713c8512abd2a154f604333af392450144bdc29","grant_type":"authorization_code"},"$type":"TokenRequestValidationLog"}
+2019-04-16 01:23:24.789 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:23:24.808 +02:00 [DBG] Getting claims for access token for client: frontStore
+2019-04-16 01:23:24.809 +02:00 [DBG] Getting claims for access token for subject: 1
+2019-04-16 01:23:24.815 +02:00 [DBG] Get profile called for subject 1 from client Front Store Client with claim types [] via ClaimsProviderAccessToken
+2019-04-16 01:23:24.817 +02:00 [DBG] Issued claims: []
+2019-04-16 01:23:24.911 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:23:24.919 +02:00 [DBG] Getting claims for identity token for subject: 1 and client: frontStore
+2019-04-16 01:23:24.919 +02:00 [DBG] In addition to an id_token, an access_token was requested. No claims other than sub are included in the id_token. To obtain more user claims, either use the user info endpoint or set AlwaysIncludeUserClaimsInIdToken on the client configuration.
+2019-04-16 01:23:24.924 +02:00 [DBG] Token request success.
+2019-04-16 01:23:24.939 +02:00 [DBG] CORS request made for path: /connect/userinfo from origin: http://localhost:8080
+2019-04-16 01:23:24.939 +02:00 [DBG] Client list checked and origin: http://localhost:8080 is allowed
+2019-04-16 01:23:24.939 +02:00 [DBG] CorsPolicyService allowed origin: http://localhost:8080
+2019-04-16 01:23:24.945 +02:00 [DBG] CORS request made for path: /connect/userinfo from origin: http://localhost:8080
+2019-04-16 01:23:24.945 +02:00 [DBG] Client list checked and origin: http://localhost:8080 is allowed
+2019-04-16 01:23:24.945 +02:00 [DBG] CorsPolicyService allowed origin: http://localhost:8080
+2019-04-16 01:23:24.945 +02:00 [DBG] Request path /connect/userinfo matched to endpoint type Userinfo
+2019-04-16 01:23:24.946 +02:00 [DBG] Endpoint enabled: Userinfo, successfully created handler: IdentityServer4.Endpoints.UserInfoEndpoint
+2019-04-16 01:23:24.946 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.UserInfoEndpoint for /connect/userinfo
+2019-04-16 01:23:24.952 +02:00 [DBG] Start userinfo request
+2019-04-16 01:23:24.957 +02:00 [DBG] Bearer token found in header
+2019-04-16 01:23:25.026 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:23:25.028 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:23:25.028 +02:00 [DBG] IsActive called from: AccessTokenValidation
+2019-04-16 01:23:25.029 +02:00 [DBG] Calling into custom token validator: IdentityServer4.Validation.DefaultCustomTokenValidator
+2019-04-16 01:23:25.030 +02:00 [DBG] Token validation success
+{"ClientId":null,"ClientName":null,"ValidateLifetime":true,"AccessTokenType":"Jwt","ExpectedScope":"openid","TokenHandle":null,"JwtId":null,"Claims":{"nbf":1555370604,"exp":1555374204,"iss":"http://localhost:5000","aud":["http://localhost:5000/resources","api1"],"client_id":"frontStore","sub":"1","auth_time":1555369978,"idp":"local","scope":["openid","profile","api1"],"amr":"pwd"},"$type":"TokenValidationLog"}
+2019-04-16 01:23:25.031 +02:00 [DBG] IsActive called from: UserInfoRequestValidation
+2019-04-16 01:23:25.036 +02:00 [DBG] Creating userinfo response
+2019-04-16 01:23:25.039 +02:00 [DBG] Scopes in access token: openid profile api1
+2019-04-16 01:23:25.041 +02:00 [DBG] Scopes in access token: openid profile api1
+2019-04-16 01:23:25.043 +02:00 [DBG] Requested claim types: sub name family_name given_name middle_name nickname preferred_username profile picture website gender birthdate zoneinfo locale updated_at
+2019-04-16 01:23:25.043 +02:00 [DBG] Scopes in access token: openid profile api1
+2019-04-16 01:23:25.043 +02:00 [DBG] Get profile called for subject 1 from client Front Store Client with claim types ["sub","name","family_name","given_name","middle_name","nickname","preferred_username","profile","picture","website","gender","birthdate","zoneinfo","locale","updated_at"] via UserInfoEndpoint
+2019-04-16 01:23:25.044 +02:00 [DBG] Issued claims: []
+2019-04-16 01:23:25.044 +02:00 [INF] Profile service returned the following claim types: 
+2019-04-16 01:23:25.044 +02:00 [DBG] End userinfo request
+2019-04-16 01:23:25.069 +02:00 [DBG] Request path /connect/checksession matched to endpoint type Checksession
+2019-04-16 01:23:25.070 +02:00 [DBG] Endpoint enabled: Checksession, successfully created handler: IdentityServer4.Endpoints.CheckSessionEndpoint
+2019-04-16 01:23:25.070 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.CheckSessionEndpoint for /connect/checksession
+2019-04-16 01:23:25.071 +02:00 [DBG] Rendering check session result
+2019-04-16 01:23:25.950 +02:00 [DBG] CORS request made for path: /.well-known/openid-configuration from origin: http://localhost:8080
+2019-04-16 01:23:25.951 +02:00 [DBG] Client list checked and origin: http://localhost:8080 is allowed
+2019-04-16 01:23:25.951 +02:00 [DBG] CorsPolicyService allowed origin: http://localhost:8080
+2019-04-16 01:23:25.952 +02:00 [DBG] Request path /.well-known/openid-configuration matched to endpoint type Discovery
+2019-04-16 01:23:25.952 +02:00 [DBG] Endpoint enabled: Discovery, successfully created handler: IdentityServer4.Endpoints.DiscoveryEndpoint
+2019-04-16 01:23:25.953 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.DiscoveryEndpoint for /.well-known/openid-configuration
+2019-04-16 01:23:25.953 +02:00 [DBG] Start discovery request
+2019-04-16 01:23:26.142 +02:00 [DBG] Request path /connect/checksession matched to endpoint type Checksession
+2019-04-16 01:23:26.145 +02:00 [DBG] Endpoint enabled: Checksession, successfully created handler: IdentityServer4.Endpoints.CheckSessionEndpoint
+2019-04-16 01:23:26.145 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.CheckSessionEndpoint for /connect/checksession
+2019-04-16 01:23:26.146 +02:00 [DBG] Rendering check session result
+2019-04-16 01:24:59.191 +02:00 [DBG] CORS request made for path: /.well-known/openid-configuration from origin: http://localhost:8080
+2019-04-16 01:24:59.191 +02:00 [DBG] Client list checked and origin: http://localhost:8080 is allowed
+2019-04-16 01:24:59.192 +02:00 [DBG] CorsPolicyService allowed origin: http://localhost:8080
+2019-04-16 01:24:59.192 +02:00 [DBG] Request path /.well-known/openid-configuration matched to endpoint type Discovery
+2019-04-16 01:24:59.192 +02:00 [DBG] Endpoint enabled: Discovery, successfully created handler: IdentityServer4.Endpoints.DiscoveryEndpoint
+2019-04-16 01:24:59.192 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.DiscoveryEndpoint for /.well-known/openid-configuration
+2019-04-16 01:24:59.192 +02:00 [DBG] Start discovery request
+2019-04-16 01:24:59.408 +02:00 [DBG] Request path /connect/checksession matched to endpoint type Checksession
+2019-04-16 01:24:59.408 +02:00 [DBG] Endpoint enabled: Checksession, successfully created handler: IdentityServer4.Endpoints.CheckSessionEndpoint
+2019-04-16 01:24:59.408 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.CheckSessionEndpoint for /connect/checksession
+2019-04-16 01:24:59.409 +02:00 [DBG] Rendering check session result
+2019-04-16 01:25:50.776 +02:00 [DBG] CORS request made for path: /.well-known/openid-configuration from origin: http://localhost:8080
+2019-04-16 01:25:50.776 +02:00 [DBG] CORS request made for path: /.well-known/openid-configuration from origin: http://localhost:8080
+2019-04-16 01:25:50.789 +02:00 [DBG] Client list checked and origin: http://localhost:8080 is allowed
+2019-04-16 01:25:50.792 +02:00 [DBG] CorsPolicyService allowed origin: http://localhost:8080
+2019-04-16 01:25:50.792 +02:00 [DBG] Client list checked and origin: http://localhost:8080 is allowed
+2019-04-16 01:25:50.792 +02:00 [DBG] CorsPolicyService allowed origin: http://localhost:8080
+2019-04-16 01:25:50.792 +02:00 [DBG] Request path /.well-known/openid-configuration matched to endpoint type Discovery
+2019-04-16 01:25:50.792 +02:00 [DBG] Endpoint enabled: Discovery, successfully created handler: IdentityServer4.Endpoints.DiscoveryEndpoint
+2019-04-16 01:25:50.792 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.DiscoveryEndpoint for /.well-known/openid-configuration
+2019-04-16 01:25:50.792 +02:00 [DBG] Start discovery request
+2019-04-16 01:25:50.792 +02:00 [DBG] Request path /.well-known/openid-configuration matched to endpoint type Discovery
+2019-04-16 01:25:50.792 +02:00 [DBG] Endpoint enabled: Discovery, successfully created handler: IdentityServer4.Endpoints.DiscoveryEndpoint
+2019-04-16 01:25:50.792 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.DiscoveryEndpoint for /.well-known/openid-configuration
+2019-04-16 01:25:50.792 +02:00 [DBG] Start discovery request
+2019-04-16 01:25:50.993 +02:00 [DBG] Request path /connect/checksession matched to endpoint type Checksession
+2019-04-16 01:25:50.993 +02:00 [DBG] Request path /connect/checksession matched to endpoint type Checksession
+2019-04-16 01:25:50.993 +02:00 [DBG] Endpoint enabled: Checksession, successfully created handler: IdentityServer4.Endpoints.CheckSessionEndpoint
+2019-04-16 01:25:50.993 +02:00 [DBG] Endpoint enabled: Checksession, successfully created handler: IdentityServer4.Endpoints.CheckSessionEndpoint
+2019-04-16 01:25:50.993 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.CheckSessionEndpoint for /connect/checksession
+2019-04-16 01:25:50.993 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.CheckSessionEndpoint for /connect/checksession
+2019-04-16 01:25:50.993 +02:00 [DBG] Rendering check session result
+2019-04-16 01:25:50.993 +02:00 [DBG] Rendering check session result
+2019-04-16 01:26:07.789 +02:00 [DBG] CORS request made for path: /.well-known/openid-configuration from origin: http://localhost:8080
+2019-04-16 01:26:07.789 +02:00 [DBG] CORS request made for path: /.well-known/openid-configuration from origin: http://localhost:8080
+2019-04-16 01:26:07.790 +02:00 [DBG] Client list checked and origin: http://localhost:8080 is allowed
+2019-04-16 01:26:07.790 +02:00 [DBG] Client list checked and origin: http://localhost:8080 is allowed
+2019-04-16 01:26:07.790 +02:00 [DBG] CorsPolicyService allowed origin: http://localhost:8080
+2019-04-16 01:26:07.790 +02:00 [DBG] CorsPolicyService allowed origin: http://localhost:8080
+2019-04-16 01:26:07.790 +02:00 [DBG] Request path /.well-known/openid-configuration matched to endpoint type Discovery
+2019-04-16 01:26:07.790 +02:00 [DBG] Request path /.well-known/openid-configuration matched to endpoint type Discovery
+2019-04-16 01:26:07.790 +02:00 [DBG] Endpoint enabled: Discovery, successfully created handler: IdentityServer4.Endpoints.DiscoveryEndpoint
+2019-04-16 01:26:07.791 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.DiscoveryEndpoint for /.well-known/openid-configuration
+2019-04-16 01:26:07.791 +02:00 [DBG] Endpoint enabled: Discovery, successfully created handler: IdentityServer4.Endpoints.DiscoveryEndpoint
+2019-04-16 01:26:07.791 +02:00 [DBG] Start discovery request
+2019-04-16 01:26:07.791 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.DiscoveryEndpoint for /.well-known/openid-configuration
+2019-04-16 01:26:07.791 +02:00 [DBG] Start discovery request
+2019-04-16 01:26:08.049 +02:00 [DBG] Request path /connect/checksession matched to endpoint type Checksession
+2019-04-16 01:26:08.049 +02:00 [DBG] Request path /connect/checksession matched to endpoint type Checksession
+2019-04-16 01:26:08.049 +02:00 [DBG] Endpoint enabled: Checksession, successfully created handler: IdentityServer4.Endpoints.CheckSessionEndpoint
+2019-04-16 01:26:08.049 +02:00 [DBG] Endpoint enabled: Checksession, successfully created handler: IdentityServer4.Endpoints.CheckSessionEndpoint
+2019-04-16 01:26:08.049 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.CheckSessionEndpoint for /connect/checksession
+2019-04-16 01:26:08.049 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.CheckSessionEndpoint for /connect/checksession
+2019-04-16 01:26:08.049 +02:00 [DBG] Rendering check session result
+2019-04-16 01:26:08.049 +02:00 [DBG] Rendering check session result
+2019-04-16 01:26:28.019 +02:00 [DBG] Request path /connect/authorize matched to endpoint type Authorize
+2019-04-16 01:26:28.020 +02:00 [DBG] Endpoint enabled: Authorize, successfully created handler: IdentityServer4.Endpoints.AuthorizeEndpoint
+2019-04-16 01:26:28.020 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.AuthorizeEndpoint for /connect/authorize
+2019-04-16 01:26:28.020 +02:00 [DBG] Start authorize request
+2019-04-16 01:26:28.020 +02:00 [DBG] User in authorize request: 1
+2019-04-16 01:26:28.020 +02:00 [DBG] Start authorize request protocol validation
+2019-04-16 01:26:28.020 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:26:28.020 +02:00 [DBG] Checking for PKCE parameters
+2019-04-16 01:26:28.020 +02:00 [DBG] Calling into custom validator: IdentityServer4.Validation.DefaultCustomAuthorizeRequestValidator
+2019-04-16 01:26:28.021 +02:00 [INF] ValidatedAuthorizeRequest
+{"ClientId":"frontStore","ClientName":"Front Store Client","RedirectUri":"http://localhost:8080/callback","AllowedRedirectUris":["http://localhost:8080/callback"],"SubjectId":"1","ResponseType":"code","ResponseMode":"query","GrantType":"authorization_code","RequestedScopes":"openid profile api1","State":"846801e0f00a4856a0053c07685eb69a","UiLocales":null,"Nonce":null,"AuthenticationContextReferenceClasses":null,"DisplayMode":null,"PromptMode":null,"MaxAge":null,"LoginHint":null,"SessionId":"4c90b9b7b49e028350f8ebbc9b62d934","Raw":{"client_id":"frontStore","redirect_uri":"http://localhost:8080/callback","response_type":"code","scope":"openid profile api1","state":"846801e0f00a4856a0053c07685eb69a","code_challenge":"ogzQhiQ2_97aEe3anxfSor31ZS-Yvdr-E9y2HIzOQFg","code_challenge_method":"S256"},"$type":"AuthorizeRequestValidationLog"}
+2019-04-16 01:26:28.021 +02:00 [DBG] IsActive called from: AuthorizeEndpoint
+2019-04-16 01:26:28.021 +02:00 [DBG] user_consent grant with value: frontStore|1 not found in store.
+2019-04-16 01:26:28.021 +02:00 [DBG] Found no prior consent from consent store, consent is required
+2019-04-16 01:26:28.021 +02:00 [INF] Showing consent: User has not yet consented
+2019-04-16 01:26:28.037 +02:00 [DBG] Start authorize request protocol validation
+2019-04-16 01:26:28.037 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:26:28.037 +02:00 [DBG] Checking for PKCE parameters
+2019-04-16 01:26:28.037 +02:00 [DBG] Calling into custom validator: IdentityServer4.Validation.DefaultCustomAuthorizeRequestValidator
+2019-04-16 01:26:28.038 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:26:30.333 +02:00 [DBG] CORS request made for path: /consent from origin: null but was ignored because path was not for an allowed IdentityServer CORS endpoint
+2019-04-16 01:26:30.335 +02:00 [DBG] Start authorize request protocol validation
+2019-04-16 01:26:30.335 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:26:30.335 +02:00 [DBG] Checking for PKCE parameters
+2019-04-16 01:26:30.335 +02:00 [DBG] Calling into custom validator: IdentityServer4.Validation.DefaultCustomAuthorizeRequestValidator
+2019-04-16 01:26:30.336 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:26:30.527 +02:00 [DBG] Request path /connect/authorize/callback matched to endpoint type Authorize
+2019-04-16 01:26:30.527 +02:00 [DBG] Endpoint enabled: Authorize, successfully created handler: IdentityServer4.Endpoints.AuthorizeCallbackEndpoint
+2019-04-16 01:26:30.528 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.AuthorizeCallbackEndpoint for /connect/authorize/callback
+2019-04-16 01:26:30.528 +02:00 [DBG] Start authorize callback request
+2019-04-16 01:26:30.528 +02:00 [DBG] User in authorize request: 1
+2019-04-16 01:26:30.528 +02:00 [DBG] Start authorize request protocol validation
+2019-04-16 01:26:30.528 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:26:30.528 +02:00 [DBG] Checking for PKCE parameters
+2019-04-16 01:26:30.529 +02:00 [DBG] Calling into custom validator: IdentityServer4.Validation.DefaultCustomAuthorizeRequestValidator
+2019-04-16 01:26:30.529 +02:00 [INF] ValidatedAuthorizeRequest
+{"ClientId":"frontStore","ClientName":"Front Store Client","RedirectUri":"http://localhost:8080/callback","AllowedRedirectUris":["http://localhost:8080/callback"],"SubjectId":"1","ResponseType":"code","ResponseMode":"query","GrantType":"authorization_code","RequestedScopes":"openid profile api1","State":"846801e0f00a4856a0053c07685eb69a","UiLocales":null,"Nonce":null,"AuthenticationContextReferenceClasses":null,"DisplayMode":null,"PromptMode":null,"MaxAge":null,"LoginHint":null,"SessionId":"4c90b9b7b49e028350f8ebbc9b62d934","Raw":{"client_id":"frontStore","redirect_uri":"http://localhost:8080/callback","response_type":"code","scope":"openid profile api1","state":"846801e0f00a4856a0053c07685eb69a","code_challenge":"ogzQhiQ2_97aEe3anxfSor31ZS-Yvdr-E9y2HIzOQFg","code_challenge_method":"S256"},"$type":"AuthorizeRequestValidationLog"}
+2019-04-16 01:26:30.529 +02:00 [DBG] IsActive called from: AuthorizeEndpoint
+2019-04-16 01:26:30.529 +02:00 [DBG] user_consent grant with value: frontStore|1 not found in store.
+2019-04-16 01:26:30.529 +02:00 [DBG] Found no prior consent from consent store, consent is required
+2019-04-16 01:26:30.529 +02:00 [INF] User consented to scopes: ["openid","profile","api1"]
+2019-04-16 01:26:30.529 +02:00 [DBG] Client allows remembering consent, and no scopes provided. Removing consent from consent store for subject: 1
+2019-04-16 01:26:30.529 +02:00 [DBG] Creating Authorization Code Flow response.
+2019-04-16 01:26:30.546 +02:00 [INF] Authorize endpoint response
+{"SubjectId":"1","ClientId":"frontStore","RedirectUri":"http://localhost:8080/callback","State":"846801e0f00a4856a0053c07685eb69a","Scope":"openid profile api1","Error":null,"ErrorDescription":null,"$type":"AuthorizeResponseLog"}
+2019-04-16 01:26:31.231 +02:00 [DBG] CORS request made for path: /.well-known/openid-configuration from origin: http://localhost:8080
+2019-04-16 01:26:31.231 +02:00 [DBG] CORS request made for path: /.well-known/openid-configuration from origin: http://localhost:8080
+2019-04-16 01:26:31.231 +02:00 [DBG] Client list checked and origin: http://localhost:8080 is allowed
+2019-04-16 01:26:31.231 +02:00 [DBG] Client list checked and origin: http://localhost:8080 is allowed
+2019-04-16 01:26:31.231 +02:00 [DBG] CorsPolicyService allowed origin: http://localhost:8080
+2019-04-16 01:26:31.231 +02:00 [DBG] CorsPolicyService allowed origin: http://localhost:8080
+2019-04-16 01:26:31.231 +02:00 [DBG] Request path /.well-known/openid-configuration matched to endpoint type Discovery
+2019-04-16 01:26:31.231 +02:00 [DBG] Request path /.well-known/openid-configuration matched to endpoint type Discovery
+2019-04-16 01:26:31.231 +02:00 [DBG] Endpoint enabled: Discovery, successfully created handler: IdentityServer4.Endpoints.DiscoveryEndpoint
+2019-04-16 01:26:31.231 +02:00 [DBG] Endpoint enabled: Discovery, successfully created handler: IdentityServer4.Endpoints.DiscoveryEndpoint
+2019-04-16 01:26:31.231 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.DiscoveryEndpoint for /.well-known/openid-configuration
+2019-04-16 01:26:31.231 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.DiscoveryEndpoint for /.well-known/openid-configuration
+2019-04-16 01:26:31.231 +02:00 [DBG] Start discovery request
+2019-04-16 01:26:31.231 +02:00 [DBG] Start discovery request
+2019-04-16 01:26:31.270 +02:00 [DBG] Request path /connect/checksession matched to endpoint type Checksession
+2019-04-16 01:26:31.270 +02:00 [DBG] Endpoint enabled: Checksession, successfully created handler: IdentityServer4.Endpoints.CheckSessionEndpoint
+2019-04-16 01:26:31.270 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.CheckSessionEndpoint for /connect/checksession
+2019-04-16 01:26:31.270 +02:00 [DBG] Rendering check session result
+2019-04-16 01:26:31.274 +02:00 [DBG] Request path /connect/checksession matched to endpoint type Checksession
+2019-04-16 01:26:31.274 +02:00 [DBG] Endpoint enabled: Checksession, successfully created handler: IdentityServer4.Endpoints.CheckSessionEndpoint
+2019-04-16 01:26:31.274 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.CheckSessionEndpoint for /connect/checksession
+2019-04-16 01:26:31.274 +02:00 [DBG] Rendering check session result
+2019-04-16 01:26:55.411 +02:00 [DBG] CORS request made for path: /.well-known/openid-configuration from origin: http://localhost:8080
+2019-04-16 01:26:55.410 +02:00 [DBG] CORS request made for path: /.well-known/openid-configuration from origin: http://localhost:8080
+2019-04-16 01:26:55.411 +02:00 [DBG] Client list checked and origin: http://localhost:8080 is allowed
+2019-04-16 01:26:55.411 +02:00 [DBG] Client list checked and origin: http://localhost:8080 is allowed
+2019-04-16 01:26:55.411 +02:00 [DBG] CorsPolicyService allowed origin: http://localhost:8080
+2019-04-16 01:26:55.411 +02:00 [DBG] CorsPolicyService allowed origin: http://localhost:8080
+2019-04-16 01:26:55.411 +02:00 [DBG] Request path /.well-known/openid-configuration matched to endpoint type Discovery
+2019-04-16 01:26:55.412 +02:00 [DBG] Endpoint enabled: Discovery, successfully created handler: IdentityServer4.Endpoints.DiscoveryEndpoint
+2019-04-16 01:26:55.412 +02:00 [DBG] Request path /.well-known/openid-configuration matched to endpoint type Discovery
+2019-04-16 01:26:55.412 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.DiscoveryEndpoint for /.well-known/openid-configuration
+2019-04-16 01:26:55.412 +02:00 [DBG] Endpoint enabled: Discovery, successfully created handler: IdentityServer4.Endpoints.DiscoveryEndpoint
+2019-04-16 01:26:55.412 +02:00 [DBG] Start discovery request
+2019-04-16 01:26:55.412 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.DiscoveryEndpoint for /.well-known/openid-configuration
+2019-04-16 01:26:55.412 +02:00 [DBG] Start discovery request
+2019-04-16 01:26:55.626 +02:00 [DBG] CORS request made for path: /connect/token from origin: http://localhost:8080
+2019-04-16 01:26:55.634 +02:00 [DBG] Request path /connect/checksession matched to endpoint type Checksession
+2019-04-16 01:26:55.646 +02:00 [DBG] Client list checked and origin: http://localhost:8080 is allowed
+2019-04-16 01:26:55.647 +02:00 [DBG] Endpoint enabled: Checksession, successfully created handler: IdentityServer4.Endpoints.CheckSessionEndpoint
+2019-04-16 01:26:55.647 +02:00 [DBG] CorsPolicyService allowed origin: http://localhost:8080
+2019-04-16 01:26:55.647 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.CheckSessionEndpoint for /connect/checksession
+2019-04-16 01:26:55.647 +02:00 [DBG] Rendering check session result
+2019-04-16 01:26:55.647 +02:00 [DBG] Request path /connect/token matched to endpoint type Token
+2019-04-16 01:26:55.664 +02:00 [DBG] Endpoint enabled: Token, successfully created handler: IdentityServer4.Endpoints.TokenEndpoint
+2019-04-16 01:26:55.664 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.TokenEndpoint for /connect/token
+2019-04-16 01:26:55.664 +02:00 [DBG] Start token request.
+2019-04-16 01:26:55.664 +02:00 [DBG] Start client validation
+2019-04-16 01:26:55.664 +02:00 [DBG] Start parsing Basic Authentication secret
+2019-04-16 01:26:55.664 +02:00 [DBG] Start parsing for secret in post body
+2019-04-16 01:26:55.690 +02:00 [DBG] client id without secret found
+2019-04-16 01:26:55.690 +02:00 [DBG] Parser found secret: PostBodySecretParser
+2019-04-16 01:26:55.690 +02:00 [DBG] Secret id found: frontStore
+2019-04-16 01:26:55.691 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:26:55.691 +02:00 [DBG] Public Client - skipping secret validation success
+2019-04-16 01:26:55.691 +02:00 [DBG] Client validation success
+2019-04-16 01:26:55.691 +02:00 [DBG] Start token request validation
+2019-04-16 01:26:55.691 +02:00 [DBG] Start validation of authorization code token request
+2019-04-16 01:26:55.706 +02:00 [DBG] Client required a proof key for code exchange. Starting PKCE validation
+2019-04-16 01:26:55.707 +02:00 [DBG] IsActive called from: AuthorizationCodeValidation
+2019-04-16 01:26:55.707 +02:00 [DBG] Validation of authorization code token request success
+2019-04-16 01:26:55.707 +02:00 [INF] Token request validation success
+{"ClientId":"frontStore","ClientName":"Front Store Client","GrantType":"authorization_code","Scopes":null,"AuthorizationCode":"899422a899fe77dae74ad620f480d753add763b4eeeb8d461f1dda9782cb18fb","RefreshToken":null,"UserName":null,"AuthenticationContextReferenceClasses":null,"Tenant":null,"IdP":null,"Raw":{"client_id":"frontStore","code":"899422a899fe77dae74ad620f480d753add763b4eeeb8d461f1dda9782cb18fb","redirect_uri":"http://localhost:8080/callback","code_verifier":"e067a5a1660647b0b7e8b1f4a83531f7b975ebc9776d46fa86dfb122a6ab432d46a13fc14154407aab7f2e518b6cb100","grant_type":"authorization_code"},"$type":"TokenRequestValidationLog"}
+2019-04-16 01:26:55.707 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:26:55.707 +02:00 [DBG] Getting claims for access token for client: frontStore
+2019-04-16 01:26:55.707 +02:00 [DBG] Getting claims for access token for subject: 1
+2019-04-16 01:26:55.707 +02:00 [DBG] Get profile called for subject 1 from client Front Store Client with claim types [] via ClaimsProviderAccessToken
+2019-04-16 01:26:55.707 +02:00 [DBG] Issued claims: []
+2019-04-16 01:26:55.711 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:26:55.711 +02:00 [DBG] Getting claims for identity token for subject: 1 and client: frontStore
+2019-04-16 01:26:55.711 +02:00 [DBG] In addition to an id_token, an access_token was requested. No claims other than sub are included in the id_token. To obtain more user claims, either use the user info endpoint or set AlwaysIncludeUserClaimsInIdToken on the client configuration.
+2019-04-16 01:26:55.715 +02:00 [DBG] Token request success.
+2019-04-16 01:26:55.824 +02:00 [DBG] CORS request made for path: /connect/userinfo from origin: http://localhost:8080
+2019-04-16 01:26:55.824 +02:00 [DBG] Client list checked and origin: http://localhost:8080 is allowed
+2019-04-16 01:26:55.824 +02:00 [DBG] CorsPolicyService allowed origin: http://localhost:8080
+2019-04-16 01:26:55.868 +02:00 [DBG] CORS request made for path: /connect/userinfo from origin: http://localhost:8080
+2019-04-16 01:26:55.868 +02:00 [DBG] Client list checked and origin: http://localhost:8080 is allowed
+2019-04-16 01:26:55.868 +02:00 [DBG] CorsPolicyService allowed origin: http://localhost:8080
+2019-04-16 01:26:55.869 +02:00 [DBG] Request path /connect/userinfo matched to endpoint type Userinfo
+2019-04-16 01:26:55.870 +02:00 [DBG] Endpoint enabled: Userinfo, successfully created handler: IdentityServer4.Endpoints.UserInfoEndpoint
+2019-04-16 01:26:55.870 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.UserInfoEndpoint for /connect/userinfo
+2019-04-16 01:26:55.870 +02:00 [DBG] Start userinfo request
+2019-04-16 01:26:55.870 +02:00 [DBG] Bearer token found in header
+2019-04-16 01:26:55.873 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:26:55.874 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:26:55.874 +02:00 [DBG] IsActive called from: AccessTokenValidation
+2019-04-16 01:26:55.874 +02:00 [DBG] Calling into custom token validator: IdentityServer4.Validation.DefaultCustomTokenValidator
+2019-04-16 01:26:55.874 +02:00 [DBG] Token validation success
+{"ClientId":null,"ClientName":null,"ValidateLifetime":true,"AccessTokenType":"Jwt","ExpectedScope":"openid","TokenHandle":null,"JwtId":null,"Claims":{"nbf":1555370815,"exp":1555374415,"iss":"http://localhost:5000","aud":["http://localhost:5000/resources","api1"],"client_id":"frontStore","sub":"1","auth_time":1555369978,"idp":"local","scope":["openid","profile","api1"],"amr":"pwd"},"$type":"TokenValidationLog"}
+2019-04-16 01:26:55.874 +02:00 [DBG] IsActive called from: UserInfoRequestValidation
+2019-04-16 01:26:55.874 +02:00 [DBG] Creating userinfo response
+2019-04-16 01:26:55.874 +02:00 [DBG] Scopes in access token: openid profile api1
+2019-04-16 01:26:55.874 +02:00 [DBG] Scopes in access token: openid profile api1
+2019-04-16 01:26:55.874 +02:00 [DBG] Requested claim types: sub name family_name given_name middle_name nickname preferred_username profile picture website gender birthdate zoneinfo locale updated_at
+2019-04-16 01:26:55.874 +02:00 [DBG] Scopes in access token: openid profile api1
+2019-04-16 01:26:55.874 +02:00 [DBG] Get profile called for subject 1 from client Front Store Client with claim types ["sub","name","family_name","given_name","middle_name","nickname","preferred_username","profile","picture","website","gender","birthdate","zoneinfo","locale","updated_at"] via UserInfoEndpoint
+2019-04-16 01:26:55.874 +02:00 [DBG] Issued claims: []
+2019-04-16 01:26:55.874 +02:00 [INF] Profile service returned the following claim types: 
+2019-04-16 01:26:55.875 +02:00 [DBG] End userinfo request
+2019-04-16 01:26:55.897 +02:00 [DBG] Request path /connect/checksession matched to endpoint type Checksession
+2019-04-16 01:26:55.897 +02:00 [DBG] Endpoint enabled: Checksession, successfully created handler: IdentityServer4.Endpoints.CheckSessionEndpoint
+2019-04-16 01:26:55.897 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.CheckSessionEndpoint for /connect/checksession
+2019-04-16 01:26:55.897 +02:00 [DBG] Rendering check session result
+2019-04-16 01:26:56.713 +02:00 [DBG] CORS request made for path: /.well-known/openid-configuration from origin: http://localhost:8080
+2019-04-16 01:26:56.714 +02:00 [DBG] Client list checked and origin: http://localhost:8080 is allowed
+2019-04-16 01:26:56.714 +02:00 [DBG] CorsPolicyService allowed origin: http://localhost:8080
+2019-04-16 01:26:56.714 +02:00 [DBG] Request path /.well-known/openid-configuration matched to endpoint type Discovery
+2019-04-16 01:26:56.714 +02:00 [DBG] Endpoint enabled: Discovery, successfully created handler: IdentityServer4.Endpoints.DiscoveryEndpoint
+2019-04-16 01:26:56.714 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.DiscoveryEndpoint for /.well-known/openid-configuration
+2019-04-16 01:26:56.714 +02:00 [DBG] Start discovery request
+2019-04-16 01:26:56.869 +02:00 [DBG] Request path /connect/checksession matched to endpoint type Checksession
+2019-04-16 01:26:56.869 +02:00 [DBG] Endpoint enabled: Checksession, successfully created handler: IdentityServer4.Endpoints.CheckSessionEndpoint
+2019-04-16 01:26:56.869 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.CheckSessionEndpoint for /connect/checksession
+2019-04-16 01:26:56.869 +02:00 [DBG] Rendering check session result
+2019-04-16 01:32:59.152 +02:00 [DBG] CORS request made for path: /.well-known/openid-configuration from origin: http://localhost:8080
+2019-04-16 01:32:59.165 +02:00 [DBG] Client list checked and origin: http://localhost:8080 is allowed
+2019-04-16 01:32:59.165 +02:00 [DBG] CorsPolicyService allowed origin: http://localhost:8080
+2019-04-16 01:32:59.166 +02:00 [DBG] Request path /.well-known/openid-configuration matched to endpoint type Discovery
+2019-04-16 01:32:59.166 +02:00 [DBG] Endpoint enabled: Discovery, successfully created handler: IdentityServer4.Endpoints.DiscoveryEndpoint
+2019-04-16 01:32:59.166 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.DiscoveryEndpoint for /.well-known/openid-configuration
+2019-04-16 01:32:59.166 +02:00 [DBG] Start discovery request
+2019-04-16 01:32:59.479 +02:00 [DBG] Request path /connect/checksession matched to endpoint type Checksession
+2019-04-16 01:32:59.479 +02:00 [DBG] Endpoint enabled: Checksession, successfully created handler: IdentityServer4.Endpoints.CheckSessionEndpoint
+2019-04-16 01:32:59.479 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.CheckSessionEndpoint for /connect/checksession
+2019-04-16 01:32:59.479 +02:00 [DBG] Rendering check session result
+2019-04-16 01:34:13.786 +02:00 [DBG] CORS request made for path: /.well-known/openid-configuration from origin: http://localhost:8080
+2019-04-16 01:34:13.786 +02:00 [DBG] Client list checked and origin: http://localhost:8080 is allowed
+2019-04-16 01:34:13.786 +02:00 [DBG] CorsPolicyService allowed origin: http://localhost:8080
+2019-04-16 01:34:13.786 +02:00 [DBG] Request path /.well-known/openid-configuration matched to endpoint type Discovery
+2019-04-16 01:34:13.786 +02:00 [DBG] Endpoint enabled: Discovery, successfully created handler: IdentityServer4.Endpoints.DiscoveryEndpoint
+2019-04-16 01:34:13.786 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.DiscoveryEndpoint for /.well-known/openid-configuration
+2019-04-16 01:34:13.786 +02:00 [DBG] Start discovery request
+2019-04-16 01:34:13.951 +02:00 [DBG] Request path /connect/checksession matched to endpoint type Checksession
+2019-04-16 01:34:13.951 +02:00 [DBG] Endpoint enabled: Checksession, successfully created handler: IdentityServer4.Endpoints.CheckSessionEndpoint
+2019-04-16 01:34:13.951 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.CheckSessionEndpoint for /connect/checksession
+2019-04-16 01:34:13.951 +02:00 [DBG] Rendering check session result
+2019-04-16 01:34:30.101 +02:00 [DBG] CORS request made for path: /.well-known/openid-configuration from origin: http://localhost:8080
+2019-04-16 01:34:30.101 +02:00 [DBG] Client list checked and origin: http://localhost:8080 is allowed
+2019-04-16 01:34:30.101 +02:00 [DBG] CorsPolicyService allowed origin: http://localhost:8080
+2019-04-16 01:34:30.102 +02:00 [DBG] Request path /.well-known/openid-configuration matched to endpoint type Discovery
+2019-04-16 01:34:30.102 +02:00 [DBG] Endpoint enabled: Discovery, successfully created handler: IdentityServer4.Endpoints.DiscoveryEndpoint
+2019-04-16 01:34:30.102 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.DiscoveryEndpoint for /.well-known/openid-configuration
+2019-04-16 01:34:30.102 +02:00 [DBG] Start discovery request
+2019-04-16 01:34:30.149 +02:00 [DBG] Request path /connect/checksession matched to endpoint type Checksession
+2019-04-16 01:34:30.149 +02:00 [DBG] Endpoint enabled: Checksession, successfully created handler: IdentityServer4.Endpoints.CheckSessionEndpoint
+2019-04-16 01:34:30.149 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.CheckSessionEndpoint for /connect/checksession
+2019-04-16 01:34:30.149 +02:00 [DBG] Rendering check session result
+2019-04-16 01:35:29.991 +02:00 [DBG] CORS request made for path: /.well-known/openid-configuration from origin: http://localhost:8080
+2019-04-16 01:35:29.992 +02:00 [DBG] Client list checked and origin: http://localhost:8080 is allowed
+2019-04-16 01:35:29.992 +02:00 [DBG] CorsPolicyService allowed origin: http://localhost:8080
+2019-04-16 01:35:29.992 +02:00 [DBG] Request path /.well-known/openid-configuration matched to endpoint type Discovery
+2019-04-16 01:35:29.992 +02:00 [DBG] Endpoint enabled: Discovery, successfully created handler: IdentityServer4.Endpoints.DiscoveryEndpoint
+2019-04-16 01:35:29.992 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.DiscoveryEndpoint for /.well-known/openid-configuration
+2019-04-16 01:35:29.992 +02:00 [DBG] Start discovery request
+2019-04-16 01:35:30.118 +02:00 [DBG] Request path /connect/checksession matched to endpoint type Checksession
+2019-04-16 01:35:30.118 +02:00 [DBG] Endpoint enabled: Checksession, successfully created handler: IdentityServer4.Endpoints.CheckSessionEndpoint
+2019-04-16 01:35:30.118 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.CheckSessionEndpoint for /connect/checksession
+2019-04-16 01:35:30.118 +02:00 [DBG] Rendering check session result
+2019-04-16 01:35:47.510 +02:00 [DBG] CORS request made for path: /.well-known/openid-configuration from origin: http://localhost:8080
+2019-04-16 01:35:47.510 +02:00 [DBG] Client list checked and origin: http://localhost:8080 is allowed
+2019-04-16 01:35:47.510 +02:00 [DBG] CorsPolicyService allowed origin: http://localhost:8080
+2019-04-16 01:35:47.510 +02:00 [DBG] Request path /.well-known/openid-configuration matched to endpoint type Discovery
+2019-04-16 01:35:47.510 +02:00 [DBG] Endpoint enabled: Discovery, successfully created handler: IdentityServer4.Endpoints.DiscoveryEndpoint
+2019-04-16 01:35:47.510 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.DiscoveryEndpoint for /.well-known/openid-configuration
+2019-04-16 01:35:47.510 +02:00 [DBG] Start discovery request
+2019-04-16 01:35:47.692 +02:00 [DBG] Request path /connect/checksession matched to endpoint type Checksession
+2019-04-16 01:35:47.692 +02:00 [DBG] Endpoint enabled: Checksession, successfully created handler: IdentityServer4.Endpoints.CheckSessionEndpoint
+2019-04-16 01:35:47.692 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.CheckSessionEndpoint for /connect/checksession
+2019-04-16 01:35:47.692 +02:00 [DBG] Rendering check session result
+2019-04-16 01:37:11.415 +02:00 [DBG] CORS request made for path: /.well-known/openid-configuration from origin: http://localhost:8080
+2019-04-16 01:37:11.427 +02:00 [DBG] Client list checked and origin: http://localhost:8080 is allowed
+2019-04-16 01:37:11.427 +02:00 [DBG] CorsPolicyService allowed origin: http://localhost:8080
+2019-04-16 01:37:11.427 +02:00 [DBG] Request path /.well-known/openid-configuration matched to endpoint type Discovery
+2019-04-16 01:37:11.427 +02:00 [DBG] Endpoint enabled: Discovery, successfully created handler: IdentityServer4.Endpoints.DiscoveryEndpoint
+2019-04-16 01:37:11.427 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.DiscoveryEndpoint for /.well-known/openid-configuration
+2019-04-16 01:37:11.427 +02:00 [DBG] Start discovery request
+2019-04-16 01:37:11.622 +02:00 [DBG] Request path /connect/checksession matched to endpoint type Checksession
+2019-04-16 01:37:11.622 +02:00 [DBG] Endpoint enabled: Checksession, successfully created handler: IdentityServer4.Endpoints.CheckSessionEndpoint
+2019-04-16 01:37:11.622 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.CheckSessionEndpoint for /connect/checksession
+2019-04-16 01:37:11.622 +02:00 [DBG] Rendering check session result
+2019-04-16 01:37:44.842 +02:00 [DBG] CORS request made for path: /.well-known/openid-configuration from origin: http://localhost:8080
+2019-04-16 01:37:44.843 +02:00 [DBG] Client list checked and origin: http://localhost:8080 is allowed
+2019-04-16 01:37:44.844 +02:00 [DBG] CorsPolicyService allowed origin: http://localhost:8080
+2019-04-16 01:37:44.845 +02:00 [DBG] Request path /.well-known/openid-configuration matched to endpoint type Discovery
+2019-04-16 01:37:44.845 +02:00 [DBG] Endpoint enabled: Discovery, successfully created handler: IdentityServer4.Endpoints.DiscoveryEndpoint
+2019-04-16 01:37:44.845 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.DiscoveryEndpoint for /.well-known/openid-configuration
+2019-04-16 01:37:44.845 +02:00 [DBG] Start discovery request
+2019-04-16 01:37:45.077 +02:00 [DBG] Request path /connect/checksession matched to endpoint type Checksession
+2019-04-16 01:37:45.078 +02:00 [DBG] Endpoint enabled: Checksession, successfully created handler: IdentityServer4.Endpoints.CheckSessionEndpoint
+2019-04-16 01:37:45.078 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.CheckSessionEndpoint for /connect/checksession
+2019-04-16 01:37:45.078 +02:00 [DBG] Rendering check session result
+2019-04-16 01:37:52.913 +02:00 [DBG] Request path /connect/endsession matched to endpoint type Endsession
+2019-04-16 01:37:52.914 +02:00 [DBG] Endpoint enabled: Endsession, successfully created handler: IdentityServer4.Endpoints.EndSessionEndpoint
+2019-04-16 01:37:52.915 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.EndSessionEndpoint for /connect/endsession
+2019-04-16 01:37:52.923 +02:00 [DBG] Processing signout request for 1
+2019-04-16 01:37:52.927 +02:00 [DBG] Start end session request validation
+2019-04-16 01:37:52.934 +02:00 [DBG] Start identity token validation
+2019-04-16 01:37:52.939 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:37:52.939 +02:00 [DBG] Client found: frontStore / Front Store Client
+2019-04-16 01:37:52.942 +02:00 [DBG] IsActive called from: IdentityTokenValidation
+2019-04-16 01:37:52.943 +02:00 [DBG] Calling into custom token validator: IdentityServer4.Validation.DefaultCustomTokenValidator
+2019-04-16 01:37:52.943 +02:00 [DBG] Token validation success
+{"ClientId":"frontStore","ClientName":"Front Store Client","ValidateLifetime":false,"AccessTokenType":null,"ExpectedScope":null,"TokenHandle":null,"JwtId":null,"Claims":{"nbf":1555370815,"exp":1555371115,"iss":"http://localhost:5000","aud":"frontStore","iat":1555370815,"at_hash":"o-RtyTKwcmj4hksFh8V2fQ","sid":"4c90b9b7b49e028350f8ebbc9b62d934","sub":"1","auth_time":1555369978,"idp":"local","amr":"pwd"},"$type":"TokenValidationLog"}
+2019-04-16 01:37:52.946 +02:00 [INF] End session request validation success
+{"ClientId":"frontStore","ClientName":"Front Store Client","SubjectId":"1","PostLogOutUri":"http://localhost:8080","State":null,"Raw":{"id_token_hint":"eyJhbGciOiJSUzI1NiIsImtpZCI6ImM3NGRjMjQ2NzY5OTc1MzNkOTEyMDBjZGZiNjhlYWQxIiwidHlwIjoiSldUIn0.eyJuYmYiOjE1NTUzNzA4MTUsImV4cCI6MTU1NTM3MTExNSwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo1MDAwIiwiYXVkIjoiZnJvbnRTdG9yZSIsImlhdCI6MTU1NTM3MDgxNSwiYXRfaGFzaCI6Im8tUnR5VEt3Y21qNGhrc0ZoOFYyZlEiLCJzaWQiOiI0YzkwYjliN2I0OWUwMjgzNTBmOGViYmM5YjYyZDkzNCIsInN1YiI6IjEiLCJhdXRoX3RpbWUiOjE1NTUzNjk5NzgsImlkcCI6ImxvY2FsIiwiYW1yIjpbInB3ZCJdfQ.B3Xu-pYGCClcwlGproeAFNeZJRHfZYYw-aeK4W8nczFmAamcqsq6pui9m_NtXBnRIU-cmt2ybGSb-apwbc-zUlKiwyfZLUkZh7xBFWaZhsCP9o2vBk_ACjKd7KhfV_wrMFqzVED_nh__SOqEapqjmHG-G6_VccRvzmLMWYXaQ_UokS9tpvZgBBKtpgcYGZCBOvkv3oN0-oRua3yFqkvKQIAEuhu4nEh_Iho-kO6i3gKz03HeAaLufEnCwZK4r788ZYnA2LRsuCZHho6z9QIoPxxQ4uDaHQPvuBnquGIfejZfOSJoq07qdpflX5wvYGWeh2ws4Tnd7HHzjCVGqY2LIw","post_logout_redirect_uri":"http://localhost:8080"},"$type":"EndSessionRequestValidationLog"}
+2019-04-16 01:37:52.946 +02:00 [DBG] Success validating end session request from frontStore
+2019-04-16 01:37:52.992 +02:00 [INF] AuthenticationScheme: idsrv signed out.
+2019-04-16 01:37:53.148 +02:00 [DBG] Request path /connect/endsession/callback matched to endpoint type Endsession
+2019-04-16 01:37:53.189 +02:00 [DBG] Endpoint enabled: Endsession, successfully created handler: IdentityServer4.Endpoints.EndSessionCallbackEndpoint
+2019-04-16 01:37:53.189 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.EndSessionCallbackEndpoint for /connect/endsession/callback
+2019-04-16 01:37:53.195 +02:00 [DBG] Processing signout callback request
+2019-04-16 01:37:53.208 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:37:53.208 +02:00 [DBG] No client front-channel logout URLs
+2019-04-16 01:37:53.208 +02:00 [DBG] No client back-channel logout URLs
+2019-04-16 01:37:53.208 +02:00 [INF] Successful signout callback.
+2019-04-16 01:37:53.208 +02:00 [DBG] No client front-channel iframe urls
+2019-04-16 01:37:53.208 +02:00 [DBG] No client back-channel iframe urls
+2019-04-16 01:40:18.234 +02:00 [DBG] CORS request made for path: /.well-known/openid-configuration from origin: http://localhost:8080
+2019-04-16 01:40:18.234 +02:00 [DBG] Client list checked and origin: http://localhost:8080 is allowed
+2019-04-16 01:40:18.234 +02:00 [DBG] CorsPolicyService allowed origin: http://localhost:8080
+2019-04-16 01:40:18.234 +02:00 [DBG] Request path /.well-known/openid-configuration matched to endpoint type Discovery
+2019-04-16 01:40:18.234 +02:00 [DBG] Endpoint enabled: Discovery, successfully created handler: IdentityServer4.Endpoints.DiscoveryEndpoint
+2019-04-16 01:40:18.235 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.DiscoveryEndpoint for /.well-known/openid-configuration
+2019-04-16 01:40:18.235 +02:00 [DBG] Start discovery request
+2019-04-16 01:40:18.256 +02:00 [DBG] Request path /connect/authorize matched to endpoint type Authorize
+2019-04-16 01:40:18.256 +02:00 [DBG] Endpoint enabled: Authorize, successfully created handler: IdentityServer4.Endpoints.AuthorizeEndpoint
+2019-04-16 01:40:18.256 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.AuthorizeEndpoint for /connect/authorize
+2019-04-16 01:40:18.256 +02:00 [DBG] Start authorize request
+2019-04-16 01:40:18.257 +02:00 [DBG] No user present in authorize request
+2019-04-16 01:40:18.257 +02:00 [DBG] Start authorize request protocol validation
+2019-04-16 01:40:18.258 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:40:18.258 +02:00 [DBG] Checking for PKCE parameters
+2019-04-16 01:40:18.258 +02:00 [DBG] Calling into custom validator: IdentityServer4.Validation.DefaultCustomAuthorizeRequestValidator
+2019-04-16 01:40:18.259 +02:00 [INF] ValidatedAuthorizeRequest
+{"ClientId":"frontStore","ClientName":"Front Store Client","RedirectUri":"http://localhost:8080/callback","AllowedRedirectUris":["http://localhost:8080/callback"],"SubjectId":"anonymous","ResponseType":"code","ResponseMode":"query","GrantType":"authorization_code","RequestedScopes":"openid profile api1","State":"20af0c5899c5472090d28b1522de2ce5","UiLocales":null,"Nonce":null,"AuthenticationContextReferenceClasses":null,"DisplayMode":null,"PromptMode":null,"MaxAge":null,"LoginHint":null,"SessionId":null,"Raw":{"client_id":"frontStore","redirect_uri":"http://localhost:8080/callback","response_type":"code","scope":"openid profile api1","state":"20af0c5899c5472090d28b1522de2ce5","code_challenge":"3AVJAckYYjMRGCofZRtYJRY971dEAc4LeJN563mD_qw","code_challenge_method":"S256"},"$type":"AuthorizeRequestValidationLog"}
+2019-04-16 01:40:18.259 +02:00 [INF] Showing login: User is not authenticated
+2019-04-16 01:40:18.272 +02:00 [DBG] Start authorize request protocol validation
+2019-04-16 01:40:18.272 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:40:18.272 +02:00 [DBG] Checking for PKCE parameters
+2019-04-16 01:40:18.273 +02:00 [DBG] Calling into custom validator: IdentityServer4.Validation.DefaultCustomAuthorizeRequestValidator
+2019-04-16 01:40:18.276 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:40:24.281 +02:00 [DBG] CORS request made for path: /Account/Login from origin: null but was ignored because path was not for an allowed IdentityServer CORS endpoint
+2019-04-16 01:40:24.292 +02:00 [DBG] Start authorize request protocol validation
+2019-04-16 01:40:24.292 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:40:24.292 +02:00 [DBG] Checking for PKCE parameters
+2019-04-16 01:40:24.292 +02:00 [DBG] Calling into custom validator: IdentityServer4.Validation.DefaultCustomAuthorizeRequestValidator
+2019-04-16 01:40:24.302 +02:00 [DBG] Augmenting SignInContext
+2019-04-16 01:40:24.304 +02:00 [DBG] Adding idp claim with value: local
+2019-04-16 01:40:24.304 +02:00 [DBG] Adding amr claim with value: pwd
+2019-04-16 01:40:24.308 +02:00 [INF] AuthenticationScheme: idsrv signed in.
+2019-04-16 01:40:24.308 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:40:24.314 +02:00 [DBG] Request path /connect/authorize/callback matched to endpoint type Authorize
+2019-04-16 01:40:24.315 +02:00 [DBG] Endpoint enabled: Authorize, successfully created handler: IdentityServer4.Endpoints.AuthorizeCallbackEndpoint
+2019-04-16 01:40:24.315 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.AuthorizeCallbackEndpoint for /connect/authorize/callback
+2019-04-16 01:40:24.315 +02:00 [DBG] Start authorize callback request
+2019-04-16 01:40:24.315 +02:00 [DBG] User in authorize request: 1
+2019-04-16 01:40:24.315 +02:00 [DBG] Start authorize request protocol validation
+2019-04-16 01:40:24.315 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:40:24.315 +02:00 [DBG] Checking for PKCE parameters
+2019-04-16 01:40:24.315 +02:00 [DBG] Calling into custom validator: IdentityServer4.Validation.DefaultCustomAuthorizeRequestValidator
+2019-04-16 01:40:24.315 +02:00 [INF] ValidatedAuthorizeRequest
+{"ClientId":"frontStore","ClientName":"Front Store Client","RedirectUri":"http://localhost:8080/callback","AllowedRedirectUris":["http://localhost:8080/callback"],"SubjectId":"1","ResponseType":"code","ResponseMode":"query","GrantType":"authorization_code","RequestedScopes":"openid profile api1","State":"20af0c5899c5472090d28b1522de2ce5","UiLocales":null,"Nonce":null,"AuthenticationContextReferenceClasses":null,"DisplayMode":null,"PromptMode":null,"MaxAge":null,"LoginHint":null,"SessionId":"d713f088542a3499f8332cd844ebb3da","Raw":{"client_id":"frontStore","redirect_uri":"http://localhost:8080/callback","response_type":"code","scope":"openid profile api1","state":"20af0c5899c5472090d28b1522de2ce5","code_challenge":"3AVJAckYYjMRGCofZRtYJRY971dEAc4LeJN563mD_qw","code_challenge_method":"S256"},"$type":"AuthorizeRequestValidationLog"}
+2019-04-16 01:40:24.315 +02:00 [DBG] IsActive called from: AuthorizeEndpoint
+2019-04-16 01:40:24.315 +02:00 [DBG] user_consent grant with value: frontStore|1 not found in store.
+2019-04-16 01:40:24.315 +02:00 [DBG] Found no prior consent from consent store, consent is required
+2019-04-16 01:40:24.315 +02:00 [INF] Showing consent: User has not yet consented
+2019-04-16 01:40:24.321 +02:00 [DBG] Start authorize request protocol validation
+2019-04-16 01:40:24.321 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:40:24.321 +02:00 [DBG] Checking for PKCE parameters
+2019-04-16 01:40:24.321 +02:00 [DBG] Calling into custom validator: IdentityServer4.Validation.DefaultCustomAuthorizeRequestValidator
+2019-04-16 01:40:24.321 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:40:27.885 +02:00 [DBG] CORS request made for path: /consent from origin: null but was ignored because path was not for an allowed IdentityServer CORS endpoint
+2019-04-16 01:40:27.887 +02:00 [DBG] Start authorize request protocol validation
+2019-04-16 01:40:27.887 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:40:27.887 +02:00 [DBG] Checking for PKCE parameters
+2019-04-16 01:40:27.887 +02:00 [DBG] Calling into custom validator: IdentityServer4.Validation.DefaultCustomAuthorizeRequestValidator
+2019-04-16 01:40:27.888 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:40:28.131 +02:00 [DBG] Request path /connect/authorize/callback matched to endpoint type Authorize
+2019-04-16 01:40:28.134 +02:00 [DBG] Endpoint enabled: Authorize, successfully created handler: IdentityServer4.Endpoints.AuthorizeCallbackEndpoint
+2019-04-16 01:40:28.134 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.AuthorizeCallbackEndpoint for /connect/authorize/callback
+2019-04-16 01:40:28.134 +02:00 [DBG] Start authorize callback request
+2019-04-16 01:40:28.138 +02:00 [DBG] User in authorize request: 1
+2019-04-16 01:40:28.138 +02:00 [DBG] Start authorize request protocol validation
+2019-04-16 01:40:28.138 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:40:28.138 +02:00 [DBG] Checking for PKCE parameters
+2019-04-16 01:40:28.138 +02:00 [DBG] Calling into custom validator: IdentityServer4.Validation.DefaultCustomAuthorizeRequestValidator
+2019-04-16 01:40:28.139 +02:00 [INF] ValidatedAuthorizeRequest
+{"ClientId":"frontStore","ClientName":"Front Store Client","RedirectUri":"http://localhost:8080/callback","AllowedRedirectUris":["http://localhost:8080/callback"],"SubjectId":"1","ResponseType":"code","ResponseMode":"query","GrantType":"authorization_code","RequestedScopes":"openid profile api1","State":"20af0c5899c5472090d28b1522de2ce5","UiLocales":null,"Nonce":null,"AuthenticationContextReferenceClasses":null,"DisplayMode":null,"PromptMode":null,"MaxAge":null,"LoginHint":null,"SessionId":"d713f088542a3499f8332cd844ebb3da","Raw":{"client_id":"frontStore","redirect_uri":"http://localhost:8080/callback","response_type":"code","scope":"openid profile api1","state":"20af0c5899c5472090d28b1522de2ce5","code_challenge":"3AVJAckYYjMRGCofZRtYJRY971dEAc4LeJN563mD_qw","code_challenge_method":"S256"},"$type":"AuthorizeRequestValidationLog"}
+2019-04-16 01:40:28.139 +02:00 [DBG] IsActive called from: AuthorizeEndpoint
+2019-04-16 01:40:28.139 +02:00 [DBG] user_consent grant with value: frontStore|1 not found in store.
+2019-04-16 01:40:28.139 +02:00 [DBG] Found no prior consent from consent store, consent is required
+2019-04-16 01:40:28.139 +02:00 [INF] User consented to scopes: ["openid","profile","api1"]
+2019-04-16 01:40:28.139 +02:00 [DBG] User indicated to remember consent for scopes: ["openid","profile","api1"]
+2019-04-16 01:40:28.139 +02:00 [DBG] Client allows remembering consent, and consent given. Updating consent store for subject: 1
+2019-04-16 01:40:28.149 +02:00 [DBG] Creating Authorization Code Flow response.
+2019-04-16 01:40:28.167 +02:00 [INF] Authorize endpoint response
+{"SubjectId":"1","ClientId":"frontStore","RedirectUri":"http://localhost:8080/callback","State":"20af0c5899c5472090d28b1522de2ce5","Scope":"openid profile api1","Error":null,"ErrorDescription":null,"$type":"AuthorizeResponseLog"}
+2019-04-16 01:40:28.178 +02:00 [DBG] Augmenting SignInContext
+2019-04-16 01:40:28.179 +02:00 [INF] AuthenticationScheme: idsrv signed in.
+2019-04-16 01:40:28.850 +02:00 [DBG] CORS request made for path: /.well-known/openid-configuration from origin: http://localhost:8080
+2019-04-16 01:40:28.850 +02:00 [DBG] Client list checked and origin: http://localhost:8080 is allowed
+2019-04-16 01:40:28.850 +02:00 [DBG] CorsPolicyService allowed origin: http://localhost:8080
+2019-04-16 01:40:28.851 +02:00 [DBG] Request path /.well-known/openid-configuration matched to endpoint type Discovery
+2019-04-16 01:40:28.851 +02:00 [DBG] Endpoint enabled: Discovery, successfully created handler: IdentityServer4.Endpoints.DiscoveryEndpoint
+2019-04-16 01:40:28.851 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.DiscoveryEndpoint for /.well-known/openid-configuration
+2019-04-16 01:40:28.851 +02:00 [DBG] Start discovery request
+2019-04-16 01:40:28.962 +02:00 [DBG] CORS request made for path: /connect/token from origin: http://localhost:8080
+2019-04-16 01:40:28.962 +02:00 [DBG] Client list checked and origin: http://localhost:8080 is allowed
+2019-04-16 01:40:28.962 +02:00 [DBG] CorsPolicyService allowed origin: http://localhost:8080
+2019-04-16 01:40:28.962 +02:00 [DBG] Request path /connect/token matched to endpoint type Token
+2019-04-16 01:40:28.962 +02:00 [DBG] Endpoint enabled: Token, successfully created handler: IdentityServer4.Endpoints.TokenEndpoint
+2019-04-16 01:40:28.962 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.TokenEndpoint for /connect/token
+2019-04-16 01:40:28.962 +02:00 [DBG] Start token request.
+2019-04-16 01:40:28.962 +02:00 [DBG] Start client validation
+2019-04-16 01:40:28.962 +02:00 [DBG] Start parsing Basic Authentication secret
+2019-04-16 01:40:28.962 +02:00 [DBG] Start parsing for secret in post body
+2019-04-16 01:40:28.963 +02:00 [DBG] client id without secret found
+2019-04-16 01:40:28.963 +02:00 [DBG] Parser found secret: PostBodySecretParser
+2019-04-16 01:40:28.963 +02:00 [DBG] Secret id found: frontStore
+2019-04-16 01:40:28.963 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:40:28.963 +02:00 [DBG] Public Client - skipping secret validation success
+2019-04-16 01:40:28.963 +02:00 [DBG] Client validation success
+2019-04-16 01:40:28.963 +02:00 [DBG] Start token request validation
+2019-04-16 01:40:28.963 +02:00 [DBG] Start validation of authorization code token request
+2019-04-16 01:40:28.981 +02:00 [DBG] Client required a proof key for code exchange. Starting PKCE validation
+2019-04-16 01:40:28.981 +02:00 [DBG] IsActive called from: AuthorizationCodeValidation
+2019-04-16 01:40:28.981 +02:00 [DBG] Validation of authorization code token request success
+2019-04-16 01:40:28.982 +02:00 [INF] Token request validation success
+{"ClientId":"frontStore","ClientName":"Front Store Client","GrantType":"authorization_code","Scopes":null,"AuthorizationCode":"4fb3c8aa7054bb57ca383c1c9de0b04d3c2eeea2c4f16da34e4e8aeed8d719a4","RefreshToken":null,"UserName":null,"AuthenticationContextReferenceClasses":null,"Tenant":null,"IdP":null,"Raw":{"client_id":"frontStore","code":"4fb3c8aa7054bb57ca383c1c9de0b04d3c2eeea2c4f16da34e4e8aeed8d719a4","redirect_uri":"http://localhost:8080/callback","code_verifier":"b1b481147af74ca687fa862f17cee85a10929b325b1d46dcb1c4a5652d5b308343087537cac0486c8f0875fc92873763","grant_type":"authorization_code"},"$type":"TokenRequestValidationLog"}
+2019-04-16 01:40:28.982 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:40:28.982 +02:00 [DBG] Getting claims for access token for client: frontStore
+2019-04-16 01:40:28.982 +02:00 [DBG] Getting claims for access token for subject: 1
+2019-04-16 01:40:28.982 +02:00 [DBG] Get profile called for subject 1 from client Front Store Client with claim types [] via ClaimsProviderAccessToken
+2019-04-16 01:40:28.982 +02:00 [DBG] Issued claims: []
+2019-04-16 01:40:28.986 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:40:28.986 +02:00 [DBG] Getting claims for identity token for subject: 1 and client: frontStore
+2019-04-16 01:40:28.986 +02:00 [DBG] In addition to an id_token, an access_token was requested. No claims other than sub are included in the id_token. To obtain more user claims, either use the user info endpoint or set AlwaysIncludeUserClaimsInIdToken on the client configuration.
+2019-04-16 01:40:28.990 +02:00 [DBG] Token request success.
+2019-04-16 01:40:29.011 +02:00 [DBG] CORS request made for path: /connect/userinfo from origin: http://localhost:8080
+2019-04-16 01:40:29.012 +02:00 [DBG] Client list checked and origin: http://localhost:8080 is allowed
+2019-04-16 01:40:29.012 +02:00 [DBG] CorsPolicyService allowed origin: http://localhost:8080
+2019-04-16 01:40:29.033 +02:00 [DBG] CORS request made for path: /connect/userinfo from origin: http://localhost:8080
+2019-04-16 01:40:29.034 +02:00 [DBG] Client list checked and origin: http://localhost:8080 is allowed
+2019-04-16 01:40:29.034 +02:00 [DBG] CorsPolicyService allowed origin: http://localhost:8080
+2019-04-16 01:40:29.034 +02:00 [DBG] Request path /connect/userinfo matched to endpoint type Userinfo
+2019-04-16 01:40:29.034 +02:00 [DBG] Endpoint enabled: Userinfo, successfully created handler: IdentityServer4.Endpoints.UserInfoEndpoint
+2019-04-16 01:40:29.034 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.UserInfoEndpoint for /connect/userinfo
+2019-04-16 01:40:29.034 +02:00 [DBG] Start userinfo request
+2019-04-16 01:40:29.034 +02:00 [DBG] Bearer token found in header
+2019-04-16 01:40:29.036 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:40:29.037 +02:00 [DBG] client configuration validation for client frontStore succeeded.
+2019-04-16 01:40:29.037 +02:00 [DBG] IsActive called from: AccessTokenValidation
+2019-04-16 01:40:29.037 +02:00 [DBG] Calling into custom token validator: IdentityServer4.Validation.DefaultCustomTokenValidator
+2019-04-16 01:40:29.037 +02:00 [DBG] Token validation success
+{"ClientId":null,"ClientName":null,"ValidateLifetime":true,"AccessTokenType":"Jwt","ExpectedScope":"openid","TokenHandle":null,"JwtId":null,"Claims":{"nbf":1555371628,"exp":1555375228,"iss":"http://localhost:5000","aud":["http://localhost:5000/resources","api1"],"client_id":"frontStore","sub":"1","auth_time":1555371624,"idp":"local","scope":["openid","profile","api1"],"amr":"pwd"},"$type":"TokenValidationLog"}
+2019-04-16 01:40:29.037 +02:00 [DBG] IsActive called from: UserInfoRequestValidation
+2019-04-16 01:40:29.037 +02:00 [DBG] Creating userinfo response
+2019-04-16 01:40:29.037 +02:00 [DBG] Scopes in access token: openid profile api1
+2019-04-16 01:40:29.037 +02:00 [DBG] Scopes in access token: openid profile api1
+2019-04-16 01:40:29.037 +02:00 [DBG] Requested claim types: sub name family_name given_name middle_name nickname preferred_username profile picture website gender birthdate zoneinfo locale updated_at
+2019-04-16 01:40:29.037 +02:00 [DBG] Scopes in access token: openid profile api1
+2019-04-16 01:40:29.037 +02:00 [DBG] Get profile called for subject 1 from client Front Store Client with claim types ["sub","name","family_name","given_name","middle_name","nickname","preferred_username","profile","picture","website","gender","birthdate","zoneinfo","locale","updated_at"] via UserInfoEndpoint
+2019-04-16 01:40:29.037 +02:00 [DBG] Issued claims: []
+2019-04-16 01:40:29.037 +02:00 [INF] Profile service returned the following claim types: 
+2019-04-16 01:40:29.037 +02:00 [DBG] End userinfo request
+2019-04-16 01:40:29.069 +02:00 [DBG] Request path /connect/checksession matched to endpoint type Checksession
+2019-04-16 01:40:29.069 +02:00 [DBG] Endpoint enabled: Checksession, successfully created handler: IdentityServer4.Endpoints.CheckSessionEndpoint
+2019-04-16 01:40:29.069 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.CheckSessionEndpoint for /connect/checksession
+2019-04-16 01:40:29.069 +02:00 [DBG] Rendering check session result
+2019-04-16 01:40:29.875 +02:00 [DBG] CORS request made for path: /.well-known/openid-configuration from origin: http://localhost:8080
+2019-04-16 01:40:29.876 +02:00 [DBG] Client list checked and origin: http://localhost:8080 is allowed
+2019-04-16 01:40:29.876 +02:00 [DBG] CorsPolicyService allowed origin: http://localhost:8080
+2019-04-16 01:40:29.877 +02:00 [DBG] Request path /.well-known/openid-configuration matched to endpoint type Discovery
+2019-04-16 01:40:29.877 +02:00 [DBG] Endpoint enabled: Discovery, successfully created handler: IdentityServer4.Endpoints.DiscoveryEndpoint
+2019-04-16 01:40:29.877 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.DiscoveryEndpoint for /.well-known/openid-configuration
+2019-04-16 01:40:29.877 +02:00 [DBG] Start discovery request
+2019-04-16 01:40:30.029 +02:00 [DBG] Request path /connect/checksession matched to endpoint type Checksession
+2019-04-16 01:40:30.029 +02:00 [DBG] Endpoint enabled: Checksession, successfully created handler: IdentityServer4.Endpoints.CheckSessionEndpoint
+2019-04-16 01:40:30.029 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.CheckSessionEndpoint for /connect/checksession
+2019-04-16 01:40:30.030 +02:00 [DBG] Rendering check session result

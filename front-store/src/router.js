@@ -8,6 +8,7 @@ import AboutUs from './pages/AboutUs.vue';
 import OrderPlaced from './pages/OrderPlaced.vue';
 import PaymentRedirect from './pages/PaymentRedirect.vue';
 import PaymentMock from './pages/PaymentMock.vue';
+import Callback from './pages/Callback.vue';
 
 Vue.use(Router);
 
@@ -19,6 +20,12 @@ export default new Router({
       path: '/',
       name: 'home',
       component: Home,
+    },
+    {
+      path: '/callback',
+      name: 'callback',
+      component: Callback,
+      meta: { layout: 'minimal' }
     },
     {
       path: '/products/:productId',

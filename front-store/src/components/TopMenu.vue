@@ -31,7 +31,8 @@
                 <path d="M21 21l-5.2-5.2"></path>
               </svg>
             </a>
-            <a class="btn btn-sm btn-outline-secondary" href="#">Sign up</a>            
+            <a class="btn btn-sm btn-outline-secondary" @click="login()">Sign in</a>    
+            <a class="btn btn-sm btn-outline-secondary" @click="logout()">Logout</a>             
             <CartInfo />
           </div>
         </div>
@@ -54,6 +55,7 @@
 
 <script>
 import CartInfo from './CartInfo.vue';
+
 export default {
   components: { CartInfo },
   created() {
@@ -68,6 +70,14 @@ export default {
       return this.$store.state.products.categoriesList;
     }
   },
+  methods: {
+    login() {
+      this.$auth.login();
+    },
+    logout() {
+      this.$auth.logout();
+    }
+  }
 }
 </script>
 

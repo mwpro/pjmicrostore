@@ -34,7 +34,7 @@ namespace Checkout.Payments
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-            const string connectionString = @"Server=(localdb)\mssqllocaldb;Database=Checkout.Payments;Trusted_Connection=True;ConnectRetryCount=0";
+            const string connectionString = @"Server=localhost,1433;Database=Checkout.Payments;User Id=sa;Password=sqlDevPassw0rd;ConnectRetryCount=0";
             services.AddDbContext<PaymentsDbContext>
                 (options => options.UseSqlServer(connectionString));
 

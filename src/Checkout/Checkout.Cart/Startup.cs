@@ -35,7 +35,7 @@ namespace Checkout.Cart
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            const string connectionString = @"Server=(localdb)\mssqllocaldb;Database=Checkout.Cart;Trusted_Connection=True;ConnectRetryCount=0";
+            const string connectionString = @"Server=localhost,1433;Database=Checkout.Cart;User Id=sa;Password=sqlDevPassw0rd;ConnectRetryCount=0";
             services.AddDbContext<CartContext>
                 (options => options.UseSqlServer(connectionString));
 

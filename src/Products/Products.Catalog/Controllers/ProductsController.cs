@@ -21,14 +21,28 @@ namespace Products.Catalog.Controllers
         }
         
         [HttpGet("products")]
-        public IActionResult GetAllProducts()
+        public IActionResult GetAllProducts([FromQuery]int page = 1,
+            int productsPerPage = 10)
         {
-            return Ok(_productsContext.Products
+            if (page < 1 || productsPerPage < 1)
+                return BadRequest("Invalid pagination parameters");
+            
+            var products = _productsContext.Products
                 .Include(x => x.Category)
                 .Include(x => x.Attributes)
-                    .ThenInclude(x => x.Attribute)
+                .ThenInclude(x => x.Attribute)
+                .Skip(productsPerPage * (page - 1))
+                .Take(productsPerPage)
                 .AsNoTracking()
-                .Select(x => new ProductDto(x)).ToList());
+                .Select(x => new ProductDto(x)).ToList();
+
+            var productsCount = _productsContext.Products.Count();
+            
+            return Ok(new ProductsList()
+            {
+                Products = products,
+                ProductsCount = productsCount
+            });
         }
 
         [HttpPost("products")]
@@ -147,6 +161,12 @@ namespace Products.Catalog.Controllers
         public bool IsDeleted { get; set; }
 
         public IEnumerable<AttributeValueDto> Attributes { get; set; }
+    }
+
+    public class ProductsList
+    {
+        public int ProductsCount { get; set; }
+        public List<ProductDto> Products { get; set; }
     }
 
     public class AttributeValueDto

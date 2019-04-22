@@ -26,9 +26,10 @@ export default {
         .then((response) => {
           if (response.status !== 200) throw Error(response.message);
           let orders = response.data;
+          /* hangs on Mac?
           if (typeof orders !== 'object') {
             orders = [];
-          }
+          }*/
 
           commit('getOrders', orders);
           return orders;
@@ -41,9 +42,10 @@ export default {
         .then((response) => {
           if (response.status !== 200) throw Error(response.message);
           let order = response.data;
+          /* hangs on Mac?
           if (typeof order !== 'object') {
             order = [];
-          }
+          }*/
 
           commit('getOrder', order);
           return order;
@@ -56,9 +58,10 @@ export default {
         .then((response) => {
           if (response.status !== 200) throw Error(response.message);
           let order = response.data;
+          /* hangs on Mac?
           if (typeof order !== 'object') {
             order = [];
-          }
+          }*/
 
           dispatch('getOrderAction', orderId);
           return order;
@@ -71,9 +74,10 @@ export default {
         .then((response) => {
           if (response.status !== 200) throw Error(response.message);
           let order = response.data;
+          /* hangs on Mac?
           if (typeof order !== 'object') {
             order = [];
-          }
+          }*/
 
           dispatch('getOrderAction', orderId);
           return order;

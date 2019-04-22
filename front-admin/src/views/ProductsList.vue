@@ -17,6 +17,13 @@
         <b-button size="sm" @click="row" class="mr-1">Usuń</b-button>
       </template>
     </b-table>
+
+    <b-pagination 
+      v-model="currentPage"
+      :total-rows="productsCount"
+      :per-page="perPage"
+    >
+    </b-pagination>
   </div>
 </template>
 
@@ -24,6 +31,8 @@
 export default {
   data() {
     return {
+      currentPage: 1,
+      perPage: 10,
       fieldsConfig: [
         {
           key: "id",
@@ -52,13 +61,28 @@ export default {
       ]
     };
   },
+  watch: {
+    currentPage: function (newQuestion, oldQuestion) {
+      this.getProducts();
+    }
+  },
+  methods: {
+    getProducts() {
+      this.$store.dispatch("products/getProductsAction", {
+        page: this.currentPage
+      });
+    }
+  },
   computed: {
     products() {
       return this.$store.state.products.productsList;
+    },
+    productsCount() {
+      return this.$store.state.products.productsCount;
     }
   },
   created() {
-    this.$store.dispatch("products/getProductsAction");
+    this.getProducts();
   }
 };
 </script>

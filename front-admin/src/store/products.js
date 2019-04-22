@@ -1,5 +1,6 @@
 import axios from 'axios';
 import Vue from 'vue';
+import Qs from 'qs';
 
 export default {
   namespaced: true,
@@ -7,6 +8,7 @@ export default {
     productsList: [
 
     ],
+    productsCount: 0,
     categoriesList: [
 
     ],    
@@ -21,6 +23,9 @@ export default {
     getProducts(state, products) {
       state.productsList = products;
     },    
+    getProductsCount(state, productsCount) {
+      state.productsCount = productsCount;
+    },
     getProduct(state, product) {
       state.product = product;
     },
@@ -32,17 +37,24 @@ export default {
     },
   },
   actions: {
-    getProductsAction({ commit }) {
+    getProductsAction({ commit }, query) {
       return axios
-        .get('/api/products')
+        .get('/api/products', {
+          params: query,
+          paramsSerializer: function (params) {
+            return Qs.stringify(params)
+          }
+        })
         .then((response) => {
           if (response.status !== 200) throw Error(response.message);
           let products = response.data;
+          /* hangs on Mac?
           if (typeof products !== 'object') {
             products = [];
-          }
+          }*/
 
-          commit('getProducts', products);
+          commit('getProducts', products.products);
+          commit('getProductsCount', products.productsCount);
           return products;
         });
       // TODO .catch(captains.error)
@@ -64,9 +76,10 @@ export default {
         .then((response) => {
           if (response.status !== 200) throw Error(response.message);
           let categories = response.data;
+          /* hangs on Mac?
           if (typeof categories !== 'object') {
             categories = [];
-          }
+          }*/
 
           commit('getCategories', categories);
           return categories;
@@ -79,9 +92,10 @@ export default {
         .then((response) => {
           if (response.status !== 200) throw Error(response.message);
           let attributes = response.data;
+          /* hangs on Mac?
           if (typeof attributes !== 'object') {
             attributes = [];
-          }
+          }*/
 
           commit('getAttributes', attributes);
           return attributes;

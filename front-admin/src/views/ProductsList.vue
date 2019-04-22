@@ -66,16 +66,16 @@ export default {
     };
   },
   watch: {
-    currentPage: function (newQuestion, oldQuestion) {
+    currentPage: function () {
       this.getProducts();
-    }
+    },
   },
   methods: {
     getProducts() {
       this.$store.dispatch("products/getProductsAction", {
-        page: this.currentPage
+        page: this.currentPage,
       });
-    }
+    },
   },
   computed: {
     products() {
@@ -83,11 +83,11 @@ export default {
     },
     productsCount() {
       return this.$store.state.products.productsCount;
-    }
+    },
   },
   created() {
     this.getProducts();
-  }
+  },
 };
 </script>
 

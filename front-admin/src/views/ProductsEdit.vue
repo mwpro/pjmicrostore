@@ -23,7 +23,7 @@
       </b-form-group>
 
       <h3>Atrybuty</h3>
-      <b-form-select id="input-3" v-model="attributeToAdd" :options="attributes" required></b-form-select>
+      <b-form-select id="input-3" v-model="attributeToAdd" :options="attributes"></b-form-select>
       <b-button @click="addAttribute()">Dodaj</b-button>
       <b-form-group
         id="input-group-3"

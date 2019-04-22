@@ -1757,3 +1757,91 @@
 2019-04-22 12:52:36.389 +02:00 [DBG] Endpoint enabled: Checksession, successfully created handler: IdentityServer4.Endpoints.CheckSessionEndpoint
 2019-04-22 12:52:36.389 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.CheckSessionEndpoint for /connect/checksession
 2019-04-22 12:52:36.391 +02:00 [DBG] Rendering check session result
+2019-04-22 16:13:34.836 +02:00 [DBG] CORS request made for path: /.well-known/openid-configuration from origin: http://localhost:8080
+2019-04-22 16:13:34.838 +02:00 [DBG] Client list checked and origin: http://localhost:8080 is allowed
+2019-04-22 16:13:34.838 +02:00 [DBG] CorsPolicyService allowed origin: http://localhost:8080
+2019-04-22 16:13:34.839 +02:00 [DBG] Request path /.well-known/openid-configuration matched to endpoint type Discovery
+2019-04-22 16:13:34.987 +02:00 [DBG] Endpoint enabled: Discovery, successfully created handler: IdentityServer4.Endpoints.DiscoveryEndpoint
+2019-04-22 16:13:34.987 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.DiscoveryEndpoint for /.well-known/openid-configuration
+2019-04-22 16:13:34.987 +02:00 [DBG] Start discovery request
+2019-04-22 16:13:35.339 +02:00 [DBG] Request path /connect/checksession matched to endpoint type Checksession
+2019-04-22 16:13:35.339 +02:00 [DBG] Endpoint enabled: Checksession, successfully created handler: IdentityServer4.Endpoints.CheckSessionEndpoint
+2019-04-22 16:13:35.339 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.CheckSessionEndpoint for /connect/checksession
+2019-04-22 16:13:35.339 +02:00 [DBG] Rendering check session result
+2019-04-22 16:18:40.343 +02:00 [DBG] CORS request made for path: /.well-known/openid-configuration from origin: http://localhost:8080
+2019-04-22 16:18:40.355 +02:00 [DBG] Client list checked and origin: http://localhost:8080 is allowed
+2019-04-22 16:18:40.355 +02:00 [DBG] CorsPolicyService allowed origin: http://localhost:8080
+2019-04-22 16:18:40.356 +02:00 [DBG] Request path /.well-known/openid-configuration matched to endpoint type Discovery
+2019-04-22 16:18:40.356 +02:00 [DBG] Endpoint enabled: Discovery, successfully created handler: IdentityServer4.Endpoints.DiscoveryEndpoint
+2019-04-22 16:18:40.356 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.DiscoveryEndpoint for /.well-known/openid-configuration
+2019-04-22 16:18:40.356 +02:00 [DBG] Start discovery request
+2019-04-22 16:18:40.789 +02:00 [DBG] Request path /connect/checksession matched to endpoint type Checksession
+2019-04-22 16:18:40.789 +02:00 [DBG] Endpoint enabled: Checksession, successfully created handler: IdentityServer4.Endpoints.CheckSessionEndpoint
+2019-04-22 16:18:40.789 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.CheckSessionEndpoint for /connect/checksession
+2019-04-22 16:18:40.789 +02:00 [DBG] Rendering check session result
+2019-04-22 16:18:52.349 +02:00 [DBG] CORS request made for path: /.well-known/openid-configuration from origin: http://localhost:8080
+2019-04-22 16:18:52.349 +02:00 [DBG] Client list checked and origin: http://localhost:8080 is allowed
+2019-04-22 16:18:52.349 +02:00 [DBG] CorsPolicyService allowed origin: http://localhost:8080
+2019-04-22 16:18:52.349 +02:00 [DBG] Request path /.well-known/openid-configuration matched to endpoint type Discovery
+2019-04-22 16:18:52.349 +02:00 [DBG] Endpoint enabled: Discovery, successfully created handler: IdentityServer4.Endpoints.DiscoveryEndpoint
+2019-04-22 16:18:52.350 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.DiscoveryEndpoint for /.well-known/openid-configuration
+2019-04-22 16:18:52.350 +02:00 [DBG] Start discovery request
+2019-04-22 16:18:52.676 +02:00 [DBG] Request path /connect/checksession matched to endpoint type Checksession
+2019-04-22 16:18:52.676 +02:00 [DBG] Endpoint enabled: Checksession, successfully created handler: IdentityServer4.Endpoints.CheckSessionEndpoint
+2019-04-22 16:18:52.676 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.CheckSessionEndpoint for /connect/checksession
+2019-04-22 16:18:52.676 +02:00 [DBG] Rendering check session result
+2019-04-22 16:19:49.163 +02:00 [DBG] CORS request made for path: /.well-known/openid-configuration from origin: http://localhost:8080
+2019-04-22 16:19:49.164 +02:00 [DBG] Client list checked and origin: http://localhost:8080 is allowed
+2019-04-22 16:19:49.164 +02:00 [DBG] CorsPolicyService allowed origin: http://localhost:8080
+2019-04-22 16:19:49.164 +02:00 [DBG] Request path /.well-known/openid-configuration matched to endpoint type Discovery
+2019-04-22 16:19:49.179 +02:00 [DBG] Endpoint enabled: Discovery, successfully created handler: IdentityServer4.Endpoints.DiscoveryEndpoint
+2019-04-22 16:19:49.179 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.DiscoveryEndpoint for /.well-known/openid-configuration
+2019-04-22 16:19:49.179 +02:00 [DBG] Start discovery request
+2019-04-22 16:19:49.508 +02:00 [DBG] Request path /connect/checksession matched to endpoint type Checksession
+2019-04-22 16:19:49.508 +02:00 [DBG] Endpoint enabled: Checksession, successfully created handler: IdentityServer4.Endpoints.CheckSessionEndpoint
+2019-04-22 16:19:49.508 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.CheckSessionEndpoint for /connect/checksession
+2019-04-22 16:19:49.508 +02:00 [DBG] Rendering check session result
+2019-04-22 16:20:07.582 +02:00 [DBG] CORS request made for path: /.well-known/openid-configuration from origin: http://localhost:8080
+2019-04-22 16:20:07.582 +02:00 [DBG] Client list checked and origin: http://localhost:8080 is allowed
+2019-04-22 16:20:07.582 +02:00 [DBG] CorsPolicyService allowed origin: http://localhost:8080
+2019-04-22 16:20:07.582 +02:00 [DBG] Request path /.well-known/openid-configuration matched to endpoint type Discovery
+2019-04-22 16:20:07.828 +02:00 [DBG] Endpoint enabled: Discovery, successfully created handler: IdentityServer4.Endpoints.DiscoveryEndpoint
+2019-04-22 16:20:07.828 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.DiscoveryEndpoint for /.well-known/openid-configuration
+2019-04-22 16:20:07.828 +02:00 [DBG] Start discovery request
+2019-04-22 16:20:07.917 +02:00 [DBG] Request path /connect/checksession matched to endpoint type Checksession
+2019-04-22 16:20:07.917 +02:00 [DBG] Endpoint enabled: Checksession, successfully created handler: IdentityServer4.Endpoints.CheckSessionEndpoint
+2019-04-22 16:20:07.918 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.CheckSessionEndpoint for /connect/checksession
+2019-04-22 16:20:07.918 +02:00 [DBG] Rendering check session result
+2019-04-22 16:24:24.718 +02:00 [DBG] CORS request made for path: /.well-known/openid-configuration from origin: http://localhost:8080
+2019-04-22 16:24:24.719 +02:00 [DBG] Client list checked and origin: http://localhost:8080 is allowed
+2019-04-22 16:24:24.719 +02:00 [DBG] CorsPolicyService allowed origin: http://localhost:8080
+2019-04-22 16:24:24.719 +02:00 [DBG] Request path /.well-known/openid-configuration matched to endpoint type Discovery
+2019-04-22 16:24:24.936 +02:00 [DBG] Endpoint enabled: Discovery, successfully created handler: IdentityServer4.Endpoints.DiscoveryEndpoint
+2019-04-22 16:24:24.936 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.DiscoveryEndpoint for /.well-known/openid-configuration
+2019-04-22 16:24:24.936 +02:00 [DBG] Start discovery request
+2019-04-22 16:24:25.139 +02:00 [DBG] Request path /connect/checksession matched to endpoint type Checksession
+2019-04-22 16:24:25.139 +02:00 [DBG] Endpoint enabled: Checksession, successfully created handler: IdentityServer4.Endpoints.CheckSessionEndpoint
+2019-04-22 16:24:25.140 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.CheckSessionEndpoint for /connect/checksession
+2019-04-22 16:24:25.140 +02:00 [DBG] Rendering check session result
+2019-04-22 16:25:29.589 +02:00 [DBG] CORS request made for path: /.well-known/openid-configuration from origin: http://localhost:8080
+2019-04-22 16:25:29.590 +02:00 [DBG] Client list checked and origin: http://localhost:8080 is allowed
+2019-04-22 16:25:29.590 +02:00 [DBG] CorsPolicyService allowed origin: http://localhost:8080
+2019-04-22 16:25:29.591 +02:00 [DBG] Request path /.well-known/openid-configuration matched to endpoint type Discovery
+2019-04-22 16:25:29.790 +02:00 [DBG] Endpoint enabled: Discovery, successfully created handler: IdentityServer4.Endpoints.DiscoveryEndpoint
+2019-04-22 16:25:29.790 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.DiscoveryEndpoint for /.well-known/openid-configuration
+2019-04-22 16:25:29.790 +02:00 [DBG] Start discovery request
+2019-04-22 16:25:30.106 +02:00 [DBG] Request path /connect/checksession matched to endpoint type Checksession
+2019-04-22 16:25:30.106 +02:00 [DBG] Endpoint enabled: Checksession, successfully created handler: IdentityServer4.Endpoints.CheckSessionEndpoint
+2019-04-22 16:25:30.106 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.CheckSessionEndpoint for /connect/checksession
+2019-04-22 16:25:30.106 +02:00 [DBG] Rendering check session result
+2019-04-22 16:40:47.097 +02:00 [DBG] CORS request made for path: /.well-known/openid-configuration from origin: http://localhost:8080
+2019-04-22 16:40:47.099 +02:00 [DBG] Client list checked and origin: http://localhost:8080 is allowed
+2019-04-22 16:40:47.099 +02:00 [DBG] CorsPolicyService allowed origin: http://localhost:8080
+2019-04-22 16:40:47.100 +02:00 [DBG] Request path /.well-known/openid-configuration matched to endpoint type Discovery
+2019-04-22 16:40:47.101 +02:00 [DBG] Endpoint enabled: Discovery, successfully created handler: IdentityServer4.Endpoints.DiscoveryEndpoint
+2019-04-22 16:40:47.101 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.DiscoveryEndpoint for /.well-known/openid-configuration
+2019-04-22 16:40:47.101 +02:00 [DBG] Start discovery request
+2019-04-22 16:40:47.614 +02:00 [DBG] Request path /connect/checksession matched to endpoint type Checksession
+2019-04-22 16:40:47.614 +02:00 [DBG] Endpoint enabled: Checksession, successfully created handler: IdentityServer4.Endpoints.CheckSessionEndpoint
+2019-04-22 16:40:47.614 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.CheckSessionEndpoint for /connect/checksession
+2019-04-22 16:40:47.614 +02:00 [DBG] Rendering check session result

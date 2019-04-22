@@ -16,9 +16,10 @@ namespace Products.Search.Services
         {
             var product = await "http://localhost:53606/api/"
                 .AppendPathSegments("products")
-                .GetJsonAsync<IEnumerable<Product>>();
+                .SetQueryParam("productsPerPage", 1000) // todo
+                .GetJsonAsync<ProductsList>();
 
-            return product;
+            return product.Products;
         }
     }
 }

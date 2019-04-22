@@ -3,6 +3,12 @@ using System.Linq;
 
 namespace Products.Search.Services
 {
+    public class ProductsList
+    {
+        public int ProductsCount { get; set; }
+        public List<Product> Products { get; set; }
+    }
+    
     public class Product
     {
         public int Id { get; set; }

@@ -112,5 +112,15 @@ export default {
         });
       // TODO .catch(captains.error)
     },
+    updateProductAction({ }, product) {
+      return axios
+        .put(`/api/products/${product.productId}`, product)
+        .then((response) => {
+          if (response.status !== 201) throw Error(response.message);
+
+          return response.data;
+        });
+      // TODO .catch(captains.error)
+    },
   },
 };

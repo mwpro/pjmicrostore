@@ -68,6 +68,33 @@ namespace Products.Catalog.Controllers
 
             return Created($"api/products/{product.Id}", product); // todo references not initialized
         }
+        
+        [HttpPut("products/{productId}")]
+        public async Task<IActionResult> EditProduct(int productId, AddProductDto addProductDto)
+        {
+            var product = _productsContext.Products
+                .Include(x => x.Attributes)
+                .FirstOrDefault(x => x.Id == productId);
+            // todo validation
+            if (product == null)
+                return NotFound();
+
+            product.Name = addProductDto.Name;
+            product.Description = addProductDto.Description;
+            product.Price = addProductDto.Price;
+            product.CategoryId = addProductDto.CategoryId;
+//            product.Attributes.Clear();
+
+            product.Attributes = addProductDto.Attributes.Select(x => new AttributeValue()
+            {
+                AttributeId = x.AttributeId,
+                Value = x.AttributeValue
+            }).ToList();
+            
+            await _productsContext.SaveChangesAsync();
+
+            return Created($"api/products/{product.Id}", product); // todo references not initialized
+        }
 
         [HttpGet("products/{productId}")]
         public IActionResult GetProduct(int productId)

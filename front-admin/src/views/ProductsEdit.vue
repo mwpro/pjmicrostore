@@ -62,7 +62,7 @@ export default {
   methods: {
     onSubmit(evt) {
       evt.preventDefault();
-      this.$store.dispatch("products/saveProductAction", this.form)
+      this.$store.dispatch(this.isEditMode ? "products/updateProductAction" : "products/saveProductAction", this.form)
         .then(result => {
           this.$router.push({ name: "products" });
         })
@@ -109,6 +109,7 @@ export default {
     if (this.isEditMode) {
       this.$store.dispatch("products/getProductAction", this.productId)
         .then(result => {
+          this.form.productId = result.id;
           this.form.name = result.name;
           this.form.price = result.price;
           this.form.description = result.description;

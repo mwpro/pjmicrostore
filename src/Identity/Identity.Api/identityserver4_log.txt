@@ -1739,3 +1739,21 @@
 2019-04-22 12:23:31.658 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for sign-out
 2019-04-22 12:23:31.658 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for challenge
 2019-04-22 12:23:31.658 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for forbid
+2019-04-22 12:52:35.941 +02:00 [DBG] CORS request made for path: /.well-known/openid-configuration from origin: http://localhost:8080
+2019-04-22 12:52:35.990 +02:00 [DBG] Client list checked and origin: http://localhost:8080 is allowed
+2019-04-22 12:52:35.990 +02:00 [DBG] CorsPolicyService allowed origin: http://localhost:8080
+2019-04-22 12:52:36.043 +02:00 [DBG] Login Url: /Account/Login
+2019-04-22 12:52:36.043 +02:00 [DBG] Login Return Url Parameter: ReturnUrl
+2019-04-22 12:52:36.043 +02:00 [DBG] Logout Url: /Account/Logout
+2019-04-22 12:52:36.044 +02:00 [DBG] ConsentUrl Url: /consent
+2019-04-22 12:52:36.044 +02:00 [DBG] Consent Return Url Parameter: returnUrl
+2019-04-22 12:52:36.045 +02:00 [DBG] Error Url: /home/error
+2019-04-22 12:52:36.045 +02:00 [DBG] Error Id Parameter: errorId
+2019-04-22 12:52:36.103 +02:00 [DBG] Request path /.well-known/openid-configuration matched to endpoint type Discovery
+2019-04-22 12:52:36.114 +02:00 [DBG] Endpoint enabled: Discovery, successfully created handler: IdentityServer4.Endpoints.DiscoveryEndpoint
+2019-04-22 12:52:36.115 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.DiscoveryEndpoint for /.well-known/openid-configuration
+2019-04-22 12:52:36.125 +02:00 [DBG] Start discovery request
+2019-04-22 12:52:36.388 +02:00 [DBG] Request path /connect/checksession matched to endpoint type Checksession
+2019-04-22 12:52:36.389 +02:00 [DBG] Endpoint enabled: Checksession, successfully created handler: IdentityServer4.Endpoints.CheckSessionEndpoint
+2019-04-22 12:52:36.389 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.CheckSessionEndpoint for /connect/checksession
+2019-04-22 12:52:36.391 +02:00 [DBG] Rendering check session result

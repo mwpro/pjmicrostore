@@ -3,7 +3,7 @@
     <div
       class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
     >
-      <h1 class="h2">Dodaj/edytuj produkt</h1>
+      <h2>{{ isEditMode ? "Edytuj" : "Dodaj" }} produkt</h2>
     </div>
     <b-form @submit="onSubmit" v-if="show">
       <b-form-group id="input-group-1" label="Nazwa produktu:" label-for="input-1">
@@ -22,7 +22,7 @@
         <b-form-textarea id="textarea" v-model="form.description" rows="3" max-rows="6"></b-form-textarea>
       </b-form-group>
 
-      <h2>Atrybuty</h2>
+      <h3>Atrybuty</h3>
       <b-form-select id="input-3" v-model="attributeToAdd" :options="attributes" required></b-form-select>
       <b-button @click="addAttribute()">Dodaj</b-button>
       <b-form-group
@@ -56,10 +56,19 @@ export default {
       show: true
     };
   },
+  props: {
+    productId: String // todo prop type 
+  },
   methods: {
     onSubmit(evt) {
       evt.preventDefault();
-      this.$store.dispatch("products/saveProductAction", this.form);
+      this.$store.dispatch("products/saveProductAction", this.form)
+        .then(result => {
+          this.$router.push({ name: "products" });
+        })
+        .catch(error => {
+            // todo
+        });
     },
     addAttribute() {
       this.form.attributes.push({
@@ -78,7 +87,7 @@ export default {
       var flattenCategories = function(categories, prefix) {
         return categories.reduce((acc, val) => {
           acc.push({ text: `${prefix}${val.name}`, value: val.id });
-          return acc.concat(flattenCategories(val.child, prefix + treePrefix));
+          return acc.concat(flattenCategories(val.child, prefix + treePrefix  ));
         }, []);
       };
       
@@ -88,11 +97,34 @@ export default {
       return this.$store.state.products.attributesList.map(function(attr) {
         return { text: attr.name, value: attr.id };
       });
+    },
+    isEditMode() {
+      console.log(this.productId);
+      return this.productId !== undefined;
     }
   },
   created() {
     this.$store.dispatch("products/getCategoriesAction");
     this.$store.dispatch("products/getAttributesAction");
+    if (this.isEditMode) {
+      this.$store.dispatch("products/getProductAction", this.productId)
+        .then(result => {
+          this.form.name = result.name;
+          this.form.price = result.price;
+          this.form.description = result.description;
+          this.form.categoryId = result.categoryId;
+          this.form.attributes = [];
+          result.attributes.forEach(attr => {
+            this.form.attributes.push({
+              attributeId: attr.attributeId,
+              attributeValue: attr.value
+            });
+          });
+        })
+        .catch(error => {
+          // todo
+        });
+    }
   }
 };
 </script>

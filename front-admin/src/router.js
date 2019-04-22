@@ -35,6 +35,12 @@ export default new Router({
       path: '/products/new',
       name: 'newProduct',      
       component: ProductsEdit
+    }, 
+    {
+      path: '/products/:productId',
+      name: 'editProduct',      
+      component: ProductsEdit,
+      props: true
     },    
     {
       path: '/orders',

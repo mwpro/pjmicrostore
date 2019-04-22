@@ -12,8 +12,12 @@
     </div>
 
     <b-table hover :items="products" :fields="fieldsConfig">
+
+      <template slot="price" slot-scope="row">
+        {{ row.value | currency }}
+      </template>  
       <template slot="actions" slot-scope="row">
-        <b-button size="sm" @click="row" class="mr-1">Edytuj</b-button>
+        <b-button :to="'products/'+row.item.id" size="sm" @click="row" class="mr-1">Edytuj</b-button>
         <b-button size="sm" @click="row" class="mr-1">Usuń</b-button>
       </template>
     </b-table>

@@ -69,14 +69,20 @@ export default {
     },
     removeAttribute(attribute) {
       this.form.attributes.splice(this.form.attributes.indexOf(attribute), 1);
-    }
+    },
+    
   },
   computed: {
     categories() {
-      // todo category tree
-      return this.$store.state.products.categoriesList.map(function(cat) {
-        return { text: cat.name, value: cat.id };
-      });
+      const treePrefix = "-";
+      var flattenCategories = function(categories, prefix) {
+        return categories.reduce((acc, val) => {
+          acc.push({ text: `${prefix}${val.name}`, value: val.id });
+          return acc.concat(flattenCategories(val.child, prefix + treePrefix));
+        }, []);
+      };
+      
+      return flattenCategories(this.$store.state.products.categoriesList, "");
     },
     attributes() {
       return this.$store.state.products.attributesList.map(function(attr) {

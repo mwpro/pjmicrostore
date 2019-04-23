@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
+using MassTransit;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Products.Catalog.Contracts;
 using Products.Catalog.Contracts.ApiModels;
+using Products.Catalog.Contracts.Events;
 using Products.Catalog.Domain;
 
 namespace Products.Catalog.Controllers
@@ -16,10 +18,12 @@ namespace Products.Catalog.Controllers
     public class ProductsController : ControllerBase
     {
         private readonly ProductsContext _productsContext;
+        private readonly IBus _bus;
 
-        public ProductsController(ProductsContext productsContext)
+        public ProductsController(ProductsContext productsContext, IBus bus)
         {
             _productsContext = productsContext;
+            _bus = bus;
         }
         
         [HttpGet("products")]
@@ -36,27 +40,7 @@ namespace Products.Catalog.Controllers
                 .Skip(productsPerPage * (page - 1))
                 .Take(productsPerPage)
                 .AsNoTracking()
-                .Select(product => new ProductDto()
-                {
-                    Id = product.Id,
-                    Name = product.Name,
-                    Description = product.Description,
-                    Price = product.Price,
-                    CategoryId = product.CategoryId,
-                    Category = new CategoryDto
-                    {
-                        Id = product.Category.Id,
-                        Name = product.Category.Name,
-                    },
-                    IsActive = product.IsActive,
-                    IsDeleted = product.IsDeleted,
-                    Attributes = product.Attributes.Select(x => new AttributeValueDto()
-                    {
-                        AttributeId = x.AttributeId,
-                        Name = x.Attribute.Name,
-                        Value = x.Value
-                    }).ToList(),
-                }).ToList();
+                .Select(product => ToProductDto(product)).ToList();
 
             var productsCount = _productsContext.Products.Count();
             
@@ -71,26 +55,45 @@ namespace Products.Catalog.Controllers
         public async Task<IActionResult> AddProduct(AddProductDto addProductDto)
         {
             // todo validation
+            var category = _productsContext.Categories.FirstOrDefault(x => x.Id == addProductDto.CategoryId);
+            if (category == null)
+                return BadRequest("Category not found");
 
+            var attributeIds = addProductDto.Attributes.Select(y => y.AttributeId).ToList();
+            var attributes = _productsContext.Attributes
+                .Where(x => attributeIds.Contains(x.Id)).ToList();
+            var notFoundAttributes = addProductDto.Attributes.Where(x => attributes.All(y => y.Id != x.AttributeId));
+            if (notFoundAttributes.Any())
+                return BadRequest("Attributes not found");
+            
             var product = new Product()
             {
                 Name = addProductDto.Name,
                 Description = addProductDto.Description,
                 Price = addProductDto.Price,
                 CategoryId = addProductDto.CategoryId,
+                Category = category,
                 Attributes = addProductDto.Attributes.Select(x => new AttributeValue()
                 {
                     AttributeId = x.AttributeId,
-                    Value = x.AttributeValue
+                    Value = x.AttributeValue,
+                    Attribute = attributes.First(y => y.Id == x.AttributeId)
                 }).ToList()
             };
 
             _productsContext.Products.Add(product);
             await _productsContext.SaveChangesAsync();
 
-            return Created($"api/products/{product.Id}", product); // todo references not initialized
+            var productDto = ToProductDto(product);
+            await _bus.Publish(new ProductCreatedEvent()
+            {
+                ProductDetails = productDto,
+                CreateDateUtc = DateTime.UtcNow
+            });
+
+            return Created($"api/products/{product.Id}", productDto); // todo references not initialized
         }
-        
+
         [HttpPut("products/{productId}")]
         public async Task<IActionResult> EditProduct(int productId, AddProductDto addProductDto)
         {
@@ -101,21 +104,40 @@ namespace Products.Catalog.Controllers
             if (product == null)
                 return NotFound();
 
+            var category = _productsContext.Categories.FirstOrDefault(x => x.Id == addProductDto.CategoryId);
+            if (category == null)
+                return BadRequest("Category not found");
+
+            var attributeIds = addProductDto.Attributes.Select(y => y.AttributeId).ToList();
+            var attributes = _productsContext.Attributes
+                .Where(x => attributeIds.Contains(x.Id)).ToList();
+            var notFoundAttributes = addProductDto.Attributes.Where(x => attributes.All(y => y.Id != x.AttributeId));
+            if (notFoundAttributes.Any())
+                return BadRequest("Attributes not found");
+
             product.Name = addProductDto.Name;
             product.Description = addProductDto.Description;
             product.Price = addProductDto.Price;
             product.CategoryId = addProductDto.CategoryId;
-//            product.Attributes.Clear();
+            product.Category = category;
 
             product.Attributes = addProductDto.Attributes.Select(x => new AttributeValue()
             {
                 AttributeId = x.AttributeId,
-                Value = x.AttributeValue
+                Value = x.AttributeValue,
+                Attribute = attributes.First(y => y.Id == x.AttributeId)
             }).ToList();
-            
+
             await _productsContext.SaveChangesAsync();
 
-            return Created($"api/products/{product.Id}", product); // todo references not initialized
+            var productDto = ToProductDto(product);
+            await _bus.Publish(new ProductUpdatedEvent()
+            {
+                ProductDetails = productDto,
+                UpdateDateUtc = DateTime.UtcNow
+            });
+            
+            return Created($"api/products/{product.Id}", productDto); // todo references not initialized
         }
 
         [HttpGet("products/{productId}")]
@@ -131,7 +153,7 @@ namespace Products.Catalog.Controllers
             if (product == null)
                 return NotFound();
 
-            return Ok(product);
+            return Ok(ToProductDto(product));
         }
 
         [HttpGet("categories")]
@@ -152,6 +174,31 @@ namespace Products.Catalog.Controllers
                 .AsNoTracking().ToList();
 
             return Ok(attributes);
+        }
+
+        private static ProductDto ToProductDto(Product product)
+        {
+            return new ProductDto()
+            {
+                Id = product.Id,
+                Name = product.Name,
+                Description = product.Description,
+                Price = product.Price,
+                CategoryId = product.CategoryId,
+                Category = new CategoryDto
+                {
+                    Id = product.Category.Id,
+                    Name = product.Category.Name,
+                },
+                IsActive = product.IsActive,
+                IsDeleted = product.IsDeleted,
+                Attributes = product.Attributes.Select(x => new AttributeValueDto()
+                {
+                    AttributeId = x.AttributeId,
+                    Name = x.Attribute.Name,
+                    Value = x.Value
+                }).ToList(),
+            };
         }
     }
 }

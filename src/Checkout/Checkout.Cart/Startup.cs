@@ -51,14 +51,17 @@ namespace Checkout.Cart
                             e.UseMessageRetry(x => x.Interval(2, 100));
 
                             e.ConfigureConsumer<OrderPlacedConsumer>(provider);
+                            e.ConfigureConsumer<ProductUpdatedConsumer>(provider);
                         });
                     }));
                 c.AddConsumer<OrderPlacedConsumer>();
+                c.AddConsumer<ProductUpdatedConsumer>();
             });
 
             services.AddSingleton<IHostedService, BusService>();
 
             services.AddTransient<IProductsService, ProductsService>(); // todo scoped or transient?
+            services.AddTransient<ProductUpdatedConsumer>();
             services.AddTransient<OrderPlacedConsumer>();
         }
 

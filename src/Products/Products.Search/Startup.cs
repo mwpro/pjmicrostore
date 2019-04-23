@@ -1,15 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
+using GreenPipes;
+using MassTransit;
+using MassTransit.Pipeline.ConsumerFactories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Products.Catalog.Contracts.Events;
+using Products.Search.Consumers;
 using Products.Search.Services;
+using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 
 namespace Products.Search
 {
@@ -26,7 +34,35 @@ namespace Products.Search
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            
+
+            services.AddMassTransit(c =>
+            {
+                c.AddBus(provider => Bus.Factory.CreateUsingRabbitMq(
+                    cfg =>
+                    {
+                        var host = cfg.Host("localhost", "/", h => { });
+                        cfg.ReceiveEndpoint(host, "Products.Search", e =>
+                        {
+                            e.PrefetchCount = 16;
+                            e.UseMessageRetry(x => x.Interval(2, 100));
+
+                            e.ConfigureConsumer<ProductUpdatedConsumer>(provider);
+
+                            e.Batch<ProductUpdatedEvent>(b =>
+                            {
+                                b.MessageLimit = 10; // todo config
+                                b.TimeLimit = TimeSpan.FromMinutes(5);
+                                b.Consumer(new DefaultConstructorConsumerFactory<ProductUpdatedConsumer>());
+                            });
+                        });
+                    }));
+                c.AddConsumer<ProductUpdatedConsumer>();
+            });
+
+            services.AddSingleton<IHostedService, BusService>();
+
+            services.AddTransient<ProductUpdatedConsumer>();
+
             services.AddTransient<IProductsService, ProductsService>(); // todo scoped or transient?
         }
 
@@ -39,6 +75,27 @@ namespace Products.Search
             }
 
             app.UseMvc();
+        }
+    }
+
+    public class BusService :
+        IHostedService
+    {
+        private readonly IBusControl _busControl;
+
+        public BusService(IBusControl busControl)
+        {
+            _busControl = busControl;
+        }
+
+        public Task StartAsync(CancellationToken cancellationToken)
+        {
+            return _busControl.StartAsync(cancellationToken);
+        }
+
+        public Task StopAsync(CancellationToken cancellationToken)
+        {
+            return _busControl.StopAsync(cancellationToken);
         }
     }
 }

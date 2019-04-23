@@ -99,7 +99,6 @@ export default {
       });
     },
     isEditMode() {
-      console.log(this.productId);
       return this.productId !== undefined;
     }
   },

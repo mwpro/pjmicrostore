@@ -85,10 +85,10 @@ namespace Products.Catalog.Controllers
             await _productsContext.SaveChangesAsync();
 
             var productDto = ToProductDto(product);
-            await _bus.Publish(new ProductCreatedEvent()
+            await _bus.Publish(new ProductUpdatedEvent()
             {
                 ProductDetails = productDto,
-                CreateDateUtc = DateTime.UtcNow
+                UpdateDateUtc = DateTime.UtcNow
             });
 
             return Created($"api/products/{product.Id}", productDto); // todo references not initialized

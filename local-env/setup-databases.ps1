@@ -5,7 +5,7 @@ dotnet ef database update -p ..\src\Checkout\Checkout.Payments\
 dotnet ef database update -p ..\src\Products\Products.Catalog\
 
 Write-Host "Insert sample products"
-sqlcmd -i .\sample-products.sql -s localhost -U sa -P sqlDevPassw0rd -d Products.Catalog
+sqlcmd -i .\sample-products.sql -s localhost -U sa -P sqlDevPassw0rd -d Products.Catalog -f 65001
 
 Write-Host "Setup Elasticsearch index"
 $elasticProductsModel = Get-Content .\products-model.json

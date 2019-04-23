@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Nest;
+using Products.Catalog.Contracts;
+using Products.Catalog.Contracts.ApiModels;
 using Products.Search.Services;
 
 namespace Products.Search.Controllers
@@ -75,6 +77,7 @@ namespace Products.Search.Controllers
                         )
                     );
             });
+            
             var facets = results.Aggregations.Nested(nameof(ProductSearchModel.StringAttributes));
             var facetsTerms = facets.Terms(nameof(StringAttributeValue.AttributeName));
             var stringAttributes = facetsTerms.Buckets.Select(x => new SearchStringAttributeModel()
@@ -136,7 +139,7 @@ namespace Products.Search.Controllers
 
         }
 
-        public ProductSearchModel(Product product)
+        public ProductSearchModel(ProductDto product)
         {
             Id = product.Id;
 
@@ -172,7 +175,7 @@ namespace Products.Search.Controllers
 
         }
 
-        public StringAttributeValue(AttributeValue attributeValue)
+        public StringAttributeValue(AttributeValueDto attributeValue)
         {
             AttributeName = attributeValue.Name;
             AttributeValue = attributeValue.Value;

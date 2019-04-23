@@ -117,7 +117,13 @@ namespace Checkout.Cart.Controllers
             var product = _cartContext.Products.FirstOrDefault(x => x.Id == productId);
             if (product == null)
             {
-                product = await _productsService.GetProduct(productId);
+                var productDto = await _productsService.GetProduct(productId);
+                product = new Product()
+                {
+                    Id = productDto.Id,
+                    Price = productDto.Price,
+                    Name = productDto.Name
+                };
             }
 
             return product;

@@ -12,8 +12,10 @@ services:
       - "5601:5601"
     depends_on: ['elasticsearch']
   rabbitmq:
-    image: rabbitmq:3-management
+    image: rabbitmq:3
     container_name: rabbitmq
+    volumes: 
+      - "./rabbitmq_enabled_plugins:/etc/rabbitmq/enabled_plugins"
     ports: 
       - "15672:15672"
       - "5672:5672"

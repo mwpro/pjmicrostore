@@ -9,7 +9,7 @@
         </p>
         <table>
             <tr v-for="attribute in product.attributes" v-bind:key="attribute.attributeId">
-                <td>{{ attribute.attribute.name }}</td>
+                <td>{{ attribute.name }}</td>
                 <td>{{ attribute.value }}</td>
             </tr>
         </table>
@@ -17,22 +17,22 @@
 </template>
 
 <script>
-import AddToCart from './../components/AddToCart.vue';
+import AddToCart from '../components/AddToCart.vue';
 
 export default {
   components: { AddToCart },
   props: {
     productId: String, // TODO number
-  }, 
+  },
   computed: {
     product() {
       return this.$store.state.products.product;
-    }
+    },
   },
   created() {
-    this.$store.dispatch("products/getProductAction", this.productId);
-  }
-}
+    this.$store.dispatch('products/getProductAction', this.productId);
+  },
+};
 </script>
 
 <style>

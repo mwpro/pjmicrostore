@@ -52,68 +52,68 @@ export default {
     return {
       attributeToAdd: null,
       form: {
-        name: "",
+        name: '',
         price: 0,
-        description: "",
+        description: '',
         categoryId: null,
         attributes: [],
-        isActive: true
+        isActive: true,
       },
-      show: true
+      show: true,
     };
   },
   props: {
-    productId: String // todo prop type 
+    productId: String, // todo prop type
   },
   methods: {
     onSubmit(evt) {
       evt.preventDefault();
-      this.$store.dispatch(this.isEditMode ? "products/updateProductAction" : "products/saveProductAction", this.form)
-        .then(result => {
-          this.$router.push({ name: "products" });
+      this.$store.dispatch(this.isEditMode ? 'products/updateProductAction' : 'products/saveProductAction', this.form)
+        .then((result) => {
+          this.$router.push({ name: 'products' });
         })
-        .catch(error => {
-            // todo
+        .catch((error) => {
+          // todo
         });
     },
     addAttribute() {
       this.form.attributes.push({
         attributeId: this.attributeToAdd,
-        attributeValue: null
+        attributeValue: null,
       });
     },
     removeAttribute(attribute) {
       this.form.attributes.splice(this.form.attributes.indexOf(attribute), 1);
     },
-    
+
   },
   computed: {
     categories() {
-      const treePrefix = "-";
-      var flattenCategories = function(categories, prefix) {
+      const treePrefix = '-';
+      var flattenCategories = function (categories, prefix) {
         return categories.reduce((acc, val) => {
           acc.push({ text: `${prefix}${val.name}`, value: val.id });
-          return acc.concat(flattenCategories(val.child, prefix + treePrefix  ));
+          return acc.concat(flattenCategories(val.child, prefix + treePrefix ));
         }, []);
       };
-      
-      return flattenCategories(this.$store.state.products.categoriesList, "");
+
+      return flattenCategories(this.$store.state.products.categoriesList, '');
     },
     attributes() {
-      return this.$store.state.products.attributesList.map(function(attr) {
+      return this.$store.state.products.attributesList.map((attr) => {
         return { text: attr.name, value: attr.id };
       });
     },
     isEditMode() {
       return this.productId !== undefined;
-    }
+    },
   },
   created() {
-    this.$store.dispatch("products/getCategoriesAction");
-    this.$store.dispatch("products/getAttributesAction");
+    this.$store.dispatch('products/getCategoriesAction');
+    this.$store.dispatch('products/getAttributesAction');
     if (this.isEditMode) {
-      this.$store.dispatch("products/getProductAction", this.productId)
-        .then(result => {
+      this.$store.dispatch('products/getProductAction', this.productId)
+        .then((result) => {
           this.form.productId = result.id;
           this.form.name = result.name;
           this.form.price = result.price;
@@ -121,18 +121,18 @@ export default {
           this.form.categoryId = result.categoryId;
           this.form.isActive = result.isActive;
           this.form.attributes = [];
-          result.attributes.forEach(attr => {
+          result.attributes.forEach((attr) => {
             this.form.attributes.push({
               attributeId: attr.attributeId,
-              attributeValue: attr.value
+              attributeValue: attr.value,
             });
           });
         })
-        .catch(error => {
+        .catch((error) => {
           // todo
         });
     }
-  }
+  },
 };
 </script>
 

@@ -58,6 +58,7 @@ namespace Checkout.Cart.Controllers
             {
                 return NotFound("Product not found");
             }
+            
 
             cart.AddProduct(product, updateProductModel.Quantity);
             _cartContext.SaveChanges();
@@ -118,6 +119,8 @@ namespace Checkout.Cart.Controllers
             if (product == null)
             {
                 var productDto = await _productsService.GetProduct(productId);
+                if (!productDto.IsActive || productDto.IsDeleted)
+                    return null;
                 product = new Product()
                 {
                     Id = productDto.Id,

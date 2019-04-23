@@ -21,8 +21,17 @@ namespace Checkout.Cart.Consumers
             if (product == null) // no product to update
                 return;
 
-            product.Name = context.Message.ProductDetails.Name;
-            product.Price = context.Message.ProductDetails.Price;
+            if (context.Message.ProductDetails.IsActive && !context.Message.ProductDetails.IsDeleted)
+            {
+                product.Name = context.Message.ProductDetails.Name;
+                product.Price = context.Message.ProductDetails.Price;
+            }
+            else
+            {
+                _cartContext.Products.Remove(product);
+            }
+
+            
             await _cartContext.SaveChangesAsync();
         }
     }

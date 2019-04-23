@@ -2,7 +2,6 @@
 
 namespace Products.Catalog.Contracts.ApiModels
 {
-
     public class AddProductDto
     {
         public AddProductDto()
@@ -14,6 +13,7 @@ namespace Products.Catalog.Contracts.ApiModels
         public string Description { get; set; }
         public decimal Price { get; set; }
         public int CategoryId { get; set; }
+        public bool IsActive { get; set; }
 
         public IEnumerable<AddAttributeDto> Attributes { get; set; }
 

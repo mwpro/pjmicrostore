@@ -22,6 +22,11 @@
         <b-form-textarea id="textarea" v-model="form.description" rows="3" max-rows="6"></b-form-textarea>
       </b-form-group>
 
+      <b-form-group id="input-group-3" label="Dostępny w sprzedaży:" label-for="input-3">
+        <b-form-checkbox v-model="form.isActive" name="check-button" switch>
+        </b-form-checkbox>
+      </b-form-group>
+
       <h3>Atrybuty</h3>
       <b-form-select id="input-3" v-model="attributeToAdd" :options="attributes"></b-form-select>
       <b-button @click="addAttribute()">Dodaj</b-button>
@@ -51,7 +56,8 @@ export default {
         price: 0,
         description: "",
         categoryId: null,
-        attributes: []
+        attributes: [],
+        isActive: true
       },
       show: true
     };
@@ -113,6 +119,7 @@ export default {
           this.form.price = result.price;
           this.form.description = result.description;
           this.form.categoryId = result.categoryId;
+          this.form.isActive = result.isActive;
           this.form.attributes = [];
           result.attributes.forEach(attr => {
             this.form.attributes.push({

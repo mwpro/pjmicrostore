@@ -73,6 +73,7 @@ namespace Products.Catalog.Controllers
                 Price = addProductDto.Price,
                 CategoryId = addProductDto.CategoryId,
                 Category = category,
+                IsActive = addProductDto.IsActive,
                 Attributes = addProductDto.Attributes.Select(x => new AttributeValue()
                 {
                     AttributeId = x.AttributeId,
@@ -120,6 +121,7 @@ namespace Products.Catalog.Controllers
             product.Price = addProductDto.Price;
             product.CategoryId = addProductDto.CategoryId;
             product.Category = category;
+            product.IsActive = addProductDto.IsActive;
 
             product.Attributes = addProductDto.Attributes.Select(x => new AttributeValue()
             {

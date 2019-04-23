@@ -50,7 +50,7 @@ namespace Products.Search
 
                             e.Batch<ProductUpdatedEvent>(b =>
                             {
-                                b.MessageLimit = 10; // todo config
+                                b.MessageLimit = 3; // todo config
                                 b.TimeLimit = TimeSpan.FromMinutes(5);
                                 b.Consumer(new DefaultConstructorConsumerFactory<ProductUpdatedConsumer>());
                             });

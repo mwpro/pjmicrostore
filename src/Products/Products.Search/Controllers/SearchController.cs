@@ -105,11 +105,26 @@ namespace Products.Search.Controllers
         {
             var products = await _productsService.GetProducts();
 
-            var searchModels = products.Select(x => new ProductSearchModel(x)).ToList();
+            var productsToUpdate = products.Where(x => x.IsActive && !x.IsDeleted)
+                .Select(x => new ProductSearchModel(x)).ToList();
+            var productsToDelete = products.Where(x => !x.IsActive || x.IsDeleted)
+                .Select(x => new ProductSearchModel(x)).ToList();
 
-            var response = await _client.IndexManyAsync(searchModels, IndexName.From<ProductSearchModel>());
+            if (productsToUpdate.Any())
+            {
+                var updateResponse = await _client.IndexManyAsync(productsToUpdate, IndexName.From<ProductSearchModel>());
+                if (updateResponse.OriginalException != null)
+                    throw updateResponse.OriginalException;
+            }
 
-            return Accepted(response);
+            if (productsToDelete.Any())
+            {
+                var deleteResponse = await _client.DeleteManyAsync(productsToDelete, IndexName.From<ProductSearchModel>());
+                if (deleteResponse.OriginalException != null)
+                    throw deleteResponse.OriginalException;
+            }
+
+            return Accepted();
         }
     }
 
@@ -147,9 +162,8 @@ namespace Products.Search.Controllers
             Description = product.Description;
             Price = product.Price;
 
-            IsActive = product.IsActive;
-            IsDeleted = product.IsDeleted;
-
+            CategoryId = product.CategoryId;
+            
             StringAttributes = product.Attributes.Select(y => new StringAttributeValue(y)).ToList();
         }
 
@@ -159,15 +173,11 @@ namespace Products.Search.Controllers
         public string Description { get; set; }
         public decimal Price { get; set; }
 
-        //public int CategoryId { get; set; }
-        //public Category Category { get; set; }
-
-        public bool IsActive { get; set; }
-        public bool IsDeleted { get; set; }
+        public int CategoryId { get; set; }
 
         public IEnumerable<StringAttributeValue> StringAttributes { get; set; }
     }
-
+    
     public class StringAttributeValue
     {
         public StringAttributeValue()

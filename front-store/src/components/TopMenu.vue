@@ -61,8 +61,8 @@ export default {
   components: { CartInfo },
   created() {
     this.$store.dispatch('cart/getCartAction');
-    // already done in categoriesList, would be nice to have some
-    // "lock" this.$store.dispatch("products/getCategoriesAction");
+    // already done in categoriesList, would be nice to have some "lock"
+    this.$store.dispatch('products/getCategoriesAction');
   },
   computed: {
     cart() {

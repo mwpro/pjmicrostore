@@ -37,50 +37,50 @@ namespace Products.Search.Controllers
                 q = q.Query(query => query
                     .Bool(boolQuery =>
                     {
-                        var resultQuery = boolQuery;
+                        var filters = new List<Func<QueryContainerDescriptor<ProductSearchModel>, QueryContainer>>();
                         if (searchModel.StringAttr?.Any() ?? false)
                         {
-                            resultQuery = resultQuery
-                                .Filter(searchModel.StringAttr
-                                    .Select<KeyValuePair<string, string[]>,
-                                        Func<QueryContainerDescriptor<ProductSearchModel>, QueryContainer>>(
-                                        attribute =>
-                                            outerFilter => outerFilter
-                                                .Bool(innerBool => innerBool
-                                                    .Should(
-                                                        attribute.Value
-                                                            .Select<string,
-                                                                Func<QueryContainerDescriptor<ProductSearchModel>,
-                                                                    QueryContainer>>(attributeValue =>
-                                                                should => should.Nested(nested =>
-                                                                    nested
-                                                                        .Path("stringAttributes")
-                                                                        .Query(innerQuery => innerQuery
-                                                                            .Bool(attributeValueBool =>
-                                                                                attributeValueBool
-                                                                                    .Filter(new TermQuery()
-                                                                                    {
-                                                                                        Field =
-                                                                                            "stringAttributes.attributeName",
-                                                                                        Value = attribute.Key
-                                                                                    }, new TermQuery()
-                                                                                    {
-                                                                                        Field =
-                                                                                            "stringAttributes.attributeValue",
-                                                                                        Value = attributeValue
-                                                                                    })))
-                                                                ))
-                                                    ))));
+                            var stringAttrFilters = searchModel.StringAttr
+                            .Select<KeyValuePair<string, string[]>,
+                                Func<QueryContainerDescriptor<ProductSearchModel>, QueryContainer>>(
+                                attribute =>
+                                    outerFilter => outerFilter
+                                        .Bool(innerBool => innerBool
+                                            .Should(
+                                                attribute.Value
+                                                    .Select<string,
+                                                        Func<QueryContainerDescriptor<ProductSearchModel>,
+                                                            QueryContainer>>(attributeValue =>
+                                                        should => should.Nested(nested =>
+                                                            nested
+                                                                .Path("stringAttributes")
+                                                                .Query(innerQuery => innerQuery
+                                                                    .Bool(attributeValueBool =>
+                                                                        attributeValueBool
+                                                                            .Filter(new TermQuery()
+                                                                            {
+                                                                                Field =
+                                                                                    "stringAttributes.attributeName",
+                                                                                Value = attribute.Key
+                                                                            }, new TermQuery()
+                                                                            {
+                                                                                Field =
+                                                                                    "stringAttributes.attributeValue",
+                                                                                Value = attributeValue
+                                                                            })))
+                                                        ))
+                                            )));
+                            filters.AddRange(stringAttrFilters);
                         }
 
                         if (searchModel.CategoryId.HasValue)
                         {
-                            resultQuery = resultQuery.Filter(filter => filter.Term(model =>
+                            filters.Add(descriptor => descriptor.Term(model =>
                                 model.Field(productSearchModel => productSearchModel.CategoryId)
                                     .Value(searchModel.CategoryId)));
                         }
 
-                        return resultQuery;
+                        return boolQuery.Filter(filters);
                     }));
 
                 return q

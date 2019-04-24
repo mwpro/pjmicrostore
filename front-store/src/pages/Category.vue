@@ -59,15 +59,20 @@ export default {
       return this.$store.state.products.productsList;
     },
   },
-  watch: {
-    categoryId() {
+  methods: {
+    getProducts() {
       this.$store.dispatch('products/resetSearchTermsActions')
         .then(() => this.$store.dispatch('products/setCateogryAction', this.categoryId))
         .then(() => this.$store.dispatch('products/searchProductsAction'));
     },
   },
+  watch: {
+    categoryId() {
+      this.getProducts();
+    },
+  },
   created() {
-
+    this.getProducts();
   },
 };
 </script>

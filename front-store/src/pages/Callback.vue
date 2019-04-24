@@ -4,10 +4,10 @@
 
 <script>
 export default {
-    created() {
-      this.$auth.authCallback();
-    }
-}
+  created() {
+    this.$auth.authCallback();
+  },
+};
 </script>
 
 <style>

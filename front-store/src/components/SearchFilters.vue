@@ -10,6 +10,7 @@
           </label>
         </div>
     </div>
+    {{ searchModel }}
     <button @click="updateFilter" class="btn btn-primary btn-block">Filtruj</button>
   </div>
 </template>
@@ -18,19 +19,20 @@
 export default {
   data() {
     return {
-      searchModel: []
-    }
+      searchModel: [],
+    };
   },
   computed: {
     searchFilters() {
       return this.$store.state.products.searchAttributes;
-    }
+    },
   },
   methods: {
     updateFilter() {
-      this.$store.dispatch("products/searchProductsAction", this.searchModel);
-    }
-  }
+      this.$store.dispatch('products/setFiltersAction', this.searchModel)
+        .then(() => this.$store.dispatch('products/searchProductsAction'));
+    },
+  },
 };
 </script>
 

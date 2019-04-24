@@ -2,13 +2,13 @@
 // https://getbootstrap.com/docs/4.3/examples/blog/
 <template>
   <div>
-    <div class="container">      
+    <div class="container">
       <TopMenu />
     </div>
-    <div class="container">      
+    <div class="container">
       <slot />
     </div>
-      
+
     <!-- /.container -->
     <footer class="blog-footer">
       <p>Blog template built for
@@ -20,16 +20,15 @@
       </p>
     </footer>
   </div>
-  <!-- 
+  <!--
             <slot/> -->
 </template>
 
 <script>
-import CategoriesList from "./../components/CategoriesList.vue";
-import TopMenu from "./../components/TopMenu.vue";
+import TopMenu from '../components/TopMenu.vue';
 
 export default {
-  components: { CategoriesList, TopMenu }
+  components: { TopMenu },
 };
 </script>
 

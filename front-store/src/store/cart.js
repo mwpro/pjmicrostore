@@ -7,9 +7,9 @@ export default {
     cart: {
       cartItems: [],
       value: 0,
-      numberOfItems: 0
+      numberOfItems: 0,
     },
-    paymentMethods: []
+    paymentMethods: [],
   },
   mutations: {
     updateCart(state, cart) {
@@ -38,7 +38,7 @@ export default {
     addProductToCartAction({ commit }, productInfo) {
       return axios
         .post(`/api/cart/products/${productInfo.productId}`, {
-          quantity: productInfo.quantity
+          quantity: productInfo.quantity,
         })
         .then((response) => {
           if (response.status !== 200) throw Error(response.message);
@@ -66,11 +66,11 @@ export default {
           return cart;
         });
       // TODO .catch(captains.error)
-    },    
+    },
     updateItemAction({ commit }, productInfo) {
       return axios
         .put(`/api/cart/products/${productInfo.productId}`, {
-          quantity: productInfo.quantity
+          quantity: productInfo.quantity,
         })
         .then((response) => {
           if (response.status !== 200) throw Error(response.message);
@@ -83,10 +83,10 @@ export default {
           return cart;
         });
       // TODO .catch(captains.error)
-    },    
+    },
     placeOrder({ commit }, checkoutDetails) {
       return axios
-        .post("/api/orders", checkoutDetails)
+        .post('/api/orders', checkoutDetails)
         .then((response) => {
           if (response.status !== 201) throw Error(response.message);
           let order = response.data;
@@ -97,7 +97,7 @@ export default {
           commit('updateCart', {
             cartItems: [],
             value: 0,
-            numberOfItems: 0
+            numberOfItems: 0,
           }); // todo actual cart cleaning?
           return order;
         });
@@ -105,7 +105,7 @@ export default {
     },
     getPaymentMethodsAction({ commit }) {
       return axios
-        .get("/api/payments/methods")
+        .get('/api/payments/methods')
         .then((response) => {
           if (response.status !== 200) throw Error(response.message);
           let paymentMethods = response.data;
@@ -113,7 +113,7 @@ export default {
             paymentMethods = []; // todo ???
           }
 
-          commit('updatePaymentMethods', paymentMethods); 
+          commit('updatePaymentMethods', paymentMethods);
           return paymentMethods;
         });
       // TODO .catch(captains.error)
@@ -122,7 +122,7 @@ export default {
       return axios
         .get(paymentCheckUrl) // doesnt look safe
         .then((response) => {
-          if (response.status !== 200) return ""; // todo handle other statuses
+          if (response.status !== 200) return ''; // todo handle other statuses
           let payment = response.data;
           if (typeof payment !== 'object') {
             payment = {}; // todo ???

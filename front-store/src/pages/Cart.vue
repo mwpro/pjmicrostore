@@ -80,7 +80,7 @@
               <input
                 type="text"
                 class="form-control"
-                v-model="shippingDetails.firstName" 
+                v-model="shippingDetails.firstName"
                 id="shipping-firstName"
                 placeholder="Jan"
                 value
@@ -94,7 +94,7 @@
                 type="text"
                 class="form-control"
                 id="shipping-lastName"
-                v-model="shippingDetails.lastName" 
+                v-model="shippingDetails.lastName"
                 placeholder="Kowalski"
                 value
                 required
@@ -109,7 +109,7 @@
               type="text"
               class="form-control"
               id="shipping-address"
-              v-model="shippingDetails.address" 
+              v-model="shippingDetails.address"
               placeholder="Przykładowa 123/3"
               required
             >
@@ -142,7 +142,7 @@
               <input
                 type="text"
                 class="form-control"
-                v-model="billingDetails.firstName" 
+                v-model="billingDetails.firstName"
                 id="billing-firstName"
                 placeholder="Jan"
                 value
@@ -156,7 +156,7 @@
                 type="text"
                 class="form-control"
                 id="billing-lastName"
-                v-model="billingDetails.lastName" 
+                v-model="billingDetails.lastName"
                 placeholder="Kowalski"
                 value
                 required
@@ -171,7 +171,7 @@
               type="text"
               class="form-control"
               id="billing-address"
-              v-model="billingDetails.address" 
+              v-model="billingDetails.address"
               placeholder="Przykładowa 123/3"
               required
             >
@@ -190,8 +190,8 @@
               <div class="invalid-feedback">Wprowadź kod pocztowy.</div>
             </div>
           </div>
-          
-          <!-- 
+
+          <!--
           <div class="custom-control custom-checkbox">
             <input type="checkbox" class="custom-control-input" id="save-info">
             <label class="custom-control-label" for="save-info">Save this information for next time</label>
@@ -267,7 +267,7 @@ export default {
         lastName: null,
         address: null,
         city: null,
-        zip: null
+        zip: null,
       },
       billingDetailsAreDifferentFromShipping: false,
       billingDetails: {
@@ -275,10 +275,10 @@ export default {
         lastName: null,
         address: null,
         city: null,
-        zip: null
+        zip: null,
       },
       selectedPaymentMethod: null,
-      orderButtonClicked: false
+      orderButtonClicked: false,
     };
   },
   computed: {
@@ -290,50 +290,50 @@ export default {
     },
     orderButtonEnabled() {
       return (
-        this.$data.selectedPaymentMethod !== null &&
-        !this.$data.orderButtonClicked
+        this.$data.selectedPaymentMethod !== null
+        && !this.$data.orderButtonClicked
       );
     },
     placeOrderModel() {
-      return {        
+      return {
         email: this.$data.email,
         phone: this.$data.phone,
         paymentMethod: this.$data.selectedPaymentMethod,
         shippingDetails: this.$data.shippingDetails,
-        billingDetails: (this.$data.billingDetailsAreDifferentFromShipping ? this.$data.billingDetails : this.$data.shippingDetails)
+        billingDetails: (this.$data.billingDetailsAreDifferentFromShipping ? this.$data.billingDetails : this.$data.shippingDetails),
       };
-    }
+    },
   },
   created() {
-    this.$store.dispatch("cart/getPaymentMethodsAction");
-    this.$store.dispatch("cart/getCartAction");
+    this.$store.dispatch('cart/getPaymentMethodsAction');
+    this.$store.dispatch('cart/getCartAction');
   },
   methods: {
     removeItem(item) {
-      this.$store.dispatch("cart/removeFromCartAction", item.productId);
+      this.$store.dispatch('cart/removeFromCartAction', item.productId);
     },
     updateItem(item, updatedQuantity) {
-      this.$store.dispatch("cart/updateItemAction", {
+      this.$store.dispatch('cart/updateItemAction', {
         productId: item.productId,
-        quantity: updatedQuantity
+        quantity: updatedQuantity,
       });
     },
     placeOrder() {
       this.$data.orderButtonClicked = true;
       this.$store
-        .dispatch("cart/placeOrder", this.placeOrderModel)
-        .then(order => {
+        .dispatch('cart/placeOrder', this.placeOrderModel)
+        .then((order) => {
           if (order.paymentCheckUrl !== undefined) {
             this.$router.push({
-              name: "paymentRedirect",
-              params: { order: order }
+              name: 'paymentRedirect',
+              params: { order },
             });
           } else {
-            this.$router.push({ name: "orderPlaced" });
+            this.$router.push({ name: 'orderPlaced' });
           }
         });
-    }
-  }
+    },
+  },
 };
 </script>
 

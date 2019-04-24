@@ -5,7 +5,7 @@
         <div>Kwota: <strong>{{ paymentMockDetails.amount | currency }}</strong></div>
         <div>Tytułem: {{ paymentMockDetails.paymentDescription }}</div>
         <div>
-            <button class="accept" @click="solve(true)" >Tak</button> 
+            <button class="accept" @click="solve(true)" >Tak</button>
             <button class="reject" @click="solve(false)">Nie</button>
         </div>
         <div><small>Id transakcji: {{ paymentMockDetails.providerReference }}</small></div>
@@ -19,39 +19,39 @@ export default {
   data() {
     return {
       paymentMockDetails: 0,
-    }
+    };
   },
   props: {
-    paymentMockId: String
+    paymentMockId: String,
   },
   created() {
     axios
-        .get(`/api/payments/mock/${this.paymentMockId}`)
+      .get(`/api/payments/mock/${this.paymentMockId}`)
+      .then((response) => {
+        if (response.status !== 200) throw Error(response.message);
+        let paymentMockDetails = response.data;
+        if (typeof paymentMockDetails !== 'object') {
+          paymentMockDetails = []; // todo ???
+        }
+        this.$data.paymentMockDetails = paymentMockDetails;
+        return paymentMockDetails;
+      });
+  },
+  methods: {
+    solve(success) {
+      axios.post(`/api/payments/mock/${this.paymentMockId}/${success}`)
         .then((response) => {
           if (response.status !== 200) throw Error(response.message);
-          let paymentMockDetails = response.data;
-          if (typeof paymentMockDetails !== 'object') {
-            paymentMockDetails = []; // todo ???
+          let paymentResult = response.data;
+          if (typeof paymentResult !== 'object') {
+            paymentResult = []; // todo ???
           }
-          this.$data.paymentMockDetails = paymentMockDetails;
+          window.location.href = paymentResult.returnUrl;
           return paymentMockDetails;
         });
-  },   
-  methods: {
-      solve(success) {
-          axios.post(`/api/payments/mock/${this.paymentMockId}/${success}`)
-          .then((response) => {
-            if (response.status !== 200) throw Error(response.message);
-            let paymentResult = response.data;
-            if (typeof paymentResult !== 'object') {
-                paymentResult = []; // todo ???
-            }
-            window.location.href = paymentResult.returnUrl;
-            return paymentMockDetails;
-        });
-      }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style scoped>

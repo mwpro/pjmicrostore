@@ -11,7 +11,7 @@ export default new Vuex.Store({
   strict: true,
   modules: {
     products: productsModule,
-    cart: cartModule
+    cart: cartModule,
   },
   state: {
 

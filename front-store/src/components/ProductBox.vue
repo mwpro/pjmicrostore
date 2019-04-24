@@ -23,13 +23,13 @@
 </template>
 
 <script>
-import AddToCart from "./AddToCart.vue";
+import AddToCart from './AddToCart.vue';
 
 export default {
   components: { AddToCart },
   props: {
-    product: Object
-  }
+    product: Object,
+  },
 };
 </script>
 

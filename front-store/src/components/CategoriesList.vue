@@ -5,18 +5,18 @@
 </template>
 
 <script>
-import CategoriesListGroup from "./CategoriesListGroup.vue";
+import CategoriesListGroup from './CategoriesListGroup.vue';
 
 export default {
   components: { CategoriesListGroup },
   computed: {
     categories() {
       return this.$store.state.products.categoriesList;
-    }
+    },
   },
   created() {
-    this.$store.dispatch("products/getCategoriesAction");
-  }
+    this.$store.dispatch('products/getCategoriesAction');
+  },
 };
 </script>
 

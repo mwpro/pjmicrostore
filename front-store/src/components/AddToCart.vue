@@ -4,18 +4,18 @@
 
 <script>
 export default {
-    props: {
-        product: Object,
-    }, 
-    methods: {
-        addToCart() {
-            this.$store.dispatch("cart/addProductToCartAction", {
-                productId: this.product.id,
-                quantity: 1
-            });
-        }
-    }
-}
+  props: {
+    product: Object,
+  },
+  methods: {
+    addToCart() {
+      this.$store.dispatch('cart/addProductToCartAction', {
+        productId: this.product.id,
+        quantity: 1,
+      });
+    },
+  },
+};
 </script>
 
 <style>

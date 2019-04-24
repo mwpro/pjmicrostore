@@ -1,6 +1,6 @@
 <template>
-  <div>  
-    <a class="btn btn-sm btn-outline-secondary" @click="toggleCart()">Koszyk ({{ cart.numberOfItems }} | {{ cart.total | currency }})</a>    
+  <div>
+    <a class="btn btn-sm btn-outline-secondary" @click="toggleCart()">Koszyk ({{ cart.numberOfItems }} | {{ cart.total | currency }})</a>
       <div :class="cClass">
       <div class="cart-menu">
         <h1 class="text-center">Koszyk</h1>
@@ -53,11 +53,11 @@
 
 <script>
 export default {
-  name: "Cart",
+  name: 'Cart',
   data() {
     return {
-      cClass: "cart",
-      modalClass: "modal off"
+      cClass: 'cart',
+      modalClass: 'modal off',
     };
   },
   computed: {
@@ -69,22 +69,22 @@ export default {
     },
     cart() {
       return this.$store.state.cart.cart;
-    }
+    },
   },
   methods: {
     toggleCart() {
-      if (this.cClass === "cart on") {
-        this.cClass = "cart";
-        this.modalClass = "modal off";
+      if (this.cClass === 'cart on') {
+        this.cClass = 'cart';
+        this.modalClass = 'modal off';
       } else {
-        this.cClass = "cart on";
-        this.modalClass = "modal";
+        this.cClass = 'cart on';
+        this.modalClass = 'modal';
       }
     },
     removeItem(productId) {
-      this.$store.dispatch("cart/removeFromCartAction", productId);
-    },    
-  }
+      this.$store.dispatch('cart/removeFromCartAction', productId);
+    },
+  },
 };
 </script>
 

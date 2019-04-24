@@ -2,7 +2,7 @@
   <div class="bg-light">
     <div class="container bg-light">
       <slot/>
-      
+
 
       <footer class="my-5 pt-5 text-muted text-center text-small">
         <p class="mb-1">&copy; 2017-2019 Company Name</p>

@@ -5,6 +5,8 @@ import Qs from 'qs';
 export default {
   namespaced: true,
   state: {
+    category: null,
+    filters: [],
     productsList: [
 
     ],
@@ -16,7 +18,7 @@ export default {
     },
     searchAttributes: [
 
-    ]
+    ],
   },
   mutations: {
     getProducts(state, products) {
@@ -31,30 +33,20 @@ export default {
     getSearchAttributes(state, searchAttributes) {
       state.searchAttributes = searchAttributes;
     },
+    setCategory(state, category) {
+      state.category = category;
+    },
+    setFilters(state, filters) {
+      state.filters = filters;
+    },
   },
   actions: {
-    getProductsAction({ commit }) {
-      return axios
-        .get('/api/search')
-        .then((response) => {
-          if (response.status !== 200) throw Error(response.message);
-          let products = response.data;
-          if (typeof products !== 'object') {
-            products = [];
-          }
-
-          commit('getProducts', products.documents);
-          commit('getSearchAttributes', products.stringAttributes);
-          return products;
-        });
-      // TODO .catch(captains.error)
-    },
     getProductAction({ commit }, productId) {
       return axios
         .get(`/api/products/${productId}`)
         .then((response) => {
           if (response.status !== 200) throw Error(response.message);
-          let product = response.data;
+          const product = response.data;
           commit('getProduct', product);
           return product;
         });
@@ -75,23 +67,37 @@ export default {
         });
       // TODO .catch(captains.error)
     },
-    searchProductsAction({ commit }, searchTerms) {
-      var urlReadySearchTerms = [];
-      searchTerms.forEach(term => {
-        if (urlReadySearchTerms[term.attribute] == null) {
-          urlReadySearchTerms[term.attribute] = [];
-        }
-        urlReadySearchTerms[term.attribute].push(term.value);        
-      });
-      
+    // todo separate search store
+    resetSearchTermsActions({ dispatch }) {
+      dispatch('setCateogryAction', null);
+      dispatch('setFiltersAction', []);
+    },
+    setFiltersAction({ commit }, filters) {
+      commit('setFilters', filters);
+    },
+    setCateogryAction({ commit }, category) {
+      commit('setCategory', category);
+    },
+    searchProductsAction({ commit, state }) {
+      const searchParams = {};
+      if (state.filters != null) {
+        searchParams.stringAttr = [];
+        state.filters.forEach((term) => {
+          if (searchParams.stringAttr[term.attribute] == null) {
+            searchParams.stringAttr[term.attribute] = [];
+          }
+          searchParams.stringAttr[term.attribute].push(term.value);
+        });
+      }
+      if (state.category != null) {
+        searchParams.categoryId = state.category;
+      }
       return axios
         .get('/api/search', {
-          params: {
-            stringAttr: urlReadySearchTerms
+          params: searchParams,
+          paramsSerializer(params) {
+            return Qs.stringify(params);
           },
-          paramsSerializer: function (params) {
-            return Qs.stringify(params)
-          }
         })
         .then((response) => {
           if (response.status !== 200) throw Error(response.message);
@@ -105,6 +111,6 @@ export default {
           return products;
         });
       // TODO .catch(captains.error)
-    }
+    },
   },
 };

@@ -1,5 +1,5 @@
 <template>
-    
+
     <main role="main" class="container">
       <div class="row">
         <div class="col-md-12 blog-main">
@@ -114,7 +114,7 @@
 <script>
 export default {
 
-}
+};
 </script>
 
 <style>

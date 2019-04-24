@@ -1,17 +1,5 @@
 <template>
   <div>
-    <div class="jumbotron p-4 p-md-5 text-white rounded bg-dark">
-      <div class="col-md-6 px-0">
-        <h1 class="display-4 font-italic">PJMicroStore</h1>
-        <p
-          class="lead my-3"
-        >To ogólnie mówiąc akademicki sklep z elektroniką wyśrubowaną</p>
-        <p class="lead mb-0">
-          <a href="#" class="text-white font-weight-bold">Continue reading...</a>
-        </p>
-      </div>
-    </div>
-
     <main role="main" class="container">
       <div class="row">
         <aside class="col-md-3 blog-sidebar">
@@ -61,16 +49,25 @@ import SearchFilters from '../components/SearchFilters.vue';
 
 
 export default {
-  name: 'Home',
+  name: 'Category',
   components: { ProductBox, CategoriesList, SearchFilters },
+  props: {
+    categoryId: String,
+  },
   computed: {
     products() {
       return this.$store.state.products.productsList;
     },
   },
+  watch: {
+    categoryId() {
+      this.$store.dispatch('products/resetSearchTermsActions')
+        .then(() => this.$store.dispatch('products/setCateogryAction', this.categoryId))
+        .then(() => this.$store.dispatch('products/searchProductsAction'));
+    },
+  },
   created() {
-    this.$store.dispatch('products/resetSearchTermsActions')
-      .then(() => this.$store.dispatch('products/searchProductsAction'));
+
   },
 };
 </script>

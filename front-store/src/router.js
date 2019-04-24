@@ -9,6 +9,7 @@ import OrderPlaced from './pages/OrderPlaced.vue';
 import PaymentRedirect from './pages/PaymentRedirect.vue';
 import PaymentMock from './pages/PaymentMock.vue';
 import Callback from './pages/Callback.vue';
+import Category from './pages/Category.vue';
 
 Vue.use(Router);
 
@@ -25,7 +26,7 @@ export default new Router({
       path: '/callback',
       name: 'callback',
       component: Callback,
-      meta: { layout: 'minimal' }
+      meta: { layout: 'minimal' },
     },
     {
       path: '/products/:productId',
@@ -34,15 +35,21 @@ export default new Router({
       component: Product,
     },
     {
+      path: '/category/:categoryId',
+      name: 'category',
+      props: true,
+      component: Category,
+    },
+    {
       path: '/cart',
       name: 'cart',
       component: Cart,
-      meta: { layout: 'minimal' }
+      meta: { layout: 'minimal' },
     },
     {
       path: '/aboutus',
       name: 'aboutus',
-      component: AboutUs
+      component: AboutUs,
     },
     {
       path: '/orderPlaced',
@@ -54,14 +61,14 @@ export default new Router({
       name: 'paymentRedirect',
       props: true,
       component: PaymentRedirect,
-      meta: { layout: 'minimal' }
+      meta: { layout: 'minimal' },
     },
     {
       path: '/payment-mock/:paymentMockId',
       name: 'paymentMock',
       props: true,
       component: PaymentMock,
-      meta: { layout: 'minimal' } // tood or none?
+      meta: { layout: 'minimal' }, // tood or none?
     },
   ],
 });

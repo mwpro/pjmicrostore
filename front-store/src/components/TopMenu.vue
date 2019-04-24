@@ -31,8 +31,8 @@
                 <path d="M21 21l-5.2-5.2"></path>
               </svg>
             </a>
-            <a class="btn btn-sm btn-outline-secondary" @click="login()">Sign in</a>    
-            <a class="btn btn-sm btn-outline-secondary" @click="logout()">Logout</a>             
+            <a class="btn btn-sm btn-outline-secondary" @click="login()">Sign in</a>
+            <a class="btn btn-sm btn-outline-secondary" @click="logout()">Logout</a>
             <CartInfo />
           </div>
         </div>
@@ -40,9 +40,14 @@
 
       <div class="nav-scroller py-1 mb-2">
         <nav class="nav d-flex justify-content-between">
-          <a v-for="category in categories" v-bind:key="category.id" class="p-2 text-muted" href="#" >
+          <router-link
+            v-for="category in categories"
+            v-bind:key="category.id"
+            class="p-2 text-muted"
+            :to="'/category/'+category.id"
+          >
             {{ category.name }}
-          </a>
+          </router-link>
           <a class="p-2 text-muted" href="#">World</a>
           <a class="p-2 text-muted" href="#">U.S.</a>
           <a class="p-2 text-muted" href="#">Technology</a>
@@ -59,16 +64,17 @@ import CartInfo from './CartInfo.vue';
 export default {
   components: { CartInfo },
   created() {
-    this.$store.dispatch("cart/getCartAction");
-    // already done in categoriesList, would be nice to have some "lock" this.$store.dispatch("products/getCategoriesAction");
+    this.$store.dispatch('cart/getCartAction');
+    // already done in categoriesList, would be nice to have some
+    // "lock" this.$store.dispatch("products/getCategoriesAction");
   },
   computed: {
     cart() {
       return this.$store.state.cart.cart;
-    },    
+    },
     categories() {
       return this.$store.state.products.categoriesList;
-    }
+    },
   },
   methods: {
     login() {
@@ -76,9 +82,9 @@ export default {
     },
     logout() {
       this.$auth.logout();
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style>

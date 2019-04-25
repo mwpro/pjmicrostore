@@ -23,8 +23,7 @@
       </b-form-group>
 
       <b-form-group id="input-group-3" label="Dostępny w sprzedaży:" label-for="input-3">
-        <b-form-checkbox v-model="form.isActive" name="check-button" switch>
-        </b-form-checkbox>
+        <b-form-checkbox v-model="form.isActive" name="check-button" switch></b-form-checkbox>
       </b-form-group>
 
       <h3>Atrybuty</h3>
@@ -41,16 +40,38 @@
         <b-button @click="removeAttribute(attribute)">Usuń</b-button>
       </b-form-group>
 
+      <h3>Zdjęcia</h3>
+      <b-form-file
+        v-model="photosToUpload"
+        placeholder="Wybierz pliki"
+        drop-placeholder="Przeciągnij pliki tutaj..."
+        browse-text="Przeglądaj"
+        multiple
+        accept="image/*"
+      ></b-form-file>
+      <b-container fluid class="p-4 bg-dark">
+        <b-row>
+          <b-col v-for="photo in photos">
+            <b-img thumbnail fluid :src="photo.originalUrl" alt="Image 1"></b-img>
+          </b-col>
+        </b-row>
+      </b-container>
+
       <b-button type="submit" variant="primary">Zapisz</b-button>
     </b-form>
+    <div class="mt-3">Selected file: {{ photosToUpload }}</div>
   </div>
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   data() {
     return {
       attributeToAdd: null,
+      photosToUpload: null,
+      photos: [],
       form: {
         name: '',
         price: 0,
@@ -68,9 +89,32 @@ export default {
   methods: {
     onSubmit(evt) {
       evt.preventDefault();
-      this.$store.dispatch(this.isEditMode ? 'products/updateProductAction' : 'products/saveProductAction', this.form)
+      this.$store
+        .dispatch(
+          this.isEditMode
+            ? 'products/updateProductAction'
+            : 'products/saveProductAction',
+          this.form,
+        )
         .then((result) => {
-          this.$router.push({ name: 'products' });
+          if (this.photosToUpload) {
+            const url = `/api/products/${result.id}/photos`;
+            const formData = new FormData();
+            this.photosToUpload.forEach((x) => {
+              formData.append('photos', x, x.name);
+            });
+
+            return axios
+              .post(url, formData) // https://github.com/axios/axios/blob/master/examples/upload/index.html#L29-L33
+              .then((response) => {
+                if (response.status !== 202) throw Error(response.message);
+                this.$router.push({ name: 'products' });
+              });
+            // TODO .catch(captains.error);
+            // eslint-disable-next-line no-else-return
+          } else {
+            this.$router.push({ name: 'products' });
+          }
         })
         .catch((error) => {
           // todo
@@ -85,24 +129,24 @@ export default {
     removeAttribute(attribute) {
       this.form.attributes.splice(this.form.attributes.indexOf(attribute), 1);
     },
-
   },
   computed: {
     categories() {
       const treePrefix = '-';
-      var flattenCategories = function (categories, prefix) {
+      const flattenCategories = function flattenCategories(categories, prefix) {
         return categories.reduce((acc, val) => {
           acc.push({ text: `${prefix}${val.name}`, value: val.id });
-          return acc.concat(flattenCategories(val.child, prefix + treePrefix ));
+          return acc.concat(flattenCategories(val.child, prefix + treePrefix));
         }, []);
       };
 
       return flattenCategories(this.$store.state.products.categoriesList, '');
     },
     attributes() {
-      return this.$store.state.products.attributesList.map((attr) => {
-        return { text: attr.name, value: attr.id };
-      });
+      return this.$store.state.products.attributesList.map(attr => ({
+        text: attr.name,
+        value: attr.id,
+      }));
     },
     isEditMode() {
       return this.productId !== undefined;
@@ -112,7 +156,8 @@ export default {
     this.$store.dispatch('products/getCategoriesAction');
     this.$store.dispatch('products/getAttributesAction');
     if (this.isEditMode) {
-      this.$store.dispatch('products/getProductAction', this.productId)
+      this.$store
+        .dispatch('products/getProductAction', this.productId)
         .then((result) => {
           this.form.productId = result.id;
           this.form.name = result.name;
@@ -127,6 +172,8 @@ export default {
               attributeValue: attr.value,
             });
           });
+
+          this.photos = result.photos;
         })
         .catch((error) => {
           // todo

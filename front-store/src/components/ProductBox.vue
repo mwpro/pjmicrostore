@@ -1,7 +1,7 @@
 <template>
   <div class="col-12 col-md-4">
     <div class="card">
-      <img class="card-img-top" src="https://picsum.photos/600/400?image=0" alt="Card image cap">
+      <img class="card-img-top" :src="(product.searchThumbnailUri) ? product.searchThumbnailUri : 'https://picsum.photos/600/400?image=0'" alt="Card image cap">
       <div class="card-body">
         <strong class="d-inline-block mb-2 text-success">Design</strong>
         <h4 class="card-title">

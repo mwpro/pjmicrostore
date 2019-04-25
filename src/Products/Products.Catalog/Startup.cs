@@ -16,6 +16,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Products.Catalog.Domain;
+using Products.Catalog.Photos;
 using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 
 namespace Products.Catalog
@@ -32,15 +33,18 @@ namespace Products.Catalog
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
                 .AddJsonOptions(options =>
                 {
                     options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore; // todo hmm, probably it only hides the problem
                 }); ;
 
             const string connectionString = @"Server=localhost,1433;Database=Products.Catalog;User Id=sa;Password=sqlDevPassw0rd;ConnectRetryCount=0";
-            services.AddDbContext<ProductsContext>
-                (options => options.UseSqlServer(connectionString));
+            services
+                .AddDbContext<ProductsContext>
+                    (options => options.UseSqlServer(connectionString))
+                .AddDbContext<PhotosContext>
+                    (options => options.UseSqlServer(connectionString));
             
             services.AddMassTransit(c =>
             {
@@ -57,6 +61,7 @@ namespace Products.Catalog
             });
 
             services.AddSingleton<IHostedService, BusService>();
+            services.AddSingleton<IPhotoStorage, AzurePhotoStorage>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

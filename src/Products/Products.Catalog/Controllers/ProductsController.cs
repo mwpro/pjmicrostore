@@ -10,23 +10,26 @@ using Products.Catalog.Contracts;
 using Products.Catalog.Contracts.ApiModels;
 using Products.Catalog.Contracts.Events;
 using Products.Catalog.Domain;
+using Products.Catalog.Photos;
 
 namespace Products.Catalog.Controllers
 {
-    [Route("api")]
+    [Route("api/products")]
     [ApiController]
     public class ProductsController : ControllerBase
     {
         private readonly ProductsContext _productsContext;
+        private readonly PhotosContext _photosContext;
         private readonly IBus _bus;
 
-        public ProductsController(ProductsContext productsContext, IBus bus)
+        public ProductsController(ProductsContext productsContext, IBus bus, PhotosContext photosContext)
         {
             _productsContext = productsContext;
             _bus = bus;
+            _photosContext = photosContext;
         }
         
-        [HttpGet("products")]
+        [HttpGet("")]
         public IActionResult GetAllProducts([FromQuery]int page = 1,
             int productsPerPage = 10)
         {
@@ -42,6 +45,20 @@ namespace Products.Catalog.Controllers
                 .AsNoTracking()
                 .Select(product => ToProductDto(product)).ToList();
 
+            var productIds = products.Select(x => x.Id).ToList();
+
+            var photos = _photosContext.Photos.Where(x => productIds.Contains(x.ProductId))
+                .ToList();
+
+            foreach (var product in products)
+            {
+                product.Photos = photos.Where(x => x.ProductId == product.Id)
+                    .Select(x => new PhotoDto()
+                    {
+                        OriginalUrl = x.OriginalUrl
+                    });
+            }
+
             var productsCount = _productsContext.Products.Count();
             
             return Ok(new ProductsList()
@@ -51,7 +68,7 @@ namespace Products.Catalog.Controllers
             });
         }
 
-        [HttpPost("products")]
+        [HttpPost("")]
         public async Task<IActionResult> AddProduct(AddProductDto addProductDto)
         {
             // todo validation
@@ -95,7 +112,7 @@ namespace Products.Catalog.Controllers
             return Created($"api/products/{product.Id}", productDto); // todo references not initialized
         }
 
-        [HttpPut("products/{productId}")]
+        [HttpPut("{productId}")]
         public async Task<IActionResult> EditProduct(int productId, AddProductDto addProductDto)
         {
             var product = _productsContext.Products
@@ -133,6 +150,7 @@ namespace Products.Catalog.Controllers
             await _productsContext.SaveChangesAsync();
 
             var productDto = ToProductDto(product);
+            productDto.Photos = GetPhotoDtos(product);
             await _bus.Publish(new ProductUpdatedEvent()
             {
                 ProductDetails = productDto,
@@ -142,7 +160,7 @@ namespace Products.Catalog.Controllers
             return Created($"api/products/{product.Id}", productDto); // todo references not initialized
         }
 
-        [HttpGet("products/{productId}")]
+        [HttpGet("{productId}")]
         public IActionResult GetProduct(int productId)
         {
             var product = _productsContext.Products
@@ -154,11 +172,27 @@ namespace Products.Catalog.Controllers
 
             if (product == null)
                 return NotFound();
+            
+            var result = ToProductDto(product);
 
-            return Ok(ToProductDto(product));
+            result.Photos = GetPhotoDtos(product);
+
+            return Ok(result);
         }
 
-        [HttpGet("categories")]
+        private IEnumerable<PhotoDto> GetPhotoDtos(Product product)
+        {
+            var photos = _photosContext.Photos.Where(x => x.ProductId == product.Id)
+                .ToList();
+            var photoDtos = photos.Where(x => x.ProductId == product.Id)
+                .Select(x => new PhotoDto()
+                {
+                    OriginalUrl = x.OriginalUrl
+                });
+            return photoDtos;
+        }
+
+        [HttpGet("/api/categories")]
         public IActionResult GetAllCategories()
         {
             var categories = _productsContext.Categories
@@ -169,7 +203,7 @@ namespace Products.Catalog.Controllers
         }
 
 
-        [HttpGet("attributes")]
+        [HttpGet("/api/attributes")]
         public IActionResult GetAllAttributes()
         {
             var attributes = _productsContext.Attributes

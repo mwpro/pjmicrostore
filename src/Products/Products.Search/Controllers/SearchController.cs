@@ -187,6 +187,9 @@ namespace Products.Search.Controllers
 
             CategoryId = product.CategoryId;
             
+            var searchThumbnail = product.Photos?.FirstOrDefault();
+            if (searchThumbnail != null)
+                SearchThumbnailUri = searchThumbnail.OriginalUrl; // todo
             StringAttributes = product.Attributes.Select(y => new StringAttributeValue(y)).ToList();
         }
 
@@ -197,6 +200,8 @@ namespace Products.Search.Controllers
         public decimal Price { get; set; }
 
         public int CategoryId { get; set; }
+
+        public string SearchThumbnailUri { get; set; }
 
         public IEnumerable<StringAttributeValue> StringAttributes { get; set; }
     }

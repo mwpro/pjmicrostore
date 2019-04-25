@@ -27,3 +27,12 @@ services:
       - SA_PASSWORD=sqlDevPassw0rd
     ports:
       - "1433:1433"
+  azurestorage:
+    image: arafato/azurite
+    container_name: azurestorage
+    ports:
+      - "10000:10000"
+    environment: 
+      - executable=blob
+    volumes:
+      - "./local-azurestorage:/opt/azurite/folder"

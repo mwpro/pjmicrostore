@@ -16,6 +16,14 @@ namespace Products.Catalog.Contracts.ApiModels
         public bool IsActive { get; set; }
         public bool IsDeleted { get; set; }
 
+        public IEnumerable<PhotoDto> Photos { get; set; }
+
         public IEnumerable<AttributeValueDto> Attributes { get; set; }
+    }
+
+    public class PhotoDto
+    {
+        public string OriginalUrl { get; set; }
+        // todo thumbnails, descriptions...
     }
 }

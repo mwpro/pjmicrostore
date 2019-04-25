@@ -12,7 +12,7 @@ namespace Products.Catalog.Photos
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Photo>()
-                .HasKey(photo => new { photo.ProductId, photo.PhotoId });
+                .HasKey(photo => new { photo.ProductId, photo.PhotoId });// todo maybe photo should be a key and productId an index?
             modelBuilder.Entity<Photo>()
                 .Property(photo => photo.PhotoId).UseSqlServerIdentityColumn();
             modelBuilder.Entity<Photo>()
@@ -34,6 +34,7 @@ namespace Products.Catalog.Photos
 
         public string OriginalUrl { get; set; }
         public ICollection<PhotoVariant> Variants { get; set; }
+        // todo save some info about provider used? and a identifier to get/delete file using provider?
     }
 
     public class PhotoVariant

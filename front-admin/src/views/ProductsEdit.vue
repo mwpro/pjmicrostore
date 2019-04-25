@@ -27,17 +27,38 @@
       </b-form-group>
 
       <h3>Atrybuty</h3>
-      <b-form-select id="input-3" v-model="attributeToAdd" :options="attributes"></b-form-select>
-      <b-button @click="addAttribute()">Dodaj</b-button>
+      <!-- TODO skip already added attributes -->
+      <!-- TODO allow adding new attributes -->
       <b-form-group
         id="input-group-3"
         label-for="input-3"
-        v-for="attribute in form.attributes"
-        v-bind:key="attribute.attributeId"
-        v-bind:label="attributes.find(a => a.value == attribute.attributeId).text"
+        label-cols-sm="3"
+        label="Dodaj nowy atrybut"
       >
-        <b-form-input id="input-1" v-model="attribute.attributeValue" required></b-form-input>
-        <b-button @click="removeAttribute(attribute)">Usuń</b-button>
+        <b-input-group>
+          <b-form-select id="input-3" v-model="attributeToAdd" :options="attributes"></b-form-select>
+          <b-input-group-append>
+            <b-button @click="addAttribute()">Dodaj</b-button>
+          </b-input-group-append>
+        </b-input-group>
+      </b-form-group>
+
+      <br />
+
+      <b-form-group
+        id="input-group-3"
+        label-for="input-3"
+        label-cols-sm="3"
+        v-for="attribute in form.attributes"
+        :key="attribute.attributeId"
+        :label="attributes.find(a => a.value == attribute.attributeId).text"
+      >
+        <b-input-group>
+          <b-form-input id="input-1" v-model="attribute.attributeValue" required></b-form-input>
+          <b-input-group-append>
+            <b-button @click="removeAttribute(attribute)">Usuń</b-button>
+          </b-input-group-append>
+        </b-input-group>
       </b-form-group>
 
       <h3>Zdjęcia</h3>
@@ -59,7 +80,6 @@
 
       <b-button type="submit" variant="primary">Zapisz</b-button>
     </b-form>
-    <div class="mt-3">Selected file: {{ photosToUpload }}</div>
   </div>
 </template>
 

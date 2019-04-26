@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace Products.Catalog.Photos
+namespace Products.Photos.Domain
 {
     public class PhotosContext : DbContext
     {

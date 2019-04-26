@@ -4763,3 +4763,276 @@
 2019-04-26 01:24:07.987 +02:00 [DBG] Endpoint enabled: Checksession, successfully created handler: IdentityServer4.Endpoints.CheckSessionEndpoint
 2019-04-26 01:24:07.987 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.CheckSessionEndpoint for /connect/checksession
 2019-04-26 01:24:07.987 +02:00 [DBG] Rendering check session result
+2019-04-26 20:14:59.598 +02:00 [INF] You are using the in-memory version of the persisted grant store. This will store consent decisions, authorization codes, refresh and reference tokens in memory only. If you are using any of those features in production, you want to switch to a different store implementation.
+2019-04-26 20:14:59.645 +02:00 [INF] Using the default authentication scheme idsrv for IdentityServer
+2019-04-26 20:14:59.647 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for authentication
+2019-04-26 20:14:59.648 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for sign-in
+2019-04-26 20:14:59.648 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for sign-out
+2019-04-26 20:14:59.648 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for challenge
+2019-04-26 20:14:59.648 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for forbid
+2019-04-26 20:16:31.013 +02:00 [DBG] CORS request made for path: /.well-known/openid-configuration from origin: http://localhost:8080
+2019-04-26 20:16:31.033 +02:00 [DBG] Client list checked and origin: http://localhost:8080 is allowed
+2019-04-26 20:16:31.034 +02:00 [DBG] CorsPolicyService allowed origin: http://localhost:8080
+2019-04-26 20:16:31.061 +02:00 [DBG] Login Url: /Account/Login
+2019-04-26 20:16:31.061 +02:00 [DBG] Login Return Url Parameter: ReturnUrl
+2019-04-26 20:16:31.061 +02:00 [DBG] Logout Url: /Account/Logout
+2019-04-26 20:16:31.061 +02:00 [DBG] ConsentUrl Url: /consent
+2019-04-26 20:16:31.062 +02:00 [DBG] Consent Return Url Parameter: returnUrl
+2019-04-26 20:16:31.062 +02:00 [DBG] Error Url: /home/error
+2019-04-26 20:16:31.062 +02:00 [DBG] Error Id Parameter: errorId
+2019-04-26 20:16:31.096 +02:00 [DBG] Request path /.well-known/openid-configuration matched to endpoint type Discovery
+2019-04-26 20:16:31.100 +02:00 [DBG] Endpoint enabled: Discovery, successfully created handler: IdentityServer4.Endpoints.DiscoveryEndpoint
+2019-04-26 20:16:31.100 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.DiscoveryEndpoint for /.well-known/openid-configuration
+2019-04-26 20:16:31.104 +02:00 [DBG] Start discovery request
+2019-04-26 20:16:31.392 +02:00 [INF] idsrv was not authenticated. Failure message: Ticket expired
+2019-04-26 20:16:31.392 +02:00 [INF] idsrv was not authenticated. Failure message: Ticket expired
+2019-04-26 20:16:31.392 +02:00 [DBG] Request path /connect/checksession matched to endpoint type Checksession
+2019-04-26 20:16:31.393 +02:00 [DBG] Endpoint enabled: Checksession, successfully created handler: IdentityServer4.Endpoints.CheckSessionEndpoint
+2019-04-26 20:16:31.393 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.CheckSessionEndpoint for /connect/checksession
+2019-04-26 20:16:31.394 +02:00 [DBG] Rendering check session result
+2019-04-26 20:16:38.726 +02:00 [DBG] CORS request made for path: /.well-known/openid-configuration from origin: http://localhost:8080
+2019-04-26 20:16:38.727 +02:00 [DBG] Client list checked and origin: http://localhost:8080 is allowed
+2019-04-26 20:16:38.727 +02:00 [DBG] CorsPolicyService allowed origin: http://localhost:8080
+2019-04-26 20:16:38.727 +02:00 [DBG] Request path /.well-known/openid-configuration matched to endpoint type Discovery
+2019-04-26 20:16:38.727 +02:00 [DBG] Endpoint enabled: Discovery, successfully created handler: IdentityServer4.Endpoints.DiscoveryEndpoint
+2019-04-26 20:16:38.727 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.DiscoveryEndpoint for /.well-known/openid-configuration
+2019-04-26 20:16:38.728 +02:00 [DBG] Start discovery request
+2019-04-26 20:16:38.762 +02:00 [INF] idsrv was not authenticated. Failure message: Ticket expired
+2019-04-26 20:16:38.762 +02:00 [INF] idsrv was not authenticated. Failure message: Ticket expired
+2019-04-26 20:16:38.762 +02:00 [DBG] Request path /connect/checksession matched to endpoint type Checksession
+2019-04-26 20:16:38.763 +02:00 [DBG] Endpoint enabled: Checksession, successfully created handler: IdentityServer4.Endpoints.CheckSessionEndpoint
+2019-04-26 20:16:38.763 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.CheckSessionEndpoint for /connect/checksession
+2019-04-26 20:16:38.763 +02:00 [DBG] Rendering check session result
+2019-04-26 20:17:30.246 +02:00 [DBG] CORS request made for path: /.well-known/openid-configuration from origin: http://localhost:8080
+2019-04-26 20:17:30.247 +02:00 [DBG] Client list checked and origin: http://localhost:8080 is allowed
+2019-04-26 20:17:30.247 +02:00 [DBG] CorsPolicyService allowed origin: http://localhost:8080
+2019-04-26 20:17:30.247 +02:00 [DBG] Request path /.well-known/openid-configuration matched to endpoint type Discovery
+2019-04-26 20:17:30.247 +02:00 [DBG] Endpoint enabled: Discovery, successfully created handler: IdentityServer4.Endpoints.DiscoveryEndpoint
+2019-04-26 20:17:30.247 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.DiscoveryEndpoint for /.well-known/openid-configuration
+2019-04-26 20:17:30.247 +02:00 [DBG] Start discovery request
+2019-04-26 20:17:30.454 +02:00 [INF] idsrv was not authenticated. Failure message: Ticket expired
+2019-04-26 20:17:30.457 +02:00 [INF] idsrv was not authenticated. Failure message: Ticket expired
+2019-04-26 20:17:30.457 +02:00 [DBG] Request path /connect/checksession matched to endpoint type Checksession
+2019-04-26 20:17:30.457 +02:00 [DBG] Endpoint enabled: Checksession, successfully created handler: IdentityServer4.Endpoints.CheckSessionEndpoint
+2019-04-26 20:17:30.457 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.CheckSessionEndpoint for /connect/checksession
+2019-04-26 20:17:30.458 +02:00 [DBG] Rendering check session result
+2019-04-26 20:50:39.401 +02:00 [DBG] CORS request made for path: /.well-known/openid-configuration from origin: http://localhost:8080
+2019-04-26 20:50:39.401 +02:00 [DBG] Client list checked and origin: http://localhost:8080 is allowed
+2019-04-26 20:50:39.401 +02:00 [DBG] CorsPolicyService allowed origin: http://localhost:8080
+2019-04-26 20:50:39.402 +02:00 [DBG] Request path /.well-known/openid-configuration matched to endpoint type Discovery
+2019-04-26 20:50:39.402 +02:00 [DBG] Endpoint enabled: Discovery, successfully created handler: IdentityServer4.Endpoints.DiscoveryEndpoint
+2019-04-26 20:50:39.402 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.DiscoveryEndpoint for /.well-known/openid-configuration
+2019-04-26 20:50:39.402 +02:00 [DBG] Start discovery request
+2019-04-26 20:50:39.471 +02:00 [INF] idsrv was not authenticated. Failure message: Ticket expired
+2019-04-26 20:50:39.472 +02:00 [INF] idsrv was not authenticated. Failure message: Ticket expired
+2019-04-26 20:50:39.472 +02:00 [DBG] Request path /connect/checksession matched to endpoint type Checksession
+2019-04-26 20:50:39.472 +02:00 [DBG] Endpoint enabled: Checksession, successfully created handler: IdentityServer4.Endpoints.CheckSessionEndpoint
+2019-04-26 20:50:39.472 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.CheckSessionEndpoint for /connect/checksession
+2019-04-26 20:50:39.472 +02:00 [DBG] Rendering check session result
+2019-04-27 00:36:37.940 +02:00 [INF] You are using the in-memory version of the persisted grant store. This will store consent decisions, authorization codes, refresh and reference tokens in memory only. If you are using any of those features in production, you want to switch to a different store implementation.
+2019-04-27 00:36:37.972 +02:00 [INF] Using the default authentication scheme idsrv for IdentityServer
+2019-04-27 00:36:37.976 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for authentication
+2019-04-27 00:36:37.976 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for sign-in
+2019-04-27 00:36:37.976 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for sign-out
+2019-04-27 00:36:37.976 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for challenge
+2019-04-27 00:36:37.976 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for forbid
+2019-04-27 00:36:38.467 +02:00 [DBG] CORS request made for path: /.well-known/openid-configuration from origin: http://localhost:8080
+2019-04-27 00:36:38.477 +02:00 [DBG] Client list checked and origin: http://localhost:8080 is allowed
+2019-04-27 00:36:38.477 +02:00 [DBG] CorsPolicyService allowed origin: http://localhost:8080
+2019-04-27 00:36:38.503 +02:00 [DBG] Login Url: /Account/Login
+2019-04-27 00:36:38.503 +02:00 [DBG] Login Return Url Parameter: ReturnUrl
+2019-04-27 00:36:38.503 +02:00 [DBG] Logout Url: /Account/Logout
+2019-04-27 00:36:38.503 +02:00 [DBG] ConsentUrl Url: /consent
+2019-04-27 00:36:38.503 +02:00 [DBG] Consent Return Url Parameter: returnUrl
+2019-04-27 00:36:38.503 +02:00 [DBG] Error Url: /home/error
+2019-04-27 00:36:38.503 +02:00 [DBG] Error Id Parameter: errorId
+2019-04-27 00:36:38.543 +02:00 [DBG] Request path /.well-known/openid-configuration matched to endpoint type Discovery
+2019-04-27 00:36:38.547 +02:00 [DBG] Endpoint enabled: Discovery, successfully created handler: IdentityServer4.Endpoints.DiscoveryEndpoint
+2019-04-27 00:36:38.548 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.DiscoveryEndpoint for /.well-known/openid-configuration
+2019-04-27 00:36:38.554 +02:00 [DBG] Start discovery request
+2019-04-27 00:36:38.657 +02:00 [INF] idsrv was not authenticated. Failure message: Ticket expired
+2019-04-27 00:36:38.659 +02:00 [INF] idsrv was not authenticated. Failure message: Ticket expired
+2019-04-27 00:36:38.659 +02:00 [DBG] Request path /connect/checksession matched to endpoint type Checksession
+2019-04-27 00:36:38.659 +02:00 [DBG] Endpoint enabled: Checksession, successfully created handler: IdentityServer4.Endpoints.CheckSessionEndpoint
+2019-04-27 00:36:38.659 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.CheckSessionEndpoint for /connect/checksession
+2019-04-27 00:36:38.661 +02:00 [DBG] Rendering check session result
+2019-04-27 00:36:58.343 +02:00 [INF] You are using the in-memory version of the persisted grant store. This will store consent decisions, authorization codes, refresh and reference tokens in memory only. If you are using any of those features in production, you want to switch to a different store implementation.
+2019-04-27 00:36:58.397 +02:00 [INF] Using the default authentication scheme idsrv for IdentityServer
+2019-04-27 00:36:58.402 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for authentication
+2019-04-27 00:36:58.403 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for sign-in
+2019-04-27 00:36:58.404 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for sign-out
+2019-04-27 00:36:58.404 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for challenge
+2019-04-27 00:36:58.404 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for forbid
+2019-04-27 00:40:09.911 +02:00 [INF] You are using the in-memory version of the persisted grant store. This will store consent decisions, authorization codes, refresh and reference tokens in memory only. If you are using any of those features in production, you want to switch to a different store implementation.
+2019-04-27 00:40:09.956 +02:00 [INF] Using the default authentication scheme idsrv for IdentityServer
+2019-04-27 00:40:09.959 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for authentication
+2019-04-27 00:40:09.959 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for sign-in
+2019-04-27 00:40:09.959 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for sign-out
+2019-04-27 00:40:09.959 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for challenge
+2019-04-27 00:40:09.959 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for forbid
+2019-04-27 00:40:10.390 +02:00 [DBG] CORS request made for path: /.well-known/openid-configuration from origin: http://localhost:8080
+2019-04-27 00:40:10.402 +02:00 [DBG] Client list checked and origin: http://localhost:8080 is allowed
+2019-04-27 00:40:10.402 +02:00 [DBG] CorsPolicyService allowed origin: http://localhost:8080
+2019-04-27 00:40:10.424 +02:00 [DBG] Login Url: /Account/Login
+2019-04-27 00:40:10.424 +02:00 [DBG] Login Return Url Parameter: ReturnUrl
+2019-04-27 00:40:10.424 +02:00 [DBG] Logout Url: /Account/Logout
+2019-04-27 00:40:10.424 +02:00 [DBG] ConsentUrl Url: /consent
+2019-04-27 00:40:10.424 +02:00 [DBG] Consent Return Url Parameter: returnUrl
+2019-04-27 00:40:10.424 +02:00 [DBG] Error Url: /home/error
+2019-04-27 00:40:10.424 +02:00 [DBG] Error Id Parameter: errorId
+2019-04-27 00:40:10.442 +02:00 [DBG] Request path /.well-known/openid-configuration matched to endpoint type Discovery
+2019-04-27 00:40:10.444 +02:00 [DBG] Endpoint enabled: Discovery, successfully created handler: IdentityServer4.Endpoints.DiscoveryEndpoint
+2019-04-27 00:40:10.445 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.DiscoveryEndpoint for /.well-known/openid-configuration
+2019-04-27 00:40:10.448 +02:00 [DBG] Start discovery request
+2019-04-27 00:40:10.527 +02:00 [INF] idsrv was not authenticated. Failure message: Ticket expired
+2019-04-27 00:40:10.527 +02:00 [INF] idsrv was not authenticated. Failure message: Ticket expired
+2019-04-27 00:40:10.527 +02:00 [DBG] Request path /connect/checksession matched to endpoint type Checksession
+2019-04-27 00:40:10.528 +02:00 [DBG] Endpoint enabled: Checksession, successfully created handler: IdentityServer4.Endpoints.CheckSessionEndpoint
+2019-04-27 00:40:10.528 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.CheckSessionEndpoint for /connect/checksession
+2019-04-27 00:40:10.529 +02:00 [DBG] Rendering check session result
+2019-04-27 00:40:13.938 +02:00 [DBG] CORS request made for path: /.well-known/openid-configuration from origin: http://localhost:8080
+2019-04-27 00:40:13.939 +02:00 [DBG] Client list checked and origin: http://localhost:8080 is allowed
+2019-04-27 00:40:13.939 +02:00 [DBG] CorsPolicyService allowed origin: http://localhost:8080
+2019-04-27 00:40:13.939 +02:00 [DBG] Request path /.well-known/openid-configuration matched to endpoint type Discovery
+2019-04-27 00:40:13.939 +02:00 [DBG] Endpoint enabled: Discovery, successfully created handler: IdentityServer4.Endpoints.DiscoveryEndpoint
+2019-04-27 00:40:13.939 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.DiscoveryEndpoint for /.well-known/openid-configuration
+2019-04-27 00:40:13.939 +02:00 [DBG] Start discovery request
+2019-04-27 00:40:14.109 +02:00 [INF] idsrv was not authenticated. Failure message: Ticket expired
+2019-04-27 00:40:14.109 +02:00 [INF] idsrv was not authenticated. Failure message: Ticket expired
+2019-04-27 00:40:14.109 +02:00 [DBG] Request path /connect/checksession matched to endpoint type Checksession
+2019-04-27 00:40:14.109 +02:00 [DBG] Endpoint enabled: Checksession, successfully created handler: IdentityServer4.Endpoints.CheckSessionEndpoint
+2019-04-27 00:40:14.109 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.CheckSessionEndpoint for /connect/checksession
+2019-04-27 00:40:14.109 +02:00 [DBG] Rendering check session result
+2019-04-27 00:51:02.073 +02:00 [DBG] CORS request made for path: /.well-known/openid-configuration from origin: http://localhost:8080
+2019-04-27 00:51:02.073 +02:00 [DBG] Client list checked and origin: http://localhost:8080 is allowed
+2019-04-27 00:51:02.073 +02:00 [DBG] CorsPolicyService allowed origin: http://localhost:8080
+2019-04-27 00:51:02.074 +02:00 [DBG] Request path /.well-known/openid-configuration matched to endpoint type Discovery
+2019-04-27 00:51:02.074 +02:00 [DBG] Endpoint enabled: Discovery, successfully created handler: IdentityServer4.Endpoints.DiscoveryEndpoint
+2019-04-27 00:51:02.074 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.DiscoveryEndpoint for /.well-known/openid-configuration
+2019-04-27 00:51:02.074 +02:00 [DBG] Start discovery request
+2019-04-27 00:51:02.207 +02:00 [INF] idsrv was not authenticated. Failure message: Ticket expired
+2019-04-27 00:51:02.207 +02:00 [INF] idsrv was not authenticated. Failure message: Ticket expired
+2019-04-27 00:51:02.208 +02:00 [DBG] Request path /connect/checksession matched to endpoint type Checksession
+2019-04-27 00:51:02.208 +02:00 [DBG] Endpoint enabled: Checksession, successfully created handler: IdentityServer4.Endpoints.CheckSessionEndpoint
+2019-04-27 00:51:02.208 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.CheckSessionEndpoint for /connect/checksession
+2019-04-27 00:51:02.208 +02:00 [DBG] Rendering check session result
+2019-04-27 01:02:22.209 +02:00 [DBG] CORS request made for path: /.well-known/openid-configuration from origin: http://localhost:8080
+2019-04-27 01:02:22.209 +02:00 [DBG] Client list checked and origin: http://localhost:8080 is allowed
+2019-04-27 01:02:22.210 +02:00 [DBG] CorsPolicyService allowed origin: http://localhost:8080
+2019-04-27 01:02:22.210 +02:00 [DBG] Request path /.well-known/openid-configuration matched to endpoint type Discovery
+2019-04-27 01:02:22.210 +02:00 [DBG] Endpoint enabled: Discovery, successfully created handler: IdentityServer4.Endpoints.DiscoveryEndpoint
+2019-04-27 01:02:22.210 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.DiscoveryEndpoint for /.well-known/openid-configuration
+2019-04-27 01:02:22.210 +02:00 [DBG] Start discovery request
+2019-04-27 01:02:22.398 +02:00 [INF] idsrv was not authenticated. Failure message: Ticket expired
+2019-04-27 01:02:22.398 +02:00 [INF] idsrv was not authenticated. Failure message: Ticket expired
+2019-04-27 01:02:22.398 +02:00 [DBG] Request path /connect/checksession matched to endpoint type Checksession
+2019-04-27 01:02:22.398 +02:00 [DBG] Endpoint enabled: Checksession, successfully created handler: IdentityServer4.Endpoints.CheckSessionEndpoint
+2019-04-27 01:02:22.398 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.CheckSessionEndpoint for /connect/checksession
+2019-04-27 01:02:22.398 +02:00 [DBG] Rendering check session result
+2019-04-27 01:03:07.898 +02:00 [DBG] CORS request made for path: /.well-known/openid-configuration from origin: http://localhost:8080
+2019-04-27 01:03:07.898 +02:00 [DBG] Client list checked and origin: http://localhost:8080 is allowed
+2019-04-27 01:03:07.898 +02:00 [DBG] CorsPolicyService allowed origin: http://localhost:8080
+2019-04-27 01:03:07.899 +02:00 [DBG] Request path /.well-known/openid-configuration matched to endpoint type Discovery
+2019-04-27 01:03:07.900 +02:00 [DBG] Endpoint enabled: Discovery, successfully created handler: IdentityServer4.Endpoints.DiscoveryEndpoint
+2019-04-27 01:03:07.900 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.DiscoveryEndpoint for /.well-known/openid-configuration
+2019-04-27 01:03:07.900 +02:00 [DBG] Start discovery request
+2019-04-27 01:03:08.081 +02:00 [INF] idsrv was not authenticated. Failure message: Ticket expired
+2019-04-27 01:03:08.081 +02:00 [INF] idsrv was not authenticated. Failure message: Ticket expired
+2019-04-27 01:03:08.081 +02:00 [DBG] Request path /connect/checksession matched to endpoint type Checksession
+2019-04-27 01:03:08.081 +02:00 [DBG] Endpoint enabled: Checksession, successfully created handler: IdentityServer4.Endpoints.CheckSessionEndpoint
+2019-04-27 01:03:08.081 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.CheckSessionEndpoint for /connect/checksession
+2019-04-27 01:03:08.081 +02:00 [DBG] Rendering check session result
+2019-04-27 01:03:17.587 +02:00 [DBG] CORS request made for path: /.well-known/openid-configuration from origin: http://localhost:8080
+2019-04-27 01:03:17.587 +02:00 [DBG] Client list checked and origin: http://localhost:8080 is allowed
+2019-04-27 01:03:17.587 +02:00 [DBG] CorsPolicyService allowed origin: http://localhost:8080
+2019-04-27 01:03:17.587 +02:00 [DBG] Request path /.well-known/openid-configuration matched to endpoint type Discovery
+2019-04-27 01:03:17.587 +02:00 [DBG] Endpoint enabled: Discovery, successfully created handler: IdentityServer4.Endpoints.DiscoveryEndpoint
+2019-04-27 01:03:17.588 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.DiscoveryEndpoint for /.well-known/openid-configuration
+2019-04-27 01:03:17.588 +02:00 [DBG] Start discovery request
+2019-04-27 01:03:17.804 +02:00 [INF] idsrv was not authenticated. Failure message: Ticket expired
+2019-04-27 01:03:17.804 +02:00 [INF] idsrv was not authenticated. Failure message: Ticket expired
+2019-04-27 01:03:17.804 +02:00 [DBG] Request path /connect/checksession matched to endpoint type Checksession
+2019-04-27 01:03:17.805 +02:00 [DBG] Endpoint enabled: Checksession, successfully created handler: IdentityServer4.Endpoints.CheckSessionEndpoint
+2019-04-27 01:03:17.805 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.CheckSessionEndpoint for /connect/checksession
+2019-04-27 01:03:17.805 +02:00 [DBG] Rendering check session result
+2019-04-27 01:22:37.839 +02:00 [INF] You are using the in-memory version of the persisted grant store. This will store consent decisions, authorization codes, refresh and reference tokens in memory only. If you are using any of those features in production, you want to switch to a different store implementation.
+2019-04-27 01:22:37.902 +02:00 [INF] Using the default authentication scheme idsrv for IdentityServer
+2019-04-27 01:22:37.906 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for authentication
+2019-04-27 01:22:37.906 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for sign-in
+2019-04-27 01:22:37.907 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for sign-out
+2019-04-27 01:22:37.907 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for challenge
+2019-04-27 01:22:37.907 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for forbid
+2019-04-27 01:22:48.029 +02:00 [DBG] CORS request made for path: /.well-known/openid-configuration from origin: http://localhost:8080
+2019-04-27 01:22:48.042 +02:00 [DBG] Client list checked and origin: http://localhost:8080 is allowed
+2019-04-27 01:22:48.042 +02:00 [DBG] CorsPolicyService allowed origin: http://localhost:8080
+2019-04-27 01:22:48.075 +02:00 [DBG] Login Url: /Account/Login
+2019-04-27 01:22:48.075 +02:00 [DBG] Login Return Url Parameter: ReturnUrl
+2019-04-27 01:22:48.075 +02:00 [DBG] Logout Url: /Account/Logout
+2019-04-27 01:22:48.075 +02:00 [DBG] ConsentUrl Url: /consent
+2019-04-27 01:22:48.075 +02:00 [DBG] Consent Return Url Parameter: returnUrl
+2019-04-27 01:22:48.075 +02:00 [DBG] Error Url: /home/error
+2019-04-27 01:22:48.075 +02:00 [DBG] Error Id Parameter: errorId
+2019-04-27 01:22:48.133 +02:00 [DBG] Request path /.well-known/openid-configuration matched to endpoint type Discovery
+2019-04-27 01:22:48.142 +02:00 [DBG] Endpoint enabled: Discovery, successfully created handler: IdentityServer4.Endpoints.DiscoveryEndpoint
+2019-04-27 01:22:48.143 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.DiscoveryEndpoint for /.well-known/openid-configuration
+2019-04-27 01:22:48.150 +02:00 [DBG] Start discovery request
+2019-04-27 01:22:48.339 +02:00 [INF] idsrv was not authenticated. Failure message: Ticket expired
+2019-04-27 01:22:48.345 +02:00 [INF] idsrv was not authenticated. Failure message: Ticket expired
+2019-04-27 01:22:48.345 +02:00 [DBG] Request path /connect/checksession matched to endpoint type Checksession
+2019-04-27 01:22:48.346 +02:00 [DBG] Endpoint enabled: Checksession, successfully created handler: IdentityServer4.Endpoints.CheckSessionEndpoint
+2019-04-27 01:22:48.346 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.CheckSessionEndpoint for /connect/checksession
+2019-04-27 01:22:48.363 +02:00 [DBG] Rendering check session result
+2019-04-27 01:23:08.881 +02:00 [DBG] CORS request made for path: /.well-known/openid-configuration from origin: http://localhost:8080
+2019-04-27 01:23:08.881 +02:00 [DBG] Client list checked and origin: http://localhost:8080 is allowed
+2019-04-27 01:23:08.881 +02:00 [DBG] CorsPolicyService allowed origin: http://localhost:8080
+2019-04-27 01:23:08.882 +02:00 [DBG] Request path /.well-known/openid-configuration matched to endpoint type Discovery
+2019-04-27 01:23:08.882 +02:00 [DBG] Endpoint enabled: Discovery, successfully created handler: IdentityServer4.Endpoints.DiscoveryEndpoint
+2019-04-27 01:23:08.882 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.DiscoveryEndpoint for /.well-known/openid-configuration
+2019-04-27 01:23:08.882 +02:00 [DBG] Start discovery request
+2019-04-27 01:23:09.110 +02:00 [INF] idsrv was not authenticated. Failure message: Ticket expired
+2019-04-27 01:23:09.110 +02:00 [INF] idsrv was not authenticated. Failure message: Ticket expired
+2019-04-27 01:23:09.110 +02:00 [DBG] Request path /connect/checksession matched to endpoint type Checksession
+2019-04-27 01:23:09.111 +02:00 [DBG] Endpoint enabled: Checksession, successfully created handler: IdentityServer4.Endpoints.CheckSessionEndpoint
+2019-04-27 01:23:09.111 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.CheckSessionEndpoint for /connect/checksession
+2019-04-27 01:23:09.111 +02:00 [DBG] Rendering check session result
+2019-04-27 01:28:02.425 +02:00 [INF] You are using the in-memory version of the persisted grant store. This will store consent decisions, authorization codes, refresh and reference tokens in memory only. If you are using any of those features in production, you want to switch to a different store implementation.
+2019-04-27 01:28:02.508 +02:00 [INF] Using the default authentication scheme idsrv for IdentityServer
+2019-04-27 01:28:02.514 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for authentication
+2019-04-27 01:28:02.514 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for sign-in
+2019-04-27 01:28:02.514 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for sign-out
+2019-04-27 01:28:02.514 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for challenge
+2019-04-27 01:28:02.514 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for forbid
+2019-04-27 01:30:55.638 +02:00 [INF] You are using the in-memory version of the persisted grant store. This will store consent decisions, authorization codes, refresh and reference tokens in memory only. If you are using any of those features in production, you want to switch to a different store implementation.
+2019-04-27 01:30:55.701 +02:00 [INF] Using the default authentication scheme idsrv for IdentityServer
+2019-04-27 01:30:55.705 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for authentication
+2019-04-27 01:30:55.705 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for sign-in
+2019-04-27 01:30:55.705 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for sign-out
+2019-04-27 01:30:55.705 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for challenge
+2019-04-27 01:30:55.705 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for forbid
+2019-04-27 01:33:21.456 +02:00 [INF] You are using the in-memory version of the persisted grant store. This will store consent decisions, authorization codes, refresh and reference tokens in memory only. If you are using any of those features in production, you want to switch to a different store implementation.
+2019-04-27 01:33:21.534 +02:00 [INF] Using the default authentication scheme idsrv for IdentityServer
+2019-04-27 01:33:21.545 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for authentication
+2019-04-27 01:33:21.545 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for sign-in
+2019-04-27 01:33:21.546 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for sign-out
+2019-04-27 01:33:21.546 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for challenge
+2019-04-27 01:33:21.546 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for forbid
+2019-04-27 01:34:04.980 +02:00 [INF] You are using the in-memory version of the persisted grant store. This will store consent decisions, authorization codes, refresh and reference tokens in memory only. If you are using any of those features in production, you want to switch to a different store implementation.
+2019-04-27 01:34:05.008 +02:00 [INF] Using the default authentication scheme idsrv for IdentityServer
+2019-04-27 01:34:05.010 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for authentication
+2019-04-27 01:34:05.010 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for sign-in
+2019-04-27 01:34:05.010 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for sign-out
+2019-04-27 01:34:05.010 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for challenge
+2019-04-27 01:34:05.010 +02:00 [DBG] Using idsrv as default ASP.NET Core scheme for forbid
+2019-04-27 01:34:05.254 +02:00 [DBG] Login Url: /Account/Login
+2019-04-27 01:34:05.256 +02:00 [DBG] Login Return Url Parameter: ReturnUrl
+2019-04-27 01:34:05.256 +02:00 [DBG] Logout Url: /Account/Logout
+2019-04-27 01:34:05.256 +02:00 [DBG] ConsentUrl Url: /consent
+2019-04-27 01:34:05.256 +02:00 [DBG] Consent Return Url Parameter: returnUrl
+2019-04-27 01:34:05.257 +02:00 [DBG] Error Url: /home/error
+2019-04-27 01:34:05.257 +02:00 [DBG] Error Id Parameter: errorId
+2019-04-27 01:34:05.266 +02:00 [INF] idsrv was not authenticated. Failure message: Ticket expired
+2019-04-27 01:34:05.276 +02:00 [INF] idsrv was not authenticated. Failure message: Ticket expired
+2019-04-27 01:34:05.281 +02:00 [DBG] Request path /connect/checksession matched to endpoint type Checksession
+2019-04-27 01:34:05.282 +02:00 [DBG] Endpoint enabled: Checksession, successfully created handler: IdentityServer4.Endpoints.CheckSessionEndpoint
+2019-04-27 01:34:05.282 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.CheckSessionEndpoint for /connect/checksession
+2019-04-27 01:34:05.283 +02:00 [DBG] Rendering check session result

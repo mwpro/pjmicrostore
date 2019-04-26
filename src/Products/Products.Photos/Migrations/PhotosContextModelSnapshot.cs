@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Products.Catalog.Photos;
+using Products.Photos.Domain;
 
-namespace Products.Catalog.Migrations.Photos
+namespace Products.Photos.Migrations
 {
     [DbContext(typeof(PhotosContext))]
     partial class PhotosContextModelSnapshot : ModelSnapshot

@@ -11,18 +11,19 @@ export default {
     productsCount: 0,
     categoriesList: [
 
-    ],    
+    ],
     attributesList: [
 
     ],
     product: {
 
-    }
+    },
+    photos: [],
   },
   mutations: {
     getProducts(state, products) {
       state.productsList = products;
-    },    
+    },
     getProductsCount(state, productsCount) {
       state.productsCount = productsCount;
     },
@@ -31,9 +32,12 @@ export default {
     },
     getCategories(state, categories) {
       state.categoriesList = categories;
-    },    
+    },
     getAttributes(state, attributes) {
       state.attributesList = attributes;
+    },
+    getPhotos(state, photos) {
+      state.photos = photos;
     },
   },
   actions: {
@@ -41,21 +45,32 @@ export default {
       return axios
         .get('/api/products', {
           params: query,
-          paramsSerializer: function (params) {
-            return Qs.stringify(params)
-          }
+          paramsSerializer(params) {
+            return Qs.stringify(params);
+          },
         })
         .then((response) => {
           if (response.status !== 200) throw Error(response.message);
-          let products = response.data;
+          const products = response.data;
           /* hangs on Mac?
           if (typeof products !== 'object') {
             products = [];
-          }*/
+          } */
 
           commit('getProducts', products.products);
           commit('getProductsCount', products.productsCount);
           return products;
+        });
+      // TODO .catch(captains.error)
+    },
+    getPhotosAction({ commit }, productId) {
+      return axios
+        .get(`/api/products/${productId}/photos`)
+        .then((response) => {
+          if (response.status !== 200) throw Error(response.message);
+          const photos = response.data;
+          commit('getPhotos', photos);
+          return photos;
         });
       // TODO .catch(captains.error)
     },
@@ -64,7 +79,7 @@ export default {
         .get(`/api/products/${productId}`)
         .then((response) => {
           if (response.status !== 200) throw Error(response.message);
-          let product = response.data;
+          const product = response.data;
           commit('getProduct', product);
           return product;
         });
@@ -75,11 +90,11 @@ export default {
         .get('/api/categories')
         .then((response) => {
           if (response.status !== 200) throw Error(response.message);
-          let categories = response.data;
+          const categories = response.data;
           /* hangs on Mac?
           if (typeof categories !== 'object') {
             categories = [];
-          }*/
+          } */
 
           commit('getCategories', categories);
           return categories;
@@ -91,11 +106,11 @@ export default {
         .get('/api/attributes')
         .then((response) => {
           if (response.status !== 200) throw Error(response.message);
-          let attributes = response.data;
+          const attributes = response.data;
           /* hangs on Mac?
           if (typeof attributes !== 'object') {
             attributes = [];
-          }*/
+          } */
 
           commit('getAttributes', attributes);
           return attributes;

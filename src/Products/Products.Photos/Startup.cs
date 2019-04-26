@@ -1,21 +1,21 @@
-﻿using System;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using GreenPipes;
 using MassTransit;
-using MassTransit.Pipeline.ConsumerFactories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Products.Catalog.Contracts.Events;
-using Products.Search.Consumers;
-using Products.Search.Services;
+using Newtonsoft.Json;
+using Products.Photos.Controllers;
+using Products.Photos.Domain;
+using Products.Photos.Storage;
 using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 
-namespace Products.Search
+namespace Products.Photos
 {
     public class Startup
     {
@@ -29,37 +29,33 @@ namespace Products.Search
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+                .AddJsonOptions(options =>
+                {
+                    options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore; // todo hmm, probably it only hides the problem
+                }); ;
 
+            const string connectionString = @"Server=localhost,1433;Database=Products.Photos;User Id=sa;Password=sqlDevPassw0rd;ConnectRetryCount=0";
+            services
+                .AddDbContext<PhotosContext>
+                    (options => options.UseSqlServer(connectionString));
+            
             services.AddMassTransit(c =>
             {
                 c.AddBus(provider => Bus.Factory.CreateUsingRabbitMq(
                     cfg =>
                     {
                         var host = cfg.Host("localhost", "/", h => { });
-                        cfg.ReceiveEndpoint(host, "Products.Search", e =>
+                        cfg.ReceiveEndpoint(host, "Products.Photos", e =>
                         {
                             e.PrefetchCount = 16;
                             e.UseMessageRetry(x => x.Interval(2, 100));
-
-                            e.ConfigureConsumer<ProductUpdatedConsumer>(provider);
-
-                            e.Batch<ProductUpdatedEvent>(b =>
-                            {
-                                b.MessageLimit = 3; // todo config
-                                b.TimeLimit = TimeSpan.FromMinutes(5);
-                                b.Consumer(new DefaultConstructorConsumerFactory<ProductUpdatedConsumer>());
-                            });
                         });
                     }));
-                c.AddConsumer<ProductUpdatedConsumer>();
             });
 
             services.AddSingleton<IHostedService, BusService>();
-
-            services.AddTransient<ProductUpdatedConsumer>();
-
-            services.AddTransient<IProductsService, ProductsService>(); // todo scoped or transient?
+            services.AddSingleton<IPhotoStorage, AzurePhotoStorage>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

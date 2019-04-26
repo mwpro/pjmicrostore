@@ -1,16 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography;
 using System.Threading.Tasks;
 using MassTransit;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Products.Catalog.Contracts;
 using Products.Catalog.Contracts.ApiModels;
 using Products.Catalog.Contracts.Events;
 using Products.Catalog.Domain;
-using Products.Catalog.Photos;
 
 namespace Products.Catalog.Controllers
 {
@@ -19,14 +16,12 @@ namespace Products.Catalog.Controllers
     public class ProductsController : ControllerBase
     {
         private readonly ProductsContext _productsContext;
-        private readonly PhotosContext _photosContext;
         private readonly IBus _bus;
 
-        public ProductsController(ProductsContext productsContext, IBus bus, PhotosContext photosContext)
+        public ProductsController(ProductsContext productsContext, IBus bus)
         {
             _productsContext = productsContext;
             _bus = bus;
-            _photosContext = photosContext;
         }
         
         [HttpGet("")]
@@ -46,18 +41,6 @@ namespace Products.Catalog.Controllers
                 .Select(product => ToProductDto(product)).ToList();
 
             var productIds = products.Select(x => x.Id).ToList();
-
-            var photos = _photosContext.Photos.Where(x => productIds.Contains(x.ProductId))
-                .ToList();
-
-            foreach (var product in products)
-            {
-                product.Photos = photos.Where(x => x.ProductId == product.Id)
-                    .Select(x => new PhotoDto()
-                    {
-                        OriginalUrl = x.OriginalUrl
-                    });
-            }
 
             var productsCount = _productsContext.Products.Count();
             
@@ -150,7 +133,7 @@ namespace Products.Catalog.Controllers
             await _productsContext.SaveChangesAsync();
 
             var productDto = ToProductDto(product);
-            productDto.Photos = GetPhotoDtos(product);
+
             await _bus.Publish(new ProductUpdatedEvent()
             {
                 ProductDetails = productDto,
@@ -175,23 +158,9 @@ namespace Products.Catalog.Controllers
             
             var result = ToProductDto(product);
 
-            result.Photos = GetPhotoDtos(product);
-
             return Ok(result);
         }
-
-        private IEnumerable<PhotoDto> GetPhotoDtos(Product product)
-        {
-            var photos = _photosContext.Photos.Where(x => x.ProductId == product.Id)
-                .ToList();
-            var photoDtos = photos.Where(x => x.ProductId == product.Id)
-                .Select(x => new PhotoDto()
-                {
-                    OriginalUrl = x.OriginalUrl
-                });
-            return photoDtos;
-        }
-
+        
         [HttpGet("/api/categories")]
         public IActionResult GetAllCategories()
         {

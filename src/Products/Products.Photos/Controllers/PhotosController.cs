@@ -1,41 +1,14 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Azure.Storage;
-using Microsoft.Azure.Storage.Blob;
-using Microsoft.EntityFrameworkCore;
+using Products.Photos.Domain;
+using Products.Photos.Storage;
 
-namespace Products.Catalog.Photos
+namespace Products.Photos.Controllers
 {
-    public interface IPhotoStorage
-    {
-        Task<PhotoFileInfo> Save(IFormFile formFile);
-    }
-
-    public class AzurePhotoStorage : IPhotoStorage
-    {
-        public async Task<PhotoFileInfo> Save(IFormFile formFile)
-        {
-            CloudStorageAccount cloudStorageAccount = CloudStorageAccount.Parse("DefaultEndpointsProtocol=http;AccountName=devstoreaccount1;AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==;BlobEndpoint=http://127.0.0.1:10000/devstoreaccount1;");
-            CloudBlobClient cloudBlobClient = cloudStorageAccount.CreateCloudBlobClient();
-            var cloudBlobContainer = cloudBlobClient.GetContainerReference("productsphotos");
-            var exists = await cloudBlobContainer.ExistsAsync();
-            if (!exists)
-                await cloudBlobContainer.CreateAsync();
-            var blobReference = cloudBlobContainer.GetBlockBlobReference($"{Guid.NewGuid()}-{formFile.FileName}");   
-            blobReference.UploadFromStream(formFile.OpenReadStream());
-
-            return new PhotoFileInfo()
-            {
-                Uri = blobReference.Uri
-            };
-        }
-    }
-
     public class PhotoFileInfo
     {
         public Uri Uri { get; set; }
@@ -52,7 +25,18 @@ namespace Products.Catalog.Photos
             _context = context;
             _photoStorage = photoStorage;
         }
-        
+
+        [HttpGet]
+        [Route("/api/products/{productId}/photos")]
+        public IActionResult GetPhotos(int productId)
+        {
+            var productPhotos = _context.Photos.Where(x => x.ProductId == productId).ToList();
+            if (!productPhotos.Any())
+                return NotFound();
+
+            return Ok(productPhotos);
+        }
+
         [HttpPost]
         [Route("/api/products/{productId}/photos")]
         public async Task<IActionResult> PostPhoto(int productId, IList<IFormFile> photos)

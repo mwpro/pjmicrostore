@@ -1,7 +1,7 @@
 <template>
     <div>
         <h2>{{ product.name }}</h2>
-        <img :src="(product.photos && product.photos.length > 0) ? product.photos[0].originalUrl : 'https://picsum.photos/600/400?image=0'" alt="Product name" />
+        <img :src="(photos && photos.length > 0) ? photos[0].originalUrl : 'https://picsum.photos/600/400?image=0'" alt="Product name" />
         <p>{{ product.price | currency }}</p>
         <AddToCart :product="product" />
         <p>
@@ -28,9 +28,13 @@ export default {
     product() {
       return this.$store.state.products.product;
     },
+    photos() {
+      return this.$store.state.products.photos;
+    },
   },
   created() {
     this.$store.dispatch('products/getProductAction', this.productId);
+    this.$store.dispatch('products/getPhotosAction', this.productId);
   },
 };
 </script>

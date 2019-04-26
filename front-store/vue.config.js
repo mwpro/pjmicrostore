@@ -1,6 +1,10 @@
 module.exports = {
   devServer: {
     proxy: {
+      '/api/products/.*/photos': {
+        target: 'http://localhost:58120',
+        changeOrigin: true,
+      },
       '/api/products': {
         target: 'http://localhost:53606',
         changeOrigin: true,
@@ -28,4 +32,3 @@ module.exports = {
     },
   },
 };
-

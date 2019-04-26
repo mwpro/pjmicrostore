@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using GreenPipes;
 using MassTransit;
@@ -12,11 +9,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Products.Catalog.Domain;
-using Products.Catalog.Photos;
 using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 
 namespace Products.Catalog
@@ -42,8 +36,6 @@ namespace Products.Catalog
             const string connectionString = @"Server=localhost,1433;Database=Products.Catalog;User Id=sa;Password=sqlDevPassw0rd;ConnectRetryCount=0";
             services
                 .AddDbContext<ProductsContext>
-                    (options => options.UseSqlServer(connectionString))
-                .AddDbContext<PhotosContext>
                     (options => options.UseSqlServer(connectionString));
             
             services.AddMassTransit(c =>
@@ -61,7 +53,6 @@ namespace Products.Catalog
             });
 
             services.AddSingleton<IHostedService, BusService>();
-            services.AddSingleton<IPhotoStorage, AzurePhotoStorage>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

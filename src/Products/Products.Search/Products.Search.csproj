@@ -1,8 +1,7 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
-    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
   </PropertyGroup>
 
   <ItemGroup>
@@ -17,7 +16,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Products.Catalog.Contracts\Products.Catalog.Contracts.csproj" />
+    <ProjectReference Include="..\Products.Catalog.Contracts\Products.Catalog.Contracts.csproj" />
+    <ProjectReference Include="..\Products.Catalog.Contracts\Products.Catalog.Contracts.csproj" />
   </ItemGroup>
 
 </Project>

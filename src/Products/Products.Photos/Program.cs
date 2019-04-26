@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
-namespace Checkout.Cart
+namespace Products.Photos
 {
     public class Program
     {

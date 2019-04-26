@@ -19,6 +19,7 @@ export default {
     searchAttributes: [
 
     ],
+    photos: [],
   },
   mutations: {
     getProducts(state, products) {
@@ -39,6 +40,9 @@ export default {
     setFilters(state, filters) {
       state.filters = filters;
     },
+    getPhotos(state, photos) {
+      state.photos = photos;
+    },
   },
   actions: {
     getProductAction({ commit }, productId) {
@@ -49,6 +53,17 @@ export default {
           const product = response.data;
           commit('getProduct', product);
           return product;
+        });
+      // TODO .catch(captains.error)
+    },
+    getPhotosAction({ commit }, productId) {
+      return axios
+        .get(`/api/products/${productId}/photos`)
+        .then((response) => {
+          if (response.status !== 200) throw Error(response.message);
+          const photos = response.data;
+          commit('getPhotos', photos);
+          return photos;
         });
       // TODO .catch(captains.error)
     },

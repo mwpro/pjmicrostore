@@ -72,7 +72,7 @@
       ></b-form-file>
       <b-container fluid class="p-4 bg-dark">
         <b-row>
-          <b-col v-for="photo in photos">
+          <b-col v-for="photo in photos" v-bind:key="photo.photoId">
             <b-img thumbnail fluid :src="photo.originalUrl" alt="Image 1"></b-img>
           </b-col>
         </b-row>
@@ -192,8 +192,14 @@ export default {
               attributeValue: attr.value,
             });
           });
+        })
+        .catch((error) => {
+          // todo
+        });
 
-          this.photos = result.photos;
+      this.$store.dispatch('products/getPhotosAction', this.productId)
+        .then((result) => {
+          this.photos = result;
         })
         .catch((error) => {
           // todo

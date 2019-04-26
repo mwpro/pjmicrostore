@@ -4,13 +4,13 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Products.Catalog.Photos;
+using Products.Photos.Domain;
 
-namespace Products.Catalog.Migrations.Photos
+namespace Products.Photos.Migrations
 {
     [DbContext(typeof(PhotosContext))]
-    [Migration("20190425220224_AddPhotos")]
-    partial class AddPhotos
+    [Migration("20190426223121_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

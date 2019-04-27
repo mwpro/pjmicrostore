@@ -1,5 +1,4 @@
 import { UserManager, WebStorageStateStore } from 'oidc-client';
-import Vue from 'vue';
 
 const authConfig = {
   authority: 'http://localhost:5000',
@@ -9,31 +8,38 @@ const authConfig = {
   scope: 'openid profile api1',
   post_logout_redirect_uri: 'http://localhost:8080',
   userStore: new WebStorageStateStore({ store: window.localStorage }),
+
+  // automaticSilentRenew: true,
+  // silent_redirect_uri: 'https://localhost:44357/silent-renew.html',
+  // filterProtocolClaims: true,
 };
 
 const auth = {
+  function() {
+    this.isAuthenticated = true;
+    // this.mgr.sig
+  },
+
   mgr: new UserManager(authConfig),
+  isAuthenticated: false,
 
   login() {
     this.mgr.signinRedirect();
   },
 
-  api() {
-    this.mgr.getUser().then((user) => {
-      const url = 'http://localhost:5001/identity';
-
-      const xhr = new XMLHttpRequest();
-      xhr.open('GET', url);
-      xhr.onload = function () {
-        log(xhr.status, JSON.parse(xhr.responseText));
-      };
-      xhr.setRequestHeader('Authorization', `Bearer ${user.access_token}`);
-      xhr.send();
-    });
+  getUser() {
+    return this.mgr.getUser();
   },
 
   logout() {
     this.mgr.signoutRedirect();
+  },
+
+  getAccessToken() {
+    return this.mgr.getUser().then((data) => {
+      console.log(data);
+      return data.access_token;
+    });
   },
 
   authCallback() {

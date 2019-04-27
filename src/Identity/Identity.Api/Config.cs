@@ -5,7 +5,6 @@
 using IdentityServer4.Models;
 using System.Collections.Generic;
 using IdentityServer4;
-using IdentityServer4.Test;
 
 namespace Identity.Api
 {
@@ -19,54 +18,58 @@ namespace Identity.Api
                 new IdentityResources.Profile(),
             };
         }
-        public static List<TestUser> GetUsers()
-        {
-            return new List<TestUser>
-            {
-                new TestUser
-                {
-                    SubjectId = "1",
-                    Username = "alice",
-                    Password = "password"
-                },
-                new TestUser
-                {
-                    SubjectId = "2",
-                    Username = "bob",
-                    Password = "password"
-                }
-            };
-        }
 
         public static IEnumerable<ApiResource> GetApis()
         {
             return new ApiResource[]
             {
-                new ApiResource("api1", "Api 1"), 
+                new ApiResource("api1", "My API #1")
             };
         }
 
         public static IEnumerable<Client> GetClients()
         {
-            return new Client[] { new Client
+            return new[]
             {
-                ClientId = "frontStore",
-                ClientName = "Front Store Client",
-                AllowedGrantTypes = GrantTypes.Code,
-                RequirePkce = true,
-                RequireClientSecret = false,
-
-                RedirectUris =           { "http://localhost:8080/callback" },
-                PostLogoutRedirectUris = { "http://localhost:8080" },
-                AllowedCorsOrigins =     { "http://localhost:8080" },
-
-                AllowedScopes =
+                // client credentials flow client
+                new Client
                 {
-                    IdentityServerConstants.StandardScopes.OpenId,
-                    IdentityServerConstants.StandardScopes.Profile,
-                    "api1"
+                    ClientId = "client",
+                    ClientName = "Client Credentials Client",
+
+                    AllowedGrantTypes = GrantTypes.ClientCredentials,
+                    ClientSecrets = {new Secret("511536EF-F270-4058-80CA-1C89C192F69A".Sha256())},
+
+                    AllowedScopes = {"api1"}
+                },
+                // SPA client using Code flow
+                new Client
+                {
+                    ClientId = "frontStore",
+                    ClientName = "Front Store Client",
+                    AllowedGrantTypes = GrantTypes.Code,
+
+                    RequirePkce = true,
+                    RequireClientSecret = false,
+                    //RequireConsent = false,
+
+                    AccessTokenLifetime = 330,
+                    IdentityTokenLifetime = 300,
+
+                    AllowAccessTokensViaBrowser = true,
+
+                    RedirectUris = {"http://localhost:8080/callback"},
+                    PostLogoutRedirectUris = {"http://localhost:8080"},
+                    AllowedCorsOrigins = {"http://localhost:8080"},
+
+                    AllowedScopes =
+                    {
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile,
+                        "api1"
+                    }
                 }
-            }};
+            };
         }
     }
 }

@@ -2,43 +2,57 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
-using System;
+using Identity.Api.Data;
+using Identity.Api.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace Identity.Api
 {
     public class Startup
     {
+        public IConfiguration Configuration { get; }
         public IHostingEnvironment Environment { get; }
 
-        public Startup(IHostingEnvironment environment)
+        public Startup(IConfiguration configuration, IHostingEnvironment environment)
         {
+            Configuration = configuration;
             Environment = environment;
         }
 
         public void ConfigureServices(IServiceCollection services)
         {
-            // uncomment, if you wan to add an MVC-based UI
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders();
+
             services.AddMvc().SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_2_1);
 
-            var builder = services.AddIdentityServer()
+            services.Configure<IISOptions>(iis =>
+            {
+                iis.AuthenticationDisplayName = "Windows";
+                iis.AutomaticAuthentication = false;
+            });
+
+            var builder = services.AddIdentityServer(options =>
+            {
+                options.Events.RaiseErrorEvents = true;
+                options.Events.RaiseInformationEvents = true;
+                options.Events.RaiseFailureEvents = true;
+                options.Events.RaiseSuccessEvents = true;
+            })
                 .AddInMemoryIdentityResources(Config.GetIdentityResources())
                 .AddInMemoryApiResources(Config.GetApis())
                 .AddInMemoryClients(Config.GetClients())
-                .AddTestUsers(Config.GetUsers());
-
-            services.AddCors(options =>
-            {
-                // this defines a CORS policy called "default"
-                options.AddPolicy("default", policy =>
-                {
-                    policy.WithOrigins("http://localhost:8080")
-                        .AllowAnyHeader()
-                        .AllowAnyMethod();
-                });
-            });
+                .AddAspNetIdentity<ApplicationUser>();
 
             if (Environment.IsDevelopment())
             {
@@ -48,6 +62,16 @@ namespace Identity.Api
             {
                 throw new Exception("need to configure key material");
             }
+
+            services.AddAuthentication()
+                .AddGoogle(options =>
+                {
+                    // register your IdentityServer with Google at https://console.developers.google.com
+                    // enable the Google+ API
+                    // set the redirect URI to http://localhost:5000/signin-google
+                    options.ClientId = "copy client ID from Google here";
+                    options.ClientSecret = "copy client secret from Google here";
+                });
         }
 
         public void Configure(IApplicationBuilder app)
@@ -55,17 +79,16 @@ namespace Identity.Api
             if (Environment.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseDatabaseErrorPage();
+            }
+            else
+            {
+                app.UseExceptionHandler("/Home/Error");
             }
 
-            // uncomment if you want to support static files
             app.UseStaticFiles();
-
             app.UseIdentityServer();
-
-            // uncomment, if you wan to add an MVC-based UI
             app.UseMvcWithDefaultRoute();
-
-            app.UseCors("default");
         }
     }
 }

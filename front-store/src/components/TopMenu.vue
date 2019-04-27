@@ -31,8 +31,9 @@
                 <path d="M21 21l-5.2-5.2"></path>
               </svg>
             </a>
-            <a class="btn btn-sm btn-outline-secondary" @click="login()">Sign in</a>
+            <a class="btn btn-sm btn-outline-secondary" @click="login()">Sign in</a>  <!--v-if="!isAuthorized"-->
             <a class="btn btn-sm btn-outline-secondary" @click="logout()">Logout</a>
+            <a class="btn btn-sm btn-outline-secondary" @click="testAuth()" v-if="isAuthenticated">Test</a>
             <CartInfo />
           </div>
         </div>
@@ -55,6 +56,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 import CartInfo from './CartInfo.vue';
 
 export default {
@@ -71,6 +73,9 @@ export default {
     categories() {
       return this.$store.state.products.categoriesList;
     },
+    isAuthenticated() {
+      return this.$auth.isAuthenticated;
+    },
   },
   methods: {
     login() {
@@ -78,6 +83,17 @@ export default {
     },
     logout() {
       this.$auth.logout();
+    },
+    testAuth() {
+      return this.$auth.getAccessToken()
+        .then((token) => {
+          axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+          return axios
+            .get('/api/orders/auth')
+            .then((response) => {
+              console.log(response);
+            });
+        });
     },
   },
 };

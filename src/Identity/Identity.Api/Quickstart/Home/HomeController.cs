@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
 
-namespace Identity.Api
+namespace IdentityServer4.Quickstart.UI
 {
     [SecurityHeaders]
     [AllowAnonymous]

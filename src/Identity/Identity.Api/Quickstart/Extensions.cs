@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using IdentityServer4.Stores;
 
-namespace Identity.Api
+namespace IdentityServer4.Quickstart.UI
 {
     public static class Extensions
     {

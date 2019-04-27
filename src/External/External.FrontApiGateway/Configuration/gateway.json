@@ -1,0 +1,112 @@
+{
+    "ReRoutes": [
+        // todo split into files
+        // products
+        {
+            "DownstreamPathTemplate": "/api/products/{productId}",
+            "DownstreamScheme": "http",
+            "ServiceName": "products",
+            "UpstreamPathTemplate": "/api/products/{productId}",
+            "UpstreamHttpMethod": [ "Get" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/categories",
+            "DownstreamScheme": "http",
+            "ServiceName": "products",
+            "UpstreamPathTemplate": "/api/categories",
+            "UpstreamHttpMethod": [ "Get" ]
+        },
+        // photos
+        {
+            "DownstreamPathTemplate": "/api/products/{productId}/photos",
+            "DownstreamScheme": "http",
+            "ServiceName": "photos",
+            "UpstreamPathTemplate": "/api/products/{productId}/photos",
+            "UpstreamHttpMethod": [ "Get" ]
+        },
+        // search
+        {
+            "DownstreamPathTemplate": "/api/search",
+            "DownstreamScheme": "http",
+            "ServiceName": "search",
+            "UpstreamPathTemplate": "/api/search",
+            "UpstreamHttpMethod": [ "Get" ]
+        },
+        // cart
+        {
+            "DownstreamPathTemplate": "/api/cart",
+            "DownstreamScheme": "http",
+            "ServiceName": "cart",
+            "UpstreamPathTemplate": "/api/cart",
+            "UpstreamHttpMethod": [ "Get" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/cart/products/{productId}",
+            "DownstreamScheme": "http",
+            "ServiceName": "cart",
+            "UpstreamPathTemplate": "/api/cart/products/{productId}",
+            "UpstreamHttpMethod": [ "Post", "Delete", "Put" ]
+        },
+        // orders
+        {
+            "DownstreamPathTemplate": "/api/orders",
+            "DownstreamScheme": "http",
+            "ServiceName": "orders",
+            "UpstreamPathTemplate": "/api/orders",
+            "UpstreamHttpMethod": [ "Post" ]
+        },
+        // payments
+        {
+            "DownstreamPathTemplate": "/api/payments/methods",
+            "DownstreamScheme": "http",
+            "ServiceName": "payments",
+            "UpstreamPathTemplate": "/api/payments/methods",
+            "UpstreamHttpMethod": [ "Get" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/payments/{paymentReference}",
+            "DownstreamScheme": "http",
+            "ServiceName": "payments",
+            "UpstreamPathTemplate": "/api/payments/{paymentReference}",
+            "UpstreamHttpMethod": [ "Get" ]
+        }
+    ],
+    "GlobalConfiguration": {
+        "BaseUrl": "http://api.store", // todo
+        "ServiceDiscoveryProvider": {
+            "Type": "ConfigurationServiceProvider"
+        }
+    },
+    "GatewayServices": [
+        {
+            "Name": "products",
+            "DownstreamHost": "localhost",
+            "DownstreamPort": 53606
+        },
+        {
+            "Name": "photos",
+            "DownstreamHost": "localhost",
+            "DownstreamPort": 58120
+        },
+        {
+            "Name": "search",
+            "DownstreamHost": "localhost",
+            "DownstreamPort": 52910
+        },
+        {
+            "Name": "cart",
+            "DownstreamHost": "localhost",
+            "DownstreamPort": 64642
+        },
+        {
+            "Name": "orders",
+            "DownstreamHost": "localhost",
+            "DownstreamPort": 56037
+        },
+        {
+            "Name": "payments",
+            "DownstreamHost": "localhost",
+            "DownstreamPort": 62678
+        }
+    ]
+}

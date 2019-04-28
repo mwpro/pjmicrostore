@@ -48,10 +48,10 @@ namespace Identity.Api
                     ClientId = "frontStore",
                     ClientName = "Front Store Client",
                     AllowedGrantTypes = GrantTypes.Code,
-
+                    
                     RequirePkce = true,
                     RequireClientSecret = false,
-                    //RequireConsent = false,
+                    RequireConsent = false,
 
                     AccessTokenLifetime = 90,
                     IdentityTokenLifetime = 30,

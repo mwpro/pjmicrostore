@@ -5,7 +5,6 @@
 <script>
 export default {
   created() {
-    console.log(this.$auth);
     this.$auth.silentCallback();
   },
 };

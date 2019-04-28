@@ -43,7 +43,6 @@ const auth = new Vue({
 
     this.userManager.events.addUserLoaded((user) => {
       console.log('User loaded');
-      console.log(user);
       this.expiresAt = user.expires_at ? user.expires_at * 1000 : null;
       this.accessToken = user.access_token;
     });

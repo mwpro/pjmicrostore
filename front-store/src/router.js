@@ -9,6 +9,7 @@ import OrderPlaced from './pages/OrderPlaced.vue';
 import PaymentRedirect from './pages/PaymentRedirect.vue';
 import PaymentMock from './pages/PaymentMock.vue';
 import Callback from './pages/Callback.vue';
+import SilentRenew from './pages/SilentRenew.vue';
 import Category from './pages/Category.vue';
 
 Vue.use(Router);
@@ -26,6 +27,12 @@ export default new Router({
       path: '/callback',
       name: 'callback',
       component: Callback,
+      meta: { layout: 'minimal' },
+    },
+    {
+      path: '/silentRenew',
+      name: 'silentRenew',
+      component: SilentRenew,
       meta: { layout: 'minimal' },
     },
     {

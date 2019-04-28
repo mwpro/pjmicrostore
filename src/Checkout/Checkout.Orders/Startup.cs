@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
 using Checkout.Orders.Consumers;
@@ -9,6 +10,7 @@ using Checkout.Orders.Domain;
 using Checkout.Orders.Infrastructure;
 using Checkout.Orders.Services;
 using GreenPipes;
+using IdentityServer4.AccessTokenValidation;
 using MassTransit;
 using MediatR;
 using Microsoft.AspNetCore.Authentication;
@@ -21,10 +23,12 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 
 namespace Checkout.Orders
 {
+
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -39,12 +43,13 @@ namespace Checkout.Orders
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            services.AddAuthentication("Bearer")
-                .AddJwtBearer("Bearer", options =>
+            services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
+                .AddIdentityServerAuthentication(options =>
                 {
                     options.Authority = "http://localhost:5000";
                     options.RequireHttpsMetadata = false;
-                    options.Audience = "api1";
+                    options.JwtValidationClockSkew = TimeSpan.FromSeconds(15);
+                    //options.Audience = "api1";
                 });
 
             services.AddDbContext<OrdersContext>(options => options.UseSqlServer(Configuration.GetConnectionString("OrdersDatabase")));

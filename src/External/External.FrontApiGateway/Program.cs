@@ -65,7 +65,8 @@ namespace External.FrontApiGateway
                     new Service(x.Name, new ServiceHostAndPort(x.DownstreamHost, x.DownstreamPort), string.Empty,
                         string.Empty, new string[0])).ToList();
 
-            services.AddSingleton<ServiceDiscoveryFinderDelegate>((provider, config, key) => new ConfigurationServiceProvider(gatewayServices));
+            services.AddSingleton<ServiceDiscoveryFinderDelegate>((provider, config, key) => new ConfigurationServiceProvider(gatewayServices
+                .Where(s => s.Name.Equals(key)).ToList()));
             return services;
         }
     }

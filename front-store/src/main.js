@@ -3,7 +3,7 @@ import BootstrapVue from 'bootstrap-vue';
 import App from './App.vue';
 import router from './router';
 import store from './store';
-import AuthService from './auth/AuthService';
+import AuthService from './auth/authService';
 
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';

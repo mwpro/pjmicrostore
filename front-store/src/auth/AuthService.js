@@ -1,4 +1,5 @@
-import { UserManager, WebStorageStateStore } from 'oidc-client';
+import { UserManager, WebStorageStateStore, Oidc } from 'oidc-client';
+import Vue from 'vue';
 
 const authConfig = {
   authority: 'http://localhost:5000',
@@ -9,52 +10,83 @@ const authConfig = {
   post_logout_redirect_uri: 'http://localhost:8080',
   userStore: new WebStorageStateStore({ store: window.localStorage }),
 
-  // automaticSilentRenew: true,
-  // silent_redirect_uri: 'https://localhost:44357/silent-renew.html',
-  // filterProtocolClaims: true,
+  clockSkew: 15,
+  accessTokenExpiringNotificationTime: 40,
+
+  automaticSilentRenew: true,
+  silent_redirect_uri: 'http://localhost:8080/silentrenew',
+  filterProtocolClaims: true,
 };
 
-const auth = {
-  function() {
-    this.isAuthenticated = true;
-    // this.mgr.sig
+const auth = new Vue({
+  data() {
+    return {
+      accessToken: null,
+      expiresAt: null,
+      userManager: new UserManager(authConfig),
+    };
   },
-
-  mgr: new UserManager(authConfig),
-  isAuthenticated: false,
-
-  login() {
-    this.mgr.signinRedirect();
+  computed: {
+    isAuthenticated() {
+      return this.accessToken && new Date().getTime() < this.expiresAt;
+    },
   },
+  created() {
+    this.userManager.getUser().then((user) => {
+      this.accessToken = user.access_token;
+      this.expiresAt = user.expires_at ? user.expires_at * 1000 : null;
+    });
 
-  getUser() {
-    return this.mgr.getUser();
-  },
+    this.userManager.events.addAccessTokenExpiring(() => {
+      console.log('Token is about to expire...');
+    });
 
-  logout() {
-    this.mgr.signoutRedirect();
-  },
+    this.userManager.events.addUserLoaded((user) => {
+      console.log('User loaded');
+      console.log(user);
+      this.expiresAt = user.expires_at ? user.expires_at * 1000 : null;
+      this.accessToken = user.access_token;
+    });
 
-  getAccessToken() {
-    return this.mgr.getUser().then((data) => {
-      console.log(data);
-      return data.access_token;
+    this.userManager.events.addAccessTokenExpired(() => {
+      console.log('Token is expired. Trying to renew');
+      this.userManager.signinSilent();
     });
   },
+  methods: {
+    login() {
+      this.userManager.signinRedirect();
+    },
 
-  authCallback() {
-    const mgr = new UserManager({ response_mode: 'query', userStore: new WebStorageStateStore() });
+    getUser() {
+      return this.userManager.getUser();
+    },
 
-    mgr.signinRedirectCallback().then((user) => {
-      window.location.href = '../';
-    }).catch((err) => {
-      console.log(err);
-    });
+    logout() {
+      this.userManager.signoutRedirect();
+      this.accessToken = null;
+      this.expiresAt = null;
+    },
+
+    authCallback() {
+      this.userManager.signinRedirectCallback().then((user) => {
+        window.location.href = '../';
+        this.expiresAt = user.expires_at ? user.expires_at * 1000 : null;
+        this.accessToken = user.access_token;
+      }).catch((err) => {
+        console.log(err);
+      });
+    },
+
+    silentCallback() {
+      console.log('Silent renew callback');
+      this.userManager.signinSilentCallback();
+    },
   },
-};
+});
 
 export default {
-  install(Vue) {
-    Vue.prototype.$auth = auth;
+  install(vue) {
+    vue.prototype.$auth = auth;
   },
 };

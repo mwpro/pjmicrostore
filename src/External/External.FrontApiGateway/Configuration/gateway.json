@@ -55,6 +55,13 @@
             "UpstreamPathTemplate": "/api/orders",
             "UpstreamHttpMethod": [ "Post" ]
         },
+        {
+            "DownstreamPathTemplate": "/api/orders/auth", // todo testing only
+            "DownstreamScheme": "http",
+            "ServiceName": "orders",
+            "UpstreamPathTemplate": "/api/orders/auth",
+            "UpstreamHttpMethod": [ "Get" ]
+        },
         // payments
         {
             "DownstreamPathTemplate": "/api/payments/methods",

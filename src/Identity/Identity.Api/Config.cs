@@ -53,15 +53,19 @@ namespace Identity.Api
                     RequireClientSecret = false,
                     //RequireConsent = false,
 
-                    AccessTokenLifetime = 330,
-                    IdentityTokenLifetime = 300,
+                    AccessTokenLifetime = 90,
+                    IdentityTokenLifetime = 30,
 
                     AllowAccessTokensViaBrowser = true,
 
-                    RedirectUris = {"http://localhost:8080/callback"},
+                    RedirectUris =
+                    {
+                        "http://localhost:8080/callback",
+                        "http://localhost:8080/silentRenew"
+                    },
                     PostLogoutRedirectUris = {"http://localhost:8080"},
                     AllowedCorsOrigins = {"http://localhost:8080"},
-
+                    
                     AllowedScopes =
                     {
                         IdentityServerConstants.StandardScopes.OpenId,

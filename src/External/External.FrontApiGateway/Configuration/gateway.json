@@ -76,6 +76,13 @@
             "ServiceName": "payments",
             "UpstreamPathTemplate": "/api/payments/{paymentReference}",
             "UpstreamHttpMethod": [ "Get" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/payments/mock/{paymentReference}/{result}",
+            "DownstreamScheme": "http",
+            "ServiceName": "payments",
+            "UpstreamPathTemplate": "/api/payments/mock/{paymentReference}/{result}",
+            "UpstreamHttpMethod": [ "Post" ]
         }
     ],
     "GlobalConfiguration": {

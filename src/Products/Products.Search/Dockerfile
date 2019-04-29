@@ -1,0 +1,14 @@
+FROM microsoft/dotnet:2.2-aspnetcore-runtime AS base
+WORKDIR /app
+EXPOSE 80
+
+FROM microsoft/dotnet:2.2-sdk AS build
+WORKDIR /src
+COPY . .
+WORKDIR Products/Products.Search
+RUN dotnet publish Products.Search -c Release -o /app
+
+FROM base AS final
+WORKDIR /app
+COPY --from=build /app .
+ENTRYPOINT ["dotnet", "Products.Search.dll"]

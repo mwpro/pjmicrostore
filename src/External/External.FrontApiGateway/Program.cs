@@ -27,8 +27,10 @@ namespace External.FrontApiGateway
             WebHost.CreateDefaultBuilder(args)
                 .ConfigureAppConfiguration((hostingContext, builder) =>
                     {
-                        builder.AddJsonFile(Path.Combine("configuration", "gateway.json"), false, true)
-                            .AddJsonFile(Path.Combine("configuration", $"gateway.{hostingContext.HostingEnvironment.EnvironmentName}.json"), true, true);
+                        builder
+                            .AddJsonFile(Path.Combine("Configuration", "gateway.json"), false, true)
+                            .AddJsonFile(Path.Combine("Configuration", $"gateway.{hostingContext.HostingEnvironment.EnvironmentName}.json"), true, true)
+                            .AddEnvironmentVariables();
                     })
                 .ConfigureServices((webHost, s) =>
                 {
@@ -43,11 +45,10 @@ namespace External.FrontApiGateway
 
     public class GatewayServicesConfiguration
     {
-        public List<GatewayServiceConfiguration> GatewayServices { get; set; }
+        public Dictionary<string, GatewayServiceConfiguration> GatewayServices { get; set; }
 
         public class GatewayServiceConfiguration
         {
-            public string Name { get; set; }
             public string DownstreamHost { get; set; }
             public int DownstreamPort { get; set; }
         }
@@ -62,9 +63,9 @@ namespace External.FrontApiGateway
 
             var servicesConfiguration = configuration.Get<GatewayServicesConfiguration>();
             var gatewayServices = servicesConfiguration.GatewayServices.Select(x =>
-                    new Service(x.Name, new ServiceHostAndPort(x.DownstreamHost, x.DownstreamPort), string.Empty,
+                    new Service(x.Key.ToLower(), new ServiceHostAndPort(x.Value.DownstreamHost, x.Value.DownstreamPort), string.Empty,
                         string.Empty, new string[0])).ToList();
-
+            Console.WriteLine(String.Join(Environment.NewLine, gatewayServices.Select(x => $"Configured service: {x.Name}@{x.HostAndPort.DownstreamHost}:{x.HostAndPort.DownstreamPort}")));
             services.AddSingleton<ServiceDiscoveryFinderDelegate>((provider, config, key) => new ConfigurationServiceProvider(gatewayServices
                 .Where(s => s.Name.Equals(key)).ToList()));
             return services;

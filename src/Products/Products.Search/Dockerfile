@@ -5,8 +5,8 @@ EXPOSE 80
 FROM microsoft/dotnet:2.2-sdk AS build
 WORKDIR /src
 COPY . .
-WORKDIR Products/Products.Search
-RUN dotnet publish Products.Search -c Release -o /app
+WORKDIR /src/Products/Products.Search
+RUN dotnet publish -c Release -o /app
 
 FROM base AS final
 WORKDIR /app

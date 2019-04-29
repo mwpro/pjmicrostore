@@ -91,36 +91,30 @@
             "Type": "ConfigurationServiceProvider"
         }
     },
-    "GatewayServices": [
-        {
-            "Name": "products",
+    "GatewayServices": {
+        "Products": {
             "DownstreamHost": "localhost",
             "DownstreamPort": 53606
         },
-        {
-            "Name": "photos",
+        "Photos": {
             "DownstreamHost": "localhost",
             "DownstreamPort": 58120
         },
-        {
-            "Name": "search",
+        "Search": {
             "DownstreamHost": "localhost",
             "DownstreamPort": 52910
         },
-        {
-            "Name": "cart",
+        "Cart": {
             "DownstreamHost": "localhost",
             "DownstreamPort": 64642
         },
-        {
-            "Name": "orders",
+        "Orders": {
             "DownstreamHost": "localhost",
             "DownstreamPort": 56037
         },
-        {
-            "Name": "payments",
+        "Payments": {
             "DownstreamHost": "localhost",
             "DownstreamPort": 62678
         }
-    ]
+    }
 }

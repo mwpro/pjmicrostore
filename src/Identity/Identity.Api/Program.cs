@@ -37,6 +37,7 @@ namespace Identity.Api
         {
             return WebHost.CreateDefaultBuilder(args)
                     .UseStartup<Startup>()
+                    .ConfigureAppConfiguration(builder => builder.AddEnvironmentVariables())
                     .UseSerilog((context, configuration) =>
                     {
                         configuration

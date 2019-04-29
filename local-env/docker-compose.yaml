@@ -1,17 +1,23 @@
-version: '3'
+version: '3.7'
 services:
   elasticsearch:
+    networks:
+      - pjmicrostore
     image: docker.elastic.co/elasticsearch/elasticsearch:6.6.2
     container_name: elasticsearch
     ports: 
       - "9200:9200"
   kibana:
+    networks:
+      - pjmicrostore
     image: docker.elastic.co/kibana/kibana:6.6.2
     container_name: kibana
     ports: 
       - "5601:5601"
     depends_on: ['elasticsearch']
   rabbitmq:
+    networks:
+      - pjmicrostore
     image: rabbitmq:3
     container_name: rabbitmq
     volumes: 
@@ -20,6 +26,8 @@ services:
       - "15672:15672"
       - "5672:5672"
   sqlserver:
+    networks:
+      - pjmicrostore
     image: mcr.microsoft.com/mssql/server:2017-latest
     container_name: sqlserver
     environment:
@@ -28,6 +36,8 @@ services:
     ports:
       - "1433:1433"
   azurestorage:
+    networks:
+      - pjmicrostore
     image: arafato/azurite
     container_name: azurestorage
     ports:
@@ -36,3 +46,7 @@ services:
       - executable=blob
     volumes:
       - "./local-azurestorage:/opt/azurite/folder"
+
+networks:
+  pjmicrostore:
+    name: pjmicrostore

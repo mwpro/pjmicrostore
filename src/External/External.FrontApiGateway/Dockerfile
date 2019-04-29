@@ -5,8 +5,8 @@ EXPOSE 80
 FROM microsoft/dotnet:2.2-sdk AS build
 WORKDIR /src
 COPY . .
-WORKDIR External/External.FrontApiGateway
-RUN dotnet publish External.FrontApiGateway -c Release -o /app
+WORKDIR /src/External/External.FrontApiGateway
+RUN dotnet publish -c Release -o /app
 
 FROM base AS final
 WORKDIR /app

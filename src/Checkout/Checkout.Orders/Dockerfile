@@ -5,8 +5,8 @@ EXPOSE 80
 FROM microsoft/dotnet:2.2-sdk AS build
 WORKDIR /src
 COPY . .
-WORKDIR Checkout/Checkout.Orders
-RUN dotnet publish Checkout.Orders -c Release -o /app
+WORKDIR /src/Checkout/Checkout.Orders
+RUN dotnet publish -c Release -o /app
 
 FROM base AS final
 WORKDIR /app

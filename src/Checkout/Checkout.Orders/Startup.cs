@@ -52,14 +52,14 @@ namespace Checkout.Orders
                     //options.Audience = "api1";
                 });
 
-            services.AddDbContext<OrdersContext>(options => options.UseSqlServer(Configuration.GetConnectionString("OrdersDatabase")));
+            services.AddDbContext<OrdersContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddMassTransit(c =>
             {
                 c.AddBus(provider => Bus.Factory.CreateUsingRabbitMq(
                     cfg =>
                     {
-                        var host = cfg.Host("localhost", "/", h => { });
+                        var host = cfg.Host(Configuration.GetValue<string>("RabbitMq:Host"), "/", h => { });
                         cfg.ReceiveEndpoint(host, "Checkout.Orders", e =>
                         {
                             e.PrefetchCount = 16;
@@ -78,7 +78,7 @@ namespace Checkout.Orders
 
             services.AddSingleton<IBus>(provider => provider.GetRequiredService<IBusControl>());
             services.AddTransient<ICartsService, CartsService>();
-            services.AddTransient<IDatabase, SqlDatabase>(provider => new SqlDatabase(Configuration.GetConnectionString("OrdersDatabase")));
+            services.AddTransient<IDatabase, SqlDatabase>(provider => new SqlDatabase(Configuration.GetConnectionString("DefaultConnection")));
             services.AddTransient<PaymentCompletedEventConsumer>();
             services.AddTransient<PaymentCreatedEventConsumer>();
 

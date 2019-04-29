@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 
 namespace Products.Photos
 {
@@ -12,6 +13,7 @@ namespace Products.Photos
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                .ConfigureAppConfiguration(builder => builder.AddEnvironmentVariables())
                 .UseStartup<Startup>();
     }
 }

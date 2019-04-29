@@ -19,6 +19,7 @@ namespace Products.Catalog
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                .ConfigureAppConfiguration(builder => builder.AddEnvironmentVariables())
                 .UseStartup<Startup>();
     }
 }

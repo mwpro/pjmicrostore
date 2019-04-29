@@ -1,4 +1,6 @@
-﻿using System.Threading;
+﻿using System;
+using System.Data.SqlClient;
+using System.Threading;
 using System.Threading.Tasks;
 using Checkout.Cart.Consumers;
 using Checkout.Cart.Domain;
@@ -29,17 +31,17 @@ namespace Checkout.Cart
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-
-            const string connectionString = @"Server=localhost,1433;Database=Checkout.Cart;User Id=sa;Password=sqlDevPassw0rd;ConnectRetryCount=0";
+            var cs = new SqlConnectionStringBuilder(
+                "Server=sqlserver;Database=Checkout.Carts;User Id=sa;Password=sqlDevPassw0rd;ConnectRetryCount=0");
             services.AddDbContext<CartContext>
-                (options => options.UseSqlServer(connectionString));
+                (options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddMassTransit(c =>
             {
                 c.AddBus(provider => Bus.Factory.CreateUsingRabbitMq(
                     cfg =>
                     {
-                        var host = cfg.Host("localhost", "/", h => { });
+                        var host = cfg.Host(Configuration.GetValue<string>("RabbitMq:Host"), "/", h => { });
                         cfg.ReceiveEndpoint(host, "Checkout.Cart", e =>
                         {
                             e.PrefetchCount = 16;

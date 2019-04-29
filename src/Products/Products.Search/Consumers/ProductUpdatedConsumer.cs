@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MassTransit;
+using Microsoft.Extensions.Configuration;
 using Nest;
 using Products.Catalog.Contracts.Events;
 using Products.Search.Controllers;
@@ -13,9 +14,9 @@ namespace Products.Search.Consumers
     {
         private ElasticClient _client;
 
-        public ProductUpdatedConsumer()
+        public ProductUpdatedConsumer(IConfiguration configurationRoot)
         {
-            var node = new Uri("http://localhost:9200");
+            var node = new Uri($"{configurationRoot.GetValue<string>("ElasticSearch:Host")}:{configurationRoot.GetValue<string>("ElasticSearch:Port")}");
             var settings = new ConnectionSettings(node);
             settings.DefaultMappingFor(typeof(ProductSearchModel), idx => idx.IndexName("products"));
             settings.ThrowExceptions(true);

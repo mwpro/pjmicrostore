@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 
 namespace Checkout.Cart
 {
@@ -12,6 +13,7 @@ namespace Checkout.Cart
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                .ConfigureAppConfiguration(builder => builder.AddEnvironmentVariables())
                 .UseStartup<Startup>();
     }
 }

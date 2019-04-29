@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using GreenPipes;
 using MassTransit;
 using MassTransit.Pipeline.ConsumerFactories;
+using MassTransit.Scoping;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -36,7 +37,7 @@ namespace Products.Search
                 c.AddBus(provider => Bus.Factory.CreateUsingRabbitMq(
                     cfg =>
                     {
-                        var host = cfg.Host("localhost", "/", h => { });
+                        var host = cfg.Host(Configuration.GetValue<string>("RabbitMq:Host"), "/", h => { });
                         cfg.ReceiveEndpoint(host, "Products.Search", e =>
                         {
                             e.PrefetchCount = 16;
@@ -48,7 +49,7 @@ namespace Products.Search
                             {
                                 b.MessageLimit = 3; // todo config
                                 b.TimeLimit = TimeSpan.FromMinutes(5);
-                                b.Consumer(new DefaultConstructorConsumerFactory<ProductUpdatedConsumer>());
+                                b.Consumer(() => new ProductUpdatedConsumer(Configuration));
                             });
                         });
                     }));

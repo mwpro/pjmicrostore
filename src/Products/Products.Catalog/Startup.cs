@@ -31,19 +31,17 @@ namespace Products.Catalog
                 .AddJsonOptions(options =>
                 {
                     options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore; // todo hmm, probably it only hides the problem
-                }); ;
+                });
 
-            const string connectionString = @"Server=localhost,1433;Database=Products.Catalog;User Id=sa;Password=sqlDevPassw0rd;ConnectRetryCount=0";
-            services
-                .AddDbContext<ProductsContext>
-                    (options => options.UseSqlServer(connectionString));
+            services.AddDbContext<ProductsContext>
+                    (options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             
             services.AddMassTransit(c =>
             {
                 c.AddBus(provider => Bus.Factory.CreateUsingRabbitMq(
                     cfg =>
                     {
-                        var host = cfg.Host("localhost", "/", h => { });
+                        var host = cfg.Host(Configuration.GetValue<string>("RabbitMq:Host"), "/", h => { });
                         cfg.ReceiveEndpoint(host, "Products.Catalog", e =>
                         {
                             e.PrefetchCount = 16;

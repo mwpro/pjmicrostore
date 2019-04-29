@@ -1,0 +1,111 @@
+version: '3.7'
+services:
+  cart:
+    container_name: cart
+    networks:
+      - pjmicrostore
+    build:
+      context: .
+      dockerfile: Checkout/Checkout.Cart/Dockerfile
+    environment: 
+      - ASPNETCORE_ENVIRONMENT=Development
+      - RabbitMq__Host=rabbitmq
+      - ConnectionStrings__DefaultConnection=Server=${SQLSERVER_ADDRESS};Database=Checkout.Cart;User Id=${SQLSERVER_USERNAME};Password=${SQLSERVER_PASSWORD};ConnectRetryCount=0
+      - Dependencies__Products=http://catalog
+  orders:
+    container_name: orders
+    networks:
+      - pjmicrostore
+    build:
+      context: .
+      dockerfile: Checkout/Checkout.Orders/Dockerfile          
+    environment: 
+      - ASPNETCORE_ENVIRONMENT=Development
+      - RabbitMq__Host=rabbitmq
+      - ConnectionStrings__DefaultConnection=Server=${SQLSERVER_ADDRESS};Database=Checkout.Orders;User Id=${SQLSERVER_USERNAME};Password=${SQLSERVER_PASSWORD};ConnectRetryCount=0
+      - Dependencies__Cart=http://cart
+  payments:    
+    container_name: payments
+    networks:
+      - pjmicrostore
+    build:
+      context: .
+      dockerfile: Checkout/Checkout.Payments/Dockerfile
+    environment: 
+      - ASPNETCORE_ENVIRONMENT=Development
+      - RabbitMq__Host=rabbitmq
+      - ConnectionStrings__DefaultConnection=Server=${SQLSERVER_ADDRESS};Database=Checkout.Payments;User Id=${SQLSERVER_USERNAME};Password=${SQLSERVER_PASSWORD};ConnectRetryCount=0
+  frontapigateway:    
+    container_name: frontapigateway
+    networks:
+      - pjmicrostore
+    environment: 
+      - GatewayServices__Products__DownstreamHost=catalog
+      - GatewayServices__Products__DownstreamPort=80
+      - GatewayServices__Photos__DownstreamHost=photos
+      - GatewayServices__Photos__DownstreamPort=80
+      - GatewayServices__Search__DownstreamHost=search
+      - GatewayServices__Search__DownstreamPort=80
+      - GatewayServices__Cart__DownstreamHost=cart
+      - GatewayServices__Cart__DownstreamPort=80
+      - GatewayServices__Orders__DownstreamHost=orders
+      - GatewayServices__Orders__DownstreamPort=80
+      - GatewayServices__Payments__DownstreamHost=payments
+      - GatewayServices__Payments__DownstreamPort=80
+    build:
+      context: .
+      dockerfile: External/External.FrontApiGateway/Dockerfile
+    ports: 
+      - 9090:80
+  identityapi:    
+    container_name: identityapi
+    networks:
+      - pjmicrostore
+    build:
+      context: .
+      dockerfile: Identity/Identity.Api/Dockerfile
+    ports:
+      - 5000:80
+    environment: 
+      - ASPNETCORE_ENVIRONMENT=Development
+      - RabbitMq__Host=rabbitmq
+      - ConnectionStrings__DefaultConnection=Server=${SQLSERVER_ADDRESS};Database=Identity;User Id=${SQLSERVER_USERNAME};Password=${SQLSERVER_PASSWORD};ConnectRetryCount=0
+  catalog:    
+    container_name: catalog
+    networks:
+      - pjmicrostore
+    build:
+      context: .
+      dockerfile: Products/Products.Catalog/Dockerfile
+    environment: 
+      - ASPNETCORE_ENVIRONMENT=Development
+      - RabbitMq__Host=rabbitmq
+      - ConnectionStrings__DefaultConnection=Server=${SQLSERVER_ADDRESS};Database=Products.Catalog;User Id=${SQLSERVER_USERNAME};Password=${SQLSERVER_PASSWORD};ConnectRetryCount=0
+  photos:    
+    container_name: photos
+    networks:
+      - pjmicrostore
+    build:
+      context: .
+      dockerfile: Products/Products.Photos/Dockerfile
+    environment: 
+      - ASPNETCORE_ENVIRONMENT=Development
+      - RabbitMq__Host=rabbitmq
+      - ConnectionStrings__DefaultConnection=Server=${SQLSERVER_ADDRESS};Database=Products.Photos;User Id=${SQLSERVER_USERNAME};Password=${SQLSERVER_PASSWORD};ConnectRetryCount=0
+  search:    
+    container_name: search
+    networks:
+      - pjmicrostore
+    build:
+      context: .
+      dockerfile: Products/Products.Search/Dockerfile
+    environment: 
+      - ASPNETCORE_ENVIRONMENT=Development
+      - RabbitMq__Host=rabbitmq
+      - Dependencies__Products=http://catalog
+      - ElasticSearch__Host=http://elasticsearch
+      - ElasticSearch__Port=9200
+  
+networks:
+  pjmicrostore:
+    name: pjmicrostore

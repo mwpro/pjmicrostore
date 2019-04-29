@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Nest;
 using Products.Catalog.Contracts;
 using Products.Catalog.Contracts.ApiModels;
@@ -18,10 +19,10 @@ namespace Products.Search.Controllers
         private ElasticClient _client;
         private readonly IProductsService _productsService;
 
-        public SearchController(IProductsService productsService)
+        public SearchController(IProductsService productsService, IConfiguration configurationRoot)
         {
             _productsService = productsService;
-            var node = new Uri("http://localhost:9200");
+            var node = new Uri($"{configurationRoot.GetValue<string>("ElasticSearch:Host")}:{configurationRoot.GetValue<string>("ElasticSearch:Port")}");
             var settings = new ConnectionSettings(node);
             settings.DefaultMappingFor(typeof(ProductSearchModel), idx => idx.IndexName("products"));
             settings.ThrowExceptions(true);

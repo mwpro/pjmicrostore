@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Flurl;
 using Flurl.Http;
+using Microsoft.Extensions.Configuration;
 
 namespace Checkout.Orders.Services
 {
@@ -14,9 +15,16 @@ namespace Checkout.Orders.Services
 
     public class CartsService : ICartsService
     {
+        private readonly IConfiguration _configuration;
+
+        public CartsService(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
+
         public async Task<Cart> GetCart(int cartId)
         {
-            var cart = await "http://localhost:64642/api/"
+            var cart = await $"{_configuration.GetValue<string>("Dependencies:Cart")}/api/"
                 .AppendPathSegments("cart", cartId)
                 .GetJsonAsync<Cart>();
 

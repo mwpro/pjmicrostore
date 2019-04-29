@@ -34,16 +34,15 @@ namespace Checkout.Payments
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-            const string connectionString = @"Server=localhost,1433;Database=Checkout.Payments;User Id=sa;Password=sqlDevPassw0rd;ConnectRetryCount=0";
             services.AddDbContext<PaymentsDbContext>
-                (options => options.UseSqlServer(connectionString));
+                (options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddMassTransit(c =>
             {
                 c.AddBus(provider => Bus.Factory.CreateUsingRabbitMq(
                     cfg =>
                     {
-                        var host = cfg.Host("localhost", "/", h => { });
+                        var host = cfg.Host(Configuration.GetValue<string>("RabbitMq:Host"), "/", h => { });
                         cfg.ReceiveEndpoint(host, "Checkout.Payments", e =>
                         {
                             e.PrefetchCount = 16;

@@ -2,10 +2,15 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Net;
+using System.Security.Claims;
+using System.Security.Principal;
 using System.Threading.Tasks;
 using Checkout.Cart.Contracts.ApiModels;
 using Checkout.Cart.Domain;
 using Checkout.Cart.Services;
+using IdentityModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -48,6 +53,7 @@ namespace Checkout.Cart.Controllers
             return Ok(MapToApiModel(cart));
         }
 
+        [Authorize]
         [HttpPost("products/{productId}")]
         public async Task<IActionResult> AddProduct(int productId, UpdateProductModel updateProductModel)
         {
@@ -134,12 +140,18 @@ namespace Checkout.Cart.Controllers
 
         private Domain.Cart GetOrCreateCart()
         {
-            var cart = _cartContext.Carts
+            IQueryable<Domain.Cart> cartQuery = _cartContext.Carts
                 .Include(x => x.CartItems)
-                .ThenInclude(x => x.Product)
-                .FirstOrDefault(x => x.Id == CartIdMock);
+                .ThenInclude(x => x.Product);
 
-            if (cart == null)
+            if (User != null && Guid.TryParse(User.Identity.GetUserId(), out var userGuid))
+            {
+                cartQuery = cartQuery.Where(x => x.OwnerUserId == userGuid);
+            }
+
+            var cart = cartQuery.FirstOrDefault(x => x.Id == CartIdMock);
+
+            9if (cart == null)
             {
                 cart = new Domain.Cart()
                 {
@@ -149,6 +161,20 @@ namespace Checkout.Cart.Controllers
             }
 
             return cart;
+        }
+    }
+
+    public static class IdentityExtensions
+    {
+        public static string GetUserId(this IIdentity identity)
+        {
+            if (identity is ClaimsIdentity claimsIdentity)
+            {
+                var subIdentity = claimsIdentity.Claims.FirstOrDefault(x => x.Type == "sub");
+                return subIdentity?.Value;
+
+            }
+            return null;
         }
     }
 }

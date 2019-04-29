@@ -1,9 +1,11 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using Checkout.Cart.Consumers;
 using Checkout.Cart.Domain;
 using Checkout.Cart.Services;
 using GreenPipes;
+using IdentityServer4.AccessTokenValidation;
 using MassTransit;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -33,6 +35,16 @@ namespace Checkout.Cart
             const string connectionString = @"Server=localhost,1433;Database=Checkout.Cart;User Id=sa;Password=sqlDevPassw0rd;ConnectRetryCount=0";
             services.AddDbContext<CartContext>
                 (options => options.UseSqlServer(connectionString));
+
+
+            services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
+                .AddIdentityServerAuthentication(options =>
+                {
+                    options.Authority = "http://localhost:5000";
+                    options.RequireHttpsMetadata = false;
+                    options.JwtValidationClockSkew = TimeSpan.FromSeconds(15);
+                    //options.Audience = "api1";
+                });
 
             services.AddMassTransit(c =>
             {
@@ -68,7 +80,9 @@ namespace Checkout.Cart
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseAuthentication();
             app.UseMvc();
+
         }
     }
 

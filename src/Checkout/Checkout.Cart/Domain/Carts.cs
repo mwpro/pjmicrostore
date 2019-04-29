@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
@@ -48,6 +49,8 @@ namespace Checkout.Cart.Domain
 
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { get; set; }
+
+        public Guid? OwnerUserId { get; set; }
 
         public decimal Total => CartItems.Sum(x => x.Value);
         public int NumberOfItems => CartItems.Sum(x => x.Quantity);

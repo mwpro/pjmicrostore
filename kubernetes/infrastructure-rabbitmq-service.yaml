@@ -1,0 +1,45 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: infrastructure-rabbitmq-service
+spec:
+  ports:
+  - protocol: TCP
+    name: rmq1
+    port: 4369
+    targetPort: 4369
+  - protocol: TCP
+    name: rmq2
+    port: 5672
+    targetPort: 5672
+  - protocol: TCP
+    name: rmq3
+    port: 5671
+    targetPort: 5671
+  - protocol: TCP
+    name: rmq4
+    port: 25672
+    targetPort: 25672
+  - protocol: TCP
+    name: rmq5
+    port: 15672
+    targetPort: 15672  
+---
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: infrastructure-rabbitmq-service
+subsets:
+  - addresses:
+      - ip: 192.168.0.17 # ip of my machine... hmm...
+    ports:
+      - port: 4369
+        name: rmq1
+      - port: 5672
+        name: rmq2
+      - port: 5671
+        name: rmq3
+      - port: 25672
+        name: rmq4
+      - port: 15672
+        name: rmq5

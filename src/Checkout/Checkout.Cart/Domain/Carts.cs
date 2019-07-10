@@ -47,10 +47,12 @@ namespace Checkout.Cart.Domain
             CartItems = new List<CartItem>();
         }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         public Guid? OwnerUserId { get; set; }
+
+        public Guid? CartAccessToken { get; set; }
 
         public decimal Total => CartItems.Sum(x => x.Value);
         public int NumberOfItems => CartItems.Sum(x => x.Quantity);

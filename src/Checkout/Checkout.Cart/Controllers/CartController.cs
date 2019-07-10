@@ -26,9 +26,9 @@ namespace Checkout.Cart.Controllers
         }
 
         [HttpGet("")]
-        public IActionResult GetCart()
+        public IActionResult GetCart(Guid? cartToken)
         {
-            var cart = GetOrCreateCart();
+            var cart = GetOrCreateCart(cartToken);
 
             return Ok(MapToApiModel(cart));
         }
@@ -49,9 +49,9 @@ namespace Checkout.Cart.Controllers
         }
 
         [HttpPost("products/{productId}")]
-        public async Task<IActionResult> AddProduct(int productId, UpdateProductModel updateProductModel)
+        public async Task<IActionResult> AddProduct(int productId, UpdateProductModel updateProductModel, Guid? cartToken)
         {
-            var cart = GetOrCreateCart();
+            var cart = GetOrCreateCart(cartToken);
 
             var product = await GetProduct(productId);
             if (product == null)
@@ -67,9 +67,9 @@ namespace Checkout.Cart.Controllers
         }
 
         [HttpPut("products/{productId}")]
-        public async Task<IActionResult> UpdateProduct(int productId, UpdateProductModel updateProductModel)
+        public async Task<IActionResult> UpdateProduct(int productId, UpdateProductModel updateProductModel, Guid? cartToken)
         {
-            var cart = GetOrCreateCart();
+            var cart = GetOrCreateCart(cartToken);
 
             var product = await GetProduct(productId);
             if (product == null)
@@ -84,9 +84,9 @@ namespace Checkout.Cart.Controllers
         }
 
         [HttpDelete("products/{productId}")]
-        public IActionResult DeleteProduct(int productId)
+        public IActionResult DeleteProduct(int productId, Guid? cartToken)
         {
-            var cart = GetOrCreateCart();
+            var cart = GetOrCreateCart(cartToken);
             
             cart.DeleteProduct(productId);
             _cartContext.SaveChanges();
@@ -99,6 +99,7 @@ namespace Checkout.Cart.Controllers
             return new CartDto()
             {
                 CartId = cart.Id,
+                CartAccessToken = cart.CartAccessToken,
                 Total = cart.Total,
                 NumberOfItems = cart.NumberOfItems,
                 CartItems = cart.CartItems.Select(x => 
@@ -132,20 +133,29 @@ namespace Checkout.Cart.Controllers
             return product;
         }
 
-        private Domain.Cart GetOrCreateCart()
+        private Domain.Cart GetOrCreateCart(Guid? cartToken)
         {
+            if (!cartToken.HasValue)
+            {
+                cartToken = Guid.NewGuid();
+            }
+
             var cart = _cartContext.Carts
                 .Include(x => x.CartItems)
                 .ThenInclude(x => x.Product)
-                .FirstOrDefault(x => x.Id == CartIdMock);
-
+                .FirstOrDefault(x => 
+                    //x.Id == CartIdMock
+                    x.CartAccessToken == cartToken
+                );
+            
             if (cart == null)
             {
                 cart = new Domain.Cart()
                 {
-                    Id = CartIdMock
+                    CartAccessToken = cartToken
                 };
                 _cartContext.Add(cart);
+                _cartContext.SaveChanges(); // todo not good
             }
 
             return cart;

@@ -7,6 +7,7 @@ namespace Checkout.Cart.Contracts.ApiModels
     public class CartDto
     {
         public int CartId { get; set; }
+        public Guid? CartAccessToken { get; set; }
         public IEnumerable<CartItemDto> CartItems { get; set; }
         public decimal Total { get; set; }
         public int NumberOfItems { get; set; }

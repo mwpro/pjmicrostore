@@ -1,6 +1,14 @@
 {
     "ReRoutes": [
         // todo split into files
+        // photos
+        {
+            "DownstreamPathTemplate": "/api/products/{productId}/photos",
+            "DownstreamScheme": "http",
+            "ServiceName": "photos",
+            "UpstreamPathTemplate": "/api/products/{productId}/photos",
+            "UpstreamHttpMethod": [ "Get" ]
+        },
         // products
         {
             "DownstreamPathTemplate": "/api/products/{productId}",
@@ -14,14 +22,6 @@
             "DownstreamScheme": "http",
             "ServiceName": "products",
             "UpstreamPathTemplate": "/api/categories",
-            "UpstreamHttpMethod": [ "Get" ]
-        },
-        // photos
-        {
-            "DownstreamPathTemplate": "/api/products/{productId}/photos",
-            "DownstreamScheme": "http",
-            "ServiceName": "photos",
-            "UpstreamPathTemplate": "/api/products/{productId}/photos",
             "UpstreamHttpMethod": [ "Get" ]
         },
         // search

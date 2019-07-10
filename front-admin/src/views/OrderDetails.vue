@@ -58,7 +58,7 @@
               Koszt przesłki: ...<br>
               Razem: {{ order.total | currency }}<br>
               Metoda płatności: ...<br>
-              Status płatności: ...<br> 
+              Status płatności: ...<br>
             </p>
           </div>
         </div>
@@ -91,62 +91,62 @@
 </template>
 
 <script>
-import OrderStatus from "../components/OrderStatus";
+import OrderStatus from '../components/OrderStatus';
 
 export default {
   components: {
-    OrderStatus
+    OrderStatus,
   },
   data() {
     return {
       fieldsConfig: [
         {
-          key: "productId",
-          label: "#",
-          sortable: false
+          key: 'productId',
+          label: '#',
+          sortable: false,
         },
         {
-          key: "productName",
-          label: "Nazwa",
-          sortable: false
+          key: 'productName',
+          label: 'Nazwa',
+          sortable: false,
         },
         {
-          key: "productPrice",
-          label: "Cena",
-          sortable: false
+          key: 'productPrice',
+          label: 'Cena',
+          sortable: false,
         },
         {
-          key: "quantity",
-          label: "Ilość",
-          sortable: false
+          key: 'quantity',
+          label: 'Ilość',
+          sortable: false,
         },
         {
-          key: "value",
-          label: "Wartość",
-          sortable: false
-        }
-      ]
+          key: 'value',
+          label: 'Wartość',
+          sortable: false,
+        },
+      ],
     };
   },
   computed: {
     order() {
       return this.$store.state.orders.orderDetails;
-    }
+    },
   },
   props: {
-    orderId: String // todo number
+    orderId: String, // todo number
   },
   methods: {
-    cancel() {      
-      this.$store.dispatch("orders/cancelOrderAction", this.orderId);
+    cancel() {
+      this.$store.dispatch('orders/cancelOrderAction', this.orderId);
     },
-    complete() {      
-      this.$store.dispatch("orders/completeOrderAction", this.orderId);
-    }
+    complete() {
+      this.$store.dispatch('orders/completeOrderAction', this.orderId);
+    },
   },
   created() {
-    this.$store.dispatch("orders/getOrderAction", this.orderId);
-  }
+    this.$store.dispatch('orders/getOrderAction', this.orderId);
+  },
 };
 </script>
 

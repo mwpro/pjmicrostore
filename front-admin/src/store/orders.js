@@ -7,17 +7,16 @@ export default {
     ordersList: [
 
     ],
-    orderDetails: [
-
-    ]
+    orderDetails: {
+    },
   },
   mutations: {
     getOrders(state, orders) {
       state.ordersList = orders;
-    },    
+    },
     getOrder(state, order) {
       state.orderDetails = order;
-    }
+    },
   },
   actions: {
     getOrdersAction({ commit }) {
@@ -25,11 +24,11 @@ export default {
         .get('/api/orders')
         .then((response) => {
           if (response.status !== 200) throw Error(response.message);
-          let orders = response.data;
+          const orders = response.data;
           /* hangs on Mac?
           if (typeof orders !== 'object') {
             orders = [];
-          }*/
+          } */
 
           commit('getOrders', orders);
           return orders;
@@ -41,11 +40,11 @@ export default {
         .get(`/api/orders/${orderId}`)
         .then((response) => {
           if (response.status !== 200) throw Error(response.message);
-          let order = response.data;
+          const order = response.data;
           /* hangs on Mac?
           if (typeof order !== 'object') {
             order = [];
-          }*/
+          } */
 
           commit('getOrder', order);
           return order;
@@ -57,11 +56,11 @@ export default {
         .post(`/api/orders/${orderId}/cancel`)
         .then((response) => {
           if (response.status !== 200) throw Error(response.message);
-          let order = response.data;
+          const order = response.data;
           /* hangs on Mac?
           if (typeof order !== 'object') {
             order = [];
-          }*/
+          } */
 
           dispatch('getOrderAction', orderId);
           return order;
@@ -73,11 +72,11 @@ export default {
         .post(`/api/orders/${orderId}/sent`)
         .then((response) => {
           if (response.status !== 200) throw Error(response.message);
-          let order = response.data;
+          const order = response.data;
           /* hangs on Mac?
           if (typeof order !== 'object') {
             order = [];
-          }*/
+          } */
 
           dispatch('getOrderAction', orderId);
           return order;

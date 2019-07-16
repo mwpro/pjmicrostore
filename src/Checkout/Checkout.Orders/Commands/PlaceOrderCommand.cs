@@ -5,9 +5,9 @@ namespace Checkout.Orders.Commands
 {
     public class PlaceOrderCommand : IRequest<PlaceOrderCommandResponse>
     {
-        public PlaceOrderCommand(int cartId, string paymentMethod, string email, OrderAddress shippingDetails, OrderAddress billingDetails, int customerId, string phone)
+        public PlaceOrderCommand(Guid cartAccessToken, string paymentMethod, string email, OrderAddress shippingDetails, OrderAddress billingDetails, int customerId, string phone)
         {
-            CartId = cartId;
+            CartAccessToken = cartAccessToken;
             PaymentMethod = paymentMethod;
             Email = email;
             ShippingDetails = shippingDetails;
@@ -16,7 +16,7 @@ namespace Checkout.Orders.Commands
             Phone = phone;
         }
 
-        public int CartId { get; }
+        public Guid CartAccessToken { get; }
         public int CustomerId { get; }
 
         public string PaymentMethod { get; } // todo method id or code?

@@ -20,7 +20,6 @@ namespace Checkout.Orders.Controllers
     [ApiController]
     public class OrdersController : ControllerBase
     {
-        private const int CartIdMock = 1; // todo what next?
         private const int CustomerIdMock = 1; // todo what next?
         private readonly IMediator _mediator;
 
@@ -40,7 +39,7 @@ namespace Checkout.Orders.Controllers
         public async Task<IActionResult> PlaceOrder(PlaceOrderModel placeOrderModel)
         {
             // todo validation
-            var createdOrder = await _mediator.Send(new PlaceOrderCommand(CartIdMock, placeOrderModel.PaymentMethod, placeOrderModel.Email,
+            var createdOrder = await _mediator.Send(new PlaceOrderCommand(placeOrderModel.CartAccessToken, placeOrderModel.PaymentMethod, placeOrderModel.Email,
                 placeOrderModel.ShippingDetails.ToOrderAddress(), placeOrderModel.BillingDetails.ToOrderAddress(), CustomerIdMock, placeOrderModel.Phone));
 
             // todo this if does not look good here,
@@ -94,6 +93,8 @@ namespace Checkout.Orders.Controllers
     public class PlaceOrderModel
     {
         public string PaymentMethod { get; set; } // todo method id or code?
+
+        public Guid CartAccessToken { get; set; }
 
         public string Email { get; set; }
         public string Phone { get; set; }

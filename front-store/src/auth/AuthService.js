@@ -18,57 +18,64 @@ const authConfig = {
   filterProtocolClaims: true,
 };
 
+const userManager = new UserManager(authConfig);
+
 const auth = new Vue({
   data() {
     return {
       accessToken: null,
       expiresAt: null,
-      userManager: new UserManager(authConfig),
     };
   },
   computed: {
     isAuthenticated() {
+      console.log(`auth init${this.accessToken && true}`);
       return this.accessToken && new Date().getTime() < this.expiresAt;
     },
   },
   created() {
-    this.userManager.getUser().then((user) => {
-      this.accessToken = user.access_token;
-      this.expiresAt = user.expires_at ? user.expires_at * 1000 : null;
+    userManager.getUser().then((user) => {
+      if (user) {
+        this.accessToken = user.access_token;
+        this.expiresAt = user.expires_at ? user.expires_at * 1000 : null;
+      } else {
+        this.accessToken = null;
+        this.expiresAt = null;
+      }
     });
 
-    this.userManager.events.addAccessTokenExpiring(() => {
+    userManager.events.addAccessTokenExpiring(() => {
       console.log('Token is about to expire...');
     });
 
-    this.userManager.events.addUserLoaded((user) => {
+    userManager.events.addUserLoaded((user) => {
       console.log('User loaded');
       this.expiresAt = user.expires_at ? user.expires_at * 1000 : null;
       this.accessToken = user.access_token;
     });
 
-    this.userManager.events.addAccessTokenExpired(() => {
+    userManager.events.addAccessTokenExpired(() => {
       console.log('Token is expired. Trying to renew');
-      this.userManager.signinSilent();
+      userManager.signinSilent();
     });
   },
   methods: {
     login() {
-      this.userManager.signinRedirect();
+      userManager.signinRedirect();
     },
 
     getUser() {
-      return this.userManager.getUser();
+      return userManager.getUser();
     },
 
     logout() {
-      this.userManager.signoutRedirect();
+      userManager.signoutRedirect();
       this.accessToken = null;
       this.expiresAt = null;
     },
 
     authCallback() {
-      this.userManager.signinRedirectCallback().then((user) => {
+      userManager.signinRedirectCallback().then((user) => {
         window.location.href = '../';
         this.expiresAt = user.expires_at ? user.expires_at * 1000 : null;
         this.accessToken = user.access_token;
@@ -79,7 +86,7 @@ const auth = new Vue({
 
     silentCallback() {
       console.log('Silent renew callback');
-      this.userManager.signinSilentCallback();
+      userManager.signinSilentCallback();
     },
   },
 });

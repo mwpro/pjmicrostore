@@ -15,7 +15,6 @@ namespace Checkout.Cart.Controllers
     [ApiController]
     public class CartController : ControllerBase
     {
-        private const int CartIdMock = 1; // todo what next?
         private readonly CartContext _cartContext;
         private readonly IProductsService _productsService;
 
@@ -35,12 +34,12 @@ namespace Checkout.Cart.Controllers
 
 
         [HttpGet("{cartId}")]
-        public IActionResult GetCart(int cartId)
+        public IActionResult GetCart(Guid cartId)
         {
             var cart = _cartContext.Carts
                 .Include(x => x.CartItems)
                 .ThenInclude(x => x.Product)
-                .FirstOrDefault(x => x.Id == cartId);
+                .FirstOrDefault(x => x.CartAccessToken == cartId);
 
             if (cart == null)
                 return NotFound();

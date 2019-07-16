@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import BootstrapVue from 'bootstrap-vue';
+import Axios from 'axios';
 import App from './App.vue';
 import router from './router';
 import store from './store';
@@ -16,6 +17,15 @@ Vue.config.productionTip = false;
 
 Vue.filter('currency', price => `${price != null ? price.toFixed(2) : '0,00'} PLN`);
 Vue.filter('date', date => new Date(date).toLocaleDateString());
+
+Axios.interceptors.request.use((config) => {
+  if (Vue.prototype.$auth.isAuthenticated) {
+    config.headers.Authorization = `Bearer ${Vue.prototype.$auth.accessToken}`;
+  } else {
+    console.log('no auth');
+  }
+  return config;
+}, error => Promise.reject(error));
 
 new Vue({
   router,

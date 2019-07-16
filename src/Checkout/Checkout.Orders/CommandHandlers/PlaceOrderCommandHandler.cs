@@ -29,7 +29,7 @@ namespace Checkout.Orders.CommandHandlers
 
         public async Task<PlaceOrderCommandResponse> Handle(PlaceOrderCommand request, CancellationToken cancellationToken)
         {
-            var cart = await _cartsService.GetCart(request.CartId);
+            var cart = await _cartsService.GetCart(request.CartAccessToken);
 
             var order = new Order(
                 new Customer(request.CustomerId, request.Email, request.Phone), 

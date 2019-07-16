@@ -1,11 +1,13 @@
 import axios from 'axios';
 import Vue from 'vue';
+import Qs from 'qs';
 
 export default {
   namespaced: true,
   state: {
     cart: {
       cartItems: [],
+      cartAccessToken: localStorage.getItem('cart_token'),
       value: 0,
       numberOfItems: 0,
     },
@@ -14,15 +16,21 @@ export default {
   mutations: {
     updateCart(state, cart) {
       state.cart = cart;
+      localStorage.setItem('cart_token', cart.cartAccessToken);
     },
     updatePaymentMethods(state, paymentMethods) {
       state.paymentMethods = paymentMethods;
     },
   },
   actions: {
-    getCartAction({ commit }) {
+    getCartAction({ commit, state }) {
       return axios
-        .get('/api/cart')
+        .get('/api/cart', {
+          params: { cartToken: state.cart.cartAccessToken },
+          paramsSerializer(params) {
+            return Qs.stringify(params);
+          },
+        }) // cartAccessToken
         .then((response) => {
           if (response.status !== 200) throw Error(response.message);
           let cart = response.data;
@@ -35,11 +43,16 @@ export default {
         });
       // TODO .catch(captains.error)
     },
-    addProductToCartAction({ commit }, productInfo) {
-      return axios
-        .post(`/api/cart/products/${productInfo.productId}`, {
-          quantity: productInfo.quantity,
-        })
+    addProductToCartAction({ commit, state }, productInfo) {
+      return axios({
+        method: 'post',
+        url: `/api/cart/products/${productInfo.productId}`,
+        data: { quantity: productInfo.quantity },
+        params: { cartToken: state.cart.cartAccessToken },
+        paramsSerializer(params) {
+          return Qs.stringify(params);
+        },
+      })
         .then((response) => {
           if (response.status !== 200) throw Error(response.message);
           let cart = response.data;
@@ -52,9 +65,15 @@ export default {
         });
       // TODO .catch(captains.error)
     },
-    removeFromCartAction({ commit }, productId) {
-      return axios
-        .delete(`/api/cart/products/${productId}`)
+    removeFromCartAction({ commit, state }, productId) {
+      return axios({
+        method: 'delete',
+        url: `/api/cart/products/${productId}`,
+        params: { cartToken: state.cart.cartAccessToken },
+        paramsSerializer(params) {
+          return Qs.stringify(params);
+        },
+      })
         .then((response) => {
           if (response.status !== 200) throw Error(response.message);
           let cart = response.data;
@@ -67,11 +86,16 @@ export default {
         });
       // TODO .catch(captains.error)
     },
-    updateItemAction({ commit }, productInfo) {
-      return axios
-        .put(`/api/cart/products/${productInfo.productId}`, {
-          quantity: productInfo.quantity,
-        })
+    updateItemAction({ commit, state }, productInfo) {
+      return axios({
+        method: 'put',
+        url: `/api/cart/products/${productInfo.productId}`,
+        data: { quantity: productInfo.quantity },
+        params: { cartToken: state.cart.cartAccessToken },
+        paramsSerializer(params) {
+          return Qs.stringify(params);
+        },
+      })
         .then((response) => {
           if (response.status !== 200) throw Error(response.message);
           let cart = response.data;
@@ -84,7 +108,8 @@ export default {
         });
       // TODO .catch(captains.error)
     },
-    placeOrder({ commit }, checkoutDetails) {
+    placeOrder({ commit, state }, checkoutDetails) {
+      checkoutDetails.cartAccessToken = state.cart.cartAccessToken;
       return axios
         .post('/api/orders', checkoutDetails)
         .then((response) => {
@@ -97,6 +122,7 @@ export default {
           commit('updateCart', {
             cartItems: [],
             value: 0,
+            cartAccessToken: '',
             numberOfItems: 0,
           }); // todo actual cart cleaning?
           return order;

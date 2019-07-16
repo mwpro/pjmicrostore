@@ -59,6 +59,11 @@ namespace Checkout.Cart.Domain
         
         public ICollection<CartItem> CartItems { get; set; }
 
+        public void Merge (Cart otherCart)
+        {
+            CartItems = CartItems.Concat(otherCart.CartItems).ToList();
+        }
+
         public void AddProduct(Product product, int quantity)
         {
             var existingCartItem = CartItems.FirstOrDefault(x => x.ProductId == product.Id);

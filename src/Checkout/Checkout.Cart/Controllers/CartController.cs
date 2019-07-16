@@ -134,30 +134,81 @@ namespace Checkout.Cart.Controllers
 
         private Domain.Cart GetOrCreateCart(Guid? cartToken)
         {
-            if (!cartToken.HasValue)
-            {
-                cartToken = Guid.NewGuid();
-            }
+            var userId = GetUserId();
 
-            var cart = _cartContext.Carts
+            Domain.Cart userCart = null;
+            Domain.Cart cartFromToken = null;
+            if (userId.HasValue)
+            {
+                userCart = _cartContext.Carts
                 .Include(x => x.CartItems)
                 .ThenInclude(x => x.Product)
-                .FirstOrDefault(x => 
-                    //x.Id == CartIdMock
-                    x.CartAccessToken == cartToken
+                .FirstOrDefault(x =>
+                    x.OwnerUserId == userId
                 );
-            
-            if (cart == null)
+            }
+            if (cartToken.HasValue && userCart?.CartAccessToken != cartToken)
             {
-                cart = new Domain.Cart()
-                {
-                    CartAccessToken = cartToken
-                };
-                _cartContext.Add(cart);
-                _cartContext.SaveChanges(); // todo not good
+                cartFromToken = _cartContext.Carts
+                                .Include(x => x.CartItems)
+                                .ThenInclude(x => x.Product)
+                                .FirstOrDefault(x =>
+                                    x.CartAccessToken == cartToken && !x.OwnerUserId.HasValue
+                                );
             }
 
+            if (cartToken.HasValue && userCart != null) // token + user
+            {
+                if (cartFromToken != null) // token + user (same)
+                {
+                    userCart.Merge(cartFromToken);
+                    _cartContext.Carts.Remove(cartFromToken);
+                    _cartContext.SaveChanges(); // todo not good
+                }
+
+                return userCart;
+            }
+
+            if (cartFromToken != null)
+            {
+                if (userId.HasValue) // token + user without cart
+                {
+                    cartFromToken.OwnerUserId = userId;
+                    _cartContext.SaveChanges(); // todo not good
+                }
+                return cartFromToken; // token + no user
+            }
+            // todo changing basket (ex. switch from token to user) should be a http redirect
+            // no token + user
+            // no token + no user
+            return CreateCart(userId);
+        }
+
+        private Domain.Cart CreateCart(Guid? userId)
+        {
+            var cartToken = Guid.NewGuid();
+            var cart = new Domain.Cart()
+            {
+                CartAccessToken = cartToken,
+                OwnerUserId = userId
+            };
+            _cartContext.Add(cart);
+            _cartContext.SaveChanges(); // todo not good
+
             return cart;
+
+        }
+
+        private Guid? GetUserId()
+        {
+            var claimValue = User.Claims.FirstOrDefault(x => x.Type == "sub");
+            if (claimValue == null || string.IsNullOrWhiteSpace(claimValue.Value) 
+                || !Guid.TryParse(claimValue.Value, out var userId))
+            {
+                return null;
+            }
+
+            return userId;
         }
     }
 }

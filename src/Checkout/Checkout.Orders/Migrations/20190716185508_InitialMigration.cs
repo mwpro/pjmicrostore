@@ -4,26 +4,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Checkout.Orders.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "Customer",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    FirstName = table.Column<string>(nullable: true),
-                    LastName = table.Column<string>(nullable: true),
-                    Email = table.Column<string>(nullable: true),
-                    Phone = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Customer", x => x.Id);
-                });
-
             migrationBuilder.CreateTable(
                 name: "Order",
                 columns: table => new
@@ -31,18 +15,24 @@ namespace Checkout.Orders.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     CreateDate = table.Column<DateTime>(nullable: false),
-                    Status = table.Column<string>(nullable: true),
-                    CustomerId = table.Column<int>(nullable: false)
+                    Status_Name = table.Column<string>(nullable: true),
+                    Customer_CustomerId = table.Column<Guid>(nullable: true),
+                    Customer_Email = table.Column<string>(nullable: true),
+                    Customer_Phone = table.Column<string>(nullable: true),
+                    BillingAddress_FirstName = table.Column<string>(nullable: true),
+                    BillingAddress_LastName = table.Column<string>(nullable: true),
+                    BillingAddress_Address = table.Column<string>(nullable: true),
+                    BillingAddress_City = table.Column<string>(nullable: true),
+                    BillingAddress_Zip = table.Column<string>(nullable: true),
+                    ShippingAddress_FirstName = table.Column<string>(nullable: true),
+                    ShippingAddress_LastName = table.Column<string>(nullable: true),
+                    ShippingAddress_Address = table.Column<string>(nullable: true),
+                    ShippingAddress_City = table.Column<string>(nullable: true),
+                    ShippingAddress_Zip = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Order", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Order_Customer_CustomerId",
-                        column: x => x.CustomerId,
-                        principalTable: "Customer",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -69,11 +59,6 @@ namespace Checkout.Orders.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Order_CustomerId",
-                table: "Order",
-                column: "CustomerId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_OrderLines_OrderId",
                 table: "OrderLines",
                 column: "OrderId");
@@ -86,9 +71,6 @@ namespace Checkout.Orders.Migrations
 
             migrationBuilder.DropTable(
                 name: "Order");
-
-            migrationBuilder.DropTable(
-                name: "Customer");
         }
     }
 }

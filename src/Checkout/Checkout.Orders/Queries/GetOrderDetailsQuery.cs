@@ -30,6 +30,7 @@ SELECT
     o.[Id],
     o.[CreateDate],
     o.[Status_Name] AS [Status],
+    '' AS [Customer],
     o.[Customer_CustomerId] AS [CustomerId],
     o.[Customer_Email] AS [Email],
     o.[Customer_Phone] AS [Phone],
@@ -73,7 +74,7 @@ WHERE o.Id = @orderId";
                         result.ShippingAddress = shippingAddress;
                         return details;
                     }, new { orderId = request.OrderId },
-                    splitOn: "CustomerId, Address, Address, ProductId");
+                    splitOn: "Customer, Address, Address, ProductId");
 
                 return result;
             });
@@ -118,7 +119,7 @@ WHERE o.Id = @orderId";
 
         public class OrderDetailsCustomer
         {
-            public int CustomerId { get; set; }
+            public Guid? CustomerId { get; set; }
             public string Email { get; set; }
             public string Phone { get; set; }
         }

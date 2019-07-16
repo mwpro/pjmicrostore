@@ -20,7 +20,6 @@ namespace Checkout.Orders.Controllers
     [ApiController]
     public class OrdersController : ControllerBase
     {
-        private const int CustomerIdMock = 1; // todo what next?
         private readonly IMediator _mediator;
 
         public OrdersController(IMediator mediator)
@@ -40,7 +39,7 @@ namespace Checkout.Orders.Controllers
         {
             // todo validation
             var createdOrder = await _mediator.Send(new PlaceOrderCommand(placeOrderModel.CartAccessToken, placeOrderModel.PaymentMethod, placeOrderModel.Email,
-                placeOrderModel.ShippingDetails.ToOrderAddress(), placeOrderModel.BillingDetails.ToOrderAddress(), CustomerIdMock, placeOrderModel.Phone));
+                placeOrderModel.ShippingDetails.ToOrderAddress(), placeOrderModel.BillingDetails.ToOrderAddress(), GetUserId(), placeOrderModel.Phone));
 
             // todo this if does not look good here,
             // i think we should move it all to payments service and just return action link here
@@ -86,7 +85,22 @@ namespace Checkout.Orders.Controllers
         {
             var result = await _mediator.Send(new GetOrderDetailsQuery(orderId));
 
+            if (result == null)
+                return NotFound();
+
             return Ok(result);
+        }
+
+        private Guid? GetUserId()
+        {
+            var claimValue = User.Claims.FirstOrDefault(x => x.Type == "sub");
+            if (claimValue == null || string.IsNullOrWhiteSpace(claimValue.Value)
+                || !Guid.TryParse(claimValue.Value, out var userId))
+            {
+                return null;
+            }
+
+            return userId;
         }
     }
 

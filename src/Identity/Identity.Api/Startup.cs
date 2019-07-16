@@ -4,6 +4,7 @@
 
 using Identity.Api.Data;
 using Identity.Api.Models;
+using IdentityServer4.AccessTokenValidation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -29,7 +30,7 @@ namespace Identity.Api
         {
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-
+            
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
@@ -63,7 +64,14 @@ namespace Identity.Api
                 throw new Exception("need to configure key material");
             }
 
-            services.AddAuthentication();
+            services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
+                .AddIdentityServerAuthentication(options =>
+                {
+                    options.Authority = "http://localhost:5000";
+                    options.RequireHttpsMetadata = false;
+                    options.JwtValidationClockSkew = TimeSpan.FromSeconds(15);
+                    //options.Audience = "api1";
+                });
         }
 
         public void Configure(IApplicationBuilder app)
@@ -78,6 +86,7 @@ namespace Identity.Api
                 app.UseExceptionHandler("/Home/Error");
             }
 
+            app.UseAuthentication();
             app.UseStaticFiles();
             app.UseIdentityServer();
             app.UseMvcWithDefaultRoute();

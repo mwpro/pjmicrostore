@@ -1,6 +1,4 @@
 import axios from 'axios';
-import Vue from 'vue';
-import Qs from 'qs';
 
 export default {
   namespaced: true,

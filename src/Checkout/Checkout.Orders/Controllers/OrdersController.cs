@@ -74,12 +74,15 @@ namespace Checkout.Orders.Controllers
         [HttpGet]
         public async Task<IActionResult> GetOrders()
         {
-            var result = await _mediator.Send(new GetOrderListQuery());
+            var userId = GetUserId();
+            if (userId.HasValue)
+            {
+                return Ok(await _mediator.Send(new GetUserOrderListQuery(userId.Value)));
+            }
 
-            return Ok(result);
+            return Ok(await _mediator.Send(new GetOrderListQuery()));
         }
-
-
+        
         [HttpGet("{orderId}")]
         public async Task<IActionResult> GetOrder(int orderId)
         {

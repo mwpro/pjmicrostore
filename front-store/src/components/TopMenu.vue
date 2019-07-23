@@ -31,9 +31,9 @@
                 <path d="M21 21l-5.2-5.2"></path>
               </svg>
             </a>
-            <a class="btn btn-sm btn-outline-secondary" @click="login()" v-if="!isAuthenticated">Sign in</a>
-            <a class="btn btn-sm btn-outline-secondary" @click="logout()" v-if="isAuthenticated">Logout</a>
-            <a class="btn btn-sm btn-outline-secondary" @click="testAuth()">Test</a>
+            <a class="btn btn-sm btn-outline-secondary" @click="login()" v-if="!isAuthenticated">Zaloguj się</a>
+            <a class="btn btn-sm btn-outline-secondary" @click="logout()" v-if="isAuthenticated">Wyloguj</a>
+            <router-link to="/account" class="btn btn-sm btn-outline-secondary">Konto</router-link>
             <CartInfo />
           </div>
         </div>
@@ -83,14 +83,6 @@ export default {
     },
     logout() {
       this.$auth.logout();
-    },
-    testAuth() {
-      axios.defaults.headers.common.Authorization = `Bearer ${this.$auth.accessToken}`;
-      return axios
-        .get('/api/orders/auth')
-        .then((response) => {
-          console.log(response);
-        });
     },
   },
 };

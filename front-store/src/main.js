@@ -17,6 +17,10 @@ Vue.config.productionTip = false;
 
 Vue.filter('currency', price => `${price != null ? price.toFixed(2) : '0,00'} PLN`);
 Vue.filter('date', date => new Date(date).toLocaleDateString());
+Vue.filter('dateTime', (date) => {
+  const d = new Date(date);
+  return `${d.toLocaleDateString()} ${d.toLocaleTimeString()}`;
+});
 
 Axios.interceptors.request.use((config) => {
   if (Vue.prototype.$auth.isAuthenticated) {

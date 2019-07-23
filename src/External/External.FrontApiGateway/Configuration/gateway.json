@@ -53,14 +53,7 @@
             "DownstreamScheme": "http",
             "ServiceName": "orders",
             "UpstreamPathTemplate": "/api/orders",
-            "UpstreamHttpMethod": [ "Post" ]
-        },
-        {
-            "DownstreamPathTemplate": "/api/orders/auth", // todo testing only
-            "DownstreamScheme": "http",
-            "ServiceName": "orders",
-            "UpstreamPathTemplate": "/api/orders/auth",
-            "UpstreamHttpMethod": [ "Get" ]
+            "UpstreamHttpMethod": [ "Post", "Get" ]
         },
         // payments
         {
@@ -84,6 +77,7 @@
             "UpstreamPathTemplate": "/api/payments/mock/{paymentReference}/{result}",
             "UpstreamHttpMethod": [ "Post" ]
         },
+        // identity
         {
             "DownstreamPathTemplate": "/api/users/me",
             "DownstreamScheme": "http",

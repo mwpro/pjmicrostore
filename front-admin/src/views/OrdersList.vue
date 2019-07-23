@@ -6,13 +6,13 @@
       <h1 class="h2">Zamówienia</h1>
     </div>
 
-    <b-table hover :items="orders" :fields="fieldsConfig">      
+    <b-table hover :items="orders" :fields="fieldsConfig">
       <template slot="createDateUtc" slot-scope="row">
         {{ row.value | dateTime }}
       </template>
       <template slot="amount" slot-scope="row">
         {{ row.value | currency }}
-      </template>      
+      </template>
       <template slot="status" slot-scope="row">
         <OrderStatus :status="row.value" />
       </template>
@@ -24,55 +24,55 @@
 </template>
 
 <script>
-import OrderStatus from '../components/OrderStatus'
+import OrderStatus from '../components/OrderStatus';
 
 export default {
   components: {
-    OrderStatus
+    OrderStatus,
   },
   data() {
     return {
       fieldsConfig: [
         {
-          key: "id",
-          label: "#",
-          sortable: false
+          key: 'id',
+          label: '#',
+          sortable: false,
         },
         {
-          key: "createDateUtc",
-          label: "Data",
-          sortable: false
+          key: 'createDateUtc',
+          label: 'Data',
+          sortable: false,
         },
         {
-          key: "customer",
-          label: "Klient",
-          sortable: false
+          key: 'customer',
+          label: 'Klient',
+          sortable: false,
         },
         {
-          key: "amount",
-          label: "Kwota",
-          sortable: false
+          key: 'amount',
+          label: 'Kwota',
+          sortable: false,
         },
         {
-          key: "status",
-          label: "Status",
-          sortable: false
+          key: 'status',
+          label: 'Status',
+          sortable: false,
         },
         {
-          key: "actions",
-          label: ""
-        }
-      ]
+          key: 'actions',
+          label: '',
+        },
+      ],
     };
   },
   computed: {
     orders() {
       return this.$store.state.orders.ordersList;
-    }
+    },
   },
   created() {
-    this.$store.dispatch("orders/getOrdersAction");
-  }
+    this.$store.dispatch('orders/getOrdersAction');
+  },
 };
 </script>
 

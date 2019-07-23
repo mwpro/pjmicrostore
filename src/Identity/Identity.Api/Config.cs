@@ -23,7 +23,8 @@ namespace Identity.Api
         {
             return new ApiResource[]
             {
-                new ApiResource("api1", "My API #1")
+                new ApiResource("api1", "My API #1"),
+                new ApiResource(IdentityServerConstants.LocalApi.ScopeName), 
             };
         }
 
@@ -70,6 +71,7 @@ namespace Identity.Api
                     {
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
+                        IdentityServerConstants.LocalApi.ScopeName,
                         "api1"
                     }
                 }

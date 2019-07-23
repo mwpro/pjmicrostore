@@ -6,7 +6,7 @@ const authConfig = {
   client_id: 'frontStore',
   redirect_uri: 'http://localhost:8080/callback',
   response_type: 'code',
-  scope: 'openid profile api1',
+  scope: 'openid profile api1 IdentityServerApi',
   post_logout_redirect_uri: 'http://localhost:8080',
   userStore: new WebStorageStateStore({ store: window.localStorage }),
 

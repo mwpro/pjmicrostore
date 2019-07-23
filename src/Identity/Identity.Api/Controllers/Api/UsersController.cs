@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using IdentityServer4;
 
 namespace Identity.Api.Controllers.Api
 {
@@ -36,7 +37,7 @@ namespace Identity.Api.Controllers.Api
         }
 
         [HttpGet("me")]
-        [Authorize]
+        [Authorize(IdentityServerConstants.LocalApi.PolicyName)]
         public async Task<IActionResult> GetCurrentUser()
         {
             var user = await _userManager.FindByIdAsync(User.GetSubjectId());

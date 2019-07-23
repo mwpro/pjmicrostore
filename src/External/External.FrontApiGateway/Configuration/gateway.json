@@ -83,6 +83,13 @@
             "ServiceName": "payments",
             "UpstreamPathTemplate": "/api/payments/mock/{paymentReference}/{result}",
             "UpstreamHttpMethod": [ "Post" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/users/me",
+            "DownstreamScheme": "http",
+            "ServiceName": "identity",
+            "UpstreamPathTemplate": "/api/users/me",
+            "UpstreamHttpMethod": [ "Get" ]
         }
     ],
     "GlobalConfiguration": {
@@ -115,6 +122,10 @@
         "Payments": {
             "DownstreamHost": "localhost",
             "DownstreamPort": 62678
+        },
+        "Identity": {
+            "DownstreamHost": "localhost",
+            "DownstreamPort": 5000
         }
     }
 }

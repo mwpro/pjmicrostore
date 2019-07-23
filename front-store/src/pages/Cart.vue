@@ -303,10 +303,28 @@ export default {
         billingDetails: (this.$data.billingDetailsAreDifferentFromShipping ? this.$data.billingDetails : this.$data.shippingDetails),
       };
     },
+    user() {
+      return this.$store.state.user.user;
+    },
   },
   created() {
     this.$store.dispatch('cart/getPaymentMethodsAction');
     this.$store.dispatch('cart/getCartAction');
+    this.$store.dispatch('user/getUserAction');
+  },
+  watch: {
+    user() {
+      console.log('user loaded');
+      this.$data.email = this.user.email;
+      this.$data.phone = this.user.phone;
+      this.$data.shippingDetails = this.user.shippingDetails;
+      this.$data.shippingDetails.address = this.user.shippingDetails.street;
+      if (this.user.billingDetails.street) {
+        this.$data.billingDetailsAreDifferentFromShipping = true;
+        this.$data.billingDetails = this.user.billingDetails;
+        this.$data.billingDetails.address = this.user.billingDetails.street;
+      }
+    },
   },
   methods: {
     removeItem(item) {

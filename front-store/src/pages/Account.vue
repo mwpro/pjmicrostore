@@ -21,6 +21,9 @@
         <div class="col blog-main">
           <div class="row">
             <b-table hover :items="orders" :fields="fieldsConfig">
+                <template slot="id" slot-scope="row">
+                  <router-link :to="'orders/'+row.value">{{ row.value }}</router-link>
+                </template>
                 <template slot="createDateUtc" slot-scope="row">
                     {{ row.value | dateTime }}
                 </template>

@@ -6,6 +6,7 @@ import Product from './pages/Product.vue';
 import Cart from './pages/Cart.vue';
 import AboutUs from './pages/AboutUs.vue';
 import Account from './pages/Account.vue';
+import OrderDetails from './pages/OrderDetails.vue';
 import OrderPlaced from './pages/OrderPlaced.vue';
 import PaymentRedirect from './pages/PaymentRedirect.vue';
 import PaymentMock from './pages/PaymentMock.vue';
@@ -82,6 +83,12 @@ export default new Router({
       path: '/account',
       name: 'account',
       component: Account,
+    },
+    {
+      path: '/orders/:orderId',
+      name: 'orderDetails',
+      component: OrderDetails,
+      props: true
     },
   ],
 });

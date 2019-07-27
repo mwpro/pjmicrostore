@@ -49,6 +49,14 @@
         },
         // orders
         {
+            "DownstreamPathTemplate": "/api/orders/{orderId}",
+            "DownstreamScheme": "http",
+            "ServiceName": "orders",
+            "UpstreamPathTemplate": "/api/orders/{orderId}",
+            "UpstreamHttpMethod": [ "Get" ]
+        },
+
+        {
             "DownstreamPathTemplate": "/api/orders",
             "DownstreamScheme": "http",
             "ServiceName": "orders",

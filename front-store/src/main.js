@@ -25,14 +25,15 @@ Vue.filter('dateTime', (date) => {
 Axios.interceptors.request.use((config) => {
   if (Vue.prototype.$auth.isAuthenticated) {
     config.headers.Authorization = `Bearer ${Vue.prototype.$auth.accessToken}`;
-  } else {
-    console.log('no auth');
   }
   return config;
 }, error => Promise.reject(error));
 
-new Vue({
-  router,
-  store,
-  render: h => h(App),
-}).$mount('#app');
+Vue.prototype.$auth.getUser().then(x => {
+  new Vue({
+    router,
+    store,
+    render: h => h(App),
+  }).$mount('#app');
+})
+

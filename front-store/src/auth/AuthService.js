@@ -29,7 +29,6 @@ const auth = new Vue({
   },
   computed: {
     isAuthenticated() {
-      console.log(`auth init${this.accessToken && true}`);
       return this.accessToken && new Date().getTime() < this.expiresAt;
     },
   },

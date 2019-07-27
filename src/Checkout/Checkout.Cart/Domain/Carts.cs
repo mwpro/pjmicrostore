@@ -61,7 +61,18 @@ namespace Checkout.Cart.Domain
 
         public void Merge (Cart otherCart)
         {
-            CartItems = CartItems.Concat(otherCart.CartItems).ToList();
+            foreach (var otherCartItem in otherCart.CartItems)
+            {
+                var existingItem = CartItems.FirstOrDefault(x => x.ProductId == otherCartItem.ProductId);
+                if (existingItem != null)
+                {
+                    existingItem.Quantity += otherCartItem.Quantity;
+                }
+                else
+                {
+                    CartItems.Add(otherCartItem);
+                }
+            }
         }
 
         public void AddProduct(Product product, int quantity)

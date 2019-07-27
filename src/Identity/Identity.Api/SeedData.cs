@@ -39,7 +39,13 @@ namespace Identity.Api
                     {
                         alice = new ApplicationUser
                         {
-                            UserName = "alice"
+                            UserName = "alice",
+                            Email = "alice@pocztagmail.com",
+                            PhoneNumber = "123-132-211",
+                            ShippingAddress =  new ApplicationUser.Address(
+                                "Alicja", "Magicz", "Krainy czarów 18",
+                                "Warszawa", "20-221"),
+                            BillingAddress = new ApplicationUser.Address(null, null, null, null, null)
                         };
                         var result = userMgr.CreateAsync(alice, "Pass123$").Result;
                         if (!result.Succeeded)
@@ -72,7 +78,13 @@ namespace Identity.Api
                     {
                         bob = new ApplicationUser
                         {
-                            UserName = "bob"
+                            UserName = "bob",
+                            Email = "bob@bob.pl",
+                            PhoneNumber = "777-444-333",
+                            ShippingAddress =  new ApplicationUser.Address(
+                                "Alicja", "Magicz", "Krainy czarów 18",
+                                "Warszawa", "20-221"),
+                            BillingAddress = new ApplicationUser.Address(null, null, null, null, null)
                         };
                         var result = userMgr.CreateAsync(bob, "Pass123$").Result;
                         if (!result.Succeeded)

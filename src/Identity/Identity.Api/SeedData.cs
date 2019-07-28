@@ -34,6 +34,23 @@ namespace Identity.Api
                     context.Database.Migrate();
 
                     var userMgr = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+                    var roleMgr = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+                    
+                    if (!roleMgr.RoleExistsAsync("admin").Result)
+                    {
+                        var adminRole = roleMgr.CreateAsync(new IdentityRole("admin")).Result;
+                        
+                        roleMgr.AddClaimAsync(new IdentityRole("admin"), new Claim("admin", true.ToString())).Wait();
+                        Console.WriteLine("admin role created");
+                    }
+                    roleMgr.AddClaimAsync(new IdentityRole("admin"), new Claim("admin", true.ToString())).Wait();
+
+                    if (!roleMgr.RoleExistsAsync("user").Result)
+                    {
+                        var userRole = roleMgr.CreateAsync(new IdentityRole("user")).Result;
+                        Console.WriteLine("user role created");
+                    }
+                    
                     var alice = userMgr.FindByNameAsync("alice").Result;
                     if (alice == null)
                     {
@@ -66,6 +83,8 @@ namespace Identity.Api
                         {
                             throw new Exception(result.Errors.First().Description);
                         }
+
+                        userMgr.AddToRoleAsync(alice, "user").Wait();
                         Console.WriteLine("alice created");
                     }
                     else
@@ -106,11 +125,52 @@ namespace Identity.Api
                         {
                             throw new Exception(result.Errors.First().Description);
                         }
+                        userMgr.AddToRoleAsync(bob, "user").Wait();
                         Console.WriteLine("bob created");
                     }
                     else
                     {
                         Console.WriteLine("bob already exists");
+                    }
+                    
+                    
+                    var admin = userMgr.FindByNameAsync("admin").Result;
+                    if (admin == null)
+                    {
+                        admin = new ApplicationUser
+                        {
+                            UserName = "admin",
+                            Email = "admin@admin.pl",
+                            PhoneNumber = null,
+                            ShippingAddress =  new ApplicationUser.Address(null, null, null, null, null),
+                            BillingAddress = new ApplicationUser.Address(null, null, null, null, null)
+                        };
+                        var result = userMgr.CreateAsync(admin, "Admin123$").Result;
+                        if (!result.Succeeded)
+                        {
+                            throw new Exception(result.Errors.First().Description);
+                        }
+
+                        result = userMgr.AddClaimsAsync(admin, new Claim[]{
+                        new Claim(JwtClaimTypes.Name, "Bob Smith"),
+                        new Claim(JwtClaimTypes.GivenName, "Bob"),
+                        new Claim(JwtClaimTypes.FamilyName, "Smith"),
+                        new Claim(JwtClaimTypes.Email, "BobSmith@email.com"),
+                        new Claim(JwtClaimTypes.EmailVerified, "true", ClaimValueTypes.Boolean),
+                        new Claim(JwtClaimTypes.WebSite, "http://bob.com"),
+                        new Claim(JwtClaimTypes.Address, @"{ 'street_address': 'One Hacker Way', 'locality': 'Heidelberg', 'postal_code': 69118, 'country': 'Germany' }", IdentityServer4.IdentityServerConstants.ClaimValueTypes.Json),
+                        new Claim("location", "somewhere")
+                    }).Result;
+                        if (!result.Succeeded)
+                        {
+                            throw new Exception(result.Errors.First().Description);
+                        }
+                        userMgr.AddToRoleAsync(admin, "admin").Wait();
+                        Console.WriteLine("admin created");
+                    }
+                    else
+                    {
+                        Console.WriteLine("admin already exists");
                     }
                 }
             }

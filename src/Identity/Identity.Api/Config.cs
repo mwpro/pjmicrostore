@@ -15,7 +15,7 @@ namespace Identity.Api
             return new IdentityResource[]
             {
                 new IdentityResources.OpenId(),
-                new IdentityResources.Profile(),
+                new IdentityResources.Profile() 
             };
         }
 
@@ -66,6 +66,37 @@ namespace Identity.Api
                     },
                     PostLogoutRedirectUris = {"http://localhost:8080"},
                     AllowedCorsOrigins = {"http://localhost:8080"},
+                    
+                    AllowedScopes =
+                    {
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile,
+                        IdentityServerConstants.LocalApi.ScopeName,
+                        "api1"
+                    }
+                },
+                new Client
+                {
+                    ClientId = "frontAdmin",
+                    ClientName = "Front Admin Client",
+                    AllowedGrantTypes = GrantTypes.Code,
+                    
+                    RequirePkce = true,
+                    RequireClientSecret = false,
+                    RequireConsent = false,
+                    
+                    AccessTokenLifetime = 90,
+                    IdentityTokenLifetime = 30,
+
+                    AllowAccessTokensViaBrowser = true,
+
+                    RedirectUris =
+                    {
+                        "http://localhost:8081/callback",
+                        "http://localhost:8081/silentRenew"
+                    },
+                    PostLogoutRedirectUris = {"http://localhost:8081"},
+                    AllowedCorsOrigins = {"http://localhost:8081"},
                     
                     AllowedScopes =
                     {

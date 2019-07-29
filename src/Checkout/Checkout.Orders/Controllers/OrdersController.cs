@@ -72,15 +72,21 @@ namespace Checkout.Orders.Controllers
         }
 
         [HttpGet]
+        
         public async Task<IActionResult> GetOrders()
         {
             var userId = GetUserId();
-            if (userId.HasValue)
+            if (userId.HasValue && !User.IsInRole("admin"))
             {
                 return Ok(await _mediator.Send(new GetUserOrderListQuery(userId.Value)));
+            } else if (userId.HasValue && User.IsInRole("admin"))
+            {
+                return Ok(await _mediator.Send(new GetOrderListQuery()));
             }
-
-            return Ok(await _mediator.Send(new GetOrderListQuery()));
+            else
+            {
+                return Forbid();
+            }
         }
         
         [HttpGet("{orderId}")]

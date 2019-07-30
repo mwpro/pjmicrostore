@@ -39,12 +39,9 @@ namespace Identity.Api
                     if (!roleMgr.RoleExistsAsync("admin").Result)
                     {
                         var adminRole = roleMgr.CreateAsync(new IdentityRole("admin")).Result;
-                        
-                        roleMgr.AddClaimAsync(new IdentityRole("admin"), new Claim("admin", true.ToString())).Wait();
                         Console.WriteLine("admin role created");
                     }
-                    roleMgr.AddClaimAsync(new IdentityRole("admin"), new Claim("admin", true.ToString())).Wait();
-
+                    
                     if (!roleMgr.RoleExistsAsync("user").Result)
                     {
                         var userRole = roleMgr.CreateAsync(new IdentityRole("user")).Result;

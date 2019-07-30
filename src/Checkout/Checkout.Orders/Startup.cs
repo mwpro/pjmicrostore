@@ -29,6 +29,15 @@ using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 namespace Checkout.Orders
 {
 
+    public static class Roles
+    {
+        public const string Admin = "admin";
+    }
+    public static class AuthorizationPolicies
+    {
+        public const string AdminOnly = "AdminOnly";
+    }
+
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -51,6 +60,8 @@ namespace Checkout.Orders
                     options.JwtValidationClockSkew = TimeSpan.FromSeconds(15);
                     //options.Audience = "api1";
                 });
+            services.AddAuthorization(options =>
+                options.AddPolicy(AuthorizationPolicies.AdminOnly, builder => builder.RequireRole(Roles.Admin).Build()));
 
             services.AddDbContext<OrdersContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 

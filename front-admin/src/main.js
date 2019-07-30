@@ -1,14 +1,17 @@
 import Vue from 'vue';
 import BootstrapVue from 'bootstrap-vue';
+import Axios from 'axios';
 import App from './App.vue';
 import router from './router';
 import store from './store';
+import AuthService from './auth/AuthService';
 
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 import './css/dashboard.css';
 
 Vue.use(BootstrapVue);
+Vue.use(AuthService);
 Vue.config.productionTip = false;
 
 Vue.filter('currency', price => `${price != null ? price.toFixed(2) : '0,00'} PLN`);
@@ -18,8 +21,24 @@ Vue.filter('dateTime', (date) => {
   return `${d.toLocaleDateString()} ${d.toLocaleTimeString()}`;
 });
 
-new Vue({
-  router,
-  store,
-  render: h => h(App),
-}).$mount('#app');
+Axios.interceptors.request.use((config) => {
+  if (Vue.prototype.$auth.isAuthenticated) {
+    config.headers.Authorization = `Bearer ${Vue.prototype.$auth.accessToken}`;
+  } else {
+    Vue.prototype.$auth.login();
+  }
+  return config;
+}, error => Promise.reject(error));
+
+Vue.prototype.$auth.getUser().then((x) => {
+  // TODO proper login require
+  // if (x == null) {
+  //   Vue.prototype.$auth.login();
+  //   return;
+  // }
+  new Vue({
+    router,
+    store,
+    render: h => h(App),
+  }).$mount('#app');
+});

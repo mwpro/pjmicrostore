@@ -16,6 +16,7 @@ namespace Identity.Api
             {
                 new IdentityResources.OpenId(),
                 new IdentityResources.Profile(),
+                new IdentityResource("roles", new[] { "role"} ), 
             };
         }
 
@@ -23,7 +24,10 @@ namespace Identity.Api
         {
             return new ApiResource[]
             {
-                new ApiResource("api1", "My API #1"),
+                new ApiResource("api1", "My API #1")
+                {
+                    UserClaims = new [] { "role" }
+                },
                 new ApiResource(IdentityServerConstants.LocalApi.ScopeName), 
             };
         }
@@ -72,7 +76,40 @@ namespace Identity.Api
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
                         IdentityServerConstants.LocalApi.ScopeName,
-                        "api1"
+                        "api1",
+                        "roles"
+                    }
+                },
+                new Client
+                {
+                    ClientId = "frontAdmin",
+                    ClientName = "Front Admin Client",
+                    AllowedGrantTypes = GrantTypes.Code,
+                    
+                    RequirePkce = true,
+                    RequireClientSecret = false,
+                    RequireConsent = false,
+                    
+                    AccessTokenLifetime = 90,
+                    IdentityTokenLifetime = 30,
+
+                    AllowAccessTokensViaBrowser = true,
+
+                    RedirectUris =
+                    {
+                        "http://localhost:8081/callback",
+                        "http://localhost:8081/silentRenew"
+                    },
+                    PostLogoutRedirectUris = {"http://localhost:8081"},
+                    AllowedCorsOrigins = {"http://localhost:8081"},
+                    
+                    AllowedScopes =
+                    {
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile,
+                        IdentityServerConstants.LocalApi.ScopeName,
+                        "api1",
+                        "roles"
                     }
                 }
             };

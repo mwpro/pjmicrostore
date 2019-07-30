@@ -31,6 +31,7 @@ namespace Identity.Api
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             
             services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
             
@@ -54,14 +55,14 @@ namespace Identity.Api
                 .AddInMemoryClients(Config.GetClients())
                 .AddAspNetIdentity<ApplicationUser>();
 
-            if (Environment.IsDevelopment())
-            {
+            //if (Environment.IsDevelopment())
+            //{
                 builder.AddDeveloperSigningCredential();
-            }
+            /*}
             else
             {
                 throw new Exception("need to configure key material");
-            }
+            }*/
 
             services.AddLocalApiAuthentication();
         }

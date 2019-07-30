@@ -5,6 +5,8 @@ import ProductsList from './views/ProductsList.vue';
 import ProductsEdit from './views/ProductsEdit.vue';
 import OrdersList from './views/OrdersList.vue';
 import OrderDetails from './views/OrderDetails.vue';
+import Callback from './views/Callback.vue';
+import SilentRenew from './views/SilentRenew.vue';
 
 Vue.use(Router);
 
@@ -17,6 +19,18 @@ export default new Router({
       path: '/',
       name: 'home',
       component: Home,
+    },
+    {
+      path: '/callback',
+      name: 'callback',
+      component: Callback,
+      // meta: { layout: 'minimal' },
+    },
+    {
+      path: '/silentRenew',
+      name: 'silentRenew',
+      component: SilentRenew,
+      // meta: { layout: 'minimal' },
     },
     {
       path: '/about',

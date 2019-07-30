@@ -16,6 +16,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Checkout.Orders.Controllers
 {
+    [Authorize]
     [Route("api/orders")]
     [ApiController]
     public class OrdersController : ControllerBase
@@ -27,13 +28,7 @@ namespace Checkout.Orders.Controllers
             _mediator = mediator;
         }
 
-        [HttpGet("auth")]
-        [Authorize]
-        public async Task<IActionResult> TestAuth()
-        {
-            return Ok(User.Claims.Select(c => new {c.Value, c.Type}));
-        }
-
+        [AllowAnonymous]
         [HttpPost("")]
         public async Task<IActionResult> PlaceOrder(PlaceOrderModel placeOrderModel)
         {
@@ -55,6 +50,7 @@ namespace Checkout.Orders.Controllers
             return StatusCode((int)HttpStatusCode.Created);
         }
 
+        [Authorize(AuthorizationPolicies.AdminOnly)]
         [HttpPost("{orderId}/sent")]
         public async Task<IActionResult> MarkAsSent(int orderId) // todo temporary endpoint until we have shipment microservice
         {
@@ -62,7 +58,8 @@ namespace Checkout.Orders.Controllers
 
             return Ok(result);
         }
-        
+
+        [Authorize(AuthorizationPolicies.AdminOnly)]
         [HttpPost("{orderId}/cancel")]
         public async Task<IActionResult> CancelOrder(int orderId) 
         {
@@ -71,28 +68,33 @@ namespace Checkout.Orders.Controllers
             return Ok(result);
         }
 
+        [Authorize]
         [HttpGet]
         public async Task<IActionResult> GetOrders()
         {
-            var userId = GetUserId();
-            if (userId.HasValue)
+            if (User.IsInRole(Roles.Admin))
             {
-                return Ok(await _mediator.Send(new GetUserOrderListQuery(userId.Value)));
+                return Ok(await _mediator.Send(new GetOrderListQuery()));
             }
-
-            return Ok(await _mediator.Send(new GetOrderListQuery()));
+            
+            var userId = GetUserId();
+            return Ok(await _mediator.Send(new GetUserOrderListQuery(userId.Value)));
         }
-        
+
+        [Authorize]
         [HttpGet("{orderId}")]
         public async Task<IActionResult> GetOrder(int orderId)
         {
-            var userId = GetUserId();
-            if (userId.HasValue)
+            OrderDetails result;
+            if (User.IsInRole(Roles.Admin))
             {
-                return Ok(await _mediator.Send(new GetUserOrderDetailsQuery(orderId, userId.Value)));
+                result = await _mediator.Send(new GetOrderDetailsQuery(orderId));
             }
-            
-            var result = await _mediator.Send(new GetOrderDetailsQuery(orderId));
+            else
+            {
+                var userId = GetUserId();
+                result = await _mediator.Send(new GetUserOrderDetailsQuery(orderId, userId.Value));
+            }
 
             if (result == null)
                 return NotFound();

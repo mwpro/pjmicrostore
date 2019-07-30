@@ -3,18 +3,18 @@ import Vue from 'vue';
 
 const authConfig = {
   authority: 'http://localhost:5000',
-  client_id: 'frontStore',
-  redirect_uri: 'http://localhost:8080/callback',
+  client_id: 'frontAdmin',
+  redirect_uri: 'http://localhost:8081/callback',
   response_type: 'code',
   scope: 'openid profile api1 IdentityServerApi roles',
-  post_logout_redirect_uri: 'http://localhost:8080',
+  post_logout_redirect_uri: 'http://localhost:8081',
   userStore: new WebStorageStateStore({ store: window.localStorage }),
 
   clockSkew: 15,
   accessTokenExpiringNotificationTime: 40,
 
   automaticSilentRenew: true,
-  silent_redirect_uri: 'http://localhost:8080/silentrenew',
+  silent_redirect_uri: 'http://localhost:8081/silentrenew',
   filterProtocolClaims: true,
 };
 
@@ -75,7 +75,7 @@ const auth = new Vue({
 
     authCallback() {
       userManager.signinRedirectCallback().then((user) => {
-        window.location.href = '../';
+        window.location.href = '/';
         this.expiresAt = user.expires_at ? user.expires_at * 1000 : null;
         this.accessToken = user.access_token;
       }).catch((err) => {

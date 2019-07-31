@@ -25,6 +25,7 @@ namespace Products.Search.Controllers
             var node = new Uri($"{configurationRoot.GetValue<string>("ElasticSearch:Host")}:{configurationRoot.GetValue<string>("ElasticSearch:Port")}");
             var settings = new ConnectionSettings(node);
             settings.DefaultMappingFor(typeof(ProductSearchModel), idx => idx.IndexName("products"));
+            settings.DefaultMappingFor(typeof(PhotoSearchModel), idx => idx.IndexName("photos"));
             settings.ThrowExceptions(true);
 
             _client = new ElasticClient(settings);
@@ -115,6 +116,20 @@ namespace Products.Search.Controllers
                     })
             }).ToList();
 
+            var photos = await _client.SearchAsync<PhotoSearchModel>(descriptor => descriptor.Query(q =>
+                q.Bool(b => b.Filter(bq => bq.Terms(t => t.Field(o => o.ProductId)
+                    .Terms(results.Documents.Select(x => x.Id)))))
+            ));
+
+            foreach (var product in results.Documents)
+            {
+                var productPhotos = photos.Documents.Where(x => x.ProductId == product.Id);
+                if (productPhotos.Any())
+                {
+                    product.SearchThumbnailUri = productPhotos.FirstOrDefault().OriginalUrl;
+                }
+            }
+
             return Ok(new
             {
                 documents = results.Documents,
@@ -169,6 +184,14 @@ namespace Products.Search.Controllers
             public string Value { get; set; }
             public long Count { get; set; }
         }
+    }
+
+    public class PhotoSearchModel
+    {
+        public int ProductId { get; set; }
+        public int PhotoId { get; set; }
+
+        public string OriginalUrl { get; set; }
     }
 
     public class ProductSearchModel

@@ -44,21 +44,24 @@ namespace Products.Search
                             e.UseMessageRetry(x => x.Interval(2, 100));
 
                             e.ConfigureConsumer<ProductUpdatedConsumer>(provider);
+                            e.ConfigureConsumer<PhotoUpdatesConsumer>(provider);
 
-                            e.Batch<ProductUpdatedEvent>(b =>
+                            e.Batch<ProductUpdatedEvent>(b => // todo do we really need batch? or maybe we can batch all events?
                             {
                                 b.MessageLimit = 3; // todo config
-                                b.TimeLimit = TimeSpan.FromMinutes(5);
+                                b.TimeLimit = TimeSpan.FromSeconds(30);
                                 b.Consumer(() => new ProductUpdatedConsumer(Configuration));
                             });
                         });
                     }));
                 c.AddConsumer<ProductUpdatedConsumer>();
+                c.AddConsumer<PhotoUpdatesConsumer>();
             });
 
             services.AddSingleton<IHostedService, BusService>();
 
             services.AddTransient<ProductUpdatedConsumer>();
+            services.AddTransient<PhotoUpdatesConsumer>();
 
             services.AddTransient<IProductsService, ProductsService>(); // todo scoped or transient?
         }

@@ -29,6 +29,7 @@
     <ProjectReference Include="..\..\Identity\Identity.Contracts\Identity.Contracts.csproj" />
     <ProjectReference Include="..\Products.Catalog.Contracts\Products.Catalog.Contracts.csproj" />
     <ProjectReference Include="..\Products.Catalog.Contracts\Products.Catalog.Contracts.csproj" />
+    <ProjectReference Include="..\Products.Photos.Contracts\Products.Photos.Contracts.csproj" />
   </ItemGroup>
 
 </Project>

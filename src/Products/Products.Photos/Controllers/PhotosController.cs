@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Identity.Contracts;
+using MassTransit;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Products.Photos.Contracts;
+using Products.Photos.Contracts.Events;
 using Products.Photos.Domain;
 using Products.Photos.Storage;
 
@@ -22,11 +25,13 @@ namespace Products.Photos.Controllers
     {
         private readonly PhotosContext _context;
         private readonly IPhotoStorage _photoStorage;
+        private readonly IBus _bus;
 
-        public PhotosController(PhotosContext context, IPhotoStorage photoStorage)
+        public PhotosController(PhotosContext context, IPhotoStorage photoStorage, IBus bus)
         {
             _context = context;
             _photoStorage = photoStorage;
+            _bus = bus;
         }
 
         [AllowAnonymous]
@@ -51,17 +56,24 @@ namespace Products.Photos.Controllers
             foreach (var photo in photos)
             {
                 var uploadResult = await _photoStorage.Save(photo);
-                _context.Photos.Add(new Photo()
+                var photoEntry = new Photo()
                 {
                     ProductId = productId,
                     OriginalUrl = uploadResult.Uri.ToString()
+                };
+                _context.Photos.Add(photoEntry);
+
+
+                await _context.SaveChangesAsync();
+                await _bus.Publish(new PhotoAddedEvent()
+                {
+                    OriginalUrl = photoEntry.OriginalUrl,
+                    PhotoId = photoEntry.PhotoId,
+                    ProductId = photoEntry.ProductId
                 });
             }
-
-            await _context.SaveChangesAsync();
-
+            
             // todo send events to resizer
-            // todo so far search won't know about photos without further product update...
 
             return Accepted();
         }
@@ -78,9 +90,17 @@ namespace Products.Photos.Controllers
             {
                 return NotFound();
             }
-
+            
             _context.Photos.Remove(photo);
             await _context.SaveChangesAsync();
+
+            await _bus.Publish(new PhotoRemovedEvent()
+            {
+                OriginalUrl = photo.OriginalUrl,
+                PhotoId = photo.PhotoId,
+                ProductId = photo.ProductId
+            });
+
 
             return photo;
         }

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Identity.Contracts;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Products.Photos.Domain;
@@ -14,6 +16,7 @@ namespace Products.Photos.Controllers
         public Uri Uri { get; set; }
     }
 
+    [Authorize]
     [ApiController]
     public class PhotosController : ControllerBase
     {
@@ -26,6 +29,7 @@ namespace Products.Photos.Controllers
             _photoStorage = photoStorage;
         }
 
+        [AllowAnonymous]
         [HttpGet]
         [Route("/api/products/{productId}/photos")]
         public IActionResult GetPhotos(int productId)
@@ -38,6 +42,7 @@ namespace Products.Photos.Controllers
         }
 
         [HttpPost]
+        [Authorize(AuthorizationPolicies.AdminOnly)]
         [Route("/api/products/{productId}/photos")]
         public async Task<IActionResult> PostPhoto(int productId, IList<IFormFile> photos)
         {
@@ -64,6 +69,7 @@ namespace Products.Photos.Controllers
         // todo reorder photos action
 
         // DELETE: api/Photos/5
+        [Authorize(AuthorizationPolicies.AdminOnly)]
         [HttpDelete("{id}")]
         public async Task<ActionResult<Photo>> DeletePhoto(int id)
         {

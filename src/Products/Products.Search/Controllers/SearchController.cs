@@ -123,7 +123,7 @@ namespace Products.Search.Controllers
             });
         }
 
-        [HttpGet("import")]
+        [HttpGet("import")] // todo this endpoint is test only...
         public async Task<IActionResult> Import()
         {
             var products = await _productsService.GetProducts();

@@ -1,6 +1,9 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using GreenPipes;
+using Identity.Contracts;
+using IdentityServer4.AccessTokenValidation;
 using MassTransit;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -33,6 +36,17 @@ namespace Products.Catalog
                     options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore; // todo hmm, probably it only hides the problem
                 });
 
+            services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
+                .AddIdentityServerAuthentication(options =>
+                {
+                    options.Authority = "http://localhost:5000";
+                    options.RequireHttpsMetadata = false;
+                    options.JwtValidationClockSkew = TimeSpan.FromSeconds(15);
+                    //options.Audience = "api1";
+                });
+            services.AddAuthorization(options => { options.AddAdminOnlyPolicy(); });
+
+
             services.AddDbContext<ProductsContext>
                     (options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             
@@ -60,6 +74,8 @@ namespace Products.Catalog
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseAuthentication();
 
             app.UseMvc();
         }

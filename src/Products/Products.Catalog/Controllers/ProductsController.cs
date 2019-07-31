@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Identity.Contracts;
 using MassTransit;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Products.Catalog.Contracts.ApiModels;
@@ -13,6 +15,7 @@ namespace Products.Catalog.Controllers
 {
     [Route("api/products")]
     [ApiController]
+    [Authorize]
     public class ProductsController : ControllerBase
     {
         private readonly ProductsContext _productsContext;
@@ -25,6 +28,7 @@ namespace Products.Catalog.Controllers
         }
         
         [HttpGet("")]
+        [Authorize(AuthorizationPolicies.AdminOnly)]
         public IActionResult GetAllProducts([FromQuery]int page = 1,
             int productsPerPage = 10)
         {
@@ -52,6 +56,7 @@ namespace Products.Catalog.Controllers
         }
 
         [HttpPost("")]
+        [Authorize(AuthorizationPolicies.AdminOnly)]
         public async Task<IActionResult> AddProduct(AddProductDto addProductDto)
         {
             // todo validation
@@ -96,6 +101,7 @@ namespace Products.Catalog.Controllers
         }
 
         [HttpPut("{productId}")]
+        [Authorize(AuthorizationPolicies.AdminOnly)]
         public async Task<IActionResult> EditProduct(int productId, AddProductDto addProductDto)
         {
             var product = _productsContext.Products
@@ -143,6 +149,7 @@ namespace Products.Catalog.Controllers
             return Created($"api/products/{product.Id}", productDto); // todo references not initialized
         }
 
+        [AllowAnonymous]
         [HttpGet("{productId}")]
         public IActionResult GetProduct(int productId)
         {
@@ -161,6 +168,7 @@ namespace Products.Catalog.Controllers
             return Ok(result);
         }
         
+        [AllowAnonymous]
         [HttpGet("/api/categories")]
         public IActionResult GetAllCategories()
         {
@@ -171,7 +179,7 @@ namespace Products.Catalog.Controllers
                 .Select(CategoryTreeDto.Map));
         }
 
-
+        [Authorize(AuthorizationPolicies.AdminOnly)]
         [HttpGet("/api/attributes")]
         public IActionResult GetAllAttributes()
         {

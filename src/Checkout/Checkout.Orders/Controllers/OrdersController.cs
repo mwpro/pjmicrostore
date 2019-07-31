@@ -9,6 +9,7 @@ using Checkout.Orders.Domain;
 using Checkout.Orders.Queries;
 using Checkout.Orders.Services;
 using Checkout.Payments.Contracts;
+using Identity.Contracts;
 using MassTransit;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;

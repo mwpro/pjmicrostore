@@ -29,6 +29,12 @@ namespace Identity.Api
                     UserClaims = new [] { "role" }
                 },
                 new ApiResource(IdentityServerConstants.LocalApi.ScopeName), 
+                new ApiResource("carts"), 
+                new ApiResource("orders"), 
+                new ApiResource("payments"), 
+                new ApiResource("identities"), 
+                new ApiResource("products"), 
+                new ApiResource("photos"), 
             };
         }
 

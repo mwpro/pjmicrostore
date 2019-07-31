@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
 using Checkout.Orders.Consumers;
@@ -10,10 +6,10 @@ using Checkout.Orders.Domain;
 using Checkout.Orders.Infrastructure;
 using Checkout.Orders.Services;
 using GreenPipes;
+using Identity.Contracts;
 using IdentityServer4.AccessTokenValidation;
 using MassTransit;
 using MediatR;
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -21,23 +17,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
 using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 
 namespace Checkout.Orders
 {
-
-    public static class Roles
-    {
-        public const string Admin = "admin";
-    }
-    public static class AuthorizationPolicies
-    {
-        public const string AdminOnly = "AdminOnly";
-    }
-
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -61,7 +44,9 @@ namespace Checkout.Orders
                     //options.Audience = "api1";
                 });
             services.AddAuthorization(options =>
-                options.AddPolicy(AuthorizationPolicies.AdminOnly, builder => builder.RequireRole(Roles.Admin).Build()));
+            {
+                options.AddAdminOnlyPolicy();
+            });
 
             services.AddDbContext<OrdersContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.136
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29102.190
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Products", "Products", "{2CD00E5D-AD91-46AE-8953-9E72C7707E1F}"
 EndProject
@@ -33,7 +33,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Products.Catalog.Contracts"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "External", "External", "{6751E5DB-00DE-404D-B83B-C8D8C8B9165E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "External.FrontApiGateway", "External\External.FrontApiGateway\External.FrontApiGateway.csproj", "{80167AB0-5DC7-409A-8006-AEC73B4F5271}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "External.FrontApiGateway", "External\External.FrontApiGateway\External.FrontApiGateway.csproj", "{80167AB0-5DC7-409A-8006-AEC73B4F5271}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Identity.Contracts", "Identity\Identity.Contracts\Identity.Contracts.csproj", "{394EEED5-E4D0-48D3-8711-1855D77F8519}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -89,6 +91,10 @@ Global
 		{80167AB0-5DC7-409A-8006-AEC73B4F5271}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{80167AB0-5DC7-409A-8006-AEC73B4F5271}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{80167AB0-5DC7-409A-8006-AEC73B4F5271}.Release|Any CPU.Build.0 = Release|Any CPU
+		{394EEED5-E4D0-48D3-8711-1855D77F8519}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{394EEED5-E4D0-48D3-8711-1855D77F8519}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{394EEED5-E4D0-48D3-8711-1855D77F8519}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{394EEED5-E4D0-48D3-8711-1855D77F8519}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -106,6 +112,7 @@ Global
 		{D170CF0A-C96A-4E44-9732-E57D651A489A} = {2CD00E5D-AD91-46AE-8953-9E72C7707E1F}
 		{7B334328-804E-4901-B859-1A2A103A5D1E} = {2CD00E5D-AD91-46AE-8953-9E72C7707E1F}
 		{80167AB0-5DC7-409A-8006-AEC73B4F5271} = {6751E5DB-00DE-404D-B83B-C8D8C8B9165E}
+		{394EEED5-E4D0-48D3-8711-1855D77F8519} = {14E3C3CF-7F37-4658-A10C-EEB66AB6E137}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8C575CDF-D115-4614-9D15-118A41B84866}

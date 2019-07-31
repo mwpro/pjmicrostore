@@ -4,12 +4,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using Checkout.Payments.Contracts;
 using Checkout.Payments.Domain;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Checkout.Payments.Controllers
 {
     [Route("api/payments")]
     [ApiController]
+    [Authorize]
     public class PaymentsController : ControllerBase
     {
         private readonly PaymentsDbContext _paymentsDbContext;
@@ -19,15 +21,18 @@ namespace Checkout.Payments.Controllers
             _paymentsDbContext = paymentsDbContext;
         }
 
+        [AllowAnonymous]
         [HttpGet("methods")]
         public async Task<IActionResult> GetMethods()
         {
             return Ok(PaymentMethods.GetAll);
         }
 
+        [AllowAnonymous]
         [HttpGet("{paymentReference}")]
         public ActionResult<string> Get(Guid paymentReference)
         {
+            // todo only mine?
             var payment = _paymentsDbContext.Payments.FirstOrDefault(x => x.PaymentReference == paymentReference);
             if (payment == null)
                 return NoContent();

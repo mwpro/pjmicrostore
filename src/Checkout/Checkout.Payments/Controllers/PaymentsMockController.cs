@@ -5,10 +5,12 @@ using Checkout.Payments.Contracts;
 using Checkout.Payments.Contracts.Events;
 using Checkout.Payments.Domain;
 using MassTransit;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Checkout.Payments.Controllers
 {
+    [AllowAnonymous]
     [Route("api/payments/mock/")]
     [ApiController]
     public class PaymentsMockController : ControllerBase

@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using Identity.Contracts;
 
 namespace Identity.Api
 {
@@ -42,6 +43,8 @@ namespace Identity.Api
                 iis.AuthenticationDisplayName = "Windows";
                 iis.AutomaticAuthentication = false;
             });
+
+            services.AddAuthorization(options => { options.AddRequireScopePolicy(Scopes.Identities); });
 
             var builder = services.AddIdentityServer(options =>
             {

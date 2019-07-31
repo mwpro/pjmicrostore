@@ -10,12 +10,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Identity.Contracts;
 using IdentityServer4;
 
 namespace Identity.Api.Controllers.Api
 {
     [Route("api/users")]
     [ApiController]
+    [Authorize]
     public class UsersController : ControllerBase
     {
         private readonly UserManager<ApplicationUser> _userManager;
@@ -27,6 +29,7 @@ namespace Identity.Api.Controllers.Api
 
 
         [HttpGet("{userId}")]
+        [Authorize(Scopes.Identities)]// todo not used
         public async Task<IActionResult> GetUser(string userId)
         {
             var user = await _userManager.FindByIdAsync(userId);

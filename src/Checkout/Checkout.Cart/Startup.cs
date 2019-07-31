@@ -6,6 +6,7 @@ using Checkout.Cart.Consumers;
 using Checkout.Cart.Domain;
 using Checkout.Cart.Services;
 using GreenPipes;
+using Identity.Contracts;
 using IdentityServer4.AccessTokenValidation;
 using MassTransit;
 using Microsoft.AspNetCore.Builder;
@@ -41,6 +42,7 @@ namespace Checkout.Cart
                     options.JwtValidationClockSkew = TimeSpan.FromSeconds(15);
                     //options.Audience = "api1";
                 });
+            services.AddAuthorization(options => { options.AddRequireScopePolicy(Scopes.Carts); });
 
             var cs = new SqlConnectionStringBuilder(
                 "Server=sqlserver;Database=Checkout.Carts;User Id=sa;Password=sqlDevPassw0rd;ConnectRetryCount=0");

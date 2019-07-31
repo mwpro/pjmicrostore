@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Checkout.Cart.Contracts.ApiModels;
 using Checkout.Cart.Domain;
 using Checkout.Cart.Services;
+using Identity.Contracts;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -30,10 +32,10 @@ namespace Checkout.Cart.Controllers
             var cart = GetOrCreateCart(cartToken);
 
             return Ok(MapToApiModel(cart));
-        }
-
+        } // todo merge with endpoint below
 
         [HttpGet("{cartId}")]
+        [Authorize(Scopes.Carts)]
         public IActionResult GetCart(Guid cartId)
         {
             var cart = _cartContext.Carts

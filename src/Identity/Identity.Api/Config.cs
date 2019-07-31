@@ -45,13 +45,10 @@ namespace Identity.Api
                 // client credentials flow client
                 new Client
                 {
-                    ClientId = "client",
-                    ClientName = "Client Credentials Client",
-
+                    ClientId = "orders",
                     AllowedGrantTypes = GrantTypes.ClientCredentials,
-                    ClientSecrets = {new Secret("511536EF-F270-4058-80CA-1C89C192F69A".Sha256())},
-
-                    AllowedScopes = {"api1"}
+                    ClientSecrets = {new Secret("ordersSecret".Sha256())},
+                    AllowedScopes = { "carts" }
                 },
                 // SPA client using Code flow
                 new Client

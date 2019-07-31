@@ -24,13 +24,13 @@ export default new Router({
       path: '/callback',
       name: 'callback',
       component: Callback,
-      // meta: { layout: 'minimal' },
+      meta: { layout: 'minimal' },
     },
     {
       path: '/silentRenew',
       name: 'silentRenew',
       component: SilentRenew,
-      // meta: { layout: 'minimal' },
+      meta: { layout: 'minimal' },
     },
     {
       path: '/about',

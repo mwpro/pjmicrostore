@@ -1,27 +1,26 @@
 // https://getbootstrap.com/docs/4.3/examples/dashboard/
 <template>
-  <div>
-    <TopMenu />
-    <div class="container-fluid">
-      <div class="row">
-        <Sidebar />
-
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-          <router-view />
-        </main>
-      </div>
-    </div>
+  <div id="app">
+    <component :is="layout">
+      <router-view/>
+    </component>
   </div>
 </template>
 
 <script>
-import Sidebar from "./components/Sidebar.vue";
-import TopMenu from "./components/TopMenu.vue";
+import DefaultLayout from './layouts/DefaultLayout.vue';
+import MinimalLayout from './layouts/MinimalLayout.vue';
+
 export default {
   components: {
-    Sidebar,
-    TopMenu
-  }
+    DefaultLayout,
+    MinimalLayout,
+  },
+  computed: {
+    layout() {
+      return `${(this.$route.meta.layout || 'Default')}Layout`;
+    },
+  },
 };
 </script>
 

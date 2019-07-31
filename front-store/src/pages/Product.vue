@@ -1,7 +1,7 @@
 <template>
     <div>
         <h2>{{ product.name }}</h2>
-        <img :src="(photos && photos.length > 0) ? photos[0].originalUrl : 'https://picsum.photos/600/400?image=0'" alt="Product name" />
+        <img :src="photos[0].originalUrl" alt="Product name" />
         <p>{{ product.price | currency }}</p>
         <AddToCart :product="product" />
         <p>

@@ -2,7 +2,7 @@
 
 <div class="login-page">
     <div class="page-header">
-        <h1>Login</h1>
+        <h1>Logowanie</h1>
     </div>
 
     <partial name="_ValidationSummary" />
@@ -14,7 +14,7 @@
             <div class="col-sm-6">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Local Login</h3>
+                        <h3 class="panel-title">Mam już konto</h3>
                     </div>
                     <div class="panel-body">
 
@@ -54,6 +54,17 @@
                 </div>
             </div>
         }
+        <div class="col-sm-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Nie masz konta?</h3>
+                </div>
+                <div class="panel-body">
+                    <h4>Przejdź do <a asp-action="Register">rejestracji</a></h4>
+                    
+                </div>
+            </div>
+        </div>
 
     </div>
 </div>

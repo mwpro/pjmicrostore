@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using Identity.Api.Registration;
 using Identity.Contracts;
 
 namespace Identity.Api
@@ -68,6 +69,8 @@ namespace Identity.Api
             }*/
 
             services.AddLocalApiAuthentication();
+
+            services.AddTransient<IRegistrationService, RegistrationService>(); // todo transient?
         }
 
         public void Configure(IApplicationBuilder app)

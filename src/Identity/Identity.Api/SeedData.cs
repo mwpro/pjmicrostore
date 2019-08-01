@@ -8,6 +8,7 @@ using System.Security.Claims;
 using IdentityModel;
 using Identity.Api.Data;
 using Identity.Api.Models;
+using Identity.Contracts;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -36,13 +37,13 @@ namespace Identity.Api
                     var userMgr = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
                     var roleMgr = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
                     
-                    if (!roleMgr.RoleExistsAsync("admin").Result)
+                    if (!roleMgr.RoleExistsAsync(Roles.Admin).Result)
                     {
-                        var adminRole = roleMgr.CreateAsync(new IdentityRole("admin")).Result;
+                        var adminRole = roleMgr.CreateAsync(new IdentityRole(Roles.Admin)).Result;
                         Console.WriteLine("admin role created");
                     }
                     
-                    if (!roleMgr.RoleExistsAsync("user").Result)
+                    if (!roleMgr.RoleExistsAsync("user").Result) // todo remove user role
                     {
                         var userRole = roleMgr.CreateAsync(new IdentityRole("user")).Result;
                         Console.WriteLine("user role created");
@@ -162,7 +163,7 @@ namespace Identity.Api
                         {
                             throw new Exception(result.Errors.First().Description);
                         }
-                        userMgr.AddToRoleAsync(admin, "admin").Wait();
+                        userMgr.AddToRoleAsync(admin, Roles.Admin).Wait();
                         Console.WriteLine("admin created");
                     }
                     else

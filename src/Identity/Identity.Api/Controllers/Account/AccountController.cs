@@ -15,7 +15,10 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
+using Identity.Api.Registration;
 using Identity.Contracts;
+using Microsoft.AspNetCore.Identity.UI.Pages.Account.Internal;
+using Microsoft.Extensions.Logging;
 using SignInResult = Microsoft.AspNetCore.Identity.SignInResult;
 
 namespace IdentityServer4.Quickstart.UI
@@ -30,6 +33,7 @@ namespace IdentityServer4.Quickstart.UI
         private readonly IClientStore _clientStore;
         private readonly IAuthenticationSchemeProvider _schemeProvider;
         private readonly IEventService _events;
+        private readonly IRegistrationService _registrationService;
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
@@ -37,7 +41,7 @@ namespace IdentityServer4.Quickstart.UI
             IIdentityServerInteractionService interaction,
             IClientStore clientStore,
             IAuthenticationSchemeProvider schemeProvider,
-            IEventService events)
+            IEventService events, ILogger<RegisterModel> logger, IRegistrationService registrationService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -45,6 +49,7 @@ namespace IdentityServer4.Quickstart.UI
             _clientStore = clientStore;
             _schemeProvider = schemeProvider;
             _events = events;
+            _registrationService = registrationService;
         }
 
         /// <summary>
@@ -213,7 +218,35 @@ namespace IdentityServer4.Quickstart.UI
             return View("LoggedOut", vm);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Register()
+        {
+            return View();
+        }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Register(RegisterInputModel registerInputModel, [FromQuery]string returnUrl = null)
+        {
+            // todo make use of returnUrl
+            returnUrl = returnUrl ?? Url.Content("~/");
+            if (ModelState.IsValid)
+            {
+                var (result, user) = await _registrationService.Register(registerInputModel);
+                if (result.Succeeded)
+                {
+                    await _signInManager.SignInAsync(user, isPersistent: false);
+                    return LocalRedirect(returnUrl);
+                }
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError(string.Empty, error.Description);
+                }
+            }
+
+            // If we got this far, something failed, redisplay form
+            return View();
+        }
 
         /*****************************************/
         /* helper APIs for the AccountController */

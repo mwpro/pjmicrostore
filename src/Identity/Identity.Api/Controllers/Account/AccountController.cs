@@ -11,12 +11,12 @@ using IdentityServer4.Stores;
 using Identity.Api.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Linq;
 using System.Threading.Tasks;
+using Identity.Contracts;
+using SignInResult = Microsoft.AspNetCore.Identity.SignInResult;
 
 namespace IdentityServer4.Quickstart.UI
 {
@@ -98,10 +98,9 @@ namespace IdentityServer4.Quickstart.UI
 
             if (ModelState.IsValid)
             {
-                var result = await _signInManager.PasswordSignInAsync(model.Username, model.Password, model.RememberLogin, lockoutOnFailure: true);
+                var (result, user) = await PasswordSignInAsync(context, model.Username, model.Password, model.RememberLogin, lockoutOnFailure: true);
                 if (result.Succeeded)
                 {
-                    var user = await _userManager.FindByNameAsync(model.Username);
                     await _events.RaiseAsync(new UserLoginSuccessEvent(user.UserName, user.Id, user.UserName));
 
                     if (context != null)
@@ -142,7 +141,25 @@ namespace IdentityServer4.Quickstart.UI
             return View(vm);
         }
 
-        
+        private async Task<(SignInResult SignInResult, ApplicationUser User)> PasswordSignInAsync(AuthorizationRequest context, string modelUsername, string modelPassword, bool modelRememberLogin, bool lockoutOnFailure)
+        {
+            var user = await _userManager.FindByNameAsync(modelUsername);
+            if (user == null)
+            {
+                return (SignInResult.Failed, user);
+            }
+            if (context?.ClientId == FrontNames.FrontAdmin)
+            {
+                var isAdmin = await _userManager.IsInRoleAsync(user, Roles.Admin);
+                if (!isAdmin)
+                {
+                    return (SignInResult.Failed, user);
+                }
+            }
+
+            return (await _signInManager.PasswordSignInAsync(user, modelPassword, modelRememberLogin, lockoutOnFailure: true), user);
+        }
+
         /// <summary>
         /// Show logout page
         /// </summary>

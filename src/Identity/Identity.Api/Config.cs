@@ -4,6 +4,7 @@
 
 using IdentityServer4.Models;
 using System.Collections.Generic;
+using Identity.Contracts;
 using IdentityServer4;
 
 namespace Identity.Api
@@ -53,7 +54,7 @@ namespace Identity.Api
                 // SPA client using Code flow
                 new Client
                 {
-                    ClientId = "frontStore",
+                    ClientId = FrontNames.FrontStore,
                     ClientName = "Front Store Client",
                     AllowedGrantTypes = GrantTypes.Code,
                     
@@ -85,7 +86,7 @@ namespace Identity.Api
                 },
                 new Client
                 {
-                    ClientId = "frontAdmin",
+                    ClientId = FrontNames.FrontAdmin,
                     ClientName = "Front Admin Client",
                     AllowedGrantTypes = GrantTypes.Code,
                     

@@ -1,0 +1,40 @@
+﻿@using RazorLight
+@inherits TemplatePage<Checkout.Orders.Contracts.Events.OrderPlacedEvent>
+@{
+    Layout = "_Layout.cshtml";
+}
+
+<p>Witaj $imie!</p>
+<p>Dziękujemy za zakupy w pjmicrostore. Poniżej znajdziesz szczegóły swojego zamówienia.</p>
+<p>Zamówienie numer @Model.OrderId z dnia $dzien</p>
+
+<table role="presentation" border="0" cellpadding="0" cellspacing="0">
+
+    <tbody>
+        <tr>
+            <td>
+                $produkt
+            </td>
+            <td align="right">
+                $ilosc
+            </td>
+            <td align="center">
+                $cena zł
+            </td>
+        </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+            <td colspan="2" align="right">
+                Razem
+            </td>
+            <td align="center">
+                @Model.Amount zł
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<p>Dane do wysyłki:</p>
+<p>$shipping</p>
+<p>Dane rozliczeniowe:</p>
+<p>$billing</p>

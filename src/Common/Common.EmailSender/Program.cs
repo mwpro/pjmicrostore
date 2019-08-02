@@ -50,7 +50,7 @@ namespace Common.EmailSender
                         c.AddConsumer<OrderPlacedConsumer>();
                     });
 
-                    services.AddEmailServices();
+                    services.AddEmailServices(hostContext.Configuration);
 
                     services.AddSingleton<IHostedService, BusService>();
                     services.AddTransient<ISendMailService, SendMailService>();

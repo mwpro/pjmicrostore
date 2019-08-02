@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Products.Catalog.Contracts.ApiModels;
 
 namespace Products.Catalog.Contracts.Events

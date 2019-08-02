@@ -4,9 +4,8 @@ using System.Text;
 using System.Threading.Tasks;
 using FluentEmail.Core.Interfaces;
 using RazorLight;
-using RazorLight.Razor;
 
-namespace Common.EmailSender.Services
+namespace Common.EmailSender.Infrastructure
 {
     public class CustomRazorRenderer : ITemplateRenderer
     {
@@ -22,7 +21,6 @@ namespace Common.EmailSender.Services
         
         public async Task<string> ParseAsync<T>(string template, T model, bool isHtml = true)
         {
-            //dynamic viewBag = (model as IViewBagModel)?.ViewBag;
             return await _engine.CompileRenderAsync<T>(GetHashString(template), template, model);
         }
 

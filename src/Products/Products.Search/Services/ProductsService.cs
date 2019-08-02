@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using Flurl;
 using Flurl.Http;
 using Microsoft.Extensions.Configuration;
-using Products.Catalog.Contracts;
 using Products.Catalog.Contracts.ApiModels;
 
 namespace Products.Search.Services

@@ -1,16 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using Checkout.Orders.Commands;
-using Checkout.Orders.Contracts.Events;
-using Checkout.Orders.Domain;
+using Checkout.Orders.Contracts.ApiModels;
 using Checkout.Orders.Queries;
-using Checkout.Orders.Services;
 using Checkout.Payments.Contracts;
 using Identity.Contracts;
-using MassTransit;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -87,7 +83,7 @@ namespace Checkout.Orders.Controllers
         public async Task<IActionResult> GetOrder(int orderId)
         {
             OrderDetails result;
-            if (User.IsInRole(Roles.Admin))
+            if (User.IsInRole(Roles.Admin) || User.HasScope("orders"))
             {
                 result = await _mediator.Send(new GetOrderDetailsQuery(orderId));
             }

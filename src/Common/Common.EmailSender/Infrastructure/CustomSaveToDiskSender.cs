@@ -7,7 +7,7 @@ using FluentEmail.Core;
 using FluentEmail.Core.Interfaces;
 using FluentEmail.Core.Models;
 
-namespace Common.EmailSender.Services
+namespace Common.EmailSender.Infrastructure
 {
     public class CustomSaveToDiskSender : ISender
     {

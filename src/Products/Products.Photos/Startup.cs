@@ -13,7 +13,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
-using Products.Photos.Controllers;
 using Products.Photos.Domain;
 using Products.Photos.Storage;
 using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;

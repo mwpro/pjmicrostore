@@ -1,10 +1,7 @@
-﻿using System.IO;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
-using Common.EmailSender.Consumers;
-using Common.EmailSender.Services;
-using FluentEmail.Core;
-using FluentEmail.Core.Defaults;
+using Common.EmailSender.Infrastructure;
+using Common.EmailSender.Orders;
 using GreenPipes;
 using MassTransit;
 using Microsoft.Extensions.Configuration;
@@ -53,10 +50,12 @@ namespace Common.EmailSender
                         c.AddConsumer<OrderPlacedConsumer>();
                     });
 
-                    Email.DefaultSender = new CustomSaveToDiskSender($"{Directory.GetCurrentDirectory()}");
-                    Email.DefaultRenderer = new CustomRazorRenderer($"{Directory.GetCurrentDirectory()}/Templates/");
+                    services.AddEmailServices();
 
                     services.AddSingleton<IHostedService, BusService>();
+                    services.AddTransient<ISendMailService, SendMailService>();
+
+                    services.AddTransient<IOrdersService, OrdersService>();
                 })
                 .UseConsoleLifetime()
                 .Build();

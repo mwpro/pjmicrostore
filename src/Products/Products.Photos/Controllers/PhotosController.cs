@@ -7,7 +7,6 @@ using MassTransit;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Products.Photos.Contracts;
 using Products.Photos.Contracts.Events;
 using Products.Photos.Domain;
 using Products.Photos.Storage;

@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Linq;
 using System.Threading.Tasks;
 using MassTransit;
 using Microsoft.Extensions.Configuration;
 using Nest;
-using Products.Catalog.Contracts.Events;
 using Products.Photos.Contracts.Events;
 using Products.Search.Controllers;
 

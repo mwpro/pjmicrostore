@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Nest;
-using Products.Catalog.Contracts;
 using Products.Catalog.Contracts.ApiModels;
 using Products.Search.Services;
 

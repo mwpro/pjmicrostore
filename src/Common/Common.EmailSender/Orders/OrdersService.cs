@@ -1,33 +1,32 @@
-﻿using System;
-using System.Net.Http;
+﻿using System.Net.Http;
 using System.Threading.Tasks;
-using Checkout.Cart.Contracts.ApiModels;
+using Checkout.Orders.Contracts.ApiModels;
 using Flurl.Http;
 using IdentityModel.Client;
 using Microsoft.Extensions.Configuration;
 
-namespace Checkout.Orders.Services
+namespace Common.EmailSender.Orders
 {
-    public interface ICartsService
+    public interface IOrdersService
     {
-        Task<CartDto> GetCart(Guid cartId);
+        Task<OrderDetails> GetOrder(int orderId);
     }
 
-    public class CartsService : ICartsService
+    public class OrdersService : IOrdersService
     {
         private readonly IConfiguration _configuration;
 
-        public CartsService(IConfiguration configuration)
+        public OrdersService(IConfiguration configuration)
         {
             _configuration = configuration;
         }
 
-        public async Task<CartDto> GetCart(Guid cartId)
+        public async Task<OrderDetails> GetOrder(int orderId)
         {
-            var cart = await $"{_configuration.GetValue<string>("Dependencies:Cart")}/api/"
+            var cart = await $"{_configuration.GetValue<string>("Dependencies:Orders")}/api/"
                 .WithOAuthBearerToken(await GetBearerToken())
-                .AppendPathSegments("cart", cartId)
-                .GetJsonAsync<CartDto>();
+                .AppendPathSegments("orders", orderId)
+                .GetJsonAsync<OrderDetails>();
 
             return cart;
         }
@@ -44,9 +43,8 @@ namespace Checkout.Orders.Services
             var tokenResponse = await client.RequestClientCredentialsTokenAsync(new ClientCredentialsTokenRequest
             {
                 Address = disco.TokenEndpoint,
-
-                ClientId = "orders",
-                ClientSecret = "ordersSecret"
+                ClientId = "emailSender",
+                ClientSecret = "emailSenderSecret"
             });
 
             if (tokenResponse.IsError)

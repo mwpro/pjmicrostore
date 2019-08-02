@@ -3,8 +3,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using GreenPipes;
 using MassTransit;
-using MassTransit.Pipeline.ConsumerFactories;
-using MassTransit.Scoping;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;

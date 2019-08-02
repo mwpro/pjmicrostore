@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Threading;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Checkout.Payments.Contracts.Events;
 using Checkout.Payments.Domain;

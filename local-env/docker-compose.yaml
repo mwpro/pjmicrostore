@@ -46,6 +46,14 @@ services:
       - executable=blob
     volumes:
       - "./local-azurestorage:/opt/azurite/folder"
+  smtp:
+    networks:
+      - pjmicrostore
+    image: mailhog/mailhog
+    container_name: smtp
+    ports:
+      - "1025:1025"
+      - "8025:8025"
 
 networks:
   pjmicrostore:

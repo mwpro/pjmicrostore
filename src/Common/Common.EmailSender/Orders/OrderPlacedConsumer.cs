@@ -23,6 +23,8 @@ namespace Common.EmailSender.Orders
             var order = await _ordersService.GetOrder(context.Message.OrderId);
 
             await _sendMailService.SendMail(order.Customer.Email, $"Zamówienie {order.Id}", "OrderPlacedEmail", order);
+
+            throw new Exception();
         }
     }
 }

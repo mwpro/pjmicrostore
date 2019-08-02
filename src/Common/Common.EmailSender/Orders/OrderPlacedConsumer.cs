@@ -24,7 +24,7 @@ namespace Common.EmailSender.Orders
 
             await _sendMailService.SendMail(order.Customer.Email, $"Zamówienie {order.Id}", "OrderPlacedEmail", order);
 
-            throw new Exception();
+            throw new Exception("xx");
         }
     }
 }

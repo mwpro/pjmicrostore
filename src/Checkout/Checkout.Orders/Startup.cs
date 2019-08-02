@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using Checkout.Orders.Consumers;
@@ -78,7 +79,7 @@ namespace Checkout.Orders
             services.AddTransient<PaymentCompletedEventConsumer>();
             services.AddTransient<PaymentCreatedEventConsumer>();
 
-            services.AddMediatR();
+            services.AddMediatR(Assembly.GetExecutingAssembly());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -44,7 +44,7 @@ namespace Checkout.Payments.Consumers
 
                 await _paymentsDbContext.SaveChangesAsync();
 
-                await context.Publish(new PaymentCompletedEvent()
+                await context.Publish(new PaymentCompletedEvent() // todo sending PaymentCompleted for order to be paid on delivery is a lie...
                 {
                     OrderId = payment.OrderId,
                     PaymentId = payment.Id,

@@ -1,7 +1,6 @@
 ﻿// Copyright (c) Brock Allen & Dominick Baier. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
-
 using IdentityModel;
 using IdentityServer4.Events;
 using IdentityServer4.Extensions;
@@ -17,7 +16,6 @@ using System;
 using System.Threading.Tasks;
 using Identity.Api.Registration;
 using Identity.Contracts;
-using Microsoft.AspNetCore.Identity.UI.Pages.Account.Internal;
 using Microsoft.Extensions.Logging;
 using SignInResult = Microsoft.AspNetCore.Identity.SignInResult;
 
@@ -41,7 +39,7 @@ namespace IdentityServer4.Quickstart.UI
             IIdentityServerInteractionService interaction,
             IClientStore clientStore,
             IAuthenticationSchemeProvider schemeProvider,
-            IEventService events, ILogger<RegisterModel> logger, IRegistrationService registrationService)
+            IEventService events, ILogger<AccountController> logger, IRegistrationService registrationService)
         {
             _userManager = userManager;
             _signInManager = signInManager;

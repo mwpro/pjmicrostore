@@ -2,7 +2,6 @@
 using Identity.Api.Models;
 using IdentityServer4.Quickstart.UI;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Pages.Account.Internal;
 using Microsoft.Extensions.Logging;
 
 namespace Identity.Api.Registration
@@ -15,9 +14,9 @@ namespace Identity.Api.Registration
     public class RegistrationService : IRegistrationService
     {
         private readonly UserManager<ApplicationUser> _userManager;
-        private readonly ILogger<RegisterModel> _logger;
+        private readonly ILogger<RegistrationService> _logger;
 
-        public RegistrationService(UserManager<ApplicationUser> userManager, ILogger<RegisterModel> logger)
+        public RegistrationService(UserManager<ApplicationUser> userManager, ILogger<RegistrationService> logger)
         {
             _userManager = userManager;
             _logger = logger;

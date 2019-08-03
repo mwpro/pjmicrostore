@@ -7,7 +7,7 @@
         alt
         width="72"
         height="72"
-      >
+      />
       <h2>Złóż zamówienie</h2>
     </div>
 
@@ -39,16 +39,21 @@
             </div>
             <span class="text-muted">{{ item.value | currency }}</span>
           </li>
-          <!-- <li class="list-group-item d-flex justify-content-between bg-light">
-            <div class="text-success">
-              <h6 class="my-0">Promo code</h6>
-              <small>EXAMPLECODE</small>
+          <li class="list-group-item d-flex justify-content-between bg-light" v-if="selectedDeliveryMethod">
+            <div class="text-muted">
+              <h6 class="my-0">Dostawa: {{ selectedDeliveryMethod.name }}</h6>
             </div>
-            <span class="text-success">-$5</span>
-          </li>-->
+            <span class="text-muted">{{ selectedDeliveryMethod.price | currency }} </span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between bg-light" v-if="selectedPaymentMethod">
+            <div class="text-muted">
+              <h6 class="my-0">Płatność: {{ selectedPaymentMethod.name }}</h6>
+            </div>
+            <span class="text-muted">{{ selectedPaymentMethod.fee | currency }} </span>
+          </li>
           <li class="list-group-item d-flex justify-content-between">
             <span>Razem</span>
-            <strong>{{ cart.total | currency }}</strong>
+            <strong>{{ cartTotal | currency }}</strong>
           </li>
         </ul>
 
@@ -62,14 +67,71 @@
         </form>-->
       </div>
       <div class="col-md-8 order-md-1">
+        <h4 class="mb-3">Dostawa</h4>
+
+        <div class="d-block my-3">
+          <div
+            v-for="deliveryMethod in deliveryMethods"
+            v-bind:key="deliveryMethod.name"
+            class="custom-control custom-radio"
+          >
+            <!-- <input type="radio" v-model="selectedPaymentMethod" :value="paymentMethod"> -->
+            <input
+              :id="deliveryMethod.name"
+              v-model="selectedDeliveryMethod"
+              :value="deliveryMethod"
+              type="radio"
+              class="custom-control-input"
+            />
+            <label
+              class="custom-control-label"
+              :for="deliveryMethod.name"
+            >{{ deliveryMethod.name }} - {{ deliveryMethod.price | currency }}</label>
+          </div>
+        </div>
+
+        <h4 class="mb-3">Płatność</h4>
+
+        <div class="d-block my-3">
+          <div
+            v-for="paymentMethod in paymentMethods"
+            v-bind:key="paymentMethod.name"
+            class="custom-control custom-radio"
+          >
+            <!-- <input type="radio" v-model="selectedPaymentMethod" :value="paymentMethod"> -->
+            <input
+              :id="paymentMethod.name"
+              v-model="selectedPaymentMethod"
+              :value="paymentMethod"
+              type="radio"
+              class="custom-control-input"
+            />
+            <label class="custom-control-label" :for="paymentMethod.name">{{ paymentMethod.name }} - {{ paymentMethod.fee | currency}}</label>
+          </div>
+        </div>
+
+        <hr class="mb-4" />
+
         <div class="mb-3">
           <label for="email">Email</label>
-          <input type="email" class="form-control" v-model="email"  id="email" placeholder="you@example.com">
+          <input
+            type="email"
+            class="form-control"
+            v-model="email"
+            id="email"
+            placeholder="you@example.com"
+          />
           <div class="invalid-feedback">Wprowadź prawidłowy adres email.</div>
         </div>
-         <div class="mb-3">
+        <div class="mb-3">
           <label for="phone">Numer telefonu</label>
-          <input type="phone" class="form-control" v-model="phone"  id="phone" placeholder="123-456-789">
+          <input
+            type="phone"
+            class="form-control"
+            v-model="phone"
+            id="phone"
+            placeholder="123-456-789"
+          />
           <div class="invalid-feedback">Wprowadź prawidłowy numer telefonu.</div>
         </div>
         <h4 class="mb-3">Dane do wysyłki</h4>
@@ -85,7 +147,7 @@
                 placeholder="Jan"
                 value
                 required
-              >
+              />
               <div class="invalid-feedback">Imię jest wymagane.</div>
             </div>
             <div class="col-md-6 mb-3">
@@ -98,7 +160,7 @@
                 placeholder="Kowalski"
                 value
                 required
-              >
+              />
               <div class="invalid-feedback">Nazwisko jest wymagane.</div>
             </div>
           </div>
@@ -112,25 +174,44 @@
               v-model="shippingDetails.address"
               placeholder="Przykładowa 123/3"
               required
-            >
+            />
             <div class="invalid-feedback">Wprowadź adres wysyłki.</div>
           </div>
 
           <div class="row">
             <div class="col-md-9 mb-9">
               <label for="shipping-city">Miasto</label>
-              <input type="text" class="form-control" v-model="shippingDetails.city" id="shipping-city" placeholder="Warszawa" required>
+              <input
+                type="text"
+                class="form-control"
+                v-model="shippingDetails.city"
+                id="shipping-city"
+                placeholder="Warszawa"
+                required
+              />
               <div class="invalid-feedback">Wprowadź miasto.</div>
             </div>
             <div class="col-md-3 mb-3">
               <label for="shipping-zip">Kod pocztowy</label>
-              <input type="text" class="form-control" v-model="shippingDetails.zip" id="shipping-zip" placeholder="12-345" required>
+              <input
+                type="text"
+                class="form-control"
+                v-model="shippingDetails.zip"
+                id="shipping-zip"
+                placeholder="12-345"
+                required
+              />
               <div class="invalid-feedback">Wprowadź kod pocztowy.</div>
             </div>
           </div>
-          <hr class="mb-4">
+          <hr class="mb-4" />
           <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="same-address" v-model="billingDetailsAreDifferentFromShipping">
+            <input
+              type="checkbox"
+              class="custom-control-input"
+              id="same-address"
+              v-model="billingDetailsAreDifferentFromShipping"
+            />
             <label
               class="custom-control-label"
               for="same-address"
@@ -147,7 +228,7 @@
                 placeholder="Jan"
                 value
                 required
-              >
+              />
               <div class="invalid-feedback">Imię jest wymagane.</div>
             </div>
             <div class="col-md-6 mb-3">
@@ -160,7 +241,7 @@
                 placeholder="Kowalski"
                 value
                 required
-              >
+              />
               <div class="invalid-feedback">Nazwisko jest wymagane.</div>
             </div>
           </div>
@@ -174,19 +255,33 @@
               v-model="billingDetails.address"
               placeholder="Przykładowa 123/3"
               required
-            >
+            />
             <div class="invalid-feedback">Wprowadź adres wysyłki.</div>
           </div>
 
           <div class="row" v-if="billingDetailsAreDifferentFromShipping">
             <div class="col-md-9 mb-9">
               <label for="billing-city">Miasto</label>
-              <input type="text" class="form-control" v-model="billingDetails.city" id="billing-city" placeholder="Warszawa" required>
+              <input
+                type="text"
+                class="form-control"
+                v-model="billingDetails.city"
+                id="billing-city"
+                placeholder="Warszawa"
+                required
+              />
               <div class="invalid-feedback">Wprowadź miasto.</div>
             </div>
             <div class="col-md-3 mb-3">
               <label for="billing-zip">Kod pocztowy</label>
-              <input type="text" class="form-control" v-model="billingDetails.zip" id="billing-zip" placeholder="12-345" required>
+              <input
+                type="text"
+                class="form-control"
+                v-model="billingDetails.zip"
+                id="billing-zip"
+                placeholder="12-345"
+                required
+              />
               <div class="invalid-feedback">Wprowadź kod pocztowy.</div>
             </div>
           </div>
@@ -196,27 +291,7 @@
             <input type="checkbox" class="custom-control-input" id="save-info">
             <label class="custom-control-label" for="save-info">Save this information for next time</label>
           </div>-->
-          <hr class="mb-4">
 
-          <h4 class="mb-3">Płatność</h4>
-
-          <div class="d-block my-3">
-            <div
-              v-for="paymentMethod in paymentMethods"
-              v-bind:key="paymentMethod"
-              class="custom-control custom-radio"
-            >
-              <!-- <input type="radio" v-model="selectedPaymentMethod" :value="paymentMethod"> -->
-              <input
-                :id="paymentMethod"
-                v-model="selectedPaymentMethod"
-                :value="paymentMethod"
-                type="radio"
-                class="custom-control-input"
-              >
-              <label class="custom-control-label" :for="paymentMethod">{{ paymentMethod }}</label>
-            </div>
-          </div>
           <!-- <div class="row">
             <div class="col-md-6 mb-3">
               <label for="cc-name">Name on card</label>
@@ -242,7 +317,7 @@
               <div class="invalid-feedback">Security code required</div>
             </div>
           </div>-->
-          <hr class="mb-4">
+          <hr class="mb-4" />
 
           <button
             :disabled="!orderButtonEnabled"
@@ -278,6 +353,7 @@ export default {
         zip: null,
       },
       selectedPaymentMethod: null,
+      selectedDeliveryMethod: null,
       orderButtonClicked: false,
     };
   },
@@ -285,8 +361,16 @@ export default {
     cart() {
       return this.$store.state.cart.cart;
     },
+    cartTotal() {
+      return this.$store.state.cart.cart.total
+        + ((this.$data.selectedDeliveryMethod) ? this.$data.selectedDeliveryMethod.price : 0)
+        + ((this.$data.selectedPaymentMethod) ? this.$data.selectedPaymentMethod.fee : 0);
+    },
     paymentMethods() {
       return this.$store.state.cart.paymentMethods;
+    },
+    deliveryMethods() {
+      return this.$store.state.cart.deliveryMethods;
     },
     orderButtonEnabled() {
       return (
@@ -298,9 +382,12 @@ export default {
       return {
         email: this.$data.email,
         phone: this.$data.phone,
-        paymentMethod: this.$data.selectedPaymentMethod,
+        paymentMethod: this.$data.selectedPaymentMethod?.name,
+        shippingMethod: this.$data.selectedDeliveryMethod?.name,
         shippingDetails: this.$data.shippingDetails,
-        billingDetails: (this.$data.billingDetailsAreDifferentFromShipping ? this.$data.billingDetails : this.$data.shippingDetails),
+        billingDetails: this.$data.billingDetailsAreDifferentFromShipping
+          ? this.$data.billingDetails
+          : this.$data.shippingDetails,
       };
     },
     user() {
@@ -308,7 +395,7 @@ export default {
     },
   },
   created() {
-    this.$store.dispatch('cart/getPaymentMethodsAction');
+    this.$store.dispatch('cart/getDeliveryMethodsAction');
     this.$store.dispatch('cart/getCartAction');
     this.$store.dispatch('user/getUserAction');
   },
@@ -324,6 +411,9 @@ export default {
         this.$data.billingDetails = this.user.billingDetails;
         this.$data.billingDetails.address = this.user.billingDetails.street;
       }
+    },
+    selectedDeliveryMethod() {
+      this.$store.dispatch('cart/getPaymentMethodsAction', this.$data.selectedDeliveryMethod.name);
     },
   },
   methods: {

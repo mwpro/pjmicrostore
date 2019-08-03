@@ -22,9 +22,23 @@ namespace Checkout.Payments.Controllers
 
         [AllowAnonymous]
         [HttpGet("methods")]
-        public async Task<IActionResult> GetMethods()
+        public async Task<IActionResult> GetMethods(string deliveryMethod)
         {
-            return Ok(PaymentMethods.GetAll);
+            var availableMethods = PaymentMethod.GetAll
+                .Where(x => x.SupportedDeliveryMethods.Any(sdm =>
+                    sdm.DeliveryMethodName.Equals(deliveryMethod, StringComparison.InvariantCultureIgnoreCase)))
+                .Select(x =>
+                {
+                    var price = x.SupportedDeliveryMethods.FirstOrDefault(sdm =>
+                        sdm.DeliveryMethodName.Equals(deliveryMethod, StringComparison.InvariantCultureIgnoreCase));
+                    return new PaymentMethodDto()
+                    {
+                        Name = x.Name,
+                        Fee = price.PaymentFee
+                    };
+                });
+
+            return Ok(availableMethods);
         }
 
         [AllowAnonymous]
@@ -41,7 +55,7 @@ namespace Checkout.Payments.Controllers
                 return BadRequest(); // todo some logic..
             }
 
-            if (payment.PaymentMethod == PaymentMethods.PaymentProvider)
+            if (payment.PaymentMethod == PaymentMethod.PaymentProvider.Name)
             {
                 var paymentMock = _paymentsDbContext.MockPayments.FirstOrDefault(x => x.PaymentReference == payment.PaymentReference);
                 if (paymentMock == null)

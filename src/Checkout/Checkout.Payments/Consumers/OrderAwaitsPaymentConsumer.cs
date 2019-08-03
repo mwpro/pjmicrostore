@@ -38,7 +38,7 @@ namespace Checkout.Payments.Consumers
             });
 
             // todo tempoary, should start correct saga here...
-            if (context.Message.PaymentMethod == PaymentMethods.OnDelivery)
+            if (context.Message.PaymentMethod == PaymentMethod.OnDelivery.Name)
             {
                 payment.PaymentStatus = PaymentStatus.Completed;
 
@@ -52,7 +52,7 @@ namespace Checkout.Payments.Consumers
                 });
             }
 
-            if (context.Message.PaymentMethod == PaymentMethods.PaymentProvider)
+            if (context.Message.PaymentMethod == PaymentMethod.PaymentProvider.Name)
             {
                 await context.Publish(new PaymentMockRequired()
                 {

@@ -14,7 +14,7 @@
     "oidc-client": "^1.7.1",
     "vue": "^2.6.6",
     "vue-feather-icon": "^1.2.0",
-    "vue-router": "^3.0.1",
+    "vue-router": "^3.0.7",
     "vuex": "^3.0.1"
   },
   "devDependencies": {

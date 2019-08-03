@@ -1,0 +1,9 @@
+﻿@using RazorLight
+@inherits TemplatePage<Checkout.Orders.Contracts.ApiModels.OrderDetails>
+@{
+    Layout = "_Layout.cshtml";
+}
+
+<p>Witaj @Model.BillingAddress.FirstName!</p>
+<p>Twoje zamówienie o numerze <strong>@Model.Id</strong> z dnia @Model.CreateDate zostało zrealizowane.</p>
+<p>Dziękujemy za zakupy i zapraszamy ponownie.</p>

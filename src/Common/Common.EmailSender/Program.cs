@@ -43,11 +43,11 @@ namespace Common.EmailSender
                                     e.PrefetchCount = 16;
                                     e.UseMessageRetry(x => x.Interval(2, 100));
 
-                                    e.ConfigureConsumer<OrderPlacedConsumer>(provider);
+                                    e.ConfigureConsumer<OrderChangesConsumer>(provider);
                                 });
                             }));
 
-                        c.AddConsumer<OrderPlacedConsumer>();
+                        c.AddConsumer<OrderChangesConsumer>();
                     });
 
                     services.AddEmailServices(hostContext.Configuration);

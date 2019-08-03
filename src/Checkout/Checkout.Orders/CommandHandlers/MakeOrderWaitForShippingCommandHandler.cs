@@ -3,7 +3,9 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Checkout.Orders.Commands;
+using Checkout.Orders.Contracts.Events;
 using Checkout.Orders.Domain;
+using MassTransit;
 using MediatR;
 
 namespace Checkout.Orders.CommandHandlers
@@ -11,10 +13,12 @@ namespace Checkout.Orders.CommandHandlers
     public class MakeOrderWaitForShippingCommandHandler : IRequestHandler<MakeOrderWaitForShippingCommand>
     {
         private readonly OrdersContext _ordersContext;
+        private readonly IBus _bus;
 
-        public MakeOrderWaitForShippingCommandHandler(OrdersContext ordersContext)
+        public MakeOrderWaitForShippingCommandHandler(OrdersContext ordersContext, IBus bus)
         {
             _ordersContext = ordersContext;
+            _bus = bus;
         }
 
         public async Task<Unit> Handle(MakeOrderWaitForShippingCommand request, CancellationToken cancellationToken)
@@ -27,7 +31,9 @@ namespace Checkout.Orders.CommandHandlers
 
             order.MarkAsWaitingForShipping();
 
-            await _ordersContext.SaveChangesAsync();
+            await _ordersContext.SaveChangesAsync(cancellationToken);
+
+            await _bus.Publish(new OrderWaitsForShipmentEvent() { OrderId = order.Id }, cancellationToken);
 
             return Unit.Value;
         }

@@ -36,7 +36,7 @@ namespace Checkout.Orders.Controllers
             // todo this if does not look good here,
             // i think we should move it all to payments service and just return action link here
             // cause probably more async actions may happen in background - like stock ensuring
-            if (placeOrderModel.PaymentMethod != PaymentMethods.OnDelivery)
+            if (placeOrderModel.PaymentMethod != PaymentMethodNames.OnDelivery)
             {
                 return StatusCode((int)HttpStatusCode.Created, new
                 {

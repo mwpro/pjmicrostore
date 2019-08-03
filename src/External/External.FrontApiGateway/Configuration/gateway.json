@@ -92,6 +92,14 @@
             "ServiceName": "identity",
             "UpstreamPathTemplate": "/api/users/me",
             "UpstreamHttpMethod": [ "Get" ]
+        },
+        // shipping
+        {
+            "DownstreamPathTemplate": "/api/shipping",
+            "DownstreamScheme": "http",
+            "ServiceName": "shipping",
+            "UpstreamPathTemplate": "/api/shipping",
+            "UpstreamHttpMethod": [ "Get" ]
         }
     ],
     "GlobalConfiguration": {
@@ -128,6 +136,10 @@
         "Identity": {
             "DownstreamHost": "localhost",
             "DownstreamPort": 5000
+        },
+        "Shipping": {
+            "DownstreamHost": "localhost",
+            "DownstreamPort": 51845
         }
     }
 }

@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace IdentityServer4.Quickstart.UI
+namespace Identity.Api.Controllers.Account
 {
     public class RegisterInputModel
     {

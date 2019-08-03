@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using Identity.Api.Controllers.Account;
+using Identity.Api.Registration;
 using Identity.Contracts;
 using IdentityServer4;
 
@@ -15,10 +17,12 @@ namespace Identity.Api.Controllers.Api
     public class UsersController : ControllerBase
     {
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IRegistrationService _registrationService;
 
-        public UsersController(UserManager<ApplicationUser> userManager)
+        public UsersController(UserManager<ApplicationUser> userManager, IRegistrationService registrationService)
         {
             _userManager = userManager;
+            _registrationService = registrationService;
         }
 
 
@@ -41,10 +45,34 @@ namespace Identity.Api.Controllers.Api
             return Ok(MapToDto(user));
         }
 
-        public UserDto MapToDto(ApplicationUser user)
+        [HttpPost()]
+        [Authorize(IdentityServerConstants.LocalApi.PolicyName)]
+        public async Task<IActionResult> CreateUser(RegisterInputModel registerInputModel)
+        {
+            if (!User.HasScope(Scopes.Identities_CreateUser) && false)
+            {
+                Forbid();
+            }
+
+            var (result, applicationUser) = await _registrationService.Register(registerInputModel);
+            if (!result.Succeeded)
+            {
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError(string.Empty, error.Description);
+                }
+
+                return BadRequest(ModelState);
+            }
+
+            return Created($"/api/users/{applicationUser.Id}", MapToDto(applicationUser));
+        }
+
+        private UserDto MapToDto(ApplicationUser user)
         {
             return new UserDto()
             {
+                Id = user.Id,
                 Email = user.Email,
                 Phone = user.PhoneNumber,
                 BillingDetails = MapToDto(user.BillingAddress),
@@ -52,7 +80,7 @@ namespace Identity.Api.Controllers.Api
             };
         }
 
-        public UserDto.AddressDto MapToDto(ApplicationUser.Address address)
+        private UserDto.AddressDto MapToDto(ApplicationUser.Address address)
         {
             if (address == null) return null;
 
@@ -69,6 +97,7 @@ namespace Identity.Api.Controllers.Api
 
     public class UserDto
     {
+        public string Id { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
 

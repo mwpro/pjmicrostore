@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Identity.Api.Controllers.Account;
 using Identity.Api.Models;
 using IdentityServer4.Quickstart.UI;
 using Microsoft.AspNetCore.Identity;

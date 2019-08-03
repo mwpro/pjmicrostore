@@ -49,14 +49,14 @@ namespace Identity.Api
                     ClientId = "orders",
                     AllowedGrantTypes = GrantTypes.ClientCredentials,
                     ClientSecrets = {new Secret("ordersSecret".Sha256())},
-                    AllowedScopes = { "carts" }
+                    AllowedScopes = { Scopes.Carts, Scopes.Identities_CreateUser }
                 },
                 new Client
                 {
                     ClientId = "emailSender",
                     AllowedGrantTypes = GrantTypes.ClientCredentials,
                     ClientSecrets = {new Secret("emailSenderSecret".Sha256())},
-                    AllowedScopes = { "orders" }
+                    AllowedScopes = { Scopes.Orders }
                 },
                 // SPA client using Code flow
                 new Client

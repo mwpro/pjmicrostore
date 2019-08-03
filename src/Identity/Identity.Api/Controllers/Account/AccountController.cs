@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
+using Identity.Api.Controllers.Account;
 using Identity.Api.Registration;
 using Identity.Contracts;
 using Microsoft.Extensions.Logging;

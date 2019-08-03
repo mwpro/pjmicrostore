@@ -12,6 +12,7 @@ export default {
       numberOfItems: 0,
     },
     paymentMethods: [],
+    deliveryMethods: [],
   },
   mutations: {
     updateCart(state, cart) {
@@ -20,6 +21,9 @@ export default {
     },
     updatePaymentMethods(state, paymentMethods) {
       state.paymentMethods = paymentMethods;
+    },
+    updateDeliveryMethods(state, deliveryMethods) {
+      state.deliveryMethods = deliveryMethods;
     },
   },
   actions: {
@@ -129,19 +133,39 @@ export default {
         });
       // TODO .catch(captains.error)
     },
-    getPaymentMethodsAction({ commit }) {
+    getDeliveryMethodsAction({ commit }) {
       return axios
-        .get('/api/payments/methods')
+        .get('/api/shipping')
         .then((response) => {
           if (response.status !== 200) throw Error(response.message);
-          let paymentMethods = response.data;
-          if (typeof paymentMethods !== 'object') {
-            paymentMethods = []; // todo ???
+          let deliveryMethods = response.data;
+          if (typeof deliveryMethods !== 'object') {
+            deliveryMethods = []; // todo ???
           }
 
-          commit('updatePaymentMethods', paymentMethods);
-          return paymentMethods;
+          commit('updateDeliveryMethods', deliveryMethods);
+          return deliveryMethods;
         });
+      // TODO .catch(captains.error)
+    },
+    getPaymentMethodsAction({ commit }, deliveryMethod) {
+      return axios({
+        method: 'get',
+        url: '/api/payments/methods',
+        params: { deliveryMethod },
+        paramsSerializer(params) {
+          return Qs.stringify(params);
+        },
+      }).then((response) => {
+        if (response.status !== 200) throw Error(response.message);
+        let paymentMethods = response.data;
+        if (typeof paymentMethods !== 'object') {
+          paymentMethods = []; // todo ???
+        }
+
+        commit('updatePaymentMethods', paymentMethods);
+        return paymentMethods;
+      });
       // TODO .catch(captains.error)
     },
     getPaymentDetailsAction({ commit }, paymentCheckUrl) {

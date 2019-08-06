@@ -60,7 +60,7 @@ namespace Identity.Api
                             ShippingAddress =  new ApplicationUser.Address(
                                 "Alicja", "Magicz", "Krainy czarów 18",
                                 "Warszawa", "20-221"),
-                            BillingAddress = new ApplicationUser.Address(null, null, null, null, null)
+                            BillingAddress = ApplicationUser.Address.Empty()
                         };
                         var result = userMgr.CreateAsync(alice, "Pass123$").Result;
                         if (!result.Succeeded)
@@ -101,7 +101,7 @@ namespace Identity.Api
                             ShippingAddress =  new ApplicationUser.Address(
                                 "Alicja", "Magicz", "Krainy czarów 18",
                                 "Warszawa", "20-221"),
-                            BillingAddress = new ApplicationUser.Address(null, null, null, null, null)
+                            BillingAddress = ApplicationUser.Address.Empty()
                         };
                         var result = userMgr.CreateAsync(bob, "Pass123$").Result;
                         if (!result.Succeeded)
@@ -140,8 +140,8 @@ namespace Identity.Api
                             UserName = "admin",
                             Email = "admin@admin.pl",
                             PhoneNumber = null,
-                            ShippingAddress =  new ApplicationUser.Address(null, null, null, null, null),
-                            BillingAddress = new ApplicationUser.Address(null, null, null, null, null)
+                            ShippingAddress = ApplicationUser.Address.Empty(),
+                            BillingAddress = ApplicationUser.Address.Empty()
                         };
                         var result = userMgr.CreateAsync(admin, "Admin123$").Result;
                         if (!result.Succeeded)

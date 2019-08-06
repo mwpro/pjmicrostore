@@ -58,6 +58,13 @@ namespace Identity.Api
                     ClientSecrets = {new Secret("emailSenderSecret".Sha256())},
                     AllowedScopes = { "orders" }
                 },
+                new Client
+                {
+                    ClientId = "identityApi",
+                    AllowedGrantTypes = GrantTypes.ClientCredentials,
+                    ClientSecrets = {new Secret("identityApiSecret".Sha256())},
+                    AllowedScopes = { "orders" }
+                },
                 // SPA client using Code flow
                 new Client
                 {

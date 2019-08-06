@@ -49,6 +49,7 @@ namespace Checkout.Orders.CommandHandlers
                 SourceCartId = cart.CartId,
                 Amount = order.Total,
                 PaymentMethod = request.PaymentMethod,
+                CustomerId = request.CustomerId,
                 PaymentReference = paymentReference.Value
             });
 

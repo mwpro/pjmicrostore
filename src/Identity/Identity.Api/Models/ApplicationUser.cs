@@ -10,6 +10,8 @@ namespace Identity.Api.Models
 
         public class Address
         {
+            public static Address Empty() => new Address(null, null, null, null, null);
+
             public Address(string firstName, string lastName, string street, string city, string zip)
             {
                 FirstName = firstName;

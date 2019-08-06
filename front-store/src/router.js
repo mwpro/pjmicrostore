@@ -11,6 +11,7 @@ import OrderPlaced from './pages/OrderPlaced.vue';
 import PaymentRedirect from './pages/PaymentRedirect.vue';
 import PaymentMock from './pages/PaymentMock.vue';
 import Callback from './pages/Callback.vue';
+import PopupCallback from './pages/PopupCallback.vue';
 import SilentRenew from './pages/SilentRenew.vue';
 import Category from './pages/Category.vue';
 
@@ -29,6 +30,12 @@ export default new Router({
       path: '/callback',
       name: 'callback',
       component: Callback,
+      meta: { layout: 'minimal' },
+    },
+    {
+      path: '/popupCallback',
+      name: 'popupCallback',
+      component: PopupCallback,
       meta: { layout: 'minimal' },
     },
     {
@@ -88,7 +95,7 @@ export default new Router({
       path: '/orders/:orderId',
       name: 'orderDetails',
       component: OrderDetails,
-      props: true
+      props: true,
     },
   ],
 });

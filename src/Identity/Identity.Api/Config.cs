@@ -77,7 +77,8 @@ namespace Identity.Api
                     RedirectUris =
                     {
                         "http://localhost:8080/callback",
-                        "http://localhost:8080/silentRenew"
+                        "http://localhost:8080/silentRenew",
+                        "http://localhost:8080/popupCallback"
                     },
                     PostLogoutRedirectUris = {"http://localhost:8080"},
                     AllowedCorsOrigins = {"http://localhost:8080"},

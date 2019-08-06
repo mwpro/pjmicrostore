@@ -8,6 +8,7 @@ const authConfig = {
   response_type: 'code',
   scope: 'openid profile api1 IdentityServerApi roles',
   post_logout_redirect_uri: 'http://localhost:8080',
+  popup_redirect_uri: 'http://localhost:8080/popupCallback',
   userStore: new WebStorageStateStore({ store: window.localStorage }),
 
   clockSkew: 15,
@@ -63,6 +64,10 @@ const auth = new Vue({
       userManager.signinRedirect();
     },
 
+    loginPopup() {
+      userManager.signinPopup();
+    },
+
     getUser() {
       return userManager.getUser();
     },
@@ -75,6 +80,17 @@ const auth = new Vue({
 
     authCallback() {
       userManager.signinRedirectCallback().then((user) => {
+        window.location.href = '../';
+        this.expiresAt = user.expires_at ? user.expires_at * 1000 : null;
+        this.accessToken = user.access_token;
+      }).catch((err) => {
+        console.log(err);
+      });
+    },
+
+
+    authPopupCallback() {
+      userManager.signinPopupCallback().then((user) => {
         window.location.href = '../';
         this.expiresAt = user.expires_at ? user.expires_at * 1000 : null;
         this.accessToken = user.access_token;

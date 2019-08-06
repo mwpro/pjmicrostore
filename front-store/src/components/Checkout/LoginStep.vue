@@ -8,7 +8,7 @@
         <h6>Nie masz konta?</h6>
         <a class="btn btn-sm btn-outline-secondary" @click="register()">Załóż konto</a>
         <br />lub<br />
-        <a class="btn btn-sm btn-outline-secondary" @click="login()">Kontynuuj jako gość</a>
+        <a class="btn btn-sm btn-outline-secondary" @click="checkoutAsGuest()">Kontynuuj jako gość</a>
       </div>
     </div>
 </template>
@@ -26,6 +26,9 @@ export default {
     },
     register() {
       this.$auth.registerPopup();
+    },
+    checkoutAsGuest() {
+      this.$store.commit('cart/setCheckoutAsGuest');
     },
   },
 };

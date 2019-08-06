@@ -81,10 +81,10 @@ export default {
       return this.$store.getters['cart/isCartEmpty'];
     },
     showLoginStep() {
-      return !this.$auth.isAuthenticated;
+      return !this.$auth.isAuthenticated && !this.$store.state.cart.checkoutAsGuest;
     },
     showShippingStep() {
-      return this.$store.state.cart.deliveryMethods && /* todo tmp */ this.$auth.isAuthenticated;
+      return this.$store.state.cart.deliveryMethods && !this.showLoginStep;
     },
     showPaymentStep() {
       return (

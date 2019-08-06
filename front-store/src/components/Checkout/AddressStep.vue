@@ -303,6 +303,8 @@ export default {
 
   },
   created() {
+    if (!this.$auth.isAuthenticated) return;
+
     this.$store.dispatch('user/getUserAction').then((user) => {
       this.email = user.email;
       this.phone = user.phone;

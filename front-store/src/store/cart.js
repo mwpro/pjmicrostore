@@ -11,6 +11,7 @@ export default {
       value: 0,
       numberOfItems: 0,
     },
+    checkoutAsGuest: false,
     paymentMethods: null,
     deliveryMethods: null,
     selectedDeliveryMethod: null,
@@ -38,6 +39,9 @@ export default {
     },
     setDeliveryMethod(state, deliveryMethod) {
       state.selectedDeliveryMethod = deliveryMethod;
+    },
+    setCheckoutAsGuest(state) {
+      state.checkoutAsGuest = true;
     },
     setPaymentMethod(state, paymentMethod) {
       state.selectedPaymentMethod = paymentMethod;
@@ -94,6 +98,7 @@ export default {
       state.billingDetailsZip = billingDetailsZip;
     },
     resetCheckout(state) {
+      state.checkoutAsGuest = false;
       state.selectedDeliveryMethod = null;
       state.selectedPaymentMethod = null;
       state.paymentMethods = null;

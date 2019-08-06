@@ -22,7 +22,7 @@ module.exports = {
         changeOrigin: true,
       },
       '/api/orders': {
-        target: 'http://localhost:56037',
+        target: 'http://localhost:56038',
         changeOrigin: true,
       },
       '/api/payments': {

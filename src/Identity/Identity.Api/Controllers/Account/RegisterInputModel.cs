@@ -21,5 +21,6 @@ namespace IdentityServer4.Quickstart.UI
         public string ConfirmPassword { get; set; }
 
         public string ReturnUrl { get; set; }
+        public string Display { get; set; }
     }
 }

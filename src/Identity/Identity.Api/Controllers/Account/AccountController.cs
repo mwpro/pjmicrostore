@@ -228,7 +228,8 @@ namespace IdentityServer4.Quickstart.UI
 
             return View(new RegisterInputModel()
             {
-                ReturnUrl = vm.ReturnUrl
+                ReturnUrl = vm.ReturnUrl,
+                Display = vm.Display
             });
         }
 
@@ -236,10 +237,7 @@ namespace IdentityServer4.Quickstart.UI
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterInputModel registerInputModel)
         {
-            // todo make use of returnUrl
-            var vm = await BuildLoginViewModelAsync(registerInputModel.ReturnUrl);
-
-            var returnUrl = vm.ReturnUrl ?? Url.Content("~/");
+            var returnUrl = registerInputModel.ReturnUrl ?? Url.Content("~/");
             if (ModelState.IsValid)
             {
                 var (result, user) = await _registrationService.Register(registerInputModel);
@@ -263,6 +261,11 @@ namespace IdentityServer4.Quickstart.UI
         /*****************************************/
         private async Task<LoginViewModel> BuildLoginViewModelAsync(string returnUrl)
         {
+            if (string.IsNullOrEmpty(returnUrl))
+            {
+                return new LoginViewModel();
+            }
+
             var context = await _interaction.GetAuthorizationContextAsync(returnUrl);
             if (context?.IdP != null)
             {
@@ -272,7 +275,9 @@ namespace IdentityServer4.Quickstart.UI
                     EnableLocalLogin = false,
                     ReturnUrl = returnUrl,
                     Username = context?.LoginHint,
-                    Mode = context.Parameters["mode"]
+                    Mode = context.Parameters["mode"],
+                    Display = context.DisplayMode,
+                    ClientId = context.ClientId
                 };
             }
 
@@ -294,7 +299,9 @@ namespace IdentityServer4.Quickstart.UI
                 EnableLocalLogin = allowLocal && AccountOptions.AllowLocalLogin,
                 ReturnUrl = returnUrl,
                 Username = context?.LoginHint,
-                Mode = context.Parameters["mode"]
+                Mode = context.Parameters["mode"],
+                Display = context.DisplayMode,
+                ClientId = context.ClientId
             };
         }
 

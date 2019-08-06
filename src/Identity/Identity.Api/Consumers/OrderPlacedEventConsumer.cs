@@ -35,7 +35,7 @@ namespace Identity.Api.Consumers
                 throw new Exception($"User {context.Message.CustomerId} from order {context.Message.OrderId} not found");
 
             var orderDetails = await _ordersService.GetOrder(context.Message.OrderId);
-            if (user == null)
+            if (orderDetails == null)
                 throw new Exception($"Order {context.Message.OrderId} not found");
 
             user.PhoneNumber = orderDetails.Customer.Phone;

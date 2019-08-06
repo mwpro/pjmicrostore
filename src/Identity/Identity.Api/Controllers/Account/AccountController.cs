@@ -299,9 +299,9 @@ namespace IdentityServer4.Quickstart.UI
                 EnableLocalLogin = allowLocal && AccountOptions.AllowLocalLogin,
                 ReturnUrl = returnUrl,
                 Username = context?.LoginHint,
-                Mode = context.Parameters["mode"],
-                Display = context.DisplayMode,
-                ClientId = context.ClientId
+                Mode = context?.Parameters["mode"],
+                Display = context?.DisplayMode,
+                ClientId = context?.ClientId
             };
         }
 

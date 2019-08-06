@@ -58,6 +58,11 @@ namespace IdentityServer4.Quickstart.UI
         {
             // build a model so we know what to show on the login page
             var vm = await BuildLoginViewModelAsync(returnUrl);
+
+            if (vm.Mode == "register")
+            {
+                return RedirectToAction(nameof(Register), new {returnUrl});
+            }
             
             return View(vm);
         }
@@ -217,17 +222,22 @@ namespace IdentityServer4.Quickstart.UI
         }
 
         [HttpGet]
-        public async Task<IActionResult> Register()
+        public async Task<IActionResult> Register(string returnUrl)
         {
-            return View();
+            var vm = await BuildLoginViewModelAsync(returnUrl);
+
+            return View(new RegisterInputModel()
+            {
+                ReturnUrl = vm.ReturnUrl,
+                Display = vm.Display
+            });
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register(RegisterInputModel registerInputModel, [FromQuery]string returnUrl = null)
+        public async Task<IActionResult> Register(RegisterInputModel registerInputModel)
         {
-            // todo make use of returnUrl
-            returnUrl = returnUrl ?? Url.Content("~/");
+            var returnUrl = registerInputModel.ReturnUrl ?? Url.Content("~/");
             if (ModelState.IsValid)
             {
                 var (result, user) = await _registrationService.Register(registerInputModel);
@@ -251,6 +261,11 @@ namespace IdentityServer4.Quickstart.UI
         /*****************************************/
         private async Task<LoginViewModel> BuildLoginViewModelAsync(string returnUrl)
         {
+            if (string.IsNullOrEmpty(returnUrl))
+            {
+                return new LoginViewModel();
+            }
+
             var context = await _interaction.GetAuthorizationContextAsync(returnUrl);
             if (context?.IdP != null)
             {
@@ -260,6 +275,9 @@ namespace IdentityServer4.Quickstart.UI
                     EnableLocalLogin = false,
                     ReturnUrl = returnUrl,
                     Username = context?.LoginHint,
+                    Mode = context.Parameters["mode"],
+                    Display = context.DisplayMode,
+                    ClientId = context.ClientId
                 };
             }
 
@@ -281,6 +299,9 @@ namespace IdentityServer4.Quickstart.UI
                 EnableLocalLogin = allowLocal && AccountOptions.AllowLocalLogin,
                 ReturnUrl = returnUrl,
                 Username = context?.LoginHint,
+                Mode = context.Parameters["mode"],
+                Display = context.DisplayMode,
+                ClientId = context.ClientId
             };
         }
 

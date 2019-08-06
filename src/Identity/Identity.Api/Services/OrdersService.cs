@@ -5,7 +5,7 @@ using Flurl.Http;
 using IdentityModel.Client;
 using Microsoft.Extensions.Configuration;
 
-namespace Common.EmailSender.Orders
+namespace Identity.Api.Services
 {
     public interface IOrdersService
     {
@@ -31,7 +31,7 @@ namespace Common.EmailSender.Orders
             return order;
         }
 
-        private async Task<string> GetBearerToken()
+        private async Task<string> GetBearerToken() // todo as we are in IdenityApi - maybe we could do it locally?
         {
             var client = new HttpClient();
             var disco = await client.GetDiscoveryDocumentAsync("http://localhost:5000");
@@ -43,8 +43,8 @@ namespace Common.EmailSender.Orders
             var tokenResponse = await client.RequestClientCredentialsTokenAsync(new ClientCredentialsTokenRequest
             {
                 Address = disco.TokenEndpoint,
-                ClientId = "emailSender",
-                ClientSecret = "emailSenderSecret"
+                ClientId = "identityApi",
+                ClientSecret = "identityApiSecret"
             });
 
             if (tokenResponse.IsError)

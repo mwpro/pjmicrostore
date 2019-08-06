@@ -15,7 +15,7 @@
               <h5 class="mb-0">1. Logowanie</h5>
             </div>
             <div class="collapse" :class="{ show: showLoginStep }">
-              <LoginStep />
+              <LoginStep v-if="showLoginStep" />
             </div>
           </div>
           <div class="card">
@@ -23,7 +23,7 @@
               <h5 class="mb-0">2. Dostawa</h5>
             </div>
             <div class="collapse" :class="{ show: showShippingStep }">
-              <ShippingStep />
+              <ShippingStep v-if="showShippingStep" />
             </div>
           </div>
           <div class="card">
@@ -31,7 +31,7 @@
               <h5 class="mb-0">3. Płatność</h5>
             </div>
             <div class="collapse" :class="{ show: showPaymentStep }">
-              <PaymentStep />
+              <PaymentStep v-if="showPaymentStep" />
             </div>
           </div>
           <div class="card">
@@ -39,7 +39,7 @@
               <h5 class="mb-0">4. Adres</h5>
             </div>
             <div class="collapse" :class="{ show: showAddressStep }">
-              <AddressStep />
+              <AddressStep v-if="showAddressStep" />
             </div>
           </div>
         </div>
@@ -81,10 +81,10 @@ export default {
       return this.$store.getters['cart/isCartEmpty'];
     },
     showLoginStep() {
-      return false;
+      return !this.$auth.isAuthenticated && !this.$store.state.cart.checkoutAsGuest;
     },
     showShippingStep() {
-      return this.$store.state.cart.deliveryMethods;
+      return this.$store.state.cart.deliveryMethods && !this.showLoginStep;
     },
     showPaymentStep() {
       return (

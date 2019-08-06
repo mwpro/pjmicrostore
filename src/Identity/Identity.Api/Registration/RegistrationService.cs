@@ -26,11 +26,10 @@ namespace Identity.Api.Registration
         {
             var user = new ApplicationUser
             {
-                // todo require first and last name for registration
                 UserName = registerInputModel.Email,
                 Email = registerInputModel.Email,
-                BillingAddress = new ApplicationUser.Address(null, null, null, null, null), // todo make address nullable
-                ShippingAddress = new ApplicationUser.Address(null, null, null, null, null)
+                BillingAddress = ApplicationUser.Address.Empty(), // todo make address nullable
+                ShippingAddress = ApplicationUser.Address.Empty()
             };
             var result = await _userManager.CreateAsync(user, registerInputModel.Password);
             if (result.Succeeded)

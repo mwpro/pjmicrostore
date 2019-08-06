@@ -1,4 +1,6 @@
-﻿@model LoginViewModel
+﻿@using Identity.Contracts
+@using IdentityModel
+@model LoginViewModel
 
 <div class="login-page">
     <div class="page-header">
@@ -54,18 +56,21 @@
                 </div>
             </div>
         }
-        <div class="col-sm-6">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Nie masz konta?</h3>
-                    @*todo do not display registration on admin login*@
-                </div>
-                <div class="panel-body">
-                    <h4>Przejdź do <a asp-action="Register">rejestracji</a></h4>
+        @if (@Model.Display != OidcConstants.DisplayModes.Popup && @Model.ClientId != FrontNames.FrontAdmin)
+        {
+            <div class="col-sm-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Nie masz konta?</h3>
+                    </div>
+                    <div class="panel-body">
+                        <h4>Przejdź do <a asp-action="Register" asp-route-returnUrl="@Model.ReturnUrl">rejestracji</a></h4>
                     
+                    </div>
                 </div>
             </div>
-        </div>
+        }
+        
 
     </div>
 </div>

@@ -2,6 +2,10 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
+using System.Threading;
+using System.Threading.Tasks;
+using GreenPipes;
+using Identity.Api.Consumers;
 using Identity.Api.Data;
 using Identity.Api.Models;
 using Microsoft.AspNetCore.Builder;
@@ -11,7 +15,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Identity.Api.Registration;
+using Identity.Api.Services;
 using Identity.Contracts;
+using MassTransit;
+using Microsoft.Extensions.Hosting;
+using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 
 namespace Identity.Api
 {
@@ -70,6 +78,27 @@ namespace Identity.Api
             services.AddLocalApiAuthentication();
 
             services.AddTransient<IRegistrationService, RegistrationService>(); // todo transient?
+
+            services.AddMassTransit(c =>
+            {
+                c.AddBus(provider => Bus.Factory.CreateUsingRabbitMq(
+                    cfg =>
+                    {
+                        var host = cfg.Host(Configuration.GetValue<string>("RabbitMq:Host"), "/", h => { });
+                        cfg.ReceiveEndpoint(host, "Identity.Api", e =>
+                        {
+                            e.PrefetchCount = 16;
+                            e.UseMessageRetry(x => x.Interval(2, 100));
+
+                            e.ConfigureConsumer<OrderPlacedEventConsumer>(provider);
+                        });
+                    }));
+
+                c.AddConsumer<OrderPlacedEventConsumer>();
+            });
+
+            services.AddTransient<IOrdersService, OrdersService>();
+            services.AddSingleton<IHostedService, BusService>();
         }
 
         public void Configure(IApplicationBuilder app)
@@ -88,6 +117,26 @@ namespace Identity.Api
             app.UseStaticFiles();
             app.UseIdentityServer();
             app.UseMvcWithDefaultRoute();
+        }
+    }
+
+    public class BusService : IHostedService
+    {
+        private readonly IBusControl _busControl;
+
+        public BusService(IBusControl busControl)
+        {
+            _busControl = busControl;
+        }
+
+        public Task StartAsync(CancellationToken cancellationToken)
+        {
+            return _busControl.StartAsync(cancellationToken);
+        }
+
+        public Task StopAsync(CancellationToken cancellationToken)
+        {
+            return _busControl.StopAsync(cancellationToken);
         }
     }
 }

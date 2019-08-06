@@ -1,4 +1,5 @@
-﻿@model RegisterInputModel
+﻿@using IdentityModel
+@model RegisterInputModel
 @{
     ViewData["Title"] = "Register";
 }
@@ -18,45 +19,45 @@
                     <h3 class="panel-title">Chcę założyć konto</h3>
                 </div>
                 <div class="panel-body">
-                        <form asp-route="Register">
-                            @*<input type="hidden" asp-for="ReturnUrl" />*@
+                    <form asp-route="Register">
+                        <input type="hidden" asp-for="ReturnUrl" />
 
-                            <fieldset>
-                                <div class="form-group">
-                                    <label asp-for="Email"></label>
-                                    <input asp-for="Email" class="form-control" />
-                                    <span asp-validation-for="Email" class="text-danger"></span>
-                                </div>
-                                <div class="form-group">
-                                    <label asp-for="Password"></label>
-                                    <input asp-for="Password" class="form-control" />
-                                    <span asp-validation-for="Password" class="text-danger"></span>
-                                </div>
-                                <div class="form-group">
-                                    <label asp-for="ConfirmPassword"></label>
-                                    <input asp-for="ConfirmPassword" class="form-control" />
-                                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
-                                </div>
+                        <fieldset>
+                            <div class="form-group">
+                                <label asp-for="Email"></label>
+                                <input asp-for="Email" class="form-control" />
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Password"></label>
+                                <input asp-for="Password" class="form-control" />
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="ConfirmPassword"></label>
+                                <input asp-for="ConfirmPassword" class="form-control" />
+                                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                            </div>
 
-                                <div class="form-group">
-                                    <button class="btn btn-primary" name="button" value="login">Zarejestruj się</button>
-                                </div>
-                            </fieldset>
-                        </form>
+                            <div class="form-group">
+                                <button class="btn btn-primary" name="button" value="login">Zarejestruj się</button>
+                            </div>
+                        </fieldset>
+                    </form>
                 </div>
             </div>
         </div>
-        <div class="col-sm-6">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Masz już konto?</h3>
-                </div>
-                <div class="panel-body">
-                    <h4>Przejdź do <a asp-action="Login">logowania</a></h4>
-
+        @if (@Model.Display != OidcConstants.DisplayModes.Popup) {
+            <div class="col-sm-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Masz już konto?</h3>
+                    </div>
+                    <div class="panel-body">
+                        <h4>Przejdź do <a asp-action="Login" asp-route-returnUrl="@Model.ReturnUrl">logowania</a></h4>
+                    </div>
                 </div>
             </div>
-        </div>
-
+        }
     </div>
 </div>

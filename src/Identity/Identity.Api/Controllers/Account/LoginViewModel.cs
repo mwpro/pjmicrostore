@@ -8,5 +8,6 @@ namespace IdentityServer4.Quickstart.UI
     {
         public bool AllowRememberLogin { get; set; } = true;
         public bool EnableLocalLogin { get; set; } = true;
+        public string Mode { get; set; }
     }
 }

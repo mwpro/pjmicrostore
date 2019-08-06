@@ -6,7 +6,7 @@
       </div>
       <div class="col-md-6">
         <h6>Nie masz konta?</h6>
-        <a class="btn btn-sm btn-outline-secondary" @click="login()">Załóż konto</a>
+        <a class="btn btn-sm btn-outline-secondary" @click="register()">Załóż konto</a>
         <br />lub<br />
         <a class="btn btn-sm btn-outline-secondary" @click="login()">Kontynuuj jako gość</a>
       </div>
@@ -23,6 +23,9 @@ export default {
   methods: {
     login() {
       this.$auth.loginPopup();
+    },
+    register() {
+      this.$auth.registerPopup();
     },
   },
 };

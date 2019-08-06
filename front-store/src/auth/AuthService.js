@@ -68,6 +68,14 @@ const auth = new Vue({
       userManager.signinPopup();
     },
 
+    registerPopup() {
+      userManager.signinPopup({
+        extraQueryParams: {
+          mode: 'register',
+        },
+      });
+    },
+
     getUser() {
       return userManager.getUser();
     },
@@ -87,7 +95,6 @@ const auth = new Vue({
         console.log(err);
       });
     },
-
 
     authPopupCallback() {
       userManager.signinPopupCallback().then((user) => {

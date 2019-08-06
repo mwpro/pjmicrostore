@@ -11,13 +11,36 @@ export default {
       value: 0,
       numberOfItems: 0,
     },
-    paymentMethods: [],
-    deliveryMethods: [],
+    paymentMethods: null,
+    deliveryMethods: null,
+    selectedDeliveryMethod: null,
+    selectedPaymentMethod: null,
+    email: null,
+    phone: null,
+    shippingDetailsAddress: null,
+    shippingDetailsCity: null,
+    shippingDetailsFirstName: null,
+    shippingDetailsLastName: null,
+    shippingDetailsStreet: null,
+    shippingDetailsZip: null,
+    billingDetailsAreDifferentFromShipping: false,
+    billingDetailsAddress: null,
+    billingDetailsCity: null,
+    billingDetailsFirstName: null,
+    billingDetailsLastName: null,
+    billingDetailsStreet: null,
+    billingDetailsZip: null,
   },
   mutations: {
     updateCart(state, cart) {
       state.cart = cart;
       localStorage.setItem('cart_token', cart.cartAccessToken);
+    },
+    setDeliveryMethod(state, deliveryMethod) {
+      state.selectedDeliveryMethod = deliveryMethod;
+    },
+    setPaymentMethod(state, paymentMethod) {
+      state.selectedPaymentMethod = paymentMethod;
     },
     updatePaymentMethods(state, paymentMethods) {
       state.paymentMethods = paymentMethods;
@@ -25,8 +48,117 @@ export default {
     updateDeliveryMethods(state, deliveryMethods) {
       state.deliveryMethods = deliveryMethods;
     },
+    updateEmail(state, email) {
+      state.email = email;
+    },
+    updatePhone(state, phone) {
+      state.phone = phone;
+    },
+    updateShippingDetailsAddress(state, shippingDetailsAddress) {
+      state.shippingDetailsAddress = shippingDetailsAddress;
+    },
+    updateShippingDetailsCity(state, shippingDetailsCity) {
+      state.shippingDetailsCity = shippingDetailsCity;
+    },
+    updateShippingDetailsFirstName(state, shippingDetailsFirstName) {
+      state.shippingDetailsFirstName = shippingDetailsFirstName;
+    },
+    updateShippingDetailsLastName(state, shippingDetailsLastName) {
+      state.shippingDetailsLastName = shippingDetailsLastName;
+    },
+    updateShippingDetailsStreet(state, shippingDetailsStreet) {
+      state.shippingDetailsStreet = shippingDetailsStreet;
+    },
+    updateShippingDetailsZip(state, shippingDetailsZip) {
+      state.shippingDetailsZip = shippingDetailsZip;
+    },
+    updateBillingDetailsAreDifferentFromShipping(state, billingDetailsAreDifferentFromShipping) {
+      state.billingDetailsAreDifferentFromShipping = billingDetailsAreDifferentFromShipping;
+    },
+    updateBillingDetailsAddress(state, billingDetailsAddress) {
+      state.billingDetailsAddress = billingDetailsAddress;
+    },
+    updateBillingDetailsCity(state, billingDetailsCity) {
+      state.billingDetailsCity = billingDetailsCity;
+    },
+    updateBillingDetailsFirstName(state, billingDetailsFirstName) {
+      state.billingDetailsFirstName = billingDetailsFirstName;
+    },
+    updateBillingDetailsLastName(state, billingDetailsLastName) {
+      state.billingDetailsLastName = billingDetailsLastName;
+    },
+    updateBillingDetailsStreet(state, billingDetailsStreet) {
+      state.billingDetailsStreet = billingDetailsStreet;
+    },
+    updateBillingDetailsZip(state, billingDetailsZip) {
+      state.billingDetailsZip = billingDetailsZip;
+    },
+    resetCheckout(state) {
+      state.selectedDeliveryMethod = null;
+      state.selectedPaymentMethod = null;
+      state.paymentMethods = null;
+      state.paymentMethods = null;
+
+      state.email = null;
+      state.phone = null;
+      state.shippingDetailsAddress = null;
+      state.shippingDetailsCity = null;
+      state.shippingDetailsFirstName = null;
+      state.shippingDetailsLastName = null;
+      state.shippingDetailsStreet = null;
+      state.shippingDetailsZip = null;
+      state.billingDetailsAreDifferentFromShipping = false;
+      state.billingDetailsAddress = null;
+      state.billingDetailsCity = null;
+      state.billingDetailsFirstName = null;
+      state.billingDetailsLastName = null;
+      state.billingDetailsStreet = null;
+      state.billingDetailsZip = null;
+    },
+  },
+  getters: {
+    isCartEmpty: state => state.cart.cartItems.length === 0,
+    cartTotal: state => state.cart.total
+      + ((state.selectedDeliveryMethod) ? state.selectedDeliveryMethod.price : 0)
+      + ((state.selectedPaymentMethod) ? state.selectedPaymentMethod.fee : 0),
+    placeOrderModel: state => ({
+      cartAccessToken: state.cart.cartAccessToken,
+      email: state.email,
+      phone: state.phone,
+      paymentMethod: ((state.selectedPaymentMethod) ? state.selectedPaymentMethod.name : ''),
+      shippingMethod: ((state.selectedDeliveryMethod) ? state.selectedDeliveryMethod.name : ''),
+      shippingDetails: {
+        firstName: state.shippingDetailsFirstName,
+        lastName: state.shippingDetailsLastName,
+        address: state.shippingDetailsAddress,
+        city: state.shippingDetailsCity,
+        zip: state.shippingDetailsZip,
+      },
+      billingDetails: state.billingDetailsAreDifferentFromShipping
+        ? {
+          firstName: state.billingDetailsFirstName,
+          lastName: state.billingDetailsLastName,
+          address: state.billingDetailsAddress,
+          city: state.billingDetailsCity,
+          zip: state.billingDetailsZip,
+        } : {
+          firstName: state.shippingDetailsFirstName,
+          lastName: state.shippingDetailsLastName,
+          address: state.shippingDetailsAddress,
+          city: state.shippingDetailsCity,
+          zip: state.shippingDetailsZip,
+        },
+    }),
   },
   actions: {
+    setDeliveryMethodAction({ commit, dispatch }, deliveryMethod) {
+      dispatch('getPaymentMethodsAction', deliveryMethod.name);
+      commit('setPaymentMethod', null);
+      commit('setDeliveryMethod', deliveryMethod);
+    },
+    setPaymentMethodAction({ commit }, paymentMethod) {
+      commit('setPaymentMethod', paymentMethod);
+    },
     getCartAction({ commit, state }) {
       return axios
         .get('/api/cart', {
@@ -112,10 +244,9 @@ export default {
         });
       // TODO .catch(captains.error)
     },
-    placeOrder({ commit, state }, checkoutDetails) {
-      checkoutDetails.cartAccessToken = state.cart.cartAccessToken;
+    placeOrder({ commit, getters }) {
       return axios
-        .post('/api/orders', checkoutDetails)
+        .post('/api/orders', getters.placeOrderModel)
         .then((response) => {
           if (response.status !== 201) throw Error(response.message);
           let order = response.data;
@@ -129,6 +260,7 @@ export default {
             cartAccessToken: '',
             numberOfItems: 0,
           }); // todo actual cart cleaning?
+          commit('resetCheckout');
           return order;
         });
       // TODO .catch(captains.error)

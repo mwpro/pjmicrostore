@@ -16,7 +16,7 @@
     <PackageReference Include="Serilog.Sinks.File" Version="4.0.0" />
     
     <PackageReference Include="IdentityServer4" Version="2.5.1" />
-    <PackageReference Include="IdentityServer4.AspNetIdentity" Version="2.5.1" />
+    <PackageReference Include="IdentityServer4.AspNetIdentity" Version="2.5.2" />
     
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.2.6" PrivateAssets="all">

@@ -75,6 +75,8 @@ namespace Checkout.Orders
 
             services.AddSingleton<IBus>(provider => provider.GetRequiredService<IBusControl>());
             services.AddTransient<ICartsService, CartsService>();
+            services.AddTransient<IPaymentService, PaymentService>();
+            services.AddTransient<IShippingService, ShippingService>();
             services.AddTransient<IDatabase, SqlDatabase>(provider => new SqlDatabase(Configuration.GetConnectionString("DefaultConnection")));
             services.AddTransient<PaymentCompletedEventConsumer>();
             services.AddTransient<PaymentCreatedEventConsumer>();

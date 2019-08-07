@@ -14,19 +14,25 @@ namespace Checkout.Orders.CommandHandlers
     public class PlaceOrderCommandHandler : IRequestHandler<PlaceOrderCommand, PlaceOrderCommandResponse>
     {
         private readonly ICartsService _cartsService;
+        private readonly IPaymentService _paymentService;
+        private readonly IShippingService _shippingService;
         private readonly OrdersContext _ordersContext;
         private readonly IBus _bus;
 
-        public PlaceOrderCommandHandler(ICartsService cartsService, OrdersContext ordersContext, IBus bus)
+        public PlaceOrderCommandHandler(ICartsService cartsService, OrdersContext ordersContext, IBus bus, IPaymentService paymentService, IShippingService shippingService)
         {
             _cartsService = cartsService;
             _ordersContext = ordersContext;
             _bus = bus;
+            _paymentService = paymentService;
+            _shippingService = shippingService;
         }
 
         public async Task<PlaceOrderCommandResponse> Handle(PlaceOrderCommand request, CancellationToken cancellationToken)
         {
             var cart = await _cartsService.GetCart(request.CartAccessToken);
+            var shippingMethod = await _shippingService.GetShippingMethod(request.DeliveryMethod); // todo delviery/shipping mismatch
+            var paymentMethod = await _paymentService.GetPaymentMethod(request.PaymentMethod, shippingMethod.Name);
 
             var order = new Order(
                 new Customer(request.CustomerId, request.Email, request.Phone), 

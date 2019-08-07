@@ -30,7 +30,7 @@ namespace Checkout.Orders.Controllers
         public async Task<IActionResult> PlaceOrder(PlaceOrderModel placeOrderModel)
         {
             // todo validation
-            var createdOrder = await _mediator.Send(new PlaceOrderCommand(placeOrderModel.CartAccessToken, placeOrderModel.PaymentMethod, placeOrderModel.Email,
+            var createdOrder = await _mediator.Send(new PlaceOrderCommand(placeOrderModel.CartAccessToken, placeOrderModel.ShippingMethod, placeOrderModel.PaymentMethod, placeOrderModel.Email,
                 placeOrderModel.ShippingDetails.ToOrderAddress(), placeOrderModel.BillingDetails.ToOrderAddress(), GetUserId(), placeOrderModel.Phone));
 
             // todo this if does not look good here,
@@ -114,7 +114,8 @@ namespace Checkout.Orders.Controllers
 
     public class PlaceOrderModel
     {
-        public string PaymentMethod { get; set; } // todo method id or code?
+        public string PaymentMethod { get; set; }
+        public string ShippingMethod { get; set; }
 
         public Guid CartAccessToken { get; set; }
 

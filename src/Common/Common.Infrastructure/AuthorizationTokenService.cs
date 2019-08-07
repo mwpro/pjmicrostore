@@ -63,7 +63,14 @@ namespace Common.Infrastructure
         {
             if (!_memoryCache.TryGetValue(DiscoveryData, out _discoveryResponse))
             {
-                _discoveryResponse = await _client.GetDiscoveryDocumentAsync(_configuration.GetValue<string>("Identity:Authority"));
+                _discoveryResponse = await _client.GetDiscoveryDocumentAsync(new DiscoveryDocumentRequest()
+                {
+                    Address = _configuration.GetValue<string>("Identity:Authority"),
+                    Policy =
+                    {
+                        RequireHttps = _configuration.GetValue<bool>("Identity:RequireHttpsMetadata")
+                    }
+                });
                 if (_discoveryResponse.IsError)
                 {
                     throw _discoveryResponse.Exception;

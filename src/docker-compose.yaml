@@ -12,6 +12,7 @@ services:
       - RabbitMq__Host=rabbitmq
       - ConnectionStrings__DefaultConnection=Server=${SQLSERVER_ADDRESS};Database=Checkout.Cart;User Id=${SQLSERVER_USERNAME};Password=${SQLSERVER_PASSWORD};ConnectRetryCount=0
       - Dependencies__Products=http://catalog
+      - Identity__Authority=http://identityapi
   orders:
     container_name: orders
     networks:
@@ -24,6 +25,9 @@ services:
       - RabbitMq__Host=rabbitmq
       - ConnectionStrings__DefaultConnection=Server=${SQLSERVER_ADDRESS};Database=Checkout.Orders;User Id=${SQLSERVER_USERNAME};Password=${SQLSERVER_PASSWORD};ConnectRetryCount=0
       - Dependencies__Cart=http://cart
+      - Dependencies__Shipping=http://shipping
+      - Dependencies__Payment=http://payments
+      - Identity__Authority=http://identityapi
   payments:    
     container_name: payments
     networks:
@@ -35,6 +39,18 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - RabbitMq__Host=rabbitmq
       - ConnectionStrings__DefaultConnection=Server=${SQLSERVER_ADDRESS};Database=Checkout.Payments;User Id=${SQLSERVER_USERNAME};Password=${SQLSERVER_PASSWORD};ConnectRetryCount=0
+      - Identity__Authority=http://identityapi
+  shipping:    
+    container_name: shipping
+    networks:
+      - pjmicrostore
+    build:
+      context: .
+      dockerfile: Checkout/Checkout.Shipping/Dockerfile
+    environment: 
+      - ASPNETCORE_ENVIRONMENT=Development
+      - RabbitMq__Host=rabbitmq
+      - Identity__Authority=http://identityapi
   frontapigateway:    
     container_name: frontapigateway
     networks:
@@ -52,11 +68,29 @@ services:
       - GatewayServices__Orders__DownstreamPort=80
       - GatewayServices__Payments__DownstreamHost=payments
       - GatewayServices__Payments__DownstreamPort=80
+      - GatewayServices__Identity__DownstreamHost=identityapi
+      - GatewayServices__Identity__DownstreamPort=80
+      - GatewayServices__Shipping__DownstreamHost=shipping
+      - GatewayServices__Shipping__DownstreamPort=80
     build:
       context: .
       dockerfile: External/External.FrontApiGateway/Dockerfile
     ports: 
       - 9090:80
+  emailsender:    
+    container_name: emailsender
+    networks:
+      - pjmicrostore
+    build:
+      context: .
+      dockerfile: Common/Common.EmailSender/Dockerfile
+    environment: 
+      - ASPNETCORE_ENVIRONMENT=Development
+      - RabbitMq__Host=rabbitmq
+      - ConnectionStrings__DefaultConnection=Server=${SQLSERVER_ADDRESS};Database=Identity;User Id=${SQLSERVER_USERNAME};Password=${SQLSERVER_PASSWORD};ConnectRetryCount=0
+      - Identity__Authority=http://identityapi
+      - Dependencies__Orders=http://orders
+      - Emails__Smtp__Host=smtp
   identityapi:    
     container_name: identityapi
     networks:
@@ -70,6 +104,9 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - RabbitMq__Host=rabbitmq
       - ConnectionStrings__DefaultConnection=Server=${SQLSERVER_ADDRESS};Database=Identity;User Id=${SQLSERVER_USERNAME};Password=${SQLSERVER_PASSWORD};ConnectRetryCount=0
+      - Identity__Authority=http://identityapi
+      - IdentityServer__IssuerUri=http://identityapi
+      - Dependencies__Orders=http://orders
   catalog:    
     container_name: catalog
     networks:
@@ -81,6 +118,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - RabbitMq__Host=rabbitmq
       - ConnectionStrings__DefaultConnection=Server=${SQLSERVER_ADDRESS};Database=Products.Catalog;User Id=${SQLSERVER_USERNAME};Password=${SQLSERVER_PASSWORD};ConnectRetryCount=0
+      - Identity__Authority=http://identityapi
   photos:    
     container_name: photos
     networks:
@@ -92,6 +130,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - RabbitMq__Host=rabbitmq
       - ConnectionStrings__DefaultConnection=Server=${SQLSERVER_ADDRESS};Database=Products.Photos;User Id=${SQLSERVER_USERNAME};Password=${SQLSERVER_PASSWORD};ConnectRetryCount=0
+      - Identity__Authority=http://identityapi
   search:    
     container_name: search
     networks:
@@ -105,7 +144,7 @@ services:
       - Dependencies__Products=http://catalog
       - ElasticSearch__Host=http://elasticsearch
       - ElasticSearch__Port=9200
-  
+      - Identity__Authority=http://identityapi  
 networks:
   pjmicrostore:
     name: pjmicrostore

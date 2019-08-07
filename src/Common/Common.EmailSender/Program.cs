@@ -29,6 +29,7 @@ namespace Common.EmailSender
                 {
                     config.AddJsonFile("appsettings.json", optional: true);
                     config.AddJsonFile($"appsettings.{hostContext.HostingEnvironment.EnvironmentName}.json", optional: true);
+                    config.AddEnvironmentVariables();
                 })
                 .ConfigureServices((hostContext, services) =>
                 {

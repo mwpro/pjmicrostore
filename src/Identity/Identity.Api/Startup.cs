@@ -59,6 +59,7 @@ namespace Identity.Api
 
             var builder = services.AddIdentityServer(options =>
             {
+                options.IssuerUri = Configuration.GetValue<string>("IdentityServer:IssuerUri");
                 options.Events.RaiseErrorEvents = true;
                 options.Events.RaiseInformationEvents = true;
                 options.Events.RaiseFailureEvents = true;

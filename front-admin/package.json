@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "axios": "^0.18.1",
-    "bootstrap-vue": "^2.0.0-rc.16",
+    "bootstrap-vue": "^2.0.0-rc.27",
     "core-js": "^2.6.5",
     "oidc-client": "^1.7.1",
     "vue": "^2.6.6",

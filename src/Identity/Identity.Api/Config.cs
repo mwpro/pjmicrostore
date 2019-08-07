@@ -4,8 +4,10 @@
 
 using IdentityServer4.Models;
 using System.Collections.Generic;
+using System.Linq;
 using Identity.Contracts;
 using IdentityServer4;
+using Microsoft.Extensions.Configuration;
 
 namespace Identity.Api
 {
@@ -41,31 +43,31 @@ namespace Identity.Api
             };
         }
 
-        public static IEnumerable<Client> GetClients()
+        public static IEnumerable<Client> GetClients(IConfiguration configuration)
         {
             return new[]
             {
                 // client credentials flow client
                 new Client
                 {
-                    ClientId = "orders",
+                    ClientId = configuration.GetValue<string>("ClientCredentialClients:Orders:ClientId"),
                     AllowedGrantTypes = GrantTypes.ClientCredentials,
-                    ClientSecrets = {new Secret("ordersSecret".Sha256())},
-                    AllowedScopes = { "carts" }
+                    ClientSecrets = { new Secret(configuration.GetValue<string>("ClientCredentialClients:Orders:ClientSecret").Sha256()) },
+                    AllowedScopes = { Scopes.Carts }
                 },
                 new Client
                 {
-                    ClientId = "emailSender",
+                    ClientId = configuration.GetValue<string>("ClientCredentialClients:EmailSender:ClientId"),
                     AllowedGrantTypes = GrantTypes.ClientCredentials,
-                    ClientSecrets = {new Secret("emailSenderSecret".Sha256())},
-                    AllowedScopes = { "orders" }
+                    ClientSecrets = { new Secret(configuration.GetValue<string>("ClientCredentialClients:EmailSender:ClientSecret").Sha256()) },
+                    AllowedScopes = { Scopes.Orders }
                 },
                 new Client
                 {
-                    ClientId = "identityApi",
+                    ClientId = configuration.GetValue<string>("ClientCredentialClients:IdentityApi:ClientId"),
                     AllowedGrantTypes = GrantTypes.ClientCredentials,
-                    ClientSecrets = {new Secret("identityApiSecret".Sha256())},
-                    AllowedScopes = { "orders" }
+                    ClientSecrets = { new Secret(configuration.GetValue<string>("ClientCredentialClients:IdentityApi:ClientSecret").Sha256()) },
+                    AllowedScopes = { Scopes.Orders }
                 },
                 // SPA client using Code flow
                 new Client
@@ -83,15 +85,10 @@ namespace Identity.Api
 
                     AllowAccessTokensViaBrowser = true,
 
-                    RedirectUris =
-                    {
-                        "http://localhost:8080/callback",
-                        "http://localhost:8080/silentRenew",
-                        "http://localhost:8080/popupCallback"
-                    },
-                    PostLogoutRedirectUris = {"http://localhost:8080"},
-                    AllowedCorsOrigins = {"http://localhost:8080"},
-                    
+                    RedirectUris = configuration.GetSection("SpaClients:FrontStore:RedirectUris").AsEnumerable().Where(x => x.Value != null).Select(x => x.Value).ToList(),
+                    PostLogoutRedirectUris = configuration.GetSection("SpaClients:FrontStore:PostLogoutRedirectUris").AsEnumerable().Where(x => x.Value != null).Select(x => x.Value).ToList(),
+                    AllowedCorsOrigins = configuration.GetSection("SpaClients:FrontStore:AllowedCorsOrigins").AsEnumerable().Where(x => x.Value != null).Select(x => x.Value).ToList(),
+
                     AllowedScopes =
                     {
                         IdentityServerConstants.StandardScopes.OpenId,
@@ -115,13 +112,9 @@ namespace Identity.Api
 
                     AllowAccessTokensViaBrowser = true,
 
-                    RedirectUris =
-                    {
-                        "http://localhost:8081/callback",
-                        "http://localhost:8081/silentRenew"
-                    },
-                    PostLogoutRedirectUris = {"http://localhost:8081"},
-                    AllowedCorsOrigins = {"http://localhost:8081"},
+                    RedirectUris = configuration.GetSection("SpaClients:FrontAdmin:RedirectUris").AsEnumerable().Where(x => x.Value != null).Select(x => x.Value).ToList(),
+                    PostLogoutRedirectUris = configuration.GetSection("SpaClients:FrontAdmin:PostLogoutRedirectUris").AsEnumerable().Where(x => x.Value != null).Select(x => x.Value).ToList(),
+                    AllowedCorsOrigins = configuration.GetSection("SpaClients:FrontAdmin:AllowedCorsOrigins").AsEnumerable().Where(x => x.Value != null).Select(x => x.Value).ToList(),
                     
                     AllowedScopes =
                     {
@@ -131,7 +124,7 @@ namespace Identity.Api
                         Scopes.Pjmicrostore
                     }
                 }
-            };
+            }.ToList();
         }
     }
 }

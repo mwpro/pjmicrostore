@@ -32,7 +32,7 @@ namespace Checkout.Orders.CommandHandlers
         {
             var cart = await _cartsService.GetCart(request.CartAccessToken);
             var shippingMethod = await _shippingService.GetShippingMethod(request.DeliveryMethod); // todo delviery/shipping mismatch
-            var paymentMethod = await _paymentService.GetPaymentMethod(request.PaymentMethod, shippingMethod.Name);
+            var paymentMethod = await _paymentService.GetPaymentMethod(request.PaymentMethod, shippingMethod.Name); // todo price / fee mismatch
 
             var order = new Order(
                 new Customer(request.CustomerId, request.Email, request.Phone), 
@@ -40,7 +40,9 @@ namespace Checkout.Orders.CommandHandlers
                 new CustomerAddress(request.BillingDetails.FirstName, request.BillingDetails.LastName,
                     request.BillingDetails.Address, request.BillingDetails.City, request.BillingDetails.Zip),
                 new CustomerAddress(request.ShippingDetails.FirstName, request.ShippingDetails.LastName,
-                    request.ShippingDetails.Address, request.ShippingDetails.City, request.ShippingDetails.Zip)
+                    request.ShippingDetails.Address, request.ShippingDetails.City, request.ShippingDetails.Zip),
+                new Delivery(shippingMethod.Name, shippingMethod.Price), 
+                new Payment(paymentMethod.Name, paymentMethod.Fee)
             );
 
             _ordersContext.Add(order);
@@ -54,8 +56,8 @@ namespace Checkout.Orders.CommandHandlers
                 OrderId = order.Id,
                 SourceCartId = cart.CartId,
                 Amount = order.Total,
-                PaymentMethod = request.PaymentMethod,
-                CustomerId = request.CustomerId,
+                PaymentMethod = order.Payment.Name,
+                CustomerId = order.Customer.CustomerId,
                 PaymentReference = paymentReference.Value
             });
 

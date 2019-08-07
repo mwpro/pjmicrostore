@@ -23,19 +23,13 @@ namespace Checkout.Orders.Domain
             modelBuilder.Entity<Order>()
                 .OwnsOne(o => o.Customer);
             modelBuilder.Entity<Order>()
+                .OwnsOne(o => o.Delivery);
+            modelBuilder.Entity<Order>()
+                .OwnsOne(o => o.Payment);
+            modelBuilder.Entity<Order>()
                 .OwnsOne(o => o.BillingAddress);
             modelBuilder.Entity<Order>()
                 .OwnsOne(o => o.ShippingAddress);
-
-            //modelBuilder.Entity<AttributeValue>()
-            //    .HasOne(x => x.Product)
-            //    .WithMany(x => x.Attributes)
-            //    .HasForeignKey(x => x.ProductId);
-
-            //modelBuilder.Entity<AttributeValue>()
-            //    .HasOne(x => x.Attribute)
-            //    .WithMany()
-            //    .HasForeignKey(x => x.AttributeId);
 
             base.OnModelCreating(modelBuilder);
         }

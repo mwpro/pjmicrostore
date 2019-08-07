@@ -43,6 +43,10 @@ SELECT
     o.[ShippingAddress_FirstName] AS [FirstName],
     o.[ShippingAddress_LastName] AS [LastName],
     o.[ShippingAddress_Zip] AS [Zip],
+    o.[Delivery_Name] AS [Name],
+    o.[Delivery_Fee] AS [Fee],
+    o.[Payment_Name] AS [Name],
+    o.[Payment_Fee] AS [Fee],
     ol.[ProductId],
     ol.[ProductName],
     ol.[ProductPrice],
@@ -62,8 +66,8 @@ WHERE o.Id = @orderId AND o.Customer_CustomerId = @customerId";
             return await _database.ExecuteOnConnection(async connection =>
             {
                 OrderDetails result = null;
-                await connection.QueryAsync<OrderDetails, OrderDetails.OrderDetailsCustomer, OrderDetails.OrderDetailsAddress, OrderDetails.OrderDetailsAddress, OrderDetails.OrderDetailsLine, OrderDetails>
-                    (GetOrderQuerySql, (details, customer, billingAddress, shippingAddress, line) =>
+                await connection.QueryAsync<OrderDetails, OrderDetails.OrderDetailsCustomer, OrderDetails.OrderDetailsAddress, OrderDetails.OrderDetailsAddress, OrderDetails.OrderDetailsShipping, OrderDetails.OrderDetailsPayment, OrderDetails.OrderDetailsLine, OrderDetails>
+                    (GetOrderQuerySql, (details, customer, billingAddress, shippingAddress, shipping, payments, line) =>
                     {
                         if (result == null)
                             result = details;
@@ -71,9 +75,13 @@ WHERE o.Id = @orderId AND o.Customer_CustomerId = @customerId";
                         result.Customer = customer;
                         result.BillingAddress = billingAddress;
                         result.ShippingAddress = shippingAddress;
+                        result.Payment = payments;
+                        result.Shipping = shipping;
                         return details;
                     }, new { orderId = request.OrderId, customerId = request.CustomerId },
-                    splitOn: "Customer, Address, Address, ProductId");
+                    splitOn: "Customer, Address, Address, Name, Name, ProductId");
+
+                result.Total = result.CalculateTotal();
 
                 return result;
             });

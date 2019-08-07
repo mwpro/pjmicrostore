@@ -15,7 +15,10 @@ namespace Checkout.Orders.Contracts.ApiModels
         public DateTime CreateDate { get; set; } // todo rename to createDate utc
         public string Status { get; set; }
 
-        public decimal Total => OrderLines.Sum(x => x.Value);
+        public decimal Total { get; set; }
+
+        public OrderDetailsShipping Shipping { get; set; }
+        public OrderDetailsPayment Payment { get; set; }
 
         public IList<OrderDetailsLine> OrderLines { get; set; }
         public OrderDetailsCustomer Customer { get; set; }
@@ -45,6 +48,18 @@ namespace Checkout.Orders.Contracts.ApiModels
             public Guid? CustomerId { get; set; }
             public string Email { get; set; }
             public string Phone { get; set; }
+        }
+
+        public class OrderDetailsShipping
+        {
+            public string Name { get; set; }
+            public decimal Fee { get; set; }
+        }
+
+        public class OrderDetailsPayment
+        {
+            public string Name { get; set; }
+            public decimal Fee { get; set; }
         }
     }
 }

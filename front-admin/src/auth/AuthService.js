@@ -6,7 +6,7 @@ const authConfig = {
   client_id: 'frontAdmin',
   redirect_uri: 'http://localhost:8081/callback',
   response_type: 'code',
-  scope: 'openid profile api1 IdentityServerApi roles',
+  scope: 'openid profile pjmicrostore',
   post_logout_redirect_uri: 'http://localhost:8081',
   userStore: new WebStorageStateStore({ store: window.localStorage }),
 

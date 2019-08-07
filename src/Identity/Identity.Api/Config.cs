@@ -17,7 +17,6 @@ namespace Identity.Api
             {
                 new IdentityResources.OpenId(),
                 new IdentityResources.Profile(),
-                new IdentityResource("roles", new[] { "role"} ), 
             };
         }
 
@@ -25,17 +24,20 @@ namespace Identity.Api
         {
             return new ApiResource[]
             {
-                new ApiResource("api1", "My API #1")
+                new ApiResource(Scopes.Pjmicrostore)
                 {
-                    UserClaims = new [] { "role" }
+                    UserClaims = new [] {
+                        Scopes.Role,
+                        IdentityServerConstants.LocalApi.ScopeName
+                    }
                 },
                 new ApiResource(IdentityServerConstants.LocalApi.ScopeName), 
-                new ApiResource("carts"), 
-                new ApiResource("orders"), 
-                new ApiResource("payments"), 
-                new ApiResource("identities"), 
-                new ApiResource("products"), 
-                new ApiResource("photos"), 
+                new ApiResource(Scopes.Carts), 
+                new ApiResource(Scopes.Orders), 
+                new ApiResource(Scopes.Payments), 
+                new ApiResource(Scopes.Identities), 
+                new ApiResource(Scopes.Products), 
+                new ApiResource(Scopes.Photos), 
             };
         }
 
@@ -95,8 +97,7 @@ namespace Identity.Api
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
                         IdentityServerConstants.LocalApi.ScopeName,
-                        "api1",
-                        "roles"
+                        Scopes.Pjmicrostore
                     }
                 },
                 new Client
@@ -127,8 +128,7 @@ namespace Identity.Api
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
                         IdentityServerConstants.LocalApi.ScopeName,
-                        "api1",
-                        "roles"
+                        Scopes.Pjmicrostore
                     }
                 }
             };

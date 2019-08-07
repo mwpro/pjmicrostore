@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Checkout.Cart.Consumers;
 using Checkout.Cart.Domain;
 using Checkout.Cart.Services;
+using Common.Infrastructure;
 using GreenPipes;
 using Identity.Contracts;
 using IdentityServer4.AccessTokenValidation;
@@ -32,20 +33,11 @@ namespace Checkout.Cart
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             
-            services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
-                .AddIdentityServerAuthentication(options =>
-                {
-                    options.Authority = "http://localhost:5000";
-                    options.RequireHttpsMetadata = false;
-                    options.JwtValidationClockSkew = TimeSpan.FromSeconds(15);
-                    //options.Audience = "api1";
-                });
+            services.SetupTokenValidation(Configuration);
             services.AddAuthorization(options => { options.AddRequireScopePolicy(Scopes.Carts); });
 
-            var cs = new SqlConnectionStringBuilder(
-                "Server=sqlserver;Database=Checkout.Carts;User Id=sa;Password=sqlDevPassw0rd;ConnectRetryCount=0");
             services.AddDbContext<CartContext>
                 (options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
@@ -74,7 +66,7 @@ namespace Checkout.Cart
             services.AddTransient<ProductUpdatedConsumer>();
             services.AddTransient<OrderPlacedConsumer>();
         }
-
+        
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {

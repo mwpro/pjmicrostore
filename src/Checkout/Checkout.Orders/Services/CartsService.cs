@@ -2,6 +2,7 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 using Checkout.Cart.Contracts.ApiModels;
+using Common.Infrastructure;
 using Flurl.Http;
 using IdentityModel.Client;
 using Microsoft.Extensions.Configuration;
@@ -16,45 +17,22 @@ namespace Checkout.Orders.Services
     public class CartsService : ICartsService
     {
         private readonly IConfiguration _configuration;
+        private readonly IAuthorizationTokenService _authorizationTokenService;
 
-        public CartsService(IConfiguration configuration)
+        public CartsService(IConfiguration configuration, IAuthorizationTokenService authorizationTokenService)
         {
             _configuration = configuration;
+            _authorizationTokenService = authorizationTokenService;
         }
 
         public async Task<CartDto> GetCart(Guid cartId)
         {
             var cart = await $"{_configuration.GetValue<string>("Dependencies:Cart")}/api/"
-                .WithOAuthBearerToken(await GetBearerToken())
+                .WithOAuthBearerToken(await _authorizationTokenService.GetBearerToken())
                 .AppendPathSegments("cart", cartId)
                 .GetJsonAsync<CartDto>();
 
             return cart;
-        }
-
-        private async Task<string> GetBearerToken()
-        {
-            var client = new HttpClient();
-            var disco = await client.GetDiscoveryDocumentAsync("http://localhost:5000");
-            if (disco.IsError)
-            {
-                throw disco.Exception;
-            }
-
-            var tokenResponse = await client.RequestClientCredentialsTokenAsync(new ClientCredentialsTokenRequest
-            {
-                Address = disco.TokenEndpoint,
-
-                ClientId = "orders",
-                ClientSecret = "ordersSecret"
-            });
-
-            if (tokenResponse.IsError)
-            {
-                throw tokenResponse.Exception;
-            }
-
-            return tokenResponse.AccessToken;
         }
     }
 }

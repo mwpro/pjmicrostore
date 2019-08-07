@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Common.EmailSender.Infrastructure;
 using Common.EmailSender.Orders;
+using Common.Infrastructure;
 using GreenPipes;
 using MassTransit;
 using Microsoft.Extensions.Configuration;
@@ -32,6 +33,7 @@ namespace Common.EmailSender
                 .ConfigureServices((hostContext, services) =>
                 {
                     services.AddLogging();
+                    services.SetupTokenService(hostContext.Configuration);
                     services.AddMassTransit(c =>
                     {
                         c.AddBus(provider => Bus.Factory.CreateUsingRabbitMq(

@@ -9,6 +9,7 @@ namespace Checkout.Payments.Domain
     {
         public PaymentsDbContext(DbContextOptions<PaymentsDbContext> options) : base(options)
         {
+            Database.Migrate();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

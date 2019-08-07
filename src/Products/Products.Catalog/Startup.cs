@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Common.Infrastructure;
 using GreenPipes;
 using Identity.Contracts;
 using IdentityServer4.AccessTokenValidation;
@@ -36,14 +37,7 @@ namespace Products.Catalog
                     options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore; // todo hmm, probably it only hides the problem
                 });
 
-            services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
-                .AddIdentityServerAuthentication(options =>
-                {
-                    options.Authority = "http://localhost:5000";
-                    options.RequireHttpsMetadata = false;
-                    options.JwtValidationClockSkew = TimeSpan.FromSeconds(15);
-                    //options.Audience = "api1";
-                });
+            services.SetupTokenValidation(Configuration);
             services.AddAuthorization(options => { options.AddAdminOnlyPolicy(); });
 
 

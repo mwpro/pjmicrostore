@@ -27,6 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\Common.Infrastructure\Common.Infrastructure.csproj" />
     <ProjectReference Include="..\..\Identity\Identity.Contracts\Identity.Contracts.csproj" />
     <ProjectReference Include="..\Checkout.Cart.Contracts\Checkout.Cart.Contracts.csproj" />
     <ProjectReference Include="..\Checkout.Orders.Contracts\Checkout.Orders.Contracts.csproj" />

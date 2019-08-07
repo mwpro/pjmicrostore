@@ -16,7 +16,7 @@
       <label
         class="custom-control-label"
         :for="deliveryMethod.name"
-      >{{ deliveryMethod.name }} - {{ deliveryMethod.price | currency }}</label>
+      >{{ deliveryMethod.name | dictionaryValue('deliveryMethod') }} - {{ deliveryMethod.price | currency }}</label>
     </div>
   </div>
 </template>

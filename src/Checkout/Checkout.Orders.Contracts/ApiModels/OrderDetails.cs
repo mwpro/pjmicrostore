@@ -15,6 +15,7 @@ namespace Checkout.Orders.Contracts.ApiModels
         public DateTime CreateDate { get; set; } // todo rename to createDate utc
         public string Status { get; set; }
 
+        public decimal ProductsTotal { get; set; }
         public decimal Total { get; set; }
 
         public OrderDetailsShipping Shipping { get; set; }

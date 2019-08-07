@@ -79,6 +79,7 @@ WHERE o.Id = @orderId";
                     splitOn: "Customer, Address, Address, Name, Name, ProductId");
 
                 result.Total = result.CalculateTotal();
+                result.ProductsTotal = result.CalculateProductsTotal();
 
                 return result;
             });

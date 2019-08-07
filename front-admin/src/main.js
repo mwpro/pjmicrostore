@@ -5,6 +5,7 @@ import App from './App.vue';
 import router from './router';
 import store from './store';
 import AuthService from './auth/AuthService';
+import dictionaries from './assets/Dictionaries';
 
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
@@ -20,6 +21,7 @@ Vue.filter('dateTime', (date) => {
   const d = new Date(date);
   return `${d.toLocaleDateString()} ${d.toLocaleTimeString()}`;
 });
+Vue.filter('dictionaryValue', (value, dictionaryName) => dictionaries.translate(dictionaryName, value));
 
 Axios.interceptors.request.use((config) => {
   if (Vue.prototype.$auth.isAuthenticated) {

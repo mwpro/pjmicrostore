@@ -15,7 +15,7 @@
       <label
         class="custom-control-label"
         :for="paymentMethod.name"
-      >{{ paymentMethod.name }} - {{ paymentMethod.fee | currency}}</label>
+      >{{ paymentMethod.name | dictionaryValue('paymentMethods') }} - {{ paymentMethod.fee | currency}}</label>
     </div>
   </div>
 </template>

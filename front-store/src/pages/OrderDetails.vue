@@ -66,12 +66,11 @@
                   <div class="card-body">
                     <h5 class="card-title">Płatność</h5>
                     <p>
-                      Wartość towarów: {{ order.total | currency }}
-                      <br>Koszt przesłki: ...
+                      Wartość towarów: {{ order.productsTotal | currency }}
+                      <br>Przesyłka: {{ order.shipping.name | dictionaryValue('deliveryMethod') }} - {{ order.shipping.fee | currency }}
+                      <br>Płatność:  {{ order.payment.name | dictionaryValue('paymentMethods') }} - {{ order.payment.fee | currency }}
                       <br>
                       Razem: {{ order.total | currency }}
-                      <br>Metoda płatności: ...
-                      <br>Status płatności: ...
                       <br>
                     </p>
                   </div>
@@ -80,7 +79,7 @@
               <div class="col-sm-6">
                 <div class="card">
                   <div class="card-body">
-                    <h5 class="card-title">Przesyłka</h5>Sposób wysyłki: ...
+                    <h5 class="card-title">Przesyłka</h5>Sposób wysyłki: {{ order.shipping.name | dictionaryValue('deliveryMethod') }}
                     <br>Adres do wysyłki:
                     <br>
                     {{ order.shippingAddress.firstName }} {{ order.shippingAddress.lastName }}
@@ -114,13 +113,14 @@
 </template>
 
 <script>
-import OrderStatus from "../components/OrderStatus";
+import OrderStatus from '../components/OrderStatus';
 
 export default {
   components: {
-    OrderStatus
+    OrderStatus,
   },
-  data() {return {
+  data() {
+    return {
       fieldsConfig: [
         {
           key: 'productId',

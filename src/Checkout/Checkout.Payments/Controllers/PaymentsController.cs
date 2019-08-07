@@ -42,6 +42,23 @@ namespace Checkout.Payments.Controllers
         }
 
         [AllowAnonymous]
+        [HttpGet("methods/{paymentMethodName}")]
+        public async Task<IActionResult> GetMethod(string paymentMethodName, string deliveryMethod)
+        {
+            var paymentMethod = PaymentMethod.GetAll.FirstOrDefault(x => x.Name == paymentMethodName && x.SupportedDeliveryMethods.Any(y => y.DeliveryMethodName == deliveryMethod));
+            if (paymentMethod == null)
+                return NotFound();
+
+            var price = paymentMethod.SupportedDeliveryMethods.FirstOrDefault(sdm =>
+                sdm.DeliveryMethodName.Equals(deliveryMethod, StringComparison.InvariantCultureIgnoreCase));
+            return Ok(new PaymentMethodDto()
+            {
+                Name = paymentMethod.Name,
+                Fee = price.PaymentFee
+            });
+        }
+
+        [AllowAnonymous]
         [HttpGet("{paymentReference}")]
         public ActionResult<string> Get(Guid paymentReference)
         {

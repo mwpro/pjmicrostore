@@ -31,6 +31,7 @@
     <ProjectReference Include="..\Checkout.Cart.Contracts\Checkout.Cart.Contracts.csproj" />
     <ProjectReference Include="..\Checkout.Orders.Contracts\Checkout.Orders.Contracts.csproj" />
     <ProjectReference Include="..\Checkout.Payments.Contracts\Checkout.Payments.Contracts.csproj" />
+    <ProjectReference Include="..\Checkout.Shipping.Contracts\Checkout.Shipping.Contracts.csproj" />
   </ItemGroup>
 
 </Project>

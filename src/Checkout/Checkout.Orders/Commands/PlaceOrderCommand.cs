@@ -5,9 +5,11 @@ namespace Checkout.Orders.Commands
 {
     public class PlaceOrderCommand : IRequest<PlaceOrderCommandResponse>
     {
-        public PlaceOrderCommand(Guid cartAccessToken, string paymentMethod, string email, OrderAddress shippingDetails, OrderAddress billingDetails, Guid? customerId, string phone)
+        public PlaceOrderCommand(Guid cartAccessToken, string deliveryMethod, string paymentMethod, string email, OrderAddress shippingDetails, 
+            OrderAddress billingDetails, Guid? customerId, string phone)
         {
             CartAccessToken = cartAccessToken;
+            DeliveryMethod = deliveryMethod;
             PaymentMethod = paymentMethod;
             Email = email;
             ShippingDetails = shippingDetails;
@@ -19,7 +21,8 @@ namespace Checkout.Orders.Commands
         public Guid CartAccessToken { get; }
         public Guid? CustomerId { get; }
 
-        public string PaymentMethod { get; } // todo method id or code?
+        public string DeliveryMethod { get; }
+        public string PaymentMethod { get; }
 
         public string Email { get; }
         public string Phone { get; }

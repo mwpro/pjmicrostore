@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Linq;
+using Checkout.Shipping.Contracts.ApiModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Checkout.Shipping.Controllers
@@ -7,19 +8,19 @@ namespace Checkout.Shipping.Controllers
     [ApiController]
     public class ShippingController : ControllerBase
     {
-        private static PaymentMethodDto[] PaymentMethods = new[]
+        private static readonly ShippingMethodDto[] ShippingMethods = new[]
         {
-            new PaymentMethodDto()
+            new ShippingMethodDto()
             {
                 Name = "StorePickup",
                 Price = 0.00m
             },
-            new PaymentMethodDto()
+            new ShippingMethodDto()
             {
                 Name = "Courier",
                 Price = 20.00m
             },
-            new PaymentMethodDto()
+            new ShippingMethodDto()
             {
                 Name = "Post",
                 Price = 10.00m
@@ -29,15 +30,18 @@ namespace Checkout.Shipping.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(PaymentMethods);
+            return Ok(ShippingMethods);
         }
-    }
 
-    public class PaymentMethodDto
-    {
-        public string Name { get; set; }
 
-        public decimal Price { get; set; }
-         
+        [HttpGet("{shippingMethodName}")]
+        public IActionResult GetMethod(string shippingMethodName)
+        {
+            var shippingMethod = ShippingMethods.FirstOrDefault(x => x.Name == shippingMethodName);
+            if (shippingMethod == null)
+                return NotFound();
+
+            return Ok(shippingMethod);
+        }
     }
 }

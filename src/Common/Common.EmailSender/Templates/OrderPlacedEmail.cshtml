@@ -9,7 +9,19 @@
 <p>Zamówienie numer <strong>@Model.Id</strong> z dnia @Model.CreateDate</p>
 
 <table role="presentation" border="0" cellpadding="0" cellspacing="0">
-
+    <thead>
+        <tr>
+            <td>
+                Produkt
+            </td>
+            <td align="center">
+                Ilość
+            </td>
+            <td align="right">
+                Wartość
+            </td>
+        </tr>
+    </thead>
     <tbody>
         @foreach (var orderLine in Model.OrderLines)
         {
@@ -17,10 +29,10 @@
                 <td>
                     @orderLine.ProductName
                 </td>
-                <td align="right">
+                <td align="center">
                     @orderLine.Quantity
                 </td>
-                <td align="center">
+                <td align="right">
                     @orderLine.Value zł
                 </td>
             </tr>
@@ -28,9 +40,25 @@
         <tr><td>&nbsp;</td></tr>
         <tr>
             <td colspan="2" align="right">
+                Przesyłka
+            </td>
+            <td align="right">
+                @Model.Shipping.Fee zł
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" align="right">
+                Płatność
+            </td>
+            <td align="right">
+                @Model.Payment.Fee zł
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" align="right">
                 Razem
             </td>
-            <td align="center">
+            <td align="right">
                 @Model.Total zł
             </td>
         </tr>

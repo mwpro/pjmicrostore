@@ -22,11 +22,11 @@ namespace Checkout.Orders.Queries
     o.Id, 
     o.CreateDate AS CreateDateUtc,
     Customer_Email AS Customer,
-    SUM(ol.ProductPrice * ol.Quantity) AS Amount,
+    (SUM(ol.ProductPrice * ol.Quantity) + o.Payment_Fee + o.Delivery_Fee) AS Amount,
     o.Status_Name AS Status
 FROM [Order] o
 LEFT JOIN OrderLines ol ON o.Id = ol.OrderId
-GROUP BY o.Id, o.CreateDate, o.Customer_Email, o.Status_Name
+GROUP BY o.Id, o.CreateDate, o.Customer_Email, o.Status_Name, o.Payment_Fee, o.Delivery_Fee
 ORDER BY o.CreateDate DESC";
 
         public GetOrderListQueryHandler(IDatabase database)

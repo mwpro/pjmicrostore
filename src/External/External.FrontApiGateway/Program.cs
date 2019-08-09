@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Microsoft.AspNetCore;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -33,11 +35,18 @@ namespace External.FrontApiGateway
                 .ConfigureServices((webHost, s) =>
                 {
                     s.AddOcelot();
+                    s.AddCors(options => options.AddDefaultPolicy(new CorsPolicy()
+                    {
+                        // todo
+                        Origins = {"*"},
+                        Methods = {"*"},
+                        Headers = {"*"}
+                    }));
                     s.AddGatewayServicesFromConfiguration();
                 })
                 .Configure(app =>
                 {
-                    app.UseOcelot().Wait();
+                    app.UseCors().UseOcelot().Wait();
                 });
     }
 

@@ -12,6 +12,18 @@ services:
       - API_URL=http://localhost:9090
       - APP_URL=http://localhost:8080
       - AUTH_URL=http://localhost:5000
+  frontadmin:
+    container_name: frontadmin
+    networks:
+      - pjmicrostore
+    ports: 
+      - 8081:80
+    build:
+      context: ../front-admin/.
+    environment: 
+      - API_URL=http://localhost:9091
+      - APP_URL=http://localhost:8081
+      - AUTH_URL=http://localhost:5000
   cart:
     container_name: cart
     networks:

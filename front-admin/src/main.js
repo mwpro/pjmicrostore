@@ -23,6 +23,7 @@ Vue.filter('dateTime', (date) => {
 });
 Vue.filter('dictionaryValue', (value, dictionaryName) => dictionaries.translate(dictionaryName, value));
 
+Axios.defaults.baseURL = process.env.VUE_APP_API_URL;
 Axios.interceptors.request.use((config) => {
   if (Vue.prototype.$auth.isAuthenticated) {
     config.headers.Authorization = `Bearer ${Vue.prototype.$auth.accessToken}`;

@@ -10,6 +10,7 @@ namespace Products.Catalog.Domain
     {
         public ProductsContext(DbContextOptions<ProductsContext> options) : base(options)
         {
+            Database.Migrate();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

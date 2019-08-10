@@ -4,6 +4,7 @@
 
 using System.Threading;
 using System.Threading.Tasks;
+using Common.Infrastructure;
 using GreenPipes;
 using Identity.Api.Consumers;
 using Identity.Api.Data;
@@ -38,7 +39,9 @@ namespace Identity.Api
         {
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            
+
+            services.SetupTokenService(Configuration);
+
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
@@ -56,6 +59,7 @@ namespace Identity.Api
 
             var builder = services.AddIdentityServer(options =>
             {
+                options.IssuerUri = Configuration.GetValue<string>("IdentityServer:IssuerUri");
                 options.Events.RaiseErrorEvents = true;
                 options.Events.RaiseInformationEvents = true;
                 options.Events.RaiseFailureEvents = true;
@@ -63,7 +67,7 @@ namespace Identity.Api
             })
                 .AddInMemoryIdentityResources(Config.GetIdentityResources())
                 .AddInMemoryApiResources(Config.GetApis())
-                .AddInMemoryClients(Config.GetClients())
+                .AddInMemoryClients(Config.GetClients(Configuration))
                 .AddAspNetIdentity<ApplicationUser>();
 
             //if (Environment.IsDevelopment())

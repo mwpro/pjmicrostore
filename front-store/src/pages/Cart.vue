@@ -52,7 +52,6 @@
         >Złóż zamówienie</button>
       </div>
     </div>
-    {{ placeOrderModel }}
   </div>
 </template>
 
@@ -99,9 +98,6 @@ export default {
       return (
         this.$store.state.cart.selectedPaymentMethod !== null && !this.$data.orderButtonClicked
       );
-    },
-    placeOrderModel() {
-      return this.$store.getters['cart/placeOrderModel'];
     },
   },
   created() {

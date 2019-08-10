@@ -12,6 +12,7 @@ namespace Checkout.Cart.Domain
     {
         public CartContext(DbContextOptions<CartContext> options) : base(options)
         {
+            Database.Migrate();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

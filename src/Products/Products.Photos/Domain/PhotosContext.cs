@@ -7,6 +7,7 @@ namespace Products.Photos.Domain
     {
         public PhotosContext(DbContextOptions<PhotosContext> options) : base(options)
         {
+            Database.Migrate();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

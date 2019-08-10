@@ -6,6 +6,7 @@ using Checkout.Orders.Consumers;
 using Checkout.Orders.Domain;
 using Checkout.Orders.Infrastructure;
 using Checkout.Orders.Services;
+using Common.Infrastructure;
 using GreenPipes;
 using Identity.Contracts;
 using IdentityServer4.AccessTokenValidation;
@@ -36,14 +37,8 @@ namespace Checkout.Orders
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
-                .AddIdentityServerAuthentication(options =>
-                {
-                    options.Authority = "http://localhost:5000";
-                    options.RequireHttpsMetadata = false;
-                    options.JwtValidationClockSkew = TimeSpan.FromSeconds(15);
-                    //options.Audience = "api1";
-                });
+            services.SetupTokenValidation(Configuration);
+            services.SetupTokenService(Configuration);
             services.AddAuthorization(options =>
             {
                 options.AddAdminOnlyPolicy();

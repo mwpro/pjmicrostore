@@ -2,20 +2,20 @@ import { UserManager, WebStorageStateStore, Oidc } from 'oidc-client';
 import Vue from 'vue';
 
 const authConfig = {
-  authority: 'http://localhost:5000',
+  authority: process.env.VUE_APP_AUTH_URL,
   client_id: 'frontStore',
-  redirect_uri: 'http://localhost:8080/callback',
+  redirect_uri: `${process.env.VUE_APP_APP_URL}/callback`,
   response_type: 'code',
-  scope: 'openid profile api1 IdentityServerApi roles',
-  post_logout_redirect_uri: 'http://localhost:8080',
-  popup_redirect_uri: 'http://localhost:8080/popupCallback',
+  scope: 'openid profile pjmicrostore IdentityServerApi',
+  post_logout_redirect_uri: process.env.VUE_APP_APP_URL,
+  popup_redirect_uri: `${process.env.VUE_APP_APP_URL}/popupCallback`,
   userStore: new WebStorageStateStore({ store: window.localStorage }),
 
   clockSkew: 15,
   accessTokenExpiringNotificationTime: 40,
 
   automaticSilentRenew: true,
-  silent_redirect_uri: 'http://localhost:8080/silentrenew',
+  silent_redirect_uri: `${process.env.VUE_APP_APP_URL}/silentrenew`,
   filterProtocolClaims: true,
 };
 

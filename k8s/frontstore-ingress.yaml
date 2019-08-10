@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: frontstore
+  namespace: external
+  annotations:
+    # use the shared ingress-nginx
+    kubernetes.io/ingress.class: "nginx"
+spec:
+  rules:
+  - host: frontstore.local
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: frontstore
+          servicePort: 80

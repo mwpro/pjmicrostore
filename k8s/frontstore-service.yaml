@@ -1,19 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  annotations:
-    kompose.cmd: kompose convert
-    kompose.version: 1.16.0 (0c01309)
-  creationTimestamp: null
-  labels:
-    io.kompose.service: frontstore
   name: frontstore
+  namespace: external
 spec:
-  ports:
-  - name: "8080"
-    port: 8080
-    targetPort: 80
   selector:
-    io.kompose.service: frontstore
-status:
-  loadBalancer: {}
+    app: frontstore
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80

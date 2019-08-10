@@ -1,0 +1,32 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.16.0 (0c01309)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: shipping
+  name: shipping
+spec:
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: shipping
+    spec:
+      containers:
+      - env:
+        - name: ASPNETCORE_ENVIRONMENT
+          value: Development
+        - name: Identity__Authority
+          value: http://identityapi
+        - name: RabbitMq__Host
+          value: rabbitmq
+        image: mwpro/pjmicrostore-checkout-shipping
+        name: shipping
+        resources: {}
+      restartPolicy: Always
+status: {}

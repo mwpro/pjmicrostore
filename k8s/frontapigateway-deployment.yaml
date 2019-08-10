@@ -1,0 +1,60 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.16.0 (0c01309)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: frontapigateway
+  name: frontapigateway
+spec:
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: frontapigateway
+    spec:
+      containers:
+      - env:
+        - name: GatewayServices__Cart__DownstreamHost
+          value: cart
+        - name: GatewayServices__Cart__DownstreamPort
+          value: "80"
+        - name: GatewayServices__Identity__DownstreamHost
+          value: identityapi
+        - name: GatewayServices__Identity__DownstreamPort
+          value: "80"
+        - name: GatewayServices__Orders__DownstreamHost
+          value: orders
+        - name: GatewayServices__Orders__DownstreamPort
+          value: "80"
+        - name: GatewayServices__Payments__DownstreamHost
+          value: payments
+        - name: GatewayServices__Payments__DownstreamPort
+          value: "80"
+        - name: GatewayServices__Photos__DownstreamHost
+          value: photos
+        - name: GatewayServices__Photos__DownstreamPort
+          value: "80"
+        - name: GatewayServices__Products__DownstreamHost
+          value: catalog
+        - name: GatewayServices__Products__DownstreamPort
+          value: "80"
+        - name: GatewayServices__Search__DownstreamHost
+          value: search
+        - name: GatewayServices__Search__DownstreamPort
+          value: "80"
+        - name: GatewayServices__Shipping__DownstreamHost
+          value: shipping
+        - name: GatewayServices__Shipping__DownstreamPort
+          value: "80"
+        image: mwpro/pjmicrostore-frontapigateway
+        name: frontapigateway
+        ports:
+        - containerPort: 80
+        resources: {}
+      restartPolicy: Always
+status: {}

@@ -1,0 +1,40 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.16.0 (0c01309)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: identityapi
+  name: identityapi
+spec:
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: identityapi
+    spec:
+      containers:
+      - env:
+        - name: ASPNETCORE_ENVIRONMENT
+          value: Development
+        - name: ConnectionStrings__DefaultConnection
+          value: Server=;Database=Identity;User Id=;Password=;ConnectRetryCount=0
+        - name: Dependencies__Orders
+          value: http://orders
+        - name: IdentityServer__IssuerUri
+          value: http://identityapi
+        - name: Identity__Authority
+          value: http://identityapi
+        - name: RabbitMq__Host
+          value: rabbitmq
+        image: mwpro/pjmicrostore-identity-api
+        name: identityapi
+        ports:
+        - containerPort: 80
+        resources: {}
+      restartPolicy: Always
+status: {}

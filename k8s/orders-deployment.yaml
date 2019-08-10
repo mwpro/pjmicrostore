@@ -1,0 +1,40 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.16.0 (0c01309)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: orders
+  name: orders
+spec:
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: orders
+    spec:
+      containers:
+      - env:
+        - name: ASPNETCORE_ENVIRONMENT
+          value: Development
+        - name: ConnectionStrings__DefaultConnection
+          value: Server=;Database=Checkout.Orders;User Id=;Password=;ConnectRetryCount=0
+        - name: Dependencies__Cart
+          value: http://cart
+        - name: Dependencies__Payment
+          value: http://payments
+        - name: Dependencies__Shipping
+          value: http://shipping
+        - name: Identity__Authority
+          value: http://identityapi
+        - name: RabbitMq__Host
+          value: rabbitmq
+        image: mwpro/pjmicrostore-checkout-orders
+        name: orders
+        resources: {}
+      restartPolicy: Always
+status: {}

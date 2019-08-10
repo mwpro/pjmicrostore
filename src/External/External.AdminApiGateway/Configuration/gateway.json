@@ -1,0 +1,90 @@
+{
+    "ReRoutes": [
+        // photos
+        {
+            "DownstreamPathTemplate": "/api/products/{productId}/photos",
+            "DownstreamScheme": "http",
+            "ServiceName": "photos",
+            "UpstreamPathTemplate": "/api/products/{productId}/photos",
+            "UpstreamHttpMethod": [ "Get", "Post" ]
+        },
+        // products
+        {
+            "DownstreamPathTemplate": "/api/products/{productId}",
+            "DownstreamScheme": "http",
+            "ServiceName": "products",
+            "UpstreamPathTemplate": "/api/products/{productId}",
+            "UpstreamHttpMethod": [ "Get", "Put" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/categories",
+            "DownstreamScheme": "http",
+            "ServiceName": "products",
+            "UpstreamPathTemplate": "/api/categories",
+            "UpstreamHttpMethod": [ "Get" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/attributes",
+            "DownstreamScheme": "http",
+            "ServiceName": "products",
+            "UpstreamPathTemplate": "/api/attributes",
+            "UpstreamHttpMethod": [ "Get" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/products",
+            "DownstreamScheme": "http",
+            "ServiceName": "products",
+            "UpstreamPathTemplate": "/api/products",
+            "UpstreamHttpMethod": [ "Get", "Post" ]
+        },
+        // orders
+        {
+            "DownstreamPathTemplate": "/api/orders/{orderId}",
+            "DownstreamScheme": "http",
+            "ServiceName": "orders",
+            "UpstreamPathTemplate": "/api/orders/{orderId}",
+            "UpstreamHttpMethod": [ "Get" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/orders/{orderId}/cancel",
+            "DownstreamScheme": "http",
+            "ServiceName": "orders",
+            "UpstreamPathTemplate": "/api/orders/{orderId}/cancel",
+            "UpstreamHttpMethod": [ "Post" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/orders/{orderId}/sent",
+            "DownstreamScheme": "http",
+            "ServiceName": "orders",
+            "UpstreamPathTemplate": "/api/orders/{orderId}/sent",
+            "UpstreamHttpMethod": [ "Post" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/orders",
+            "DownstreamScheme": "http",
+            "ServiceName": "orders",
+            "UpstreamPathTemplate": "/api/orders",
+            "UpstreamHttpMethod": [ "Get" ]
+        }
+    ],
+    "GlobalConfiguration": {
+        "BaseUrl": "http://api.store", // todo
+        "ServiceDiscoveryProvider": {
+            "Type": "ConfigurationServiceProvider"
+        }
+    },
+    "GatewayServices": {
+        "Products": {
+            "DownstreamHost": "localhost",
+            "DownstreamPort": 53606
+        },
+        "Photos": {
+            "DownstreamHost": "localhost",
+            "DownstreamPort": 58120
+        },
+        "Orders": {
+            "DownstreamHost": "localhost",
+            "DownstreamPort": 56038
+        }
+    }
+}

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+﻿using System.IO;
 using External.GatewayCommons;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Builder;
@@ -11,11 +8,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
-using Ocelot.ServiceDiscovery;
-using Ocelot.ServiceDiscovery.Providers;
-using Ocelot.Values;
 
-namespace External.FrontApiGateway
+namespace External.AdminApiGateway
 {
     public class Program
     {

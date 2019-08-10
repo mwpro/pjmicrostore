@@ -89,6 +89,22 @@ services:
       dockerfile: External/External.FrontApiGateway/Dockerfile
     ports: 
       - 9090:80
+  adminapigateway:    
+    container_name: adminapigateway
+    networks:
+      - pjmicrostore
+    environment: 
+      - GatewayServices__Products__DownstreamHost=catalog
+      - GatewayServices__Products__DownstreamPort=80
+      - GatewayServices__Photos__DownstreamHost=photos
+      - GatewayServices__Photos__DownstreamPort=80
+      - GatewayServices__Orders__DownstreamHost=orders
+      - GatewayServices__Orders__DownstreamPort=80
+    build:
+      context: .
+      dockerfile: External/External.AdminApiGateway/Dockerfile
+    ports: 
+      - 9091:80
   emailsender:    
     container_name: emailsender
     networks:

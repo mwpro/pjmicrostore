@@ -45,7 +45,7 @@ $DOCKER_IMAGE_VERSION = "1.0.0"
 docker tag $DOCKER_REPOSITORY_NAME/pjmicrostore-products-catalog $DOCKER_REPOSITORY_NAME/pjmicrostore-products-catalog:$DOCKER_IMAGE_VERSION
 docker push $DOCKER_REPOSITORY_NAME/pjmicrostore-products-catalog:$DOCKER_IMAGE_VERSION
 docker push $DOCKER_REPOSITORY_NAME/pjmicrostore-products-catalog:latest
-$DOCKER_IMAGE_VERSION = "1.0.4"
+$DOCKER_IMAGE_VERSION = "1.0.5"
 docker tag $DOCKER_REPOSITORY_NAME/pjmicrostore-products-search $DOCKER_REPOSITORY_NAME/pjmicrostore-products-search:$DOCKER_IMAGE_VERSION
 docker push $DOCKER_REPOSITORY_NAME/pjmicrostore-products-search:$DOCKER_IMAGE_VERSION
 docker push $DOCKER_REPOSITORY_NAME/pjmicrostore-products-search:latest

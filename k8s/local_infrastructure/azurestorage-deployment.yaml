@@ -1,0 +1,25 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: azurestorage
+  namespace: infrastructure
+  labels:
+    app: azurestorage
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: azurestorage
+  template:
+    metadata:
+      labels:
+        app: azurestorage
+    spec:
+      containers:
+      - env:
+        - name: executable
+          value: blob
+        image: arafato/azurite
+        name: azurestorage
+        ports:
+        - containerPort: 10000

@@ -20,7 +20,7 @@ spec:
         - name: Identity__Authority
           value: http://identityapi.identity
         - name: RabbitMq__Host
-          value: rabbitmq
+          value: rabbitmq.infrastructure
         image: mwpro/pjmicrostore-checkout-shipping
         name: shipping
         ports:

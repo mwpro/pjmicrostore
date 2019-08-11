@@ -18,7 +18,7 @@ spec:
       containers:
       - env:
         - name: ConnectionStrings__DefaultConnection
-          value: Server=;Database=Checkout.Orders;User Id=;Password=;ConnectRetryCount=0
+          value: Server=sqlserver.infrastructure;Database=Checkout.Orders;User Id=sa;Password=sqlDevPassw0rd;ConnectRetryCount=0
         - name: Dependencies__Cart
           value: http://cart.checkout
         - name: Dependencies__Payment
@@ -28,7 +28,7 @@ spec:
         - name: Identity__Authority
           value: http://identityapi.identity
         - name: RabbitMq__Host
-          value: rabbitmq
+          value: rabbitmq.infrastructure
         image: mwpro/pjmicrostore-checkout-orders
         name: orders
         ports:

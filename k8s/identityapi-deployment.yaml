@@ -18,7 +18,7 @@ spec:
       containers:
       - env:
         - name: ConnectionStrings__DefaultConnection
-          value: Server=;Database=Identity;User Id=;Password=;ConnectRetryCount=0
+          value: Server=sqlserver.infrastructure;Database=Identity;User Id=sa;Password=sqlDevPassw0rd;ConnectRetryCount=0
         - name: Dependencies__Orders
           value: http://orders.checkout
         - name: IdentityServer__IssuerUri
@@ -26,7 +26,7 @@ spec:
         - name: Identity__Authority
           value: http://identityapi.identity
         - name: RabbitMq__Host
-          value: rabbitmq
+          value: rabbitmq.infrastructure
         - name: SpaClients__FrontStore__RedirectUris__0
           value: "http://store.pjmicrostore.local/callback"
         - name: SpaClients__FrontStore__RedirectUris__1

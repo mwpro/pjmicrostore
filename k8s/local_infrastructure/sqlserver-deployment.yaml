@@ -1,0 +1,27 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: sqlserver
+  namespace: infrastructure
+  labels:
+    app: sqlserver
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sqlserver
+  template:
+    metadata:
+      labels:
+        app: sqlserver
+    spec:
+      containers:
+      - env:
+        - name: ACCEPT_EULA
+          value: "Y"
+        - name: SA_PASSWORD
+          value: sqlDevPassw0rd
+        image: mcr.microsoft.com/mssql/server:2017-latest
+        name: sqlserver
+        ports:
+        - containerPort: 1433

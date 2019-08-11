@@ -1,0 +1,23 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: rabbitmq
+  namespace: infrastructure
+  labels:
+    app: rabbitmq
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rabbitmq
+  template:
+    metadata:
+      labels:
+        app: rabbitmq
+    spec:
+      containers:
+      - image: rabbitmq:3
+        name: rabbitmq
+        ports:
+        - containerPort: 15672
+        - containerPort: 5672

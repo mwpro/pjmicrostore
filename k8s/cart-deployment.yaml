@@ -17,16 +17,14 @@ spec:
     spec:
       containers:
       - env:
-        - name: ASPNETCORE_ENVIRONMENT
-          value: Development
         - name: ConnectionStrings__DefaultConnection
-          value: Server=;Database=Checkout.Cart;User Id=;Password=;ConnectRetryCount=0
+          value: Server=sqlserver.infrastructure;Database=Checkout.Cart;User Id=sa;Password=sqlDevPassw0rd;ConnectRetryCount=0
         - name: Dependencies__Products
           value: http://catalog.products
         - name: Identity__Authority
           value: http://identityapi.identity
         - name: RabbitMq__Host
-          value: rabbitmq
+          value: rabbitmq.infrastructure
         image: mwpro/pjmicrostore-checkout-cart
         name: cart
         ports:

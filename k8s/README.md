@@ -16,8 +16,12 @@
 127.0.0.1   login.pjmicrostore.local
 ```
 
+### Deploy local infrastructure
+
+```kubectl apply -f .\local_infrastructure\.```
+
 ## Common for all providers
 
 ### Deploy all services
 
-```kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/provider/cloud-generic.yaml```
+``` kubectl apply -f .```

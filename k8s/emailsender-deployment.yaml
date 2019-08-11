@@ -29,3 +29,10 @@ spec:
           value: rabbitmq.infrastructure
         image: mwpro/pjmicrostore-common-emailsender:1.0.0
         name: emailsender
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "50m"
+          limits:
+            memory: "256Mi"
+            cpu: "500m"

@@ -19,7 +19,9 @@ spec:
       - env:
         - name: executable
           value: blob
-        image: arafato/azurite
+        image: mcr.microsoft.com/azure-storage/azurite
         name: azurestorage
+        command: ["azurite"]
+        args: ["--blobPort=80", "--blobHost=0.0.0.0"]
         ports:
-        - containerPort: 10000
+        - containerPort: 80

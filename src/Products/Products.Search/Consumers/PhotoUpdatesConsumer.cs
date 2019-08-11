@@ -36,7 +36,7 @@ namespace Products.Search.Consumers
 
         public async Task Consume(ConsumeContext<PhotoRemovedEvent> context)
         {
-            await _client.DeleteAsync(new DeleteRequest(IndexName.From<PhotoSearchModel>(), Id.From(new PhotoSearchModel()
+            await _client.DeleteAsync(new DeleteRequest(IndexName.From<PhotoSearchModel>(), TypeName.From<PhotoSearchModel>(), Id.From(new PhotoSearchModel()
             {
                 OriginalUrl = context.Message.OriginalUrl,
                 PhotoId = context.Message.PhotoId,

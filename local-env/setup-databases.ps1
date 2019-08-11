@@ -17,6 +17,7 @@ $elasticProductsModel = Get-Content .\products-model.json
 Invoke-RestMethod -Uri http://localhost:9200/products -Method Put -Body $elasticProductsModel -ContentType "application/json"
 
 # todo if k8s -> kubectl port-forward deployment/search 80:80 -n products
+Invoke-RestMethod -Uri http://127.0.0.1:80/api/search/import -Method Get
 
 Write-Host "Setup local Azure storage"
 az storage container create --name 'productsphotos' --connection-string 'DefaultEndpointsProtocol=http;AccountName=devstoreaccount1;AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==;BlobEndpoint=http://127.0.0.1:10000/devstoreaccount1;'

@@ -15,6 +15,9 @@
                         }
                     }
                 },
+                "categoryId": {
+                    "type": "long"
+                },
                 "id": {
                     "type": "long"
                 },

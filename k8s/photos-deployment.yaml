@@ -23,7 +23,7 @@ spec:
           value: http://identityapi.identity
         - name: RabbitMq__Host
           value: rabbitmq.infrastructure
-        image: mwpro/pjmicrostore-products-photos
+        image: mwpro/pjmicrostore-products-photos:1.0.0
         name: photos
         ports:
         - containerPort: 80

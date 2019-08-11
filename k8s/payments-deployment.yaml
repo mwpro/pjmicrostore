@@ -23,7 +23,7 @@ spec:
           value: http://identityapi.identity
         - name: RabbitMq__Host
           value: rabbitmq.infrastructure
-        image: mwpro/pjmicrostore-checkout-payments
+        image: mwpro/pjmicrostore-checkout-payments:1.0.0
         name: payments
         ports:
         - containerPort: 80

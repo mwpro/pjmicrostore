@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Common.Infrastructure;
 using GreenPipes;
 using MassTransit;
 using Microsoft.AspNetCore.Builder;
@@ -56,6 +57,8 @@ namespace Products.Search
                 c.AddConsumer<PhotoUpdatesConsumer>();
             });
 
+            services.SetupTokenService(Configuration);
+            
             services.AddSingleton<IHostedService, BusService>();
 
             services.AddTransient<ProductUpdatedConsumer>();

@@ -27,5 +27,5 @@ spec:
           value: http://identityapi.identity
         - name: RabbitMq__Host
           value: rabbitmq.infrastructure
-        image: mwpro/pjmicrostore-common-emailsender
+        image: mwpro/pjmicrostore-common-emailsender:1.0.0
         name: emailsender

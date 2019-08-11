@@ -25,7 +25,7 @@ spec:
           value: http://identityapi.identity
         - name: RabbitMq__Host
           value: rabbitmq.infrastructure
-        image: mwpro/pjmicrostore-checkout-cart
+        image: mwpro/pjmicrostore-checkout-cart:1.0.0
         name: cart
         ports:
         - containerPort: 80

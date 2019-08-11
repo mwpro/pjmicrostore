@@ -23,7 +23,7 @@ spec:
           value: http://store.pjmicrostore.local
         - name: AUTH_URL
           value: http://login.pjmicrostore.local
-        image: mwpro/pjmicrostore-front-store
+        image: mwpro/pjmicrostore-front-store:1.0.0
         name: storefront
         ports:
         - containerPort: 80

@@ -24,7 +24,7 @@ spec:
           value: http://admin.pjmicrostore.local
         - name: AUTH_URL
           value: http://login.pjmicrostore.local
-        image: mwpro/pjmicrostore-front-admin
+        image: mwpro/pjmicrostore-front-admin:1.0.0
         name: adminfront
         ports:
         - containerPort: 80

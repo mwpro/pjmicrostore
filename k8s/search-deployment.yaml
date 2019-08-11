@@ -27,7 +27,7 @@ spec:
           value: http://identityapi.identity
         - name: RabbitMq__Host
           value: rabbitmq.infrastructure
-        image: mwpro/pjmicrostore-products-search
+        image: mwpro/pjmicrostore-products-search:1.0.4
         name: search
         ports:
         - containerPort: 80

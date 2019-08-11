@@ -9,8 +9,6 @@ namespace Identity.Api.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
-            Database.Migrate();
-            SeedData.EnsureSeedData(base.Database.GetDbConnection().ConnectionString);
         }
 
         protected override void OnModelCreating(ModelBuilder builder)

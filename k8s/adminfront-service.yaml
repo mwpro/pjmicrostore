@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: frontadmin
+  name: adminfront
   namespace: external
 spec:
   selector:
-    app: frontadmin
+    app: adminfront
   ports:
   - protocol: TCP
     port: 80

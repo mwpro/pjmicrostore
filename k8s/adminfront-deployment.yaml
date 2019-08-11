@@ -1,30 +1,30 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: frontadmin
+  name: adminfront
   namespace: external
   labels:
-    app: frontadmin
+    app: adminfront
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: frontadmin
+      app: adminfront
   strategy: {}
   template:
     metadata:
       labels:
-        app: frontadmin
+        app: adminfront
     spec:
       containers:
       - env:
         - name: API_URL
-          value: http://localhost:9091
+          value: /
         - name: APP_URL
-          value: http://localhost:8081
+          value: http://admin.pjmicrostore.local
         - name: AUTH_URL
-          value: http://localhost:5000
+          value: http://login.pjmicrostore.local
         image: mwpro/pjmicrostore-front-admin
-        name: frontadmin
+        name: adminfront
         ports:
         - containerPort: 80

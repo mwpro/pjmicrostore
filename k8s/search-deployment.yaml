@@ -17,16 +17,14 @@ spec:
     spec:
       containers:
       - env:
-        - name: ASPNETCORE_ENVIRONMENT
-          value: Development
         - name: Dependencies__Products
-          value: http://catalog
+          value: http://catalog.products
         - name: ElasticSearch__Host
           value: http://elasticsearch
         - name: ElasticSearch__Port
           value: "9200"
         - name: Identity__Authority
-          value: http://identityapi
+          value: http://identityapi.identity
         - name: RabbitMq__Host
           value: rabbitmq
         image: mwpro/pjmicrostore-products-search

@@ -22,9 +22,9 @@ spec:
         - name: ConnectionStrings__DefaultConnection
           value: Server=;Database=Checkout.Cart;User Id=;Password=;ConnectRetryCount=0
         - name: Dependencies__Products
-          value: http://catalog
+          value: http://catalog.products
         - name: Identity__Authority
-          value: http://identityapi
+          value: http://identityapi.identity
         - name: RabbitMq__Host
           value: rabbitmq
         image: mwpro/pjmicrostore-checkout-cart

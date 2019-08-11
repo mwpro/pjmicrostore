@@ -17,16 +17,14 @@ spec:
     spec:
       containers:
       - env:
-        - name: ASPNETCORE_ENVIRONMENT
-          value: Development
         - name: ConnectionStrings__DefaultConnection
           value: Server=;Database=Identity;User Id=;Password=;ConnectRetryCount=0
         - name: Dependencies__Orders
-          value: http://orders
+          value: http://orders.checkout
         - name: Emails__Smtp__Host
           value: smtp
         - name: Identity__Authority
-          value: http://identityapi
+          value: http://identityapi.identity
         - name: RabbitMq__Host
           value: rabbitmq
         image: mwpro/pjmicrostore-common-emailsender

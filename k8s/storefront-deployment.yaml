@@ -1,29 +1,29 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: frontstore
+  name: storefront
   namespace: external
   labels:
-    app: frontstore
+    app: storefront
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: frontstore
+      app: storefront
   template:
     metadata:
       labels:
-        app: frontstore
+        app: storefront
     spec:
       containers:
       - env:
         - name: API_URL
-          value: http://localhost:9090
+          value: /
         - name: APP_URL
-          value: http://localhost:8080
+          value: http://store.pjmicrostore.local
         - name: AUTH_URL
-          value: http://localhost:5000
+          value: http://login.pjmicrostore.local
         image: mwpro/pjmicrostore-front-store
-        name: frontstore
+        name: storefront
         ports:
         - containerPort: 80

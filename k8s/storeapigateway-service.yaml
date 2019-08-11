@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: frontapigateway
+  name: storeapigateway
   namespace: external
 spec:
   selector:
-    app: frontapigateway
+    app: storeapigateway
   ports:
   - protocol: TCP
     port: 80

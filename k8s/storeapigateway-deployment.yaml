@@ -1,55 +1,55 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: frontapigateway
+  name: storeapigateway
   namespace: external
   labels:
-    app: frontapigateway
+    app: storeapigateway
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: frontapigateway
+      app: storeapigateway
   template:
     metadata:
       labels:
-        app: frontapigateway
+        app: storeapigateway
     spec:
       containers:
       - env:
         - name: GatewayServices__Cart__DownstreamHost
-          value: cart
+          value: cart.checkout
         - name: GatewayServices__Cart__DownstreamPort
           value: "80"
         - name: GatewayServices__Identity__DownstreamHost
-          value: identityapi
+          value: identityapi.identity
         - name: GatewayServices__Identity__DownstreamPort
           value: "80"
         - name: GatewayServices__Orders__DownstreamHost
-          value: orders
+          value: orders.checkout
         - name: GatewayServices__Orders__DownstreamPort
           value: "80"
         - name: GatewayServices__Payments__DownstreamHost
-          value: payments
+          value: payments.checkout
         - name: GatewayServices__Payments__DownstreamPort
           value: "80"
         - name: GatewayServices__Photos__DownstreamHost
-          value: photos
+          value: photos.products
         - name: GatewayServices__Photos__DownstreamPort
           value: "80"
         - name: GatewayServices__Products__DownstreamHost
-          value: catalog
+          value: catalog.products
         - name: GatewayServices__Products__DownstreamPort
           value: "80"
         - name: GatewayServices__Search__DownstreamHost
-          value: search
+          value: search.products
         - name: GatewayServices__Search__DownstreamPort
           value: "80"
         - name: GatewayServices__Shipping__DownstreamHost
-          value: shipping
+          value: shipping.checkout
         - name: GatewayServices__Shipping__DownstreamPort
           value: "80"
         image: mwpro/pjmicrostore-frontapigateway
-        name: frontapigateway
+        name: storeapigateway
         ports:
         - containerPort: 80

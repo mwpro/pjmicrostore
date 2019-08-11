@@ -8,6 +8,14 @@
 
 ```kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/provider/cloud-generic.yaml```
 
+### Add to hosts file
+
+```
+127.0.0.1 	store.pjmicrostore.local
+127.0.0.1   admin.pjmicrostore.local
+127.0.0.1   login.pjmicrostore.local
+```
+
 ## Common for all providers
 
 ### Deploy all services

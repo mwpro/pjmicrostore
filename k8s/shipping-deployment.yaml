@@ -17,10 +17,8 @@ spec:
     spec:
       containers:
       - env:
-        - name: ASPNETCORE_ENVIRONMENT
-          value: Development
         - name: Identity__Authority
-          value: http://identityapi
+          value: http://identityapi.identity
         - name: RabbitMq__Host
           value: rabbitmq
         image: mwpro/pjmicrostore-checkout-shipping

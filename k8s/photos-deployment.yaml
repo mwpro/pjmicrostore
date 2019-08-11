@@ -17,12 +17,10 @@ spec:
     spec:
       containers:
       - env:
-        - name: ASPNETCORE_ENVIRONMENT
-          value: Development
         - name: ConnectionStrings__DefaultConnection
           value: Server=;Database=Products.Photos;User Id=;Password=;ConnectRetryCount=0
         - name: Identity__Authority
-          value: http://identityapi
+          value: http://identityapi.identity
         - name: RabbitMq__Host
           value: rabbitmq
         image: mwpro/pjmicrostore-products-photos

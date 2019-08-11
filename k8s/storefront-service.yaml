@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: frontstore
+  name: storefront
   namespace: external
 spec:
   selector:
-    app: frontstore
+    app: storefront
   ports:
   - protocol: TCP
     port: 80

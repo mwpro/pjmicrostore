@@ -17,18 +17,34 @@ spec:
     spec:
       containers:
       - env:
-        - name: ASPNETCORE_ENVIRONMENT
-          value: Development
         - name: ConnectionStrings__DefaultConnection
           value: Server=;Database=Identity;User Id=;Password=;ConnectRetryCount=0
         - name: Dependencies__Orders
-          value: http://orders
+          value: http://orders.checkout
         - name: IdentityServer__IssuerUri
-          value: http://identityapi
+          value: http://identityapi.identity
         - name: Identity__Authority
-          value: http://identityapi
+          value: http://identityapi.identity
         - name: RabbitMq__Host
           value: rabbitmq
+        - name: SpaClients__FrontStore__RedirectUris__0
+          value: "http://store.pjmicrostore.local/callback"
+        - name: SpaClients__FrontStore__RedirectUris__1
+          value: "http://store.pjmicrostore.local/silentRenew"
+        - name: SpaClients__FrontStore__RedirectUris__2
+          value: "http://store.pjmicrostore.local/popupCallback"
+        - name: SpaClients__FrontStore__PostLogoutRedirectUris__0
+          value: "http://store.pjmicrostore.local"
+        - name: SpaClients__FrontStore__AllowedCorsOrigins__0
+          value: "http://store.pjmicrostore.local"
+        - name: SpaClients__FrontAdmin__RedirectUris__0
+          value: "http://admin.pjmicrostore.local/callback"
+        - name: SpaClients__FrontAdmin__RedirectUris__1
+          value: "http://admin.pjmicrostore.local/silentRenew"
+        - name: SpaClients__FrontAdmin__PostLogoutRedirectUris__0
+          value: "http://admin.pjmicrostore.local"
+        - name: SpaClients__FrontAdmin__AllowedCorsOrigins__0
+          value: "http://admin.pjmicrostore.local"
         image: mwpro/pjmicrostore-identity-api
         name: identityapi
         ports:

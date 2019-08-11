@@ -18,15 +18,15 @@ spec:
       containers:
       - env:
         - name: GatewayServices__Orders__DownstreamHost
-          value: orders
+          value: orders.checkout
         - name: GatewayServices__Orders__DownstreamPort
           value: "80"
         - name: GatewayServices__Photos__DownstreamHost
-          value: photos
+          value: photos.products
         - name: GatewayServices__Photos__DownstreamPort
           value: "80"
         - name: GatewayServices__Products__DownstreamHost
-          value: catalog
+          value: catalog.products
         - name: GatewayServices__Products__DownstreamPort
           value: "80"
         image: mwpro/pjmicrostore-adminapigateway

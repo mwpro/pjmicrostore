@@ -26,7 +26,10 @@ spec:
         - name: Identity__Authority
           value: http://identityapi.identity
         - name: RabbitMq__Host
-          value: rabbitmq.infrastructure
+          valueFrom:
+            configMapKeyRef:
+              name: rabbitmq
+              key: host
         image: mwpro/pjmicrostore-products-search:1.0.5
         name: search
         ports:

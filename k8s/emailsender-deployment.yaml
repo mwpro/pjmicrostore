@@ -17,8 +17,6 @@ spec:
     spec:
       containers:
       - env:
-        - name: ConnectionStrings__DefaultConnection
-          value: Server=sqlserver.infrastructure;Database=Identity;User Id=sa;Password=sqlDevPassw0rd;ConnectRetryCount=0
         - name: Dependencies__Orders
           value: http://orders.checkout
         - name: Emails__Smtp__Host
@@ -26,7 +24,10 @@ spec:
         - name: Identity__Authority
           value: http://identityapi.identity
         - name: RabbitMq__Host
-          value: rabbitmq.infrastructure
+          valueFrom:
+            configMapKeyRef:
+              name: rabbitmq
+              key: host
         image: mwpro/pjmicrostore-common-emailsender:1.0.0
         name: emailsender
         resources:

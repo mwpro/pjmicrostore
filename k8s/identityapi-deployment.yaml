@@ -17,6 +17,16 @@ spec:
     spec:
       containers:
       - env:
+        - name: ADMIN_URL
+          valueFrom:
+            configMapKeyRef:
+              name: external-urls
+              key: admin
+        - name: STORE_URL
+          valueFrom:
+            configMapKeyRef:
+              name: external-urls
+              key: store
         - name: DB_USERNAME
           valueFrom:
             secretKeyRef:
@@ -41,25 +51,28 @@ spec:
         - name: Identity__Authority
           value: http://identityapi.identity
         - name: RabbitMq__Host
-          value: rabbitmq.infrastructure
+          valueFrom:
+            configMapKeyRef:
+              name: rabbitmq
+              key: host
         - name: SpaClients__FrontStore__RedirectUris__0
-          value: "http://store.pjmicrostore.local/callback"
+          value: "$(STORE_URL)/callback"
         - name: SpaClients__FrontStore__RedirectUris__1
-          value: "http://store.pjmicrostore.local/silentRenew"
+          value: "$(STORE_URL)/silentRenew"
         - name: SpaClients__FrontStore__RedirectUris__2
-          value: "http://store.pjmicrostore.local/popupCallback"
+          value: "$(STORE_URL)/popupCallback"
         - name: SpaClients__FrontStore__PostLogoutRedirectUris__0
-          value: "http://store.pjmicrostore.local"
+          value: "$(STORE_URL)"
         - name: SpaClients__FrontStore__AllowedCorsOrigins__0
-          value: "http://store.pjmicrostore.local"
+          value: "$(STORE_URL)"
         - name: SpaClients__FrontAdmin__RedirectUris__0
-          value: "http://admin.pjmicrostore.local/callback"
+          value: "$(ADMIN_URL)/callback"
         - name: SpaClients__FrontAdmin__RedirectUris__1
-          value: "http://admin.pjmicrostore.local/silentRenew"
+          value: "$(ADMIN_URL)/silentRenew"
         - name: SpaClients__FrontAdmin__PostLogoutRedirectUris__0
-          value: "http://admin.pjmicrostore.local"
+          value: "$(ADMIN_URL)"
         - name: SpaClients__FrontAdmin__AllowedCorsOrigins__0
-          value: "http://admin.pjmicrostore.local"
+          value: "$(ADMIN_URL)"
         image: mwpro/pjmicrostore-identity-api:1.0.2
         name: identityapi
         ports:

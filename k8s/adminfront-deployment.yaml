@@ -21,9 +21,15 @@ spec:
         - name: API_URL
           value: /
         - name: APP_URL
-          value: http://admin.pjmicrostore.local
+          valueFrom:
+            configMapKeyRef:
+              name: external-urls
+              key: admin
         - name: AUTH_URL
-          value: http://login.pjmicrostore.local
+          valueFrom:
+            configMapKeyRef:
+              name: external-urls
+              key: login
         image: mwpro/pjmicrostore-front-admin:1.0.0
         name: adminfront
         ports:

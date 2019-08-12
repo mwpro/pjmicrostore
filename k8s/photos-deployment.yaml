@@ -37,7 +37,10 @@ spec:
         - name: Identity__Authority
           value: http://identityapi.identity
         - name: RabbitMq__Host
-          value: rabbitmq.infrastructure
+          valueFrom:
+            configMapKeyRef:
+              name: rabbitmq
+              key: host
         - name: PhotoStorageConnectionString
           value: "DefaultEndpointsProtocol=http;AccountName=devstoreaccount1;AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==;BlobEndpoint=http://azurestorage.infrastructure:80/devstoreaccount1;"
         image: mwpro/pjmicrostore-products-photos:1.0.1

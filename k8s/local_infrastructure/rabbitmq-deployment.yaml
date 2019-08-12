@@ -15,9 +15,22 @@ spec:
       labels:
         app: rabbitmq
     spec:
+      volumes:
+      - name: rabbitmqdata
+        persistentVolumeClaim:
+          claimName: rabbitmq
+      - name: rabbitmq-plugins
+        configMap:
+          name: rabbitmq-config
       containers:
       - image: rabbitmq:3
         name: rabbitmq
         ports:
         - containerPort: 15672
         - containerPort: 5672
+        volumeMounts:
+        - name: rabbitmqdata
+          mountPath: /var/lib/rabbitmq/mnesia
+        - name: rabbitmq-plugins
+          mountPath: /etc/rabbitmq/enabled_plugins
+          subPath: enabled_plugins

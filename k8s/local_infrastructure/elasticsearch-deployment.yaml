@@ -15,8 +15,15 @@ spec:
       labels:
         app: elasticsearch
     spec:
+      volumes:
+      - name: elasticsearchdata
+        persistentVolumeClaim:
+          claimName: elasticsearch
       containers:
       - image: docker.elastic.co/elasticsearch/elasticsearch:6.6.2
         name: elasticsearch
         ports:
         - containerPort: 9200
+        volumeMounts:
+        - name: elasticsearchdata
+          mountPath: /usr/share/elasticsearch/data

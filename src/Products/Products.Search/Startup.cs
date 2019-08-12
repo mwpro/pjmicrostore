@@ -31,6 +31,8 @@ namespace Products.Search
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
+            services.AddHealthChecks();
+
             services.AddMassTransit(c =>
             {
                 c.AddBus(provider => Bus.Factory.CreateUsingRabbitMq(
@@ -74,6 +76,8 @@ namespace Products.Search
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseHealthChecks("/healthz"); 
 
             app.UseMvc();
         }

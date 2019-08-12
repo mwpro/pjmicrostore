@@ -29,6 +29,9 @@ namespace Checkout.Payments
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
+            services.AddHealthChecks()
+                .AddDbContextCheck<PaymentsDbContext>(); 
+
             services.AddDbContext<PaymentsDbContext>
                 (options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
@@ -67,6 +70,7 @@ namespace Checkout.Payments
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseHealthChecks("/healthz");
 
             app.UseMvc();
         }

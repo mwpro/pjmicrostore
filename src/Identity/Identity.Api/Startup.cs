@@ -42,6 +42,9 @@ namespace Identity.Api
 
             services.SetupTokenService(Configuration);
 
+            services.AddHealthChecks()
+                .AddDbContextCheck<ApplicationDbContext>();
+
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
@@ -117,6 +120,7 @@ namespace Identity.Api
                 app.UseExceptionHandler("/Home/Error");
             }
 
+            app.UseHealthChecks("/healthz");
             app.UseAuthentication();
             app.UseStaticFiles();
             app.UseIdentityServer();

@@ -34,7 +34,10 @@ namespace Checkout.Cart
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            
+
+            services.AddHealthChecks()
+                .AddDbContextCheck<CartContext>();
+
             services.SetupTokenValidation(Configuration);
             services.AddAuthorization(options => { options.AddRequireScopePolicy(Scopes.Carts); });
 
@@ -75,6 +78,7 @@ namespace Checkout.Cart
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseHealthChecks("/healthz");
             app.UseAuthentication();
 
             app.UseMvc();

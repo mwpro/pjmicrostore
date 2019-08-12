@@ -37,6 +37,9 @@ namespace Checkout.Orders
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
+            services.AddHealthChecks()
+                .AddDbContextCheck<OrdersContext>();
+
             services.SetupTokenValidation(Configuration);
             services.SetupTokenService(Configuration);
             services.AddAuthorization(options =>
@@ -91,6 +94,7 @@ namespace Checkout.Orders
                 app.UseHsts();
             }
 
+            app.UseHealthChecks("/healthz");
             app.UseAuthentication();
 
             app.UseMvc();

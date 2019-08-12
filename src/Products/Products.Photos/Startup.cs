@@ -38,6 +38,9 @@ namespace Products.Photos
                     options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore; // todo hmm, probably it only hides the problem
                 });
 
+            services.AddHealthChecks()
+                .AddDbContextCheck<PhotosContext>();
+
             services.SetupTokenValidation(Configuration);
             services.AddAuthorization(options => { options.AddAdminOnlyPolicy(); });
 
@@ -70,6 +73,7 @@ namespace Products.Photos
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseHealthChecks("/healthz");
             app.UseAuthentication();
 
             app.UseMvc();

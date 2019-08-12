@@ -28,7 +28,7 @@ spec:
             configMapKeyRef:
               name: rabbitmq
               key: host
-        image: mwpro/pjmicrostore-common-emailsender:1.0.0
+        image: mwpro/pjmicrostore-common-emailsender:1.0.1
         name: emailsender
         resources:
           requests:

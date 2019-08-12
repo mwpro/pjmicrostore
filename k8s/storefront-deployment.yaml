@@ -40,3 +40,11 @@ spec:
           limits:
             memory: "256Mi"
             cpu: "500m"
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 10
+          timeoutSeconds: 1
+          
+          

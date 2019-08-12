@@ -46,7 +46,7 @@ spec:
             secretKeyRef:
               name: photo-storage
               key: photo_storage
-        image: mwpro/pjmicrostore-products-photos:1.0.1
+        image: mwpro/pjmicrostore-products-photos:1.0.2
         name: photos
         ports:
         - containerPort: 80
@@ -57,3 +57,9 @@ spec:
           limits:
             memory: "256Mi"
             cpu: "500m"
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 80
+          initialDelaySeconds: 10
+          timeoutSeconds: 1

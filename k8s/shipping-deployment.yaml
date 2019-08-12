@@ -19,7 +19,7 @@ spec:
       - env:
         - name: Identity__Authority
           value: http://identityapi.identity
-        image: mwpro/pjmicrostore-checkout-shipping:1.0.0
+        image: mwpro/pjmicrostore-checkout-shipping:1.0.1
         name: shipping
         ports:
         - containerPort: 80
@@ -30,3 +30,9 @@ spec:
           limits:
             memory: "256Mi"
             cpu: "500m"
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 80
+          initialDelaySeconds: 10
+          timeoutSeconds: 1

@@ -29,7 +29,7 @@ spec:
           value: catalog.products
         - name: GatewayServices__Products__DownstreamPort
           value: "80"
-        image: mwpro/pjmicrostore-adminapigateway:1.0.0
+        image: mwpro/pjmicrostore-adminapigateway:1.0.1
         name: adminapigateway
         ports:
         - containerPort: 80
@@ -40,3 +40,9 @@ spec:
           limits:
             memory: "256Mi"
             cpu: "500m"
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 80
+          initialDelaySeconds: 10
+          timeoutSeconds: 1

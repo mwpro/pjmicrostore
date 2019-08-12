@@ -47,7 +47,7 @@ spec:
             configMapKeyRef:
               name: rabbitmq
               key: host
-        image: mwpro/pjmicrostore-checkout-orders:1.0.1
+        image: mwpro/pjmicrostore-checkout-orders:1.0.2
         name: orders
         ports:
         - containerPort: 80
@@ -58,3 +58,9 @@ spec:
           limits:
             memory: "256Mi"
             cpu: "500m"
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 80
+          initialDelaySeconds: 10
+          timeoutSeconds: 1

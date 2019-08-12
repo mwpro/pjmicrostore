@@ -30,7 +30,7 @@ spec:
             configMapKeyRef:
               name: rabbitmq
               key: host
-        image: mwpro/pjmicrostore-products-search:1.0.5
+        image: mwpro/pjmicrostore-products-search:1.0.6
         name: search
         ports:
         - containerPort: 80
@@ -41,3 +41,9 @@ spec:
           limits:
             memory: "256Mi"
             cpu: "500m"
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 80
+          initialDelaySeconds: 10
+          timeoutSeconds: 1

@@ -15,13 +15,24 @@ spec:
       labels:
         app: sqlserver
     spec:
+      terminationGracePeriodSeconds: 10
+      volumes:
+      - name: mssqldb
+        persistentVolumeClaim:
+          claimName: sqlserver
       containers:
       - env:
         - name: ACCEPT_EULA
           value: "Y"
         - name: SA_PASSWORD
-          value: sqlDevPassw0rd
+          valueFrom:
+            secretKeyRef:
+              name: db-user-pass
+              key: db_password
         image: mcr.microsoft.com/mssql/server:2017-latest
         name: sqlserver
         ports:
         - containerPort: 1433
+        volumeMounts:
+        - name: mssqldb
+          mountPath: /var/opt/mssql/data

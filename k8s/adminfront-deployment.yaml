@@ -1,0 +1,49 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: adminfront
+  namespace: external
+  labels:
+    app: adminfront
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: adminfront
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: adminfront
+    spec:
+      containers:
+      - env:
+        - name: API_URL
+          value: /
+        - name: APP_URL
+          valueFrom:
+            configMapKeyRef:
+              name: external-urls
+              key: admin
+        - name: AUTH_URL
+          valueFrom:
+            configMapKeyRef:
+              name: external-urls
+              key: login
+        image: mwpro/pjmicrostore-front-admin:1.0.0
+        name: adminfront
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "50m"
+          limits:
+            memory: "256Mi"
+            cpu: "500m"
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 80
+          initialDelaySeconds: 10
+          timeoutSeconds: 1

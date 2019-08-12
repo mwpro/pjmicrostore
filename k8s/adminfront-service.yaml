@@ -1,13 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: frontapigateway
+  name: adminfront
+  namespace: external
 spec:
   selector:
-    app: frontapigateway
-  type: ClusterIP
+    app: adminfront
   ports:
   - protocol: TCP
-    name: http
     port: 80
     targetPort: 80

@@ -8,7 +8,6 @@ namespace Checkout.Orders.Domain
     {
         public OrdersContext(DbContextOptions<OrdersContext> options) : base(options)
         {
-            Database.Migrate();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

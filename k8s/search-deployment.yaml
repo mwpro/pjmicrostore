@@ -1,0 +1,49 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: search
+  namespace: products
+  labels:
+    app: search
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: search
+  template:
+    metadata:
+      labels:
+        app: search
+    spec:
+      containers:
+      - env:
+        - name: Dependencies__Products
+          value: http://catalog.products
+        - name: ElasticSearch__Host
+          value: http://elasticsearch.infrastructure
+        - name: ElasticSearch__Port
+          value: "9200"
+        - name: Identity__Authority
+          value: http://identityapi.identity
+        - name: RabbitMq__Host
+          valueFrom:
+            configMapKeyRef:
+              name: rabbitmq
+              key: host
+        image: mwpro/pjmicrostore-products-search:1.0.6
+        name: search
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "50m"
+          limits:
+            memory: "256Mi"
+            cpu: "500m"
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 80
+          initialDelaySeconds: 10
+          timeoutSeconds: 1

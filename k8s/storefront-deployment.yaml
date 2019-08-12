@@ -1,0 +1,50 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: storefront
+  namespace: external
+  labels:
+    app: storefront
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: storefront
+  template:
+    metadata:
+      labels:
+        app: storefront
+    spec:
+      containers:
+      - env:
+        - name: API_URL
+          value: /
+        - name: APP_URL
+          valueFrom:
+            configMapKeyRef:
+              name: external-urls
+              key: store
+        - name: AUTH_URL
+          valueFrom:
+            configMapKeyRef:
+              name: external-urls
+              key: login
+        image: mwpro/pjmicrostore-front-store:1.0.0
+        name: storefront
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "50m"
+          limits:
+            memory: "256Mi"
+            cpu: "500m"
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 10
+          timeoutSeconds: 1
+          
+          

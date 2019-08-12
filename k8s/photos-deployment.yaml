@@ -1,0 +1,65 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: photos
+  namespace: products
+  labels:
+    app: photos
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: photos
+  template:
+    metadata:
+      labels:
+        app: photos
+    spec:
+      containers:
+      - env:
+        - name: DB_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: db-user-pass
+              key: db_username
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: db-user-pass
+              key: db_password
+        - name: DB_SERVER
+          valueFrom:
+            secretKeyRef:
+              name: db-user-pass
+              key: db_server
+        - name: ConnectionStrings__DefaultConnection
+          value: "Server=$(DB_SERVER);Database=Products.Photos;User Id=$(DB_USERNAME);Password=$(DB_PASSWORD);ConnectRetryCount=0"
+        - name: Identity__Authority
+          value: http://identityapi.identity
+        - name: RabbitMq__Host
+          valueFrom:
+            configMapKeyRef:
+              name: rabbitmq
+              key: host
+        - name: PhotoStorageConnectionString
+          valueFrom:
+            secretKeyRef:
+              name: photo-storage
+              key: photo_storage
+        image: mwpro/pjmicrostore-products-photos:1.0.2
+        name: photos
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "50m"
+          limits:
+            memory: "256Mi"
+            cpu: "500m"
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 80
+          initialDelaySeconds: 10
+          timeoutSeconds: 1

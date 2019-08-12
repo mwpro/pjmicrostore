@@ -27,10 +27,13 @@ namespace Products.Catalog.Controllers
         }
         
         [HttpGet("")]
-        [Authorize(AuthorizationPolicies.AdminOnly)]
+        [Authorize]
         public IActionResult GetAllProducts([FromQuery]int page = 1,
             int productsPerPage = 10)
         {
+            if (!User.IsInRole(Roles.Admin) && !User.HasScope(Scopes.Products))
+                return Forbid();
+
             if (page < 1 || productsPerPage < 1)
                 return BadRequest("Invalid pagination parameters");
             

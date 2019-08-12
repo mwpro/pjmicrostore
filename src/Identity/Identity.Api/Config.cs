@@ -69,6 +69,13 @@ namespace Identity.Api
                     ClientSecrets = { new Secret(configuration.GetValue<string>("ClientCredentialClients:IdentityApi:ClientSecret").Sha256()) },
                     AllowedScopes = { Scopes.Orders }
                 },
+                new Client
+                {
+                    ClientId = configuration.GetValue<string>("ClientCredentialClients:Search:ClientId"),
+                    AllowedGrantTypes = GrantTypes.ClientCredentials,
+                    ClientSecrets = { new Secret(configuration.GetValue<string>("ClientCredentialClients:Search:ClientSecret").Sha256()) },
+                    AllowedScopes = { Scopes.Products }
+                },
                 // SPA client using Code flow
                 new Client
                 {

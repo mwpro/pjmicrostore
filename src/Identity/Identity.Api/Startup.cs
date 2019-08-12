@@ -42,12 +42,15 @@ namespace Identity.Api
 
             services.SetupTokenService(Configuration);
 
+            services.AddHealthChecks()
+                .AddDbContextCheck<ApplicationDbContext>();
+
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
             
-            services.AddMvc().SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_2_1);
+            services.AddMvc().SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_2_2);
 
             services.Configure<IISOptions>(iis =>
             {
@@ -117,6 +120,7 @@ namespace Identity.Api
                 app.UseExceptionHandler("/Home/Error");
             }
 
+            app.UseHealthChecks("/healthz");
             app.UseAuthentication();
             app.UseStaticFiles();
             app.UseIdentityServer();

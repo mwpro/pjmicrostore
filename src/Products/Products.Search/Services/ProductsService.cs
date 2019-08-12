@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Common.Infrastructure;
 using Flurl;
 using Flurl.Http;
 using Microsoft.Extensions.Configuration;
@@ -15,15 +16,18 @@ namespace Products.Search.Services
     public class ProductsService : IProductsService
     {
         private readonly IConfiguration _configuration;
+        private readonly IAuthorizationTokenService _authorizationTokenService;
 
-        public ProductsService(IConfiguration configuration)
+        public ProductsService(IConfiguration configuration, IAuthorizationTokenService authorizationTokenService)
         {
             _configuration = configuration;
+            _authorizationTokenService = authorizationTokenService;
         }
 
         public async Task<IEnumerable<ProductDto>> GetProducts()
         {
-            var product = await $"{_configuration.GetValue<string>("Dependencies:Products")}/api/" // todo products or catalog?
+            var product = await $"{_configuration.GetValue<string>("Dependencies:Products")}/api/"
+                .WithOAuthBearerToken(await _authorizationTokenService.GetBearerToken())
                 .AppendPathSegments("products")
                 .SetQueryParam("productsPerPage", 1000) // todo
                 .GetJsonAsync<ProductsList>();

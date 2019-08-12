@@ -73,7 +73,6 @@ services:
       dockerfile: Checkout/Checkout.Shipping/Dockerfile
     environment: 
       - ASPNETCORE_ENVIRONMENT=Development
-      - RabbitMq__Host=rabbitmq
       - Identity__Authority=http://identityapi
   frontapigateway:    
     container_name: frontapigateway
@@ -127,7 +126,6 @@ services:
     environment: 
       - ASPNETCORE_ENVIRONMENT=Development
       - RabbitMq__Host=rabbitmq
-      - ConnectionStrings__DefaultConnection=Server=${SQLSERVER_ADDRESS};Database=Identity;User Id=${SQLSERVER_USERNAME};Password=${SQLSERVER_PASSWORD};ConnectRetryCount=0
       - Identity__Authority=http://identityapi
       - Dependencies__Orders=http://orders
       - Emails__Smtp__Host=smtp

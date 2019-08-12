@@ -35,6 +35,7 @@ namespace External.FrontApiGateway
                     })
                 .ConfigureServices((webHost, s) =>
                 {
+                    s.AddHealthChecks();
                     s.AddOcelot();
                     s.AddCors(options => options.AddDefaultPolicy(new CorsPolicy()
                     {
@@ -47,6 +48,7 @@ namespace External.FrontApiGateway
                 })
                 .Configure(app =>
                 {
+                    app.UseHealthChecks("/healthz");
                     app.UseCors().UseOcelot().Wait();
                 });
     }

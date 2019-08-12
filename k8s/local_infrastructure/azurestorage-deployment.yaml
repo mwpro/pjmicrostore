@@ -1,0 +1,27 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: azurestorage
+  namespace: infrastructure
+  labels:
+    app: azurestorage
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: azurestorage
+  template:
+    metadata:
+      labels:
+        app: azurestorage
+    spec:
+      containers:
+      - env:
+        - name: executable
+          value: blob
+        image: mcr.microsoft.com/azure-storage/azurite
+        name: azurestorage
+        command: ["azurite"]
+        args: ["--blobPort=80", "--blobHost=0.0.0.0"]
+        ports:
+        - containerPort: 80

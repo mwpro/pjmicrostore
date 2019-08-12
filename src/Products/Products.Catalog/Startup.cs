@@ -37,6 +37,9 @@ namespace Products.Catalog
                     options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore; // todo hmm, probably it only hides the problem
                 });
 
+            services.AddHealthChecks()
+                .AddDbContextCheck<ProductsContext>();
+
             services.SetupTokenValidation(Configuration);
             services.AddAuthorization(options => { options.AddAdminOnlyPolicy(); });
 
@@ -69,6 +72,7 @@ namespace Products.Catalog
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseHealthChecks("/healthz");
             app.UseAuthentication();
 
             app.UseMvc();

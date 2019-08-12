@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: login
+  namespace: identity
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+spec:
+  rules:
+  - host: login.pjmicrostore.local
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: identityapi
+          servicePort: 80

@@ -1,0 +1,39 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: emailsender
+  namespace: common
+  labels:
+    app: emailsender
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: emailsender
+  template:
+    metadata:
+      labels:
+        app: emailsender
+    spec:
+      containers:
+      - env:
+        - name: Dependencies__Orders
+          value: http://orders.checkout
+        - name: Emails__Smtp__Host
+          value: smtp.infrastructure
+        - name: Identity__Authority
+          value: http://identityapi.identity
+        - name: RabbitMq__Host
+          valueFrom:
+            configMapKeyRef:
+              name: rabbitmq
+              key: host
+        image: mwpro/pjmicrostore-common-emailsender:1.0.1
+        name: emailsender
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "50m"
+          limits:
+            memory: "256Mi"
+            cpu: "500m"

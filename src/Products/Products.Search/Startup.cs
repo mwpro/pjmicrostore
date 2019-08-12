@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Common.Infrastructure;
 using GreenPipes;
 using MassTransit;
 using Microsoft.AspNetCore.Builder;
@@ -30,6 +31,8 @@ namespace Products.Search
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
+            services.AddHealthChecks();
+
             services.AddMassTransit(c =>
             {
                 c.AddBus(provider => Bus.Factory.CreateUsingRabbitMq(
@@ -56,6 +59,8 @@ namespace Products.Search
                 c.AddConsumer<PhotoUpdatesConsumer>();
             });
 
+            services.SetupTokenService(Configuration);
+            
             services.AddSingleton<IHostedService, BusService>();
 
             services.AddTransient<ProductUpdatedConsumer>();
@@ -71,6 +76,8 @@ namespace Products.Search
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseHealthChecks("/healthz"); 
 
             app.UseMvc();
         }

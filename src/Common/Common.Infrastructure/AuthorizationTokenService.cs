@@ -51,7 +51,7 @@ namespace Common.Infrastructure
 
             if (authToken.IsError)
             {
-                throw authToken.Exception;
+                throw new Exception($"Getting token failed - {authToken.ErrorType} - {authToken.Error}");
             }
 
             _memoryCache.Set(Token, authToken, TimeSpan.FromSeconds(authToken.ExpiresIn - TokenExpirationOffsetSeconds));
@@ -73,7 +73,7 @@ namespace Common.Infrastructure
                 });
                 if (_discoveryResponse.IsError)
                 {
-                    throw _discoveryResponse.Exception;
+                    throw new Exception($"Auth discovery failed - {_discoveryResponse.ErrorType} - {_discoveryResponse.Error}");
                 }
 
                 _memoryCache.Set(DiscoveryData, _discoveryResponse, new MemoryCacheEntryOptions()

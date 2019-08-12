@@ -29,6 +29,7 @@ namespace External.AdminApiGateway
                     })
                 .ConfigureServices((webHost, s) =>
                 {
+                    s.AddHealthChecks();
                     s.AddOcelot();
                     s.AddCors(options => options.AddDefaultPolicy(new CorsPolicy()
                     {
@@ -41,6 +42,7 @@ namespace External.AdminApiGateway
                 })
                 .Configure(app =>
                 {
+                    app.UseHealthChecks("/healthz");
                     app.UseCors().UseOcelot().Wait();
                 });
     }

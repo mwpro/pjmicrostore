@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: external-urls
+  namespace: external
+data:
+  admin: "http://admin.pjmicrostore.local"
+  store: "http://store.pjmicrostore.local"
+  login: "http://login.pjmicrostore.local"
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: external-urls
+  namespace: identity
+data:
+  admin: "http://admin.pjmicrostore.local"
+  store: "http://store.pjmicrostore.local"
+  login: "http://login.pjmicrostore.local"  

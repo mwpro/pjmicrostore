@@ -1,0 +1,92 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: identityapi
+  namespace: identity
+  labels:
+    app: identityapi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: identityapi
+  template:
+    metadata:
+      labels:
+        app: identityapi
+    spec:
+      containers:
+      - env:
+        - name: ADMIN_URL
+          valueFrom:
+            configMapKeyRef:
+              name: external-urls
+              key: admin
+        - name: STORE_URL
+          valueFrom:
+            configMapKeyRef:
+              name: external-urls
+              key: store
+        - name: DB_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: db-user-pass
+              key: db_username
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: db-user-pass
+              key: db_password
+        - name: DB_SERVER
+          valueFrom:
+            secretKeyRef:
+              name: db-user-pass
+              key: db_server
+        - name: ConnectionStrings__DefaultConnection
+          value: "Server=$(DB_SERVER);Database=Identity;User Id=$(DB_USERNAME);Password=$(DB_PASSWORD);ConnectRetryCount=0"
+        - name: Dependencies__Orders
+          value: http://orders.checkout
+        - name: IdentityServer__IssuerUri
+          value: http://identityapi.identity
+        - name: Identity__Authority
+          value: http://identityapi.identity
+        - name: RabbitMq__Host
+          valueFrom:
+            configMapKeyRef:
+              name: rabbitmq
+              key: host
+        - name: SpaClients__FrontStore__RedirectUris__0
+          value: "$(STORE_URL)/callback"
+        - name: SpaClients__FrontStore__RedirectUris__1
+          value: "$(STORE_URL)/silentRenew"
+        - name: SpaClients__FrontStore__RedirectUris__2
+          value: "$(STORE_URL)/popupCallback"
+        - name: SpaClients__FrontStore__PostLogoutRedirectUris__0
+          value: "$(STORE_URL)"
+        - name: SpaClients__FrontStore__AllowedCorsOrigins__0
+          value: "$(STORE_URL)"
+        - name: SpaClients__FrontAdmin__RedirectUris__0
+          value: "$(ADMIN_URL)/callback"
+        - name: SpaClients__FrontAdmin__RedirectUris__1
+          value: "$(ADMIN_URL)/silentRenew"
+        - name: SpaClients__FrontAdmin__PostLogoutRedirectUris__0
+          value: "$(ADMIN_URL)"
+        - name: SpaClients__FrontAdmin__AllowedCorsOrigins__0
+          value: "$(ADMIN_URL)"
+        image: mwpro/pjmicrostore-identity-api:1.0.3
+        name: identityapi
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "50m"
+          limits:
+            memory: "256Mi"
+            cpu: "500m"
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 80
+          initialDelaySeconds: 10
+          timeoutSeconds: 1

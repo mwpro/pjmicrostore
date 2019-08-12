@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: rabbitmq
+  namespace: checkout
+data:
+  host: "rabbitmq.infrastructure"
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: rabbitmq
+  namespace: common
+data:
+  host: "rabbitmq.infrastructure"
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: rabbitmq
+  namespace: identity
+data:
+  host: "rabbitmq.infrastructure"
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: rabbitmq
+  namespace: products
+data:
+  host: "rabbitmq.infrastructure"

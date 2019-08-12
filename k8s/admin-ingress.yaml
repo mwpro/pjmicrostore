@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: admin
+  namespace: external
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+spec:
+  rules:
+  - host: admin.pjmicrostore.local
+    http:
+      paths:
+      - path: /api
+        backend:
+         serviceName: adminapigateway
+         servicePort: 80
+      - path: /
+        backend:
+          serviceName: adminfront
+          servicePort: 80

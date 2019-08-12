@@ -1,0 +1,48 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: adminapigateway
+  namespace: external
+  labels:
+    app: adminapigateway
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: adminapigateway
+  template:
+    metadata:
+      labels:
+        app: adminapigateway
+    spec:
+      containers:
+      - env:
+        - name: GatewayServices__Orders__DownstreamHost
+          value: orders.checkout
+        - name: GatewayServices__Orders__DownstreamPort
+          value: "80"
+        - name: GatewayServices__Photos__DownstreamHost
+          value: photos.products
+        - name: GatewayServices__Photos__DownstreamPort
+          value: "80"
+        - name: GatewayServices__Products__DownstreamHost
+          value: catalog.products
+        - name: GatewayServices__Products__DownstreamPort
+          value: "80"
+        image: mwpro/pjmicrostore-adminapigateway:1.0.1
+        name: adminapigateway
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "50m"
+          limits:
+            memory: "256Mi"
+            cpu: "500m"
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 80
+          initialDelaySeconds: 10
+          timeoutSeconds: 1

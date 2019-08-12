@@ -15,10 +15,11 @@
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.7.12" />
-    <PackageReference Include="NEST" Version="7.1.0" />
+    <PackageReference Include="NEST" Version="6.8.1" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\Common.Infrastructure\Common.Infrastructure.csproj" />
     <ProjectReference Include="..\Products.Catalog.Contracts\Products.Catalog.Contracts.csproj" />
     <ProjectReference Include="..\Products.Catalog.Contracts\Products.Catalog.Contracts.csproj" />
     <ProjectReference Include="..\Products.Photos.Contracts\Products.Photos.Contracts.csproj" />

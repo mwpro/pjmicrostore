@@ -1,0 +1,66 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: orders
+  namespace: checkout
+  labels:
+    app: orders
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: orders
+  template:
+    metadata:
+      labels:
+        app: orders
+    spec:
+      containers:
+      - env:
+        - name: DB_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: db-user-pass
+              key: db_username
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: db-user-pass
+              key: db_password
+        - name: DB_SERVER
+          valueFrom:
+            secretKeyRef:
+              name: db-user-pass
+              key: db_server
+        - name: ConnectionStrings__DefaultConnection
+          value: "Server=$(DB_SERVER);Database=Checkout.Orders;User Id=$(DB_USERNAME);Password=$(DB_PASSWORD);ConnectRetryCount=0"
+        - name: Dependencies__Cart
+          value: http://cart.checkout
+        - name: Dependencies__Payment
+          value: http://payments.checkout
+        - name: Dependencies__Shipping
+          value: http://shipping.checkout
+        - name: Identity__Authority
+          value: http://identityapi.identity
+        - name: RabbitMq__Host
+          valueFrom:
+            configMapKeyRef:
+              name: rabbitmq
+              key: host
+        image: mwpro/pjmicrostore-checkout-orders:1.0.2
+        name: orders
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "50m"
+          limits:
+            memory: "256Mi"
+            cpu: "500m"
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 80
+          initialDelaySeconds: 10
+          timeoutSeconds: 1

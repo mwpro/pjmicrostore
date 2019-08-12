@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: login
+  namespace: identity
+  annotations:
+    kubernetes.io/ingress.class: "addon-http-application-routing"
+spec:
+  rules:
+  - host: login.CLUSTER_PUBLIC_URL
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: identityapi
+          servicePort: 80

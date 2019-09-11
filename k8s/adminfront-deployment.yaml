@@ -30,7 +30,7 @@ spec:
             configMapKeyRef:
               name: external-urls
               key: login
-        image: mwpro/pjmicrostore-front-admin:1.0.0
+        image: mwpro/pjmicrostore-front-admin:1.0.2
         name: adminfront
         ports:
         - containerPort: 80

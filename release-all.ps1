@@ -35,7 +35,7 @@ docker push $DOCKER_REPOSITORY_NAME/pjmicrostore-frontapigateway:$DOCKER_IMAGE_V
 docker push $DOCKER_REPOSITORY_NAME/pjmicrostore-frontapigateway:latest
 
 # identity
-$DOCKER_IMAGE_VERSION = "1.0.3"
+$DOCKER_IMAGE_VERSION = "1.0.4"
 docker tag $DOCKER_REPOSITORY_NAME/pjmicrostore-identity-api $DOCKER_REPOSITORY_NAME/pjmicrostore-identity-api:$DOCKER_IMAGE_VERSION
 docker push $DOCKER_REPOSITORY_NAME/pjmicrostore-identity-api:$DOCKER_IMAGE_VERSION
 docker push $DOCKER_REPOSITORY_NAME/pjmicrostore-identity-api:latest
@@ -55,11 +55,11 @@ docker push $DOCKER_REPOSITORY_NAME/pjmicrostore-products-photos:$DOCKER_IMAGE_V
 docker push $DOCKER_REPOSITORY_NAME/pjmicrostore-products-photos:latest
 
 # frontend
-$DOCKER_IMAGE_VERSION = "1.0.0"
+$DOCKER_IMAGE_VERSION = "1.0.1"
 docker tag $DOCKER_REPOSITORY_NAME/pjmicrostore-front-admin $DOCKER_REPOSITORY_NAME/pjmicrostore-front-admin:$DOCKER_IMAGE_VERSION
 docker push $DOCKER_REPOSITORY_NAME/pjmicrostore-front-admin:$DOCKER_IMAGE_VERSION
 docker push $DOCKER_REPOSITORY_NAME/pjmicrostore-front-admin:latest
-$DOCKER_IMAGE_VERSION = "1.0.0"
+$DOCKER_IMAGE_VERSION = "1.0.1"
 docker tag $DOCKER_REPOSITORY_NAME/pjmicrostore-front-store $DOCKER_REPOSITORY_NAME/pjmicrostore-front-store:$DOCKER_IMAGE_VERSION
 docker push $DOCKER_REPOSITORY_NAME/pjmicrostore-front-store:$DOCKER_IMAGE_VERSION
 docker push $DOCKER_REPOSITORY_NAME/pjmicrostore-front-store:latest

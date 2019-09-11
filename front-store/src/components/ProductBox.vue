@@ -1,6 +1,6 @@
 <template>
   <div class="col-12 col-md-4">
-    <div class="card">
+    <div class="card" style="height: 100%">
       <img class="card-img-top" :src="product.searchThumbnailUri" alt="Card image cap">
       <div class="card-body">
         <strong class="d-inline-block mb-2 text-success">Design</strong>

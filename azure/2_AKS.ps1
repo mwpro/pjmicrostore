@@ -1,7 +1,7 @@
-$sp = (az ad sp create-for-rbac --skip-assignment  --name "http://pjmicrostore-aks-sp" | ConvertFrom-Json)
-Write-Host "Created principal $sp"
-
-$cluster = (az aks create --resource-group pjmicrostore --name pjmicrostore-aks --node-count 3 --service-principal $sp.appId --client-secret $sp.password --enable-addons http_application_routing | ConvertFrom-Json)
+#$sp = (az ad sp create-for-rbac --skip-assignment --name "http://pjmicrostore-aks-sp" | ConvertFrom-Json)
+#Write-Host "Created principal $sp"
+#--service-principal $sp.appId --client-secret $sp.password 
+$cluster = (az aks create --resource-group pjmicrostore --name pjmicrostore-aks --node-count 3 --enable-addons http_application_routing | ConvertFrom-Json)
 
 $clusterPublicUrl = $cluster.addonProfiles.httpApplicationRouting.config.HTTPApplicationRoutingZoneName
 Write-Host "Cluster domain $clusterPublicUrl"

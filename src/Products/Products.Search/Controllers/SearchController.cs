@@ -118,7 +118,7 @@ namespace Products.Search.Controllers
             var photos = await _client.SearchAsync<PhotoSearchModel>(descriptor => descriptor.Query(q =>
                 q.Bool(b => b.Filter(bq => bq.Terms(t => t.Field(o => o.ProductId)
                     .Terms(results.Documents.Select(x => x.Id)))))
-            ));
+            ).Size(50));
 
             foreach (var product in results.Documents)
             {

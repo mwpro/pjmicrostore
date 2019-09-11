@@ -6,7 +6,7 @@ metadata:
   labels:
     app: search
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: search
@@ -30,7 +30,7 @@ spec:
             configMapKeyRef:
               name: rabbitmq
               key: host
-        image: mwpro/pjmicrostore-products-search:1.0.6
+        image: mwpro/pjmicrostore-products-search:1.0.7
         name: search
         ports:
         - containerPort: 80

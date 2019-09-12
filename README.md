@@ -16,7 +16,7 @@ Simple online store based on microservices architecture.
 
 ## Screenshots
 
-| Syntax      | Description | Description |
+|       |  |  |
 | ----------- | ----------- | ----------- |
 | Front page ![Front page](/docs/front-page.png)  | Category page ![Category page](/docs/category-page.png) | Product page ![Product page](/docs/product-page.png) |
 | Checkout page ![Checkout page](/docs/checkout-page.png) | Payment mock page ![Payment mock page](/docs/payment-mock.png) | Order history page ![Order history page](/docs/order-history.png) |

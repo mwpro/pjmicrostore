@@ -1,12 +1,13 @@
 <template>
     <div>
         <h2>{{ product.name }}</h2>
-        <img :src="photos[0].originalUrl" alt="Product name" />
-        <p>{{ product.price | currency }}</p>
+        <img v-if="photos[0]" :src="photos[0].originalUrl" alt="Product name" style="width: 500px; height: auto" />
+        <big>{{ product.price | currency }}</big>
         <AddToCart :product="product" />
         <p>
             {{product.description}}
         </p>
+        <h3>Specyfikacja</h3>
         <table>
             <tr v-for="attribute in product.attributes" v-bind:key="attribute.attributeId">
                 <td>{{ attribute.name }}</td>

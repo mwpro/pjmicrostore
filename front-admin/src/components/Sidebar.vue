@@ -5,7 +5,7 @@
         <li class="nav-item">
           <router-link to="/" class="nav-link">
             <span data-feather="home"></span>
-            Dashboard
+            Strona główna
             <span class="sr-only">(current)</span>
           </router-link>
         </li>
@@ -21,12 +21,6 @@
             Produkty
           </router-link>
         </li>        
-        <li class="nav-item">
-          <router-link to="/about" class="nav-link" href="#">
-            <span data-feather="shopping-cart"></span>
-            About
-          </router-link>
-        </li>
       </ul>
     </div>
   </nav>

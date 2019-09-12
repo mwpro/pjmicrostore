@@ -4,22 +4,11 @@
       <div class="row">
         <aside class="col-md-3 blog-sidebar">
           <div class="p-4">
-            <h4 class="font-italic">Elsewhere</h4>
-            <ol class="list-unstyled">
-              <li>
-                <a href="#">GitHub</a>
-              </li>
-              <li>
-                <a href="#">Twitter</a>
-              </li>
-              <li>
-                <a href="#">Facebook</a>
-              </li>
-            </ol>
           </div>
         </aside>
         <div class="col blog-main">
           <div class="row">
+            <h3>Twoje zamówienia</h3>
             <b-table hover :items="orders" :fields="fieldsConfig">
                 <template slot="id" slot-scope="row">
                   <router-link :to="'orders/'+row.value">{{ row.value }}</router-link>

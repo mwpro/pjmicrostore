@@ -73,7 +73,7 @@ spec:
           value: "$(ADMIN_URL)"
         - name: SpaClients__FrontAdmin__AllowedCorsOrigins__0
           value: "$(ADMIN_URL)"
-        image: mwpro/pjmicrostore-identity-api:1.0.3
+        image: mwpro/pjmicrostore-identity-api:1.0.4
         name: identityapi
         ports:
         - containerPort: 80
